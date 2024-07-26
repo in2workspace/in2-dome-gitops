@@ -12,8 +12,8 @@ vcverifier:
     ssikit:
       auditorUrl: http://walt-id-vcwaltid:7003
     verifier:
-      tirAddress: https://tir.dome-marketplace-sbx.org/v3/issuers
-      did: did:web:dome-marketplace-sbx.org
+      tirAddress: https://tir.dome-marketplace-lcl.org/v3/issuers
+      did: did:web:dome-marketplace-lcl.org
     configRepo:
       configEndpoint: http://credentials-config-service:8080/
         
@@ -49,34 +49,110 @@ vcverifier:
     verifier_present_qr.html: |-
       {{define "verifier_present_qr"}}
       <!doctype html>
-
       <html>
-          <head>
-              <meta charset="utf-8" />
-              <link href="/static/css/w3pro.css" rel="stylesheet">
-              <link href="/static/css/mystyle.css" rel="stylesheet">
-              <link href="/static/css/prism.css" rel="stylesheet">
-          
-              <meta name="viewport" content="width=device-width, initial-scale=1" />
-              <meta name="theme-color" content="#2d58a7">
-              <title>Credential Verifier</title>
-          
-          </head>
-          
-          <body>
-              <div class="w3-bar w3-card color-primary w3-margin-bottom w3-large">
-                  <a class="w3-bar-item w3-right" href="https://dome-marketplace-sbx.org"><img src="/static/img/logo-white.svg" alt="DOME Marketplace" style="width:222px;height:50px;">
-                  </a>
-              </div>
-              <main class="w3-container w3-center">
+      <head>
+          <meta charset="utf-8" />
+          <link href="/static/css/w3pro.css" rel="stylesheet">
+          <link href="/static/css/mystyle.css" rel="stylesheet">
+          <link href="/static/css/prism.css" rel="stylesheet">
+          <meta name="viewport" content="width=device-width, initial-scale=1" />
+          <meta name="theme-color" content="#919597">
+          <title>Credential Verifier</title>
+          <style>
+              body {
+                  background-color: #121942;
+                  color: white;
+                  font-family: Arial, sans-serif;
+                  margin: 0;
+                  padding: 0;
+              }
 
-                  <h3>Scan this QR code to authenticate with a mobile</h3>
+              .header {
+                  margin: 20px 0;
+                  padding-left: 20px;
+              }
 
-                  <img src="data:{{.qrcode}}" alt="the qr.">
+              .header img {
+                  max-width: 100px;
+                  height: auto;
+              }
 
-              </main>
-          </body>
+              .container {
+                  display: flex;
+                  justify-content: center;
+                  align-items: center;
+                  min-height: 80vh;
+                  flex-wrap: wrap;
+              }
+
+              .card {
+                  background-color: #0A1128;
+                  border: 1px solid #00FFFF;
+                  border-radius: 8px;
+                  padding: 20px;
+                  margin: 20px;
+                  text-align: center;
+                  color: white;
+                  flex: 1 1 30%;
+                  max-width: 400px;
+              }
+
+              .card a {
+                  color: #00FFFF;
+                  text-decoration: none;
+              }
+
+              .card a:hover {
+                  text-decoration: underline;
+              }
+
+              h3 {
+                  color: white;
+              }
+
+              .instructions {
+                  text-align: left;
+              }
+
+              @media (max-width: 768px) {
+                  .card {
+                      flex: 1 1 80%;
+                      max-width: 80%;
+                  }
+              }
+
+              @media (max-width: 480px) {
+                  .card {
+                      flex: 1 1 100%;
+                      max-width: 100%;
+                  }
+              }
+          </style>
+      </head>
+      <body>
+      <div class="header">
+          <a href="https://www.fiware.org/">
+              <img src="/static/img/dome.png" alt="DOME">
+          </a>
+      </div>
+      <div class="container">
+          <div class="card">
+              <p>You need to have previously completed the onboarding process.</p>
+              <p>If you haven't done so yet, click <a href="#">here CSP Consumer</a></p>
+          </div>
+          <div class="card">
+              <h3>Scan this QR with your Wallet:</h3>
+              <img src="data:{{.qrcode}}" alt="the qr.">
+          </div>
+          <div class="card instructions">
+              <h3>Login instructions</h3>
+              <p>1. Register and log into a Wallet Application, for example <a href="#">this</a>.</p>
+              <p>2. Scan the QR code with the <a href="#">Wallet Application</a>.</p>
+          </div>
+      </div>
+      </body>
       </html>
       {{end}}
+
   static:
     enabled: true
