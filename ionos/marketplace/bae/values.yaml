@@ -169,12 +169,12 @@ business-api-ecosystem:
     ingress:
       enabled: true
       className: nginx
-#      annotations:
-#        cert-manager.io/cluster-issuer: letsencrypt-in2-test-issuer
-#      tls:
-#        -  hosts:
-#             - dome-marketplace-lcl.org
-#           secretName: bae-tls-secret
+      annotations:
+        cert-manager.io/cluster-issuer: letsencrypt-in2-test-issuer
+      tls:
+        -  hosts:
+             - dome-marketplace-lcl.org
+           secretName: bae-tls-secret
       hosts:
         - host: dome-marketplace-lcl.org
           paths:
