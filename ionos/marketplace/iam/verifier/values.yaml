@@ -92,7 +92,6 @@ vcverifier:
                   height: auto;
                   margin-left: 20px;
                   margin-top: 20px;
-                  filter: invert(1) brightness(2);
               }
       
               h1, h2, h3, h4, h5, h6 {
@@ -335,7 +334,7 @@ vcverifier:
       </head>
       <body>
       <div class="header">
-          <img src="/static/img/DOME_Logo_Black.svg" alt="DOME Logo">
+          <img src="https://i.postimg.cc/BbjrWQG2/DOME-Logo-White.png" alt="DOME White Logo">
       </div>
       <div class="container">
           <div class="left-column">
@@ -383,6 +382,7 @@ vcverifier:
       </body>
       </html>
       {{end}}
+
 
 
 
