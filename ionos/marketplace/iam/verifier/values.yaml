@@ -320,7 +320,7 @@ vcverifier:
                       if (code) {
                           const baseUrl = 'https://wallet.dome-marketplace-sbx.org/tabs/home';
                           const qrData = code.data.replace('openid://', '');
-                          walletButton.onclick = () => window.location.href = `${baseUrl}?${qrData}`;
+                          walletButton.onclick = () => window.location.href = `${baseUrl}${qrData}`;
                       }
                   };
                   img.onerror = () => {
