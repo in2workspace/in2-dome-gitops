@@ -318,7 +318,7 @@ vcverifier:
                       const imageData = context.getImageData(0, 0, canvas.width, canvas.height);
                       const code = jsQR(imageData.data, imageData.width, imageData.height);
                       if (code) {
-                          const baseUrl = 'https://wallet.dome-marketplace-sbx.org/tabs/home';
+                          const baseUrl = 'https://wallet.dome-marketplace-lcl.org/tabs/home';
                           const qrData = code.data.replace('openid://', '');
                           walletButton.onclick = () => window.location.href = `${baseUrl}${qrData}`;
                       }
