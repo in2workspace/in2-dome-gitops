@@ -16,10 +16,9 @@ dome-dss:
       host: dome-dss-vault-server
       scheme: http
       port: 8200
-      token: hvs.WQlzYBJKEUq8S9jbNnm5ZzMW
       existingSecret:
         # -- should an existing secret be used
-        enabled: false
+        enabled: true
         # -- name of the secret
         name: dome-dss-token-secret
         # -- key to retrieve the token from
