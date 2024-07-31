@@ -147,7 +147,6 @@ access-node:
         - host: scorpio.dome-marketplace-lcl.org
           paths:
             - path: /
-              pathType: Prefix
       tls:
         - hosts:
             - scorpio.dome-marketplace-lcl.org
