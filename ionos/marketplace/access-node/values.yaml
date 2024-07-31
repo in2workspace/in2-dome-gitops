@@ -23,7 +23,7 @@ access-node:
       tls:
         - hosts:
             - desmos.dome-marketplace-lcl.org
-          secretName: access-node-tls-secret
+          secretName: desmos-tls-secret
     ## deployment specific configuration
     app:
       ## profile (test == dev)
@@ -150,7 +150,7 @@ access-node:
       tls:
         - hosts:
             - scorpio.dome-marketplace-lcl.org
-          secretName: access-node-tls-secret
+          secretName: scorpio-tls-secret
 
     ## configuration of the database to be used by broker
     db:
