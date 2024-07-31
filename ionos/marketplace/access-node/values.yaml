@@ -138,19 +138,19 @@ access-node:
       repository: scorpiobroker/all-in-one-runner
       # -- tag of the image to be used - latest java image without kafka
       tag: java-4.1.10
-    ingress:
-      enabled: true
-      className: nginx
-      annotations:
-        cert-manager.io/cluster-issuer: letsencrypt-in2-test-issuer
-      hosts:
-        - host: scorpio.dome-marketplace-lcl.org
-          paths:
-            - path: /
-      tls:
-        - hosts:
-            - scorpio.dome-marketplace-lcl.org
-          secretName: access-node-tls-secret
+#    ingress:
+#      enabled: true
+#      className: nginx
+#      annotations:
+#        cert-manager.io/cluster-issuer: letsencrypt-in2-test-issuer
+#      hosts:
+#        - host: scorpio.dome-marketplace-lcl.org
+#          paths:
+#            - path: /
+#      tls:
+#        - hosts:
+#            - scorpio.dome-marketplace-lcl.org
+#          secretName: access-node-tls-secret
     ## configuration of the database to be used by broker
     db:
       # -- host of the db
