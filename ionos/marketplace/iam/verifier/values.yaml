@@ -340,14 +340,14 @@ vcverifier:
           <div class="left-column">
               <div class="registration-card">
                   <h3>Your organization must be registered in the marketplace before you log in.</h3>
-                  <button onclick="window.location.href='#'">
+                  <button onclick="window.location.href='https://knowledgebase.dome-marketplace-prd.org/shelves/company-onboarding-process'">
                       <i class="fa-solid fa-laptop"></i>
                       Registration
                   </button>
               </div>
               <div class="card">
                   <h3>Having trouble logging in?</h3>
-                  <p>Get help from <a href="#">Customer Support</a></p>
+                  <p>Get help from <a href="https://ticketing.dome-marketplace-sbx.org">Customer Support</a></p>
               </div>
           </div>
           <div class="right-column">
@@ -368,7 +368,7 @@ vcverifier:
                       </div>
                       <div class="instructions">
                           <h3>Login instructions</h3>
-                          <h4>1. You must register or log in to a EUDI Wallet using your phone. You may use the <a href="#">DOME Wallet</a>.</h4>
+                          <h4>1. You must register or log in to a EUDI Wallet using your phone. You may use the <a href="https://wallet.dome-marketplace-lcl.org">DOME Wallet</a>.</h4>
                           <h4>2. Scan the QR code.</h4>
                           <h4>3. Select the credential.</h4>
                       </div>
