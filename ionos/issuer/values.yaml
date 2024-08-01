@@ -65,9 +65,9 @@ issuer:
         port: 587
         existingSecret:
           enabled: true
-          name: issuer-api-mail-secret
-          userKey: username
-          passwordKey: password
+          name: issuer-secret
+          mailUsernameKey: username
+          mailPasswordKey: password
         properties:
           mail:
             smtp:
@@ -294,9 +294,9 @@ issuer:
         replyTo: digitalidentitysupport@dome-marketplace.eu
         existingSecret:
           enabled: true
-          name: issuer-keycloak-mail-secret
-          userKey: username
-          passwordKey: password
+          name: issuer-secret
+          mailUsernameKey: username
+          mailPasswordKey: password
         properties:
           mail:
             smtp:
