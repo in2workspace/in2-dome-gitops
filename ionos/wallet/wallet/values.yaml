@@ -44,39 +44,35 @@ wallet:
         url: http://dome-wallet-keycloak:8080/keycloak/realms/wallet/protocol/openid-connect/token
         client:
           id: user-registry-client
-          secret: fV51P8jFBo8VnFKMMuP3imw3H3i5mNck
           existingSecret:
             # -- should an existing secret be used
-            enabled: false
-#            # -- name of the secret
-#            name: wallet-api-client-secret
-#            # -- key to retrieve the password from
-#            key: client-secret
+            enabled: true
+            # -- name of the secret
+            name: wallet-secret
+            # -- key to retrieve the password from
+            key: client-secret
         userData:
           name: admin
-          password: adminPass
           existingSecret:
             # -- should an existing secret be used
-            enabled: false
+            enabled: true
 #            # -- name of the secret
-#            name: wallet-api-user-password
+            name: wallet-secret
 #            # -- key to retrieve the password from
-#            key: user-password
+            key: user-password
       vault:
         provider: hashicorp
         # host needs to match with the service name of the vault server
         host: wallet-vault-server # fullnameOverride: wallet-vault
         scheme: http
         port: 8200
-        # cambiar por valores dummy
-        token: "hvs.klVKZA6yFWV9mZe892uXEE3U"
         existingSecret:
           # -- should an existing secret be used
-          enabled: false
+          enabled: true
 #          # -- name of the secret
-#          name: wallet-api-token-secret
+          name: wallet-secret
 #          # -- key to retrieve the token from
-#          key: token
+          key: token
       broker:
         provider: scorpio
         internal:
@@ -166,14 +162,13 @@ wallet:
         adminUrl: "https://wallet.dome-marketplace-lcl.org/keycloak"
         relativePath: "/keycloak/"
         admin: admin
-        password: admin
         existingSecret:
           # -- should an existing secret be used
-          enabled: false
+          enabled: true
 #          # -- name of the secret
-#          name: dome-wallet-keycloak-secret
+          name: wallet-secret
 #          # -- key to retrieve the password from
-#          key: keycloak-password
+          key: keycloak-password
     db:
       type: postgres
       host: dome-wallet-keycloak-postgres
@@ -181,14 +176,13 @@ wallet:
       externalService: false
       name: keycloak
       username: postgres
-      password: postgres
       existingSecret:
         # -- should an existing secret be used
-        enabled: false
+        enabled: true
 #        # -- name of the secret
-#        name: dome-wallet-keycloak-db-secret
+        name: wallet-secret
 #        # -- key to retrieve the password from
-#        key: keycloak-db-password
+        key: keycloak-db-password
 
   ## configuration of postgres to be used for the blockchain-connector - see https://github.com/bitnami/charts/tree/main/bitnami/postgresql for details
   postgresql:
@@ -235,14 +229,13 @@ wallet:
       # -- username to be used
       user: postgres
       # -- password to be used
-      password: postgres
       existingSecret:
         # -- should an existing secret be used
-        enabled: false
+        enabled: true
 #        # -- name of the secret
-#        name: wallet-scorpio-secret
+        name: wallet-secret
 #        # -- key to retrieve the password from
-#        key: passwordKey
+        key: passwordKey
     ## configuration of the readiness probe
     readinessProbe:
       # -- path to be used for the readiness probe, older versions used /actuator/health
