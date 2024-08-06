@@ -10,7 +10,7 @@ vcverifier:
         - "/health"
 
     ssikit:
-      auditorUrl: http://walt-id-vcwaltid:7003
+      auditorUrl: http://vcwaltid:7003
     verifier:
       tirAddress: https://tir.dome-marketplace-lcl.org/v3/issuers
       did: did:web:dome-marketplace-lcl.org
