@@ -102,7 +102,7 @@ vcwaltid:
         - /opt/did/script/import.sh
       env:
         - name: WALTID_CORE_ADDRESS
-          value: "vcwaltid:7003"
+          value: "vcwaltid:7000"
       volumeMounts:
         - name: did-config
           mountPath: /opt/did/script
