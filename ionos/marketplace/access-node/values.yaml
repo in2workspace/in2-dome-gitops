@@ -95,7 +95,8 @@ access-node:
     fullnameOverride: dlt-adapter
     env:
       DEBUG: "*"
-      PRIVATE_KEY: "0xe2afef2c880b138d741995ba56936e389b0b5dd2943e21e4363cc70d81c89346"
+#      PRIVATE_KEY: "0xe2afef2c880b138d741995ba56936e389b0b5dd2943e21e4363cc70d81c89346"
+      PRIVATE_KEY: "0x304d170fb355df65cc17ef7934404fe9baee73a1244380076436dec6fafb1e1f"
       RPC_ADDRESS: "https://red-t.alastria.io/v0/9461d9f4292b41230527d57ee90652a6"
       ISS: "0x43b27fef24cfe8a0b797ed8a36de2884f9963c0c2a0da640e3ec7ad6cd0c493d"
 
