@@ -120,7 +120,7 @@ access-node:
       # -- existing secret
       existingSecret: desmos-secret
       secretKeys:
-        adminPasswordKey: desmos-db-username
+        adminPasswordKey: desmos-db-password
         userPasswordKey: desmos-db-password
     ## configuration of the postgres primary replica
     primary:
@@ -156,7 +156,7 @@ access-node:
         # -- name of the secret
         name: desmos-secret
         # -- key to retrieve the password from
-        key: desmos-db-password
+        key: scorpio-db-password
     ## configuration of the readiness probe
     readinessProbe:
       # -- path to be used for the readiness probe, older versions used /actuator/health
@@ -194,8 +194,8 @@ access-node:
       # -- existing secret
       existingSecret: desmos-secret
       secretKeys:
-        adminPasswordKey: desmos-db-username
-        userPasswordKey: desmos-db-password
+        adminPasswordKey: scorpio-db-password
+        userPasswordKey: scorpio-db-password
     ## configuration of the postgres primary replicas
     primary:
       ## provide db initialization
