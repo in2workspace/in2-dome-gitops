@@ -163,7 +163,7 @@ business-api-ecosystem:
     statefulset:
       image:
         repository: fiware/biz-ecosystem-logic-proxy
-        tag: "9.4.9-ld"
+        tag: "9.5.0-rc1"
         pullPolicy: Always
 
     ingress:
@@ -194,6 +194,8 @@ business-api-ecosystem:
     initContainers: false
     propagateToken: true
     additionalEnvVars:
+      - name: BAE_LP_SIOP_IS_REDIRECTION
+        value: "true"
       - name: BAE_LP_CHAT_URL
         value: https://eng-gpt.dome-marketplace-sbx.org/predict
       - name: BAE_LP_KNOWLEDGE_BASE_URL
