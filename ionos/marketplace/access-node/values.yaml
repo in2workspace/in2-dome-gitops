@@ -6,7 +6,7 @@ access-node:
     # -- overrides the generated name, provides stable service names - this should be avoided if multiple instances are available in the same namespace
     fullnameOverride: desmos
     image:
-      repository: in2workspace/desmos-api
+      repository: in2workspace/in2-desmos-api
       # Overrides the image tag whose default is the chart appVersion.
       tag: v1.0.0-SNAPSHOT
       pullPolicy: Always
