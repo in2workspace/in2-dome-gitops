@@ -2,10 +2,10 @@ apiVersion: v2
 name: access-node
 description: Chart holder for ArgoCD
 type: application
-version: 0.1.14
+version: 0.1.15
 appVersion: 0.1.0
 dependencies:
   - name: access-node
     condition: access-node.enabled
     repository: https://in2workspace.github.io/helm-charts
-    version: 0.1.3-PRE-31
+    version: 0.1.3-PRE-30
