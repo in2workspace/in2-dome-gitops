@@ -6,9 +6,9 @@ access-node:
     # -- overrides the generated name, provides stable service names - this should be avoided if multiple instances are available in the same namespace
     fullnameOverride: desmos
     image:
-      repository: in2workspace/desmos-api
+      repository: in2workspace/in2-desmos-api
       # Overrides the image tag whose default is the chart appVersion.
-      tag: v0.7.0
+      tag: v1.0.0-SNAPSHOT
       pullPolicy: Always
     ingress:
       enabled: true
@@ -47,7 +47,7 @@ access-node:
         # -- local address of the blockchain-connectors notification endpoint for ngsi-ld events
         notificationEndpoint: http://desmos:80/api/v1/notifications/broker
         # -- a list of entity-types the connector is interested in
-        entityTypes: ProductOffering,catalog,product-offering,category,individual,organization,product,service-specification,product-offering-price,resource-specification,product-specification
+        entityTypes: catalog,product-offering,category,individual,organization,product,service-specification,product-offering-price,resource-specification,product-specification
       ## configuration to connect to the dlt-adapter
       dltAdapter:
         # -- provider of the dlt-adapter component
@@ -61,7 +61,7 @@ access-node:
         # -- local address of the blockchain-connectors notification endpoint for dlt events
         notificationEndpoint: http://desmos:80/api/v1/notifications/dlt
         # -- a list of entity-types the connector is interested in
-        entityTypes: ProductOffering,catalog,product-offering,category,individual,organization,product,service-specification,product-offering-price,resource-specification,product-specification
+        entityTypes: catalog,product-offering,category,individual,organization,product,service-specification,product-offering-price,resource-specification,product-specification
       externalAccessNodesUrls: ""
       # -- operator external domain
       externalDomain: "https://desmos.dome-marketplace-lcl.org"
