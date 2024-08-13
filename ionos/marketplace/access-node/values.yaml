@@ -24,14 +24,14 @@ access-node:
         - hosts:
             - desmos.dome-marketplace-lcl.org
           secretName: desmos-tls-secret
-      livenessProbe:
-        httpGet:
-          path: /health
-          port: 8080
-          host: localhost
-        initialDelaySeconds: 40
-        failureThreshold: 6
-        periodSeconds: 10
+    livenessProbe:
+      httpGet:
+        path: /health
+        port: 8080
+        host: localhost
+      initialDelaySeconds: 40
+      failureThreshold: 6
+      periodSeconds: 10
     ## deployment specific configuration
     app:
       ## profile (test == dev)
