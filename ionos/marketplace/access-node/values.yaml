@@ -64,6 +64,9 @@ access-node:
         entityTypes: catalog,product-offering,category,individual,organization,product,service-specification,product-offering-price,resource-specification,product-specification
       # -- operator external domain
       externalDomain: "https://desmos.dome-marketplace-lcl.org"
+      externalAccessNodesUrls:
+        enableCustomUrls: false
+        customUrls: "http://your-custom-url.org"
       # -- configuration to set your private key
       privateKey:
         existingSecret:
