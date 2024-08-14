@@ -3,7 +3,7 @@ name: business-api-ecosystem
 description: Chart holder for argo-cd
 
 type: application
-version: 0.0.10
+version: 0.0.11
 appVersion: "8.0.0"
 
 dependencies:
