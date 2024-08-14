@@ -106,7 +106,7 @@ access-node:
     fullnameOverride: dlt-adapter
 
     existingSecret:
-      enabled: enabled
+      enabled: true
       name: desmos-secret
       key: private-key
     env:
