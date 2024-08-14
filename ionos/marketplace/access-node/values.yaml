@@ -62,7 +62,6 @@ access-node:
         notificationEndpoint: http://desmos:80/api/v1/notifications/dlt
         # -- a list of entity-types the connector is interested in
         entityTypes: catalog,product-offering,category,individual,organization,product,service-specification,product-offering-price,resource-specification,product-specification
-      externalAccessNodesUrls:
       # -- operator external domain
       externalDomain: "https://desmos.dome-marketplace-lcl.org"
       # -- configuration to set your private key
