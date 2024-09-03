@@ -24,11 +24,6 @@ access-node:
         - hosts:
             - desmos.dome-marketplace-lcl.org
           secretName: desmos-tls-secret
-    readinessProbe:
-      path: /health
-      initialDelaySeconds: 5
-      failureThreshold: 6
-      periodSeconds: 2
     ## deployment specific configuration
     app:
       ## profile (test == dev)
