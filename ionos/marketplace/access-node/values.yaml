@@ -26,9 +26,9 @@ access-node:
           secretName: desmos-tls-secret
     readinessProbe:
       path: /health
-      initialDelaySeconds: 6
+      initialDelaySeconds: 7
       failureThreshold: 6
-      periodSeconds: 1
+      periodSeconds: 2
     ## deployment specific configuration
     app:
       ## profile (test == dev)
