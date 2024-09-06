@@ -86,7 +86,12 @@ vcverifier:
                   margin: 0;
                   padding: 0;
               }
-      
+              
+              .qr-image {
+                background-color: white;
+                padding: 20px;
+              }
+  
               .header img {
                   max-width: 300px;
                   height: auto;
@@ -286,6 +291,7 @@ vcverifier:
                       max-width: 100%;
                   }
               }
+          
           </style>
           <script src="https://cdn.jsdelivr.net/npm/jsqr@1.4.0/dist/jsQR.min.js"></script>
           <script>
@@ -357,7 +363,7 @@ vcverifier:
                           <div id="qr-title" class="additional-element">
                               <h3>Scan the QR with your EUDI Wallet to log in</h3>
                           </div>
-                          <img id="qr-code" src="data:{{.qrcode}}" alt="QR Code">
+                          <img id="qr-code" class="qr-image" src="data:{{.qrcode}}" alt="QR Code">
                           <div id="same-device-title" class="additional-element" style="display: none;">
                               <h3>Login from the same device</h3>
                           </div>
