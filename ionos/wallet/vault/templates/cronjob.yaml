@@ -10,6 +10,7 @@ spec:
     spec:
       template:
         spec:
+          serviceAccountName: vault-check-sa
           containers:
             - name: vault-check
               image: bitnami/kubectl:latest
@@ -26,10 +27,9 @@ spec:
                   # Get the Vault pod name using the correct label
                   VAULT_POD_NAME=$(kubectl get pods -n $NAMESPACE -l app.kubernetes.io/name=vault -o jsonpath='{.items[0].metadata.name}')
 
-                  # Check the logs of the pod for the specific message
-                  LOG_MESSAGE=$(kubectl logs $VAULT_POD_NAME -n $NAMESPACE | grep '[INFO]  core: seal configuration missing, not initialized')
-
-                  if [ -n "$LOG_MESSAGE" ]; then
+                  # Check the logs of the pod for the specific message in the last line
+                  LAST_LOG_LINE=$(kubectl logs $VAULT_POD_NAME -n $NAMESPACE | tail -n 1)
+                  if echo "$LAST_LOG_LINE" | grep -q '[INFO]  core: seal configuration missing, not initialized'; then
                     echo "Vault is not initialized. Proceeding to initialize and unseal Vault..."
 
                     # Initialize and unseal Vault
