@@ -18,13 +18,13 @@ spec:
                 - |
                   #!/bin/sh
                   NAMESPACE="{{ .Values.namespace }}"
-                  VAULT_SERVICE_NAME="vault"
+                  VAULT_SERVICE_NAME="wallet-vault-server"
 
                   # Define the Vault address using Kubernetes service DNS
                   export VAULT_ADDR="http://$VAULT_SERVICE_NAME.$NAMESPACE.svc.cluster.local:7000"
 
                   # Get the name of the Vault pod
-                  VAULT_POD_NAME=$(kubectl get pods -n $NAMESPACE -l app.kubernetes.io/name=vcwaltid -o jsonpath='{.items[0].metadata.name}')
+                  VAULT_POD_NAME=$(kubectl get pods -n $NAMESPACE -l app.kubernetes.io/name=wallet-vault-server -o jsonpath='{.items[0].metadata.name}')
 
                   # Check the status of the pod
                   POD_STATUS=$(kubectl get pod $VAULT_POD_NAME -n $NAMESPACE -o jsonpath='{.status.phase}')
@@ -76,14 +76,4 @@ spec:
                   else
                     echo "The pod $VAULT_POD_NAME is not in 'Initializing' or 'Pending' state. No action required."
                   fi
-              volumeMounts:
-                - name: vault-config
-                  mountPath: {{ .Values.vault.configPath }}
-                - name: vault-file
-                  mountPath: {{ .Values.vault.filePath }}
           restartPolicy: OnFailure
-          volumes:
-            - name: vault-config
-              emptyDir: {}
-            - name: vault-file
-              emptyDir: {}
