@@ -1,7 +1,7 @@
 apiVersion: batch/v1
 kind: CronJob
 metadata:
-  name: {{ .Release.Name }}-vault-check-cronjob
+  name: {{ .Release.Name }}-check-cronjob
   labels:
     app: {{ .Release.Name }}
 spec:
@@ -26,55 +26,36 @@ spec:
                   # Get the Vault pod name using the correct label
                   VAULT_POD_NAME=$(kubectl get pods -n $NAMESPACE -l app.kubernetes.io/name=vault -o jsonpath='{.items[0].metadata.name}')
 
-                  # Check the status of the pod
-                  POD_STATUS=$(kubectl get pod $VAULT_POD_NAME -n $NAMESPACE -o jsonpath='{.status.phase}')
+                  # Check the logs of the pod for the specific message
+                  LOG_MESSAGE=$(kubectl logs $VAULT_POD_NAME -n $NAMESPACE | grep '[INFO]  core: seal configuration missing, not initialized')
 
-                  if [ "$POD_STATUS" = "Pending" ] || [ "$POD_STATUS" = "Initializing" ]; then
-                    echo "The pod $VAULT_POD_NAME is in 'Initializing' or 'Pending' state. Proceeding to check Vault status..."
+                  if [ -n "$LOG_MESSAGE" ]; then
+                    echo "Vault is not initialized. Proceeding to initialize and unseal Vault..."
 
-                    # Check Vault status
-                    VAULT_STATUS=$(vault status 2>&1)
-                    INITIALIZED=$(echo "$VAULT_STATUS" | grep 'Initialized' | awk '{print $2}')
-                    SEALED=$(echo "$VAULT_STATUS" | grep 'Sealed' | awk '{print $2}')
+                    # Initialize and unseal Vault
+                    vault operator init -format=json > /tmp/vault_init.json
 
-                    if [ "$INITIALIZED" = "false" ] && [ "$SEALED" = "true" ]; then
-                      echo "Initializing and unsealing Vault..."
-                      vault operator init -format=json > /tmp/vault_init.json
+                    # Extract the unseal keys and root token
+                    unseal_keys=$(cat /tmp/vault_init.json | jq -r '.unseal_keys_b64[]')
+                    root_token=$(cat /tmp/vault_init.json | jq -r '.root_token')
 
-                      # Extract the unseal keys and root token
-                      unseal_keys=$(cat /tmp/vault_init.json | jq -r '.unseal_keys_b64[]')
-                      root_token=$(cat /tmp/vault_init.json | jq -r '.root_token')
+                    # Create a Kubernetes Secret with the unseal keys and root token
+                    kubectl create secret generic vault-init-keys -n $NAMESPACE \
+                      --from-literal=unseal_key_1=$(echo $unseal_keys | cut -d' ' -f1) \
+                      --from-literal=unseal_key_2=$(echo $unseal_keys | cut -d' ' -f2) \
+                      --from-literal=unseal_key_3=$(echo $unseal_keys | cut -d' ' -f3) \
+                      --from-literal=root_token=$root_token \
+                      --dry-run=client -o yaml | kubectl apply -f -
 
-                      # Create a Kubernetes Secret with the unseal keys and root token
-                      kubectl create secret generic vault-init-keys -n $NAMESPACE \
-                        --from-literal=unseal_key_1=$(echo $unseal_keys | cut -d' ' -f1) \
-                        --from-literal=unseal_key_2=$(echo $unseal_keys | cut -d' ' -f2) \
-                        --from-literal=unseal_key_3=$(echo $unseal_keys | cut -d' ' -f3) \
-                        --from-literal=root_token=$root_token \
-                        --dry-run=client -o yaml | kubectl apply -f -
+                    # Unseal Vault using the unseal keys
+                    vault operator unseal $(echo $unseal_keys | cut -d' ' -f1)
+                    vault operator unseal $(echo $unseal_keys | cut -d' ' -f2)
+                    vault operator unseal $(echo $unseal_keys | cut -d' ' -f3)
 
-                      # Unseal Vault using the unseal keys
-                      vault operator unseal $(echo $unseal_keys | cut -d' ' -f1)
-                      vault operator unseal $(echo $unseal_keys | cut -d' ' -f2)
-                      vault operator unseal $(echo $unseal_keys | cut -d' ' -f3)
-
-                      # Export Vault root token
-                      export VAULT_TOKEN=$root_token
-
-                    elif [ "$INITIALIZED" = "true" ] && [ "$SEALED" = "true" ]; then
-                      echo "Unsealing Vault..."
-                      unseal_key_1=$(kubectl get secret vault-init-keys -n $NAMESPACE -o jsonpath='{.data.unseal_key_1}' | base64 --decode)
-                      unseal_key_2=$(kubectl get secret vault-init-keys -n $NAMESPACE -o jsonpath='{.data.unseal_key_2}' | base64 --decode)
-                      unseal_key_3=$(kubectl get secret vault-init-keys -n $NAMESPACE -o jsonpath='{.data.unseal_key_3}' | base64 --decode)
-
-                      vault operator unseal $unseal_key_1
-                      vault operator unseal $unseal_key_2
-                      vault operator unseal $unseal_key_3
-                    else
-                      echo "Vault is already unsealed or does not require initialization."
-                    fi
+                    # Export Vault root token
+                    export VAULT_TOKEN=$root_token
 
                   else
-                    echo "The pod $VAULT_POD_NAME is not in 'Initializing' or 'Pending' state. No action required."
+                    echo "Vault is already initialized or the log message was not found."
                   fi
           restartPolicy: OnFailure
