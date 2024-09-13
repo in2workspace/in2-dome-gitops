@@ -1,8 +1,6 @@
 # Organisation DID
 did: did:web:dome-marketplace-sbx.org
 
-namespace: marketplace
-
 ingress:
   enabled: true
   annotations: 

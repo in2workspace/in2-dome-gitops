@@ -18,7 +18,7 @@ spec:
                 - |
                   #!/bin/sh
                   NAMESPACE="{{ .Values.namespace }}"
-                  VAULT_SERVICE_NAME="vcwaltid"
+                  VAULT_SERVICE_NAME="vault"
 
                   # Define the Vault address using Kubernetes service DNS
                   export VAULT_ADDR="http://$VAULT_SERVICE_NAME.$NAMESPACE.svc.cluster.local:7000"
