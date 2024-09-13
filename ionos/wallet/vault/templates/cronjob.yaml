@@ -10,6 +10,7 @@ spec:
     spec:
       template:
         spec:
+          serviceAccountName: vault-check-sa
           containers:
             - name: vault-check
               image: bitnami/kubectl:latest
