@@ -91,6 +91,11 @@ spec:
                       --from-literal=unseal_key_3="$UNSEAL_KEY_3" \
                       --namespace "$NAMESPACE"
 
+                    # Extract unseal keys from Kubernetes Secrets
+                    UNSEAL_KEY_1=$(kubectl get secret vault-unseal-keys -n "$NAMESPACE" -o jsonpath='{.data.unseal_key_1}' | base64 --decode)
+                    UNSEAL_KEY_2=$(kubectl get secret vault-unseal-keys -n "$NAMESPACE" -o jsonpath='{.data.unseal_key_2}' | base64 --decode)
+                    UNSEAL_KEY_3=$(kubectl get secret vault-unseal-keys -n "$NAMESPACE" -o jsonpath='{.data.unseal_key_3}' | base64 --decode)
+
                     # Unseal Vault using the unseal keys inside the Vault pod
                     kubectl exec -n "$NAMESPACE" "$VAULT_POD_NAME" -- /bin/sh -c "vault operator unseal $UNSEAL_KEY_1"
                     kubectl exec -n "$NAMESPACE" "$VAULT_POD_NAME" -- /bin/sh -c "vault operator unseal $UNSEAL_KEY_2"
