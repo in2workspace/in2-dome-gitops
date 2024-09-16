@@ -37,8 +37,9 @@ spec:
                   STATUS=$(kubectl exec -n "$NAMESPACE" "$VAULT_POD_NAME" -- /bin/sh -c "vault status 2>&1")
 
                   if [ $? -ne 0 ]; then
-                    echo "Error: Failed to get Vault status."
-                    exit 1
+                    echo "Error: Failed to get Vault status. It means that the Vault is not initialized."
+                    $INITIALIZED = "false"
+                    $SEALED = "true"
                   fi
 
                   echo "Status: $STATUS"
