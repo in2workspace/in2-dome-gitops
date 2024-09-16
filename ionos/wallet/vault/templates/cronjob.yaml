@@ -37,9 +37,10 @@ spec:
 
                   # Check Vault status
                   STATUS=$(kubectl exec -n "$NAMESPACE" "$VAULT_POD_NAME" -- /bin/sh -c "vault status 2>&1")
-                  if [ $? -ne 0 ]; then
-                    echo "Error: Failed to get Vault status."
-                    exit 1
+                  if [ -z "$STATUS" ]; then
+                    echo "Error: Failed to get Vault status. That means the Vault is not initialized"
+                    INITIALIZED="false"
+                    SEALED="true"
                   fi
 
                   echo "Status: $STATUS"
@@ -61,7 +62,7 @@ spec:
 
                     # Initialize Vault
                     kubectl exec -n "$NAMESPACE" "$VAULT_POD_NAME" -- /bin/sh -c 'vault operator init -format=json > /dev/shm/vault_init.json'
-                    if [ $? -ne 0 ]; then
+                    if [ -z "$(kubectl exec -n "$NAMESPACE" "$VAULT_POD_NAME" -- /bin/sh -c 'cat /dev/shm/vault_init.json')" ]; then
                       echo "Error: Failed to initialize Vault."
                       exit 1
                     fi
