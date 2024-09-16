@@ -78,8 +78,8 @@ spec:
 
                     # Decode the unseal keys
                     UNSEAL_KEY_1=$(echo "$UNSEAL_KEYS" | head -n 1 | tr -d '", ')
-                    UNSEAL_KEY_2=$(echo "$UNSEAL_KEYS" | head -n 2 | tr -d '", ')
-                    UNSEAL_KEY_3=$(echo "$UNSEAL_KEYS" | head -n 3 | tr -d '", ')
+                    UNSEAL_KEY_2=$(echo "$UNSEAL_KEYS" | sed -n '2p' | tr -d '", ')
+                    UNSEAL_KEY_3=$(echo "$UNSEAL_KEYS" | sed -n '3p' | tr -d '", ')
 
                     # Delete the old Kubernetes Secret, if it exists
                     kubectl delete secret vault-unseal-keys -n "$NAMESPACE" --ignore-not-found
