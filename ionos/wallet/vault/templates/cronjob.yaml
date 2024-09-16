@@ -91,6 +91,11 @@ spec:
                       --from-literal=unseal_key_3="$UNSEAL_KEY_3" \
                       --namespace "$NAMESPACE"
 
+                    # Unseal Vault using the unseal keys inside the Vault pod
+                    kubectl exec -n "$NAMESPACE" "$VAULT_POD_NAME" -- /bin/sh -c "vault operator unseal $UNSEAL_KEY_1"
+                    kubectl exec -n "$NAMESPACE" "$VAULT_POD_NAME" -- /bin/sh -c "vault operator unseal $UNSEAL_KEY_2"
+                    kubectl exec -n "$NAMESPACE" "$VAULT_POD_NAME" -- /bin/sh -c "vault operator unseal $UNSEAL_KEY_3"
+
                     echo "Vault initialized and unseal keys stored in Kubernetes Secret."
 
                   elif [ "$INITIALIZED" = "true" ] && [ "$SEALED" = "true" ]; then
