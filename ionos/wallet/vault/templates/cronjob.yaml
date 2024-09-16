@@ -67,9 +67,9 @@ spec:
                       exit 1
                     fi
 
-                    # Extract unseal keys and root token from the JSON file using grep and cut
-                    UNSEAL_KEYS=$(kubectl exec -n "$NAMESPACE" "$VAULT_POD_NAME" -- /bin/sh -c 'cat /dev/shm/vault_init.json | grep -oP "(?<=unseal_keys_b64\": \[)[^]]+"')
-                    ROOT_TOKEN=$(kubectl exec -n "$NAMESPACE" "$VAULT_POD_NAME" -- /bin/sh -c 'cat /dev/shm/vault_init.json | grep -oP "(?<=root_token\": \")[^\"]+"')
+                    # Extract unseal keys and root token from the JSON file using awk
+                    UNSEAL_KEYS=$(kubectl exec -n "$NAMESPACE" "$VAULT_POD_NAME" -- /bin/sh -c 'awk '/"unseal_keys_b64": \[/{flag=1; next} /],/{flag=0} flag' /dev/shm/vault_init.json')
+                    ROOT_TOKEN=$(kubectl exec -n "$NAMESPACE" "$VAULT_POD_NAME" -- /bin/sh -c 'awk -F\" "/root_token/{print \$4}" /dev/shm/vault_init.json')
 
                     if [ -z "$UNSEAL_KEYS" ] || [ -z "$ROOT_TOKEN" ]; then
                       echo "Error: Failed to retrieve unseal keys or root token."
