@@ -111,16 +111,14 @@ spec:
                         echo "Vault is initialized and sealed. Proceeding to unseal Vault..."
 
                         # Extract unseal keys from Kubernetes Secrets
-                        UNSEAL_KEYS=(
-                          $(kubectl get secret vault-unseal-keys -n "$NAMESPACE" -o jsonpath='{.data.unseal_key_1}' | base64 --decode)
-                          $(kubectl get secret vault-unseal-keys -n "$NAMESPACE" -o jsonpath='{.data.unseal_key_2}' | base64 --decode)
-                          $(kubectl get secret vault-unseal-keys -n "$NAMESPACE" -o jsonpath='{.data.unseal_key_3}' | base64 --decode)
-                          $(kubectl get secret vault-unseal-keys -n "$NAMESPACE" -o jsonpath='{.data.unseal_key_4}' | base64 --decode)
-                          $(kubectl get secret vault-unseal-keys -n "$NAMESPACE" -o jsonpath='{.data.unseal_key_5}' | base64 --decode)
-                        )
+                        UNSEAL_KEY_1=$(kubectl get secret vault-unseal-keys -n "$NAMESPACE" -o jsonpath='{.data.unseal_key_1}' | base64 --decode)
+                        UNSEAL_KEY_2=$(kubectl get secret vault-unseal-keys -n "$NAMESPACE" -o jsonpath='{.data.unseal_key_2}' | base64 --decode)
+                        UNSEAL_KEY_3=$(kubectl get secret vault-unseal-keys -n "$NAMESPACE" -o jsonpath='{.data.unseal_key_3}' | base64 --decode)
+                        UNSEAL_KEY_4=$(kubectl get secret vault-unseal-keys -n "$NAMESPACE" -o jsonpath='{.data.unseal_key_4}' | base64 --decode)
+                        UNSEAL_KEY_5=$(kubectl get secret vault-unseal-keys -n "$NAMESPACE" -o jsonpath='{.data.unseal_key_5}' | base64 --decode)
 
                         # Try to unseal with each key until the Vault is unsealed
-                        for key in "${UNSEAL_KEYS[@]}"; do
+                        for key in "$UNSEAL_KEY_1" "$UNSEAL_KEY_2" "$UNSEAL_KEY_3" "$UNSEAL_KEY_4" "$UNSEAL_KEY_5"; do
                           kubectl exec -n "$NAMESPACE" "$VAULT_POD_NAME" -- /bin/sh -c "vault operator unseal $key"
                           sealed_status=$(check_unseal_status)
                           echo "Sealed status: $sealed_status"
@@ -129,7 +127,6 @@ spec:
                             break
                           fi
                         done
-                      else
-                        echo "Vault is already unsealed or the status is unknown."
                       fi
+
           restartPolicy: OnFailure
