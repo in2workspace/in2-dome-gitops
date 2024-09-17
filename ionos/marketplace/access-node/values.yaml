@@ -27,7 +27,7 @@ access-node:
     ## deployment specific configuration
     app:
       ## profile (test == dev)
-      profile: dev
+      profile: test
       ## debug level
       logLevel: INFO
       ## information about the access-node operator
