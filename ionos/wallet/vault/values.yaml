@@ -1,3 +1,5 @@
+vaultPodName: wallet-vault-server-0
+namespace: in2
 vault:
   fullnameOverride: wallet-vault
   injector:

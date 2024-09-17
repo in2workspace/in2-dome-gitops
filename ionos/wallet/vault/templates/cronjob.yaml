@@ -20,7 +20,7 @@ spec:
                 - |
                     #!/bin/sh
 
-                    NAMESPACE="in2"
+                    NAMESPACE="{{ .Values.namespace }}"
 
                     echo "Initializing check..."
 
