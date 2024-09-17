@@ -27,7 +27,7 @@ access-node:
     ## deployment specific configuration
     app:
       ## profile (test == dev)
-      profile: test
+      profile: dev
       ## debug level
       logLevel: INFO
       ## information about the access-node operator
@@ -66,7 +66,7 @@ access-node:
       externalDomain: "https://desmos.dome-marketplace-lcl.org"
       externalAccessNodesUrls:
         enableCustomUrls: true
-        customUrls: "https://desmos.dome-marketplace-dev2.org"
+        customUrls: ""
       # -- configuration to set your private key
       privateKey:
         existingSecret:
