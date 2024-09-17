@@ -65,8 +65,8 @@ access-node:
       # -- operator external domain
       externalDomain: "https://desmos.dome-marketplace-lcl.org"
       externalAccessNodesUrls:
-        enableCustomUrls: false
-        customUrls: ""
+        enableCustomUrls: true
+        customUrls: "https://desmos.dome-marketplace-dev2.org"
       # -- configuration to set your private key
       privateKey:
         existingSecret:
