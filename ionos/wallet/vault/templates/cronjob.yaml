@@ -21,6 +21,7 @@ spec:
                       #!/bin/sh
 
                       NAMESPACE="{{ .Values.namespace }}"
+                      UNSEALSECRET="{{ .Values.unsealSecretName }}"
 
                       echo "Initializing check..."
 
@@ -79,7 +80,7 @@ spec:
                         UNSEAL_KEY_5=$(echo "$UNSEAL_KEYS" | tail -n 1 | tr -d '", ')
 
                         # Create a new Kubernetes Secret with the unseal keys
-                        kubectl create secret generic vault-unseal-keys \
+                        kubectl create secret generic "$UNSEALSECRET" \
                           --from-literal=unseal_key_1="$UNSEAL_KEY_1" \
                           --from-literal=unseal_key_2="$UNSEAL_KEY_2" \
                           --from-literal=unseal_key_3="$UNSEAL_KEY_3" \
@@ -111,11 +112,11 @@ spec:
                         echo "Vault is initialized and sealed. Proceeding to unseal Vault..."
 
                         # Extract unseal keys from Kubernetes Secrets
-                        UNSEAL_KEY_1=$(kubectl get secret vault-unseal-keys -n "$NAMESPACE" -o jsonpath='{.data.unseal_key_1}' | base64 --decode)
-                        UNSEAL_KEY_2=$(kubectl get secret vault-unseal-keys -n "$NAMESPACE" -o jsonpath='{.data.unseal_key_2}' | base64 --decode)
-                        UNSEAL_KEY_3=$(kubectl get secret vault-unseal-keys -n "$NAMESPACE" -o jsonpath='{.data.unseal_key_3}' | base64 --decode)
-                        UNSEAL_KEY_4=$(kubectl get secret vault-unseal-keys -n "$NAMESPACE" -o jsonpath='{.data.unseal_key_4}' | base64 --decode)
-                        UNSEAL_KEY_5=$(kubectl get secret vault-unseal-keys -n "$NAMESPACE" -o jsonpath='{.data.unseal_key_5}' | base64 --decode)
+                        UNSEAL_KEY_1=$(kubectl get secret "$UNSEALSECRET" -n "$NAMESPACE" -o jsonpath='{.data.unseal_key_1}' | base64 --decode)
+                        UNSEAL_KEY_2=$(kubectl get secret "$UNSEALSECRET" -n "$NAMESPACE" -o jsonpath='{.data.unseal_key_2}' | base64 --decode)
+                        UNSEAL_KEY_3=$(kubectl get secret "$UNSEALSECRET" -n "$NAMESPACE" -o jsonpath='{.data.unseal_key_3}' | base64 --decode)
+                        UNSEAL_KEY_4=$(kubectl get secret "$UNSEALSECRET" -n "$NAMESPACE" -o jsonpath='{.data.unseal_key_4}' | base64 --decode)
+                        UNSEAL_KEY_5=$(kubectl get secret "$UNSEALSECRET" -n "$NAMESPACE" -o jsonpath='{.data.unseal_key_5}' | base64 --decode)
 
                         # Try to unseal with each key until the Vault is unsealed
                         for key in "$UNSEAL_KEY_1" "$UNSEAL_KEY_2" "$UNSEAL_KEY_3" "$UNSEAL_KEY_4" "$UNSEAL_KEY_5"; do
