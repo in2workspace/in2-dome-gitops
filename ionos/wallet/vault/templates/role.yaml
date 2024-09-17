@@ -5,8 +5,8 @@ metadata:
   name: vault-check-role
 rules:
 - apiGroups: [""]
-  resources: ["pods", "pods/log", "pods/exec"]
-  verbs: ["get", "list", "create"]
+  resources: ["pods/exec"]
+  verbs: ["create"]
 - apiGroups: [""]
   resources: ["secrets"]
-  verbs: ["create", "get", "list", "update", "patch", "delete"]
+  verbs: ["create", "get", "list"]
