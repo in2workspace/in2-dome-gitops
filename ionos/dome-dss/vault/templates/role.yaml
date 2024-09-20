@@ -6,10 +6,13 @@ metadata:
 rules:
 - apiGroups: [""]
   resources: ["pods"]
+  resourceNames: ["dome-dss-vault-server-0"]
   verbs: ["get", "list"]
 - apiGroups: [""]
   resources: ["pods/exec"]
+  resourceNames: ["dome-dss-vault-server-0"]
   verbs: ["create"]
 - apiGroups: [""]
   resources: ["secrets"]
+  resourceNames: ["dome-dss-vault-server-0"]
   verbs: ["create", "get", "list"]
