@@ -84,7 +84,7 @@ wallet:
   ## configuration for the dome-wallet-ui
   dome-wallet-ui:
     image:
-      repository: in2workspace/wallet-ui
+      repository: in2workspace/in2-wallet-ui
       pullPolicy: Always
       # Overrides the image tag whose default is the chart appVersion.
       tag: v1.2.1-snapshot
