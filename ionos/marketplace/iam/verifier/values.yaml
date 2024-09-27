@@ -1,33 +1,32 @@
-image:
-  repository: in2workspace/in2-verifier-api
-  tag: v0.1.0-snapshot
-  pullPolicy: Always
+verifier:
+  image:
+    repository: in2workspace/in2-verifier-api
+    tag: v0.1.0-snapshot
+    pullPolicy: Always
 
-ingress:
-  enabled: true
-  className: nginx
-  annotations:
-    cert-manager.io/cluster-issuer: letsencrypt-in2-test-issuer
-  hosts:
-    - host: verifier.dome-marketplace-lcl.org
-      paths:
-          - path: /
-            pathType: Prefix
-  tls:
-    - hosts:
-        - verifier.dome-marketplace-lcl.org
-      secretName: verifier-tls-sec
+  ingress:
+    enabled: true
+    className: nginx
+    annotations:
+      cert-manager.io/cluster-issuer: letsencrypt-in2-test-issuer
+    hosts:
+      - host: verifier.dome-marketplace-lcl.org
+        paths:
+            - path: /
+              pathType: Prefix
+    tls:
+      - hosts:
+          - verifier.dome-marketplace-lcl.org
+        secretName: verifier-tls-sec
 
-app:
-  profile: fdsaljkfdjfdsjfdsfdsljk
-#  externalDomain: "https://verifier.dome-marketplace-lcl.org"
-  externalDomain: fdsaiojkfdsjkfdsjki
-  clientsRepository:
-    uri: "https://raw.githubusercontent.com/DOME-Marketplace/dome-services-directory/refs/heads/main/trusted-service-list-"
-  trustedIssuerList:
-    uri: "https://tir.dome-marketplace-lcl.org/v3/issuers"
-  privateKey:
-    existingSecret:
-      enabled: false
-      name: private-key-secret
-      key: private-key
+  app:
+    externalDomain: "https://verifier.dome-marketplace-lcl.org"
+    clientsRepository:
+      uri: "https://raw.githubusercontent.com/DOME-Marketplace/dome-services-directory/refs/heads/main/trusted-service-list-"
+    trustedIssuerList:
+      uri: "https://tir.dome-marketplace-lcl.org/v3/issuers"
+    privateKey:
+      existingSecret:
+        enabled: false
+        name: private-key-secret
+        key: private-key
