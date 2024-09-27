@@ -1,4 +1,0 @@
-vault:
-  fullnameOverride: dome-dss-vault
-  injector:
-    enabled: false
