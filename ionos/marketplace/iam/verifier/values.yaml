@@ -19,7 +19,8 @@ ingress:
       secretName: verifier-tls-sec
 
 app:
-  externalDomain: "https://verifier.dome-marketplace-lcl.org"
+#  externalDomain: "https://verifier.dome-marketplace-lcl.org"
+  externalDomain: fdsaiojkfdsjkfdsjki
   clientsRepository:
     uri: "https://raw.githubusercontent.com/DOME-Marketplace/dome-services-directory/refs/heads/main/trusted-service-list-"
   trustedIssuerList:
