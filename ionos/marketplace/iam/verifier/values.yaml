@@ -1,4 +1,4 @@
-verifier:
+verifier-api:
   image:
     repository: in2workspace/in2-verifier-api
     tag: v0.1.0-snapshot
