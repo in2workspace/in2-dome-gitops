@@ -8,7 +8,7 @@ access-node:
     image:
       repository: in2workspace/in2-desmos-api
       # Overrides the image tag whose default is the chart appVersion.
-      tag: v1.0.0-SNAPSHOT
+      tag: v1.0.0-snapshot
       pullPolicy: Always
     ingress:
       enabled: true
@@ -24,11 +24,6 @@ access-node:
         - hosts:
             - desmos.dome-marketplace-lcl.org
           secretName: desmos-tls-secret
-    readinessProbe:
-      path: /health
-      initialDelaySeconds: 1
-      failureThreshold: 6
-      periodSeconds: 1
     ## deployment specific configuration
     app:
       ## profile (test == dev)
@@ -70,8 +65,8 @@ access-node:
       # -- operator external domain
       externalDomain: "https://desmos.dome-marketplace-lcl.org"
       externalAccessNodesUrls:
-        enableCustomUrls: false
-        customUrls: "http://your-custom-url.org"
+        enableCustomUrls: true
+        customUrls: ""
       # -- configuration to set your private key
       privateKey:
         existingSecret:
