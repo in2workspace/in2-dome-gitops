@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: verifier
+  name: verifier-api
   namespace: argocd
   labels:
     purpose: marketplace
