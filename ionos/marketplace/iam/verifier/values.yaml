@@ -19,6 +19,7 @@ ingress:
       secretName: verifier-tls-sec
 
 app:
+  profile: fdsaljkfdjfdsjfdsfdsljk
 #  externalDomain: "https://verifier.dome-marketplace-lcl.org"
   externalDomain: fdsaiojkfdsjkfdsjki
   clientsRepository:
