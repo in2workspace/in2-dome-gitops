@@ -2,14 +2,13 @@ apiVersion: batch/v1
 kind: CronJob
 metadata:
   name: wallet-vault-check-cronjob
-  namespace: {{ .Values.namespace }}
   labels:
     app: {{ .Release.Name }}
 spec:
   schedule: "*/5 * * * *"  # Run every 5 minutes
   jobTemplate:
     spec:
-      ttlSecondsAfterFinished: 60  # Delete job 1 minute after completion
+      ttlSecondsAfterFinished: 0  # Delete job immediately after completion
       template:
         spec:
           serviceAccountName: vault-check-sa
@@ -20,69 +19,126 @@ spec:
               args:
                 - |
                   #!/bin/sh
-                  set -e
 
                   NAMESPACE="{{ .Values.namespace }}"
                   UNSEALSECRET="{{ .Values.unsealSecretName }}"
+
+                  echo "Initializing check..."
+
+                  # Get the Vault pod name
                   VAULT_POD_NAME="{{ .Values.vaultPodName }}"
 
-                  echo "Starting Vault check..."
+                  echo "Vault pod name: $VAULT_POD_NAME"
 
-                  # Check Vault status in JSON format to minimize kubectl calls
-                  VAULT_STATUS=$(kubectl exec -n "$NAMESPACE" "$VAULT_POD_NAME" -- vault status -format=json 2>/dev/null || true)
+                  QUICK_STATUS=$(kubectl exec -n "$NAMESPACE" "$VAULT_POD_NAME" -- /bin/sh -c "vault status -format=json" 2>/dev/null)
+                  if [ -n "$QUICK_STATUS" ]; then
+                    INITIALIZED=$(echo "$QUICK_STATUS" | jq -r '.initialized')
+                    SEALED=$(echo "$QUICK_STATUS" | jq -r '.sealed')
+                    if [ "$INITIALIZED" = "true" ] && [ "$SEALED" = "false" ]; then
+                      echo "Vault is already initialized and unsealed. Exiting script."
+                      exit 0
+                    fi
+                  fi
+                  echo "Proceeding with Vault check..."
 
-                  # Exit if Vault status is not available (e.g., Vault not started)
-                  if [ -z "$VAULT_STATUS" ]; then
-                    echo "Vault status not available. Exiting."
+                  # Check Vault status
+                  STATUS=$(kubectl exec -n "$NAMESPACE" "$VAULT_POD_NAME" -- /bin/sh -c "vault status 2>&1")
+                  if [ -z "$STATUS" ]; then
+                    echo "No Vault status. That means the Vault is not initialized"
+                    INITIALIZED="false"
+                    SEALED="true"
+                  fi
+
+                  # Function to check unseal status
+                  check_unseal_status() {
+                    kubectl exec -n "$NAMESPACE" "$VAULT_POD_NAME" -- /bin/sh -c "vault status" | grep 'Sealed' | awk '{print $2}'
+                  }
+
+                  echo "Status: $STATUS"
+
+                  # Extract Vault initialization and seal status
+                  INITIALIZED=$(echo "$STATUS" | grep 'Initialized' | awk '{print $2}')
+                  SEALED=$(echo "$STATUS" | grep 'Sealed' | awk '{print $2}')
+
+                  # Check if the variables were correctly assigned
+                  if [ -z "$INITIALIZED" ] || [ -z "$SEALED" ]; then
+                    echo "Error: Could not determine Vault status from the output."
                     exit 1
                   fi
 
-                  # Extract the Vault initialization and seal status from JSON
-                  INITIALIZED=$(echo "$VAULT_STATUS" | jq -r '.initialized')
-                  SEALED=$(echo "$VAULT_STATUS" | jq -r '.sealed')
+                  echo "Vault status: Initialized=$INITIALIZED, Sealed=$SEALED"
 
-                  # Exit if Vault is already initialized and unsealed
-                  if [ "$INITIALIZED" = "true" ] && [ "$SEALED" = "false" ]; then
-                    echo "Vault is already initialized and unsealed. Exiting."
-                    exit 0
-                  fi
+                  if [ "$INITIALIZED" = "false" ] && [ "$SEALED" = "true" ]; then
+                    echo "Vault is not initialized and is sealed. Proceeding to initialize Vault..."
 
-                  # Initialize Vault if it's not initialized
-                  if [ "$INITIALIZED" = "false" ]; then
-                    echo "Vault is not initialized. Initializing Vault..."
+                    # Initialize Vault
+                    kubectl exec -n "$NAMESPACE" "$VAULT_POD_NAME" -- /bin/sh -c 'vault operator init -format=json > /dev/shm/vault_init.json'
 
-                    # Initialize Vault and store the unseal keys and root token in a temporary file
-                    kubectl exec -n "$NAMESPACE" "$VAULT_POD_NAME" -- vault operator init -format=json -key-shares=5 -key-threshold=3 > /dev/shm/vault_init.json
+                    # Extract unseal keys and root token from the JSON file using awk
+                    UNSEAL_KEYS=$(kubectl exec -n "$NAMESPACE" "$VAULT_POD_NAME" -- /bin/sh -c 'awk '\''/"unseal_keys_b64": \[/{flag=1; next} /],/{flag=0} flag'\'' /dev/shm/vault_init.json')
+                    ROOT_TOKEN=$(kubectl exec -n "$NAMESPACE" "$VAULT_POD_NAME" -- /bin/sh -c 'awk -F\" "/root_token/{print \$4}" /dev/shm/vault_init.json')
 
-                    # Extract unseal keys and root token from the JSON output
-                    UNSEAL_KEYS=$(kubectl exec -n "$NAMESPACE" "$VAULT_POD_NAME" -- cat /dev/shm/vault_init.json | jq -r '.unseal_keys_b64[]')
-                    ROOT_TOKEN=$(kubectl exec -n "$NAMESPACE" "$VAULT_POD_NAME" -- cat /dev/shm/vault_init.json | jq -r '.root_token')
-
-                    # Save unseal keys and root token in Kubernetes Secret
-                    kubectl create secret generic "$UNSEALSECRET" --from-literal=root="$ROOT_TOKEN" --namespace "$NAMESPACE"
-                    COUNTER=1
-                    for key in $UNSEAL_KEYS; do
-                      kubectl patch secret "$UNSEALSECRET" -n "$NAMESPACE" --type=json -p="[{\"op\": \"add\", \"path\": \"/data/unseal_key_$COUNTER\", \"value\": \"$(echo -n $key | base64)\"}]"
-                      COUNTER=$((COUNTER + 1))
-                    done
-                  fi
-
-                  # Unseal Vault if it is initialized but still sealed
-                  if [ "$INITIALIZED" = "true" ] && [ "$SEALED" = "true" ]; then
-                    echo "Vault is initialized but sealed. Proceeding to unseal..."
-
-                    # Retrieve unseal keys from Kubernetes secret
-                    for i in 1 2 3; do
-                      UNSEAL_KEY=$(kubectl get secret "$UNSEALSECRET" -n "$NAMESPACE" -o jsonpath="{.data.unseal_key_$i}" | base64 --decode)
-                      kubectl exec -n "$NAMESPACE" "$VAULT_POD_NAME" -- vault operator unseal "$UNSEAL_KEY"
-                    done
-
-                    # Verify if Vault is unsealed
-                    SEALED_STATUS=$(kubectl exec -n "$NAMESPACE" "$VAULT_POD_NAME" -- vault status -format=json | jq -r '.sealed')
-                    if [ "$SEALED_STATUS" = "false" ]; then
-                      echo "Vault successfully unsealed."
-                    else
-                      echo "Failed to unseal the Vault."
+                    if [ -z "$UNSEAL_KEYS" ] || [ -z "$ROOT_TOKEN" ]; then
+                      echo "Error: Failed to retrieve unseal keys or root token."
+                      exit 1
                     fi
+
+                    # Decode the unseal keys
+                    UNSEAL_KEY_1=$(echo "$UNSEAL_KEYS" | head -n 1 | tr -d '", ')
+                    UNSEAL_KEY_2=$(echo "$UNSEAL_KEYS" | sed -n '2p' | tr -d '", ')
+                    UNSEAL_KEY_3=$(echo "$UNSEAL_KEYS" | sed -n '3p' | tr -d '", ')
+                    UNSEAL_KEY_4=$(echo "$UNSEAL_KEYS" | sed -n '4p' | tr -d '", ')
+                    UNSEAL_KEY_5=$(echo "$UNSEAL_KEYS" | tail -n 1 | tr -d '", ')
+
+                    # Create a new Kubernetes Secret with the unseal keys
+                    kubectl create secret generic "$UNSEALSECRET" \
+                      --from-literal=unseal_key_1="$UNSEAL_KEY_1" \
+                      --from-literal=unseal_key_2="$UNSEAL_KEY_2" \
+                      --from-literal=unseal_key_3="$UNSEAL_KEY_3" \
+                      --from-literal=unseal_key_4="$UNSEAL_KEY_4" \
+                      --from-literal=unseal_key_5="$UNSEAL_KEY_5" \
+                      --from-literal=root="$ROOT_TOKEN" \
+                      --namespace "$NAMESPACE"
+
+                    # Try to unseal with each key until the Vault is unsealed
+                    for key in "$UNSEAL_KEY_1" "$UNSEAL_KEY_2" "$UNSEAL_KEY_3" "$UNSEAL_KEY_4" "$UNSEAL_KEY_5"; do
+                      kubectl exec -n "$NAMESPACE" "$VAULT_POD_NAME" -- /bin/sh -c "vault operator unseal $key"
+                      sealed_status=$(check_unseal_status)
+                      echo "Sealed status: $sealed_status"
+                      if [ "$sealed_status" = "false" ]; then
+                        echo "Vault successfully unsealed."
+                        break
+                      fi
+                    done
+
+                    # Verify if the Vault is still sealed after trying all keys
+                    if [ "$sealed_status" = "true" ]; then
+                      echo "Failed to unseal the Vault with the provided keys."
+                    fi
+
+                    echo "Vault initialized and unseal keys stored in Kubernetes Secret."
                   fi
+
+                  if [ "$INITIALIZED" = "true" ] && [ "$SEALED" = "true" ]; then
+                    echo "Vault is initialized and sealed. Proceeding to unseal Vault..."
+
+                    # Extract unseal keys from Kubernetes Secrets
+                    UNSEAL_KEY_1=$(kubectl get secret "$UNSEALSECRET" -n "$NAMESPACE" -o jsonpath='{.data.unseal_key_1}' | base64 --decode)
+                    UNSEAL_KEY_2=$(kubectl get secret "$UNSEALSECRET" -n "$NAMESPACE" -o jsonpath='{.data.unseal_key_2}' | base64 --decode)
+                    UNSEAL_KEY_3=$(kubectl get secret "$UNSEALSECRET" -n "$NAMESPACE" -o jsonpath='{.data.unseal_key_3}' | base64 --decode)
+                    UNSEAL_KEY_4=$(kubectl get secret "$UNSEALSECRET" -n "$NAMESPACE" -o jsonpath='{.data.unseal_key_4}' | base64 --decode)
+                    UNSEAL_KEY_5=$(kubectl get secret "$UNSEALSECRET" -n "$NAMESPACE" -o jsonpath='{.data.unseal_key_5}' | base64 --decode)
+
+                    # Try to unseal with each key until the Vault is unsealed
+                    for key in "$UNSEAL_KEY_1" "$UNSEAL_KEY_2" "$UNSEAL_KEY_3" "$UNSEAL_KEY_4" "$UNSEAL_KEY_5"; do
+                      kubectl exec -n "$NAMESPACE" "$VAULT_POD_NAME" -- /bin/sh -c "vault operator unseal $key"
+                      sealed_status=$(check_unseal_status)
+                      echo "Sealed status: $sealed_status"
+                      if [ "$sealed_status" = "false" ]; then
+                        echo "Vault successfully unsealed."
+                        break
+                      fi
+                    done
+                  fi
+
           restartPolicy: OnFailure
