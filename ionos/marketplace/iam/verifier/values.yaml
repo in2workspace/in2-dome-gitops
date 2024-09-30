@@ -28,6 +28,6 @@ verifier-api:
       uri: "https://tir.dome-marketplace-lcl.org/v3/issuers"
     privateKey:
       existingSecret:
-        enabled: false
+        enabled: true
         name: private-key-secret
         key: private-key
