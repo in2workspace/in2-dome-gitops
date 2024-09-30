@@ -25,7 +25,7 @@ verifier-api:
     clientsRepository:
       uri: "https://raw.githubusercontent.com/DOME-Marketplace/dome-services-directory/refs/heads/main/trusted-service-list-"
     trustedIssuerList:
-      uri: "https://tir.dome-marketplace-lcl.org/v3/issuers"
+      uri: "https://tir.dome-marketplace-lcl.org/v4/issuers"
     privateKey:
       existingSecret:
         enabled: true
