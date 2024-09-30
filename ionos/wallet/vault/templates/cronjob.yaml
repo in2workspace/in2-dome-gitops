@@ -1,0 +1,88 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: wallet-vault-check-cronjob
+  namespace: {{ .Values.namespace }}
+  labels:
+    app: {{ .Release.Name }}
+spec:
+  schedule: "*/5 * * * *"  # Run every 5 minutes
+  jobTemplate:
+    spec:
+      ttlSecondsAfterFinished: 60  # Delete job 1 minute after completion
+      template:
+        spec:
+          serviceAccountName: vault-check-sa
+          containers:
+            - name: vault-check
+              image: bitnami/kubectl:latest
+              command: ["/bin/sh", "-c"]
+              args:
+                - |
+                  #!/bin/sh
+                  set -e
+
+                  NAMESPACE="{{ .Values.namespace }}"
+                  UNSEALSECRET="{{ .Values.unsealSecretName }}"
+                  VAULT_POD_NAME="{{ .Values.vaultPodName }}"
+
+                  echo "Starting Vault check..."
+
+                  # Check Vault status in JSON format to minimize kubectl calls
+                  VAULT_STATUS=$(kubectl exec -n "$NAMESPACE" "$VAULT_POD_NAME" -- vault status -format=json 2>/dev/null || true)
+
+                  # Exit if Vault status is not available (e.g., Vault not started)
+                  if [ -z "$VAULT_STATUS" ]; then
+                    echo "Vault status not available. Exiting."
+                    exit 1
+                  fi
+
+                  # Extract the Vault initialization and seal status from JSON
+                  INITIALIZED=$(echo "$VAULT_STATUS" | jq -r '.initialized')
+                  SEALED=$(echo "$VAULT_STATUS" | jq -r '.sealed')
+
+                  # Exit if Vault is already initialized and unsealed
+                  if [ "$INITIALIZED" = "true" ] && [ "$SEALED" = "false" ]; then
+                    echo "Vault is already initialized and unsealed. Exiting."
+                    exit 0
+                  fi
+
+                  # Initialize Vault if it's not initialized
+                  if [ "$INITIALIZED" = "false" ]; then
+                    echo "Vault is not initialized. Initializing Vault..."
+
+                    # Initialize Vault and store the unseal keys and root token in a temporary file
+                    kubectl exec -n "$NAMESPACE" "$VAULT_POD_NAME" -- vault operator init -format=json -key-shares=5 -key-threshold=3 > /dev/shm/vault_init.json
+
+                    # Extract unseal keys and root token from the JSON output
+                    UNSEAL_KEYS=$(kubectl exec -n "$NAMESPACE" "$VAULT_POD_NAME" -- cat /dev/shm/vault_init.json | jq -r '.unseal_keys_b64[]')
+                    ROOT_TOKEN=$(kubectl exec -n "$NAMESPACE" "$VAULT_POD_NAME" -- cat /dev/shm/vault_init.json | jq -r '.root_token')
+
+                    # Save unseal keys and root token in Kubernetes Secret
+                    kubectl create secret generic "$UNSEALSECRET" --from-literal=root="$ROOT_TOKEN" --namespace "$NAMESPACE"
+                    COUNTER=1
+                    for key in $UNSEAL_KEYS; do
+                      kubectl patch secret "$UNSEALSECRET" -n "$NAMESPACE" --type=json -p="[{\"op\": \"add\", \"path\": \"/data/unseal_key_$COUNTER\", \"value\": \"$(echo -n $key | base64)\"}]"
+                      COUNTER=$((COUNTER + 1))
+                    done
+                  fi
+
+                  # Unseal Vault if it is initialized but still sealed
+                  if [ "$INITIALIZED" = "true" ] && [ "$SEALED" = "true" ]; then
+                    echo "Vault is initialized but sealed. Proceeding to unseal..."
+
+                    # Retrieve unseal keys from Kubernetes secret
+                    for i in 1 2 3; do
+                      UNSEAL_KEY=$(kubectl get secret "$UNSEALSECRET" -n "$NAMESPACE" -o jsonpath="{.data.unseal_key_$i}" | base64 --decode)
+                      kubectl exec -n "$NAMESPACE" "$VAULT_POD_NAME" -- vault operator unseal "$UNSEAL_KEY"
+                    done
+
+                    # Verify if Vault is unsealed
+                    SEALED_STATUS=$(kubectl exec -n "$NAMESPACE" "$VAULT_POD_NAME" -- vault status -format=json | jq -r '.sealed')
+                    if [ "$SEALED_STATUS" = "false" ]; then
+                      echo "Vault successfully unsealed."
+                    else
+                      echo "Failed to unseal the Vault."
+                    fi
+                  fi
+          restartPolicy: OnFailure
