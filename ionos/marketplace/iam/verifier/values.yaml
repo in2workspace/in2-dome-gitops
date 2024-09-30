@@ -20,6 +20,7 @@ verifier-api:
         secretName: verifier-tls-sec
 
   app:
+    profile: local
     externalDomain: "https://verifier.dome-marketplace-lcl.org"
     clientsRepository:
       uri: "https://raw.githubusercontent.com/DOME-Marketplace/dome-services-directory/refs/heads/main/trusted-service-list-"
