@@ -66,8 +66,8 @@ issuer:
         existingSecret:
           enabled: true
           name: issuer-secret
-          mailUsernameKey: username
-          mailPasswordKey: password
+          userKey: mail-username
+          passwordKey: mail-password
         properties:
           mail:
             smtp:
@@ -156,7 +156,7 @@ issuer:
     image:
       repository: in2workspace/in2-issuer-ui
       # Overrides the image tag whose default is the chart appVersion.
-      tag: v1.0.0-snapshot
+      tag: v1.1.0-snapshot
       pullPolicy: Always
     ingress:
       enabled: true
