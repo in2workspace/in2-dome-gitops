@@ -54,6 +54,7 @@ business-api-ecosystem:
     clientId: did:key:zDnaefwMbENtpCoCCdYgFLKJCuVtkGZ8PhEg7gWAYBeeKAyuy
     verifier:
       host: https://verifier.dome-marketplace-lcl.org
+      qrCodePath: /authorize
     allowedRoles:
       - seller
       - customer
@@ -210,8 +211,8 @@ business-api-ecosystem:
         value: "2"
       - name: BAE_LP_MATOMO_URL
         value: https://dome-webstats.eurodyn.com/
-      - name: BAE_LP_SIOP_VERIFIER_QRCODE_PATH
-        value: "/oidc/authorize"
+#      - name: BAE_LP_SIOP_VERIFIER_QRCODE_PATH
+#        value: "/oidc/authorize"
 #      - name: BAE_LP_SIOP_VERIFIER_TOKEN_PATH
 #        value: "/oidc/token"
 #      - name: BAE_LP_SIOP_VERIFIER_JWKS_PATH
