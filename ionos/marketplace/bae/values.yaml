@@ -217,3 +217,5 @@ business-api-ecosystem:
           secretKeyRef:
             name: bae-secret
             key: privateKey
+      - name: BAE_LP_SIOP_VERIFIER_QRCODE_PATH
+        value: "/authorize"
