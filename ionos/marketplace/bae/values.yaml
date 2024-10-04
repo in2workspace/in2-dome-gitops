@@ -54,7 +54,7 @@ business-api-ecosystem:
     clientId: did:key:zDnaefwMbENtpCoCCdYgFLKJCuVtkGZ8PhEg7gWAYBeeKAyuy
     verifier:
       host: https://verifier.dome-marketplace-lcl.org
-      qrCodePath: /authorize
+      qrCodePath: /oidc/authorize
     allowedRoles:
       - seller
       - customer
