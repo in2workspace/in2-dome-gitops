@@ -163,7 +163,7 @@ business-api-ecosystem:
     statefulset:
       image:
         repository: fiware/biz-ecosystem-logic-proxy
-        tag: "9.7.0-rc1"
+        tag: "9.7.0-rc3"
         pullPolicy: Always
 
     ingress:
@@ -215,5 +215,5 @@ business-api-ecosystem:
       - name: BAE_LP_SIOP_PRIVATE_KEY
         valueFrom:
           secretKeyRef:
-            name: {{ include "bizEcosystemLogicProxy.secretName" . }}
+            name: bae-secret
             key: privateKey
