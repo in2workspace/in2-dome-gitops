@@ -51,7 +51,7 @@ business-api-ecosystem:
 
   siop:
     enabled: true
-    clientId: marketplace-client
+    clientId: did:key:zDnaefwMbENtpCoCCdYgFLKJCuVtkGZ8PhEg7gWAYBeeKAyuy
     verifier:
       host: https://verifier.dome-marketplace-lcl.org
     allowedRoles:
