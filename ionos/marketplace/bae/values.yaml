@@ -55,6 +55,8 @@ business-api-ecosystem:
     verifier:
       host: https://verifier.dome-marketplace-lcl.org
       qrCodePath: /oidc/authorize
+      tokenPath: /oidc/token
+      jwksPath: /oidc/jwks
     allowedRoles:
       - seller
       - customer
@@ -211,12 +213,6 @@ business-api-ecosystem:
         value: "2"
       - name: BAE_LP_MATOMO_URL
         value: https://dome-webstats.eurodyn.com/
-#      - name: BAE_LP_SIOP_VERIFIER_QRCODE_PATH
-#        value: "/oidc/authorize"
-#      - name: BAE_LP_SIOP_VERIFIER_TOKEN_PATH
-#        value: "/oidc/token"
-#      - name: BAE_LP_SIOP_VERIFIER_JWKS_PATH
-#        value: "/oidc/jwks"
       - name: BAE_LP_SIOP_PRIVATE_KEY
         valueFrom:
           secretKeyRef:
