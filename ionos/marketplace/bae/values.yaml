@@ -210,8 +210,8 @@ business-api-ecosystem:
         value: "2"
       - name: BAE_LP_MATOMO_URL
         value: https://dome-webstats.eurodyn.com/
-#      - name: BAE_LP_SIOP_VERIFIER_QRCODE_PATH
-#        value: "/oidc/authorize"
+      - name: BAE_LP_SIOP_VERIFIER_QRCODE_PATH
+        value: "/oidc/authorize"
 #      - name: BAE_LP_SIOP_VERIFIER_TOKEN_PATH
 #        value: "/oidc/token"
 #      - name: BAE_LP_SIOP_VERIFIER_JWKS_PATH
