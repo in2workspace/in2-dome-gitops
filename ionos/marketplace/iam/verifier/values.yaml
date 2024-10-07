@@ -22,6 +22,9 @@ verifier-api:
   app:
     profile: local
     externalDomain: "https://verifier.dome-marketplace-lcl.org"
+    accessToken:
+      expirationUnitTime: DAYS
+      expirationTime: 1
     clientsRepository:
       uri: "https://raw.githubusercontent.com/DOME-Marketplace/dome-services-directory/refs/heads/main/trusted-service-list-"
     trustedIssuerList:
