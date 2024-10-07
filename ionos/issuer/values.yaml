@@ -157,7 +157,7 @@ issuer:
         clientAssertion:
           token:
             cronUnit: MINUTES
-            expiration: "2"
+            expiration: 2
     db:
       host: issuer-postgres
       port: 5432
