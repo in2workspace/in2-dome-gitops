@@ -157,7 +157,8 @@ business-api-ecosystem:
       enabled: false
 
   bizEcosystemLogicProxy:
-
+    oauth:
+      provider: "vc"
     serviceAccount:
       create: true
 
