@@ -3,7 +3,8 @@ business-api-ecosystem:
     # should set the path to the new apis.
     fullnameOverride: tmforum-api-proxy
     enabled: false
-
+    oauth:
+      provider: "vc"
     tmForum:
       catalog:
         host: tm-forum-api-product-catalog
@@ -157,8 +158,6 @@ business-api-ecosystem:
       enabled: false
 
   bizEcosystemLogicProxy:
-    oauth:
-      provider: "vc"
     serviceAccount:
       create: true
 
