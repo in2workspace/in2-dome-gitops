@@ -117,6 +117,7 @@ wallet:
     ## deployment specific configuration
     app:
       internalServerPort: 8080
+      logsEnabled: true
       walletApi:
         # Este internalDomain es en realidad el external
         internalDomain: https://wallet.dome-marketplace-lcl.org/wallet-api
