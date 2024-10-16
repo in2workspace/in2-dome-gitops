@@ -1,0 +1,35 @@
+clients:
+  - clientId: "did:key:zDnaezLhSFWRZ1zrYQRwLxV8nDWmb2REHoUf7N3qvna1TFina"
+    redirectUris: []
+    scopes: []
+    clientAuthenticationMethods: ["client_secret_jwt"]
+    authorizationGrantTypes: ["client_credentials"]
+    postLogoutRedirectUris: []
+    requireAuthorizationConsent: false
+    requireProofKey: false
+    jwkSetUrl: "https://verifier.dome-marketplace-lcl.org/oidc/did/did:key:zDnaezLhSFWRZ1zrYQRwLxV8nDWmb2REHoUf7N3qvna1TFina"
+    tokenEndpointAuthenticationSigningAlgorithm: "ES256"
+
+  - clientId: "did:key:zDnaeUcW7pAV2xfcEMRsi3tsgYSYkLEf8mbSCZ7YFhKDu6XcR"
+    id: "1234"
+    redirectUris: ["http://localhost:8081/cb"]
+    scopes: ["openid_learcredential"]
+    clientAuthenticationMethods: ["client_secret_jwt"]
+    authorizationGrantTypes: ["authorization_code"]
+    postLogoutRedirectUris: ["http://localhost:8081/cb"]
+    requireAuthorizationConsent: false
+    requireProofKey: false
+    jwkSetUrl: "https://verifier.dome-marketplace-lcl.org/oidc/did/did:key:zDnaeUcW7pAV2xfcEMRsi3tsgYSYkLEf8mbSCZ7YFhKDu6XcR"
+    tokenEndpointAuthenticationSigningAlgorithm: "ES256"
+
+  - clientId: "did:key:zDnaefwMbENtpCoCCdYgFLKJCuVtkGZ8PhEg7gWAYBeeKAyuy"
+    id: "did:key:zDnaefwMbENtpCoCCdYgFLKJCuVtkGZ8PhEg7gWAYBeeKAyuy"
+    redirectUris: [ "https://dome-marketplace-lcl.org/auth/vc/callback" ]
+    scopes: [ "openid_learcredential" ]
+    clientAuthenticationMethods: [ "client_secret_jwt" ]
+    authorizationGrantTypes: [ "authorization_code" ]
+    postLogoutRedirectUris: [ "https://dome-marketplace-lcl.org/" ]
+    requireAuthorizationConsent: false
+    requireProofKey: false
+    jwkSetUrl: "https://verifier.dome-marketplace-lcl.org/oidc/did/did:key:zDnaefwMbENtpCoCCdYgFLKJCuVtkGZ8PhEg7gWAYBeeKAyuy"
+    tokenEndpointAuthenticationSigningAlgorithm: "ES256"

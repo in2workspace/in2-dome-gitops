@@ -1,0 +1,184 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Verifiable Certification",
+  "description": "Defines the structure for a Verifiable Certification Credential issued by DEKRA",
+  "type": "object",
+  "properties": {
+    "@context": {
+      "description": "Semantic context for the issued certification",
+      "type": "array",
+      "items": {
+        "type": "string",
+        "format": "uri"
+      }
+    },
+    "id": {
+      "description": "Globally unique identifier for the credential",
+      "type": "string",
+      "format": "uri"
+    },
+    "type": {
+      "description": "Full type chain, used to identify the credential base types",
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "issuer": {
+      "description": "Details about the entity issuing the credential",
+      "type": "object",
+      "properties": {
+        "commonName": {
+          "description": "Common name of the issuer",
+          "type": "string"
+        },
+        "country": {
+          "description": "Country of the issuer",
+          "type": "string"
+        },
+        "id": {
+          "description": "DID of the credential issuer",
+          "type": "string",
+          "format": "uri"
+        },
+        "organization": {
+          "description": "Organization of the issuer",
+          "type": "string"
+        }
+      }
+    },
+    "issuanceDate": {
+      "description": "Date and time when the credential was issued",
+      "type": "string",
+      "format": "date-time"
+    },
+    "validFrom": {
+      "description": "Date and time when the credential becomes valid",
+      "type": "string",
+      "format": "date-time"
+    },
+    "expirationDate": {
+      "description": "Date and time when the credential expires",
+      "type": "string",
+      "format": "date-time"
+    },
+    "credentialSubject": {
+      "description": "Details about the subject of the certification",
+      "type": "object",
+      "properties": {
+        "company": {
+          "description": "Details of the company receiving the certification",
+          "type": "object",
+          "properties": {
+            "address": {
+              "description": "Address of the company",
+              "type": "string"
+            },
+            "commonName": {
+              "description": "Common name of the company",
+              "type": "string"
+            },
+            "country": {
+              "description": "Country of the company",
+              "type": "string"
+            },
+            "email": {
+              "description": "Email address of the company",
+              "type": "string",
+              "format": "email"
+            },
+            "id": {
+              "description": "DID of the company",
+              "type": "string",
+              "format": "uri"
+            },
+            "organization": {
+              "description": "Organization name of the company",
+              "type": "string"
+            }
+          }
+        },
+        "compliance": {
+          "description": "List of compliance certifications held by the company",
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "description": "Unique identifier for the compliance certification",
+                "type": "string"
+              },
+              "scope": {
+                "description": "Scope of the compliance certification",
+                "type": "string"
+              },
+              "standard": {
+                "description": "Standard followed for the compliance certification",
+                "type": "string"
+              }
+            }
+          }
+        },
+        "product": {
+          "description": "Details about the certified product",
+          "type": "object",
+          "properties": {
+            "productId": {
+              "description": "Unique identifier for the product",
+              "type": "string"
+            },
+            "productName": {
+              "description": "Name of the certified product",
+              "type": "string"
+            },
+            "productVersion": {
+              "description": "Version of the certified product",
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "signer": {
+      "description": "Details about the signer of the certification",
+      "type": "object",
+      "properties": {
+        "commonName": {
+          "description": "Common name of the signer",
+          "type": "string"
+        },
+        "country": {
+          "description": "Country of the signer",
+          "type": "string"
+        },
+        "emailAddress": {
+          "description": "Email address of the signer",
+          "type": "string",
+          "format": "email"
+        },
+        "organization": {
+          "description": "Organization of the signer",
+          "type": "string"
+        },
+        "organizationIdentifier": {
+          "description": "Identifier of the organization",
+          "type": "string"
+        },
+        "serialNumber": {
+          "description": "Serial number of the signer",
+          "type": "string"
+        }
+      }
+    }
+  },
+  "required": [
+    "@context",
+    "id",
+    "type",
+    "issuer",
+    "issuanceDate",
+    "validFrom",
+    "expirationDate",
+    "credentialSubject"
+  ]
+}
