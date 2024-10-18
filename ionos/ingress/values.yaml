@@ -12,3 +12,8 @@ ingress-nginx:
       http2-max-field-size: "32k"
       http2-max-header-size: "32k"
       proxy-body-size: "10m"
+      
+      # Añadir configuraciones relacionadas con los timeouts
+      proxy-connect-timeout: "300s"  # Ajuste global de tiempo de espera de conexión
+      proxy-read-timeout: "300s"     # Tiempo de espera para la respuesta desde el backend
+      proxy-send-timeout: "300s"     # Tiempo de espera para el envío de datos al backend
