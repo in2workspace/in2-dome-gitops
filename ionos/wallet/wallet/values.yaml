@@ -105,7 +105,7 @@ wallet:
       className: nginx
       annotations:
         cert-manager.io/cluster-issuer: letsencrypt-in2-test-issuer
-        nginx.ingress.kubernetes.io/proxy-read-timeout: "3600"
+        nginx.ingress.kubernetes.io/proxy-read-timeout: "3600s"
       hosts:
         - host: wallet.dome-marketplace-lcl.org
           paths:
