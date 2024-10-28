@@ -33,3 +33,14 @@ clients:
     requireProofKey: false
     jwkSetUrl: "https://verifier.dome-marketplace-lcl.org/oidc/did/did:key:zDnaefwMbENtpCoCCdYgFLKJCuVtkGZ8PhEg7gWAYBeeKAyuy"
     tokenEndpointAuthenticationSigningAlgorithm: "ES256"
+
+  - clientId: "did:key:zDnaeq2B2WVEPFtgfFHF9JSWxtnU7zba7m12e1oV3sN41BJaR"
+    redirectUris: []
+    scopes: []
+    clientAuthenticationMethods: ["client_secret_jwt"]
+    authorizationGrantTypes: ["client_credentials"]
+    postLogoutRedirectUris: []
+    requireAuthorizationConsent: false
+    requireProofKey: false
+    jwkSetUrl: "https://verifier.dome-marketplace-lcl.org/oidc/did/did:key:zDnaeq2B2WVEPFtgfFHF9JSWxtnU7zba7m12e1oV3sN41BJaR"
+    tokenEndpointAuthenticationSigningAlgorithm: "ES256"
