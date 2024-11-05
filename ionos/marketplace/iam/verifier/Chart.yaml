@@ -3,7 +3,7 @@ name: verifier-api
 description: Chart holder for argo-cd
 
 type: application
-version: 2.0.15
+version: 2.0.16
 appVersion: 2.0.0
 
 dependencies:
