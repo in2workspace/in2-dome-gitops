@@ -229,11 +229,9 @@ issuer:
       knowledgebaseUrl:
         # if deployed locally set to false
         externalService: true
-        scheme: http
+        scheme: https
         # change by the external url or set to localhost if deployed locally
         host: knowledgebase.dome-marketplace-sbx.org
-        # internalPort is only used if externalService is false
-        internalPort: 30004
         path: /
       procedures: /api/v1/procedures
       saveCredential: /api/v1/credentials?type=LEARCredentialEmployee
