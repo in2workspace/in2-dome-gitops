@@ -21,6 +21,8 @@ verifier-api:
 
   app:
     profile: local
+    logLevel:
+        app: DEBUG
     externalDomain: "https://verifier.dome-marketplace-lcl.org"
     accessToken:
       expirationUnitTime: DAYS
