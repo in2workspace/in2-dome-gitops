@@ -45,3 +45,15 @@ clients:
     requireProofKey: false
     jwkSetUrl: "https://verifier.dome-marketplace-lcl.org/oidc/did/did:key:zDnaeq2B2WVEPFtgfFHF9JSWxtnU7zba7m12e1oV3sN41BJaR"
     tokenEndpointAuthenticationSigningAlgorithm: "ES256"
+
+  - clientId: "dome-issuer"
+    domain: "https://issuer.dome-marketplace-lcl.org/issuer-keycloak"
+    redirectUris: [ "https://issuer.dome-marketplace-lcl.org/issuer-keycloak/realms/CredentialIssuer/broker/vc/endpoint" ]
+    scopes: [ "openid_learcredential" ]
+    clientAuthenticationMethods: [ "client_secret_jwt" ]
+    authorizationGrantTypes: [ "authorization_code" ]
+    postLogoutRedirectUris: [ "https://issuer.dome-marketplace-lcl.org/issuer-keycloak" ]
+    requireAuthorizationConsent: false
+    requireProofKey: false
+    jwkSetUrl: "https://issuer.dome-marketplace-lcl.org/issuer-keycloak/realms/CredentialIssuer/protocol/openid-connect/certs"
+    tokenEndpointAuthenticationSigningAlgorithm: "ES256"
