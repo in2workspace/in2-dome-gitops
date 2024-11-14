@@ -2,7 +2,7 @@
 access-node:
   desmos:
     image:
-      tag: v1.0.0-snapshot
+      tag: v1.0.1-snapshot
     ingress:
       enabled: true
       className: nginx
