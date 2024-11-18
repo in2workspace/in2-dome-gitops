@@ -26,6 +26,7 @@ clients:
   - clientId: "did:key:zDnaefwMbENtpCoCCdYgFLKJCuVtkGZ8PhEg7gWAYBeeKAyuy"
     id: "did:key:zDnaefwMbENtpCoCCdYgFLKJCuVtkGZ8PhEg7gWAYBeeKAyuy"
     redirectUris: [ "https://dome-marketplace-lcl.org/auth/vc/callback" ]
+    url: "https://dome-marketplace-lcl.org/"
     scopes: [ "openid_learcredential" ]
     clientAuthenticationMethods: [ "client_secret_jwt" ]
     authorizationGrantTypes: [ "authorization_code" ]
