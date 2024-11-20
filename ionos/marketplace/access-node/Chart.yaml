@@ -2,7 +2,7 @@ apiVersion: v2
 name: access-node
 description: Chart holder for ArgoCD
 type: application
-version: 0.1.57
+version: 0.1.58
 appVersion: 0.1.0
 dependencies:
   - name: access-node
@@ -10,4 +10,4 @@ dependencies:
     # TODO: CHANGE PRE REPOSITORY
     repository: https://dome-marketplace.github.io/access-node/pre
     # TODO: CHANGE PRE VERSION
-    version: 0.6.0-PRE-40
+    version: 0.7.0-PRE-40
