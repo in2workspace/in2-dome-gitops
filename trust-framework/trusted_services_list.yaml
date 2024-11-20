@@ -48,7 +48,7 @@ clients:
     tokenEndpointAuthenticationSigningAlgorithm: "ES256"
 
   - clientId: "dome-issuer"
-    domain: "https://issuer.dome-marketplace-lcl.org/issuer-keycloak"
+    url: "https://issuer.dome-marketplace-lcl.org"
     redirectUris: [ "https://issuer.dome-marketplace-lcl.org/issuer-keycloak/realms/CredentialIssuer/broker/vc/endpoint" ]
     scopes: [ "openid_learcredential" ]
     clientAuthenticationMethods: [ "client_secret_jwt" ]
