@@ -7,7 +7,5 @@ appVersion: 0.1.0
 dependencies:
   - name: access-node
     condition: access-node.enabled
-    # TODO: CHANGE PRE REPOSITORY
-    repository: https://dome-marketplace.github.io/access-node/pre
-    # TODO: CHANGE PRE VERSION
-    version: 0.7.0-PRE-40
+    repository: https://dome-marketplace.github.io/access-node
+    version: 0.5.1
