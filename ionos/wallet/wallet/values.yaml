@@ -27,6 +27,7 @@ wallet:
           secretName: wallet-tls-secret
     ## deployment specific configuration
     app:
+      profile: local
       internalServerPort: 8080
       logLevel: INFO
       basePath: /wallet-api
