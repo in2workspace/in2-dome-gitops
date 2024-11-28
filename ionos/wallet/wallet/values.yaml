@@ -27,12 +27,10 @@ wallet:
           secretName: wallet-tls-secret
     ## deployment specific configuration
     app:
-      profile: dev
+      profile: lcl
       internalServerPort: 8080
       logLevel: INFO
       basePath: /wallet-api
-      cors:
-        allowedOrigins: "https://wallet.dome-marketplace-lcl.org"
       authServer:
         external:
           scheme: https
