@@ -59,13 +59,13 @@ clients:
     jwkSetUrl: "https://issuer.dome-marketplace-lcl.org/issuer-keycloak/realms/CredentialIssuer/protocol/openid-connect/certs"
     tokenEndpointAuthenticationSigningAlgorithm: "ES256"
 
-  - clientId: "did:key:zDna...."
-    url: "http://localhost:63342"
-    redirectUris: [ "http://localhost:63342" ]
+  - clientId: "test"
+    url: "https://test.com"
+    redirectUris: [ "https://test.com" ]
     scopes: [ "openid_learcredential" ]
     clientAuthenticationMethods: [ "client_secret_jwt" ]
     authorizationGrantTypes: [ "authorization_code" ]
-    postLogoutRedirectUris: [ "http://localhost:63342" ]
+    postLogoutRedirectUris: [ "https://test.com" ]
     requireAuthorizationConsent: false
     requireProofKey: false
     jwkSetUrl: "https://verifier.dome-marketplace-lcl.org/oidc/did/did:key:zDna...."
