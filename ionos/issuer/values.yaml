@@ -58,7 +58,9 @@ issuer:
           secretName: issuer-tls-secret
     app:
       profile: default
-      logLevel: INFO
+      logLevel:
+        app: INFO
+        security: INFO
       internalServerPort: 8080
       mail:
         host: smtp.ionos.de
