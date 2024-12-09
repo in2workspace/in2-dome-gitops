@@ -5,7 +5,7 @@ issuer:
     image:
       repository: in2workspace/in2-issuer-api
       # Overrides the image tag whose default is the chart appVersion.
-      tag: v1.2.0-snapshot
+      tag: v1.1.1-snapshot
       pullPolicy: Always
     ingress:
       enabled: true
@@ -58,9 +58,7 @@ issuer:
           secretName: issuer-tls-secret
     app:
       profile: default
-      logLevel:
-        app: INFO
-        security: INFO
+      logLevel: INFO
       internalServerPort: 8080
       mail:
         host: smtp.ionos.de
@@ -143,22 +141,25 @@ issuer:
       trustFramework:
         url: "http://trusted-issuers-list.marketplace.svc.cluster.local:8080"
       defaultSigner:
+        commonName: DOME DIGITAL IDENTITY
+        country: ES
+        email: domesupport@in2.es
+        organizationIdentifier: VATEU-B99999999
+        organization: IN2
+        serialNumber: IDCES-56565656P
+      verifier:
+        verifierDidKey: did:key:zDnaekiwkWcXnHaW6au3BpmfWfrtVTJZrA3EHgLvcbm6EZnup
+        externalDomain: https://verifier.dome-marketplace-lcl.org
+        credentialSubjectKey: did:key:zDnaezLhSFWRZ1zrYQRwLxV8nDWmb2REHoUf7N3qvna1TFina
         existingSecret:
           enabled: true
           name: issuer-secret
-          commonName: common-name
-          country: country
-          email: email
-          organizationIdentifier: organization-identifier
-          organization: organization
-          serialNumber: serial-number
-      issuerIdentity:
-        existingSecret:
-          enabled: true
-          name: issuer-secret
-          vc: vc
+          vcKey: vc
           cryptoPrivateKey: private-key
-          credentialDidKey: did-key
+        clientAssertion:
+          token:
+            cronUnit: MINUTES
+            expiration: 2
     db:
       host: issuer-postgres
       port: 5432
