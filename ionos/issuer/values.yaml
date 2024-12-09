@@ -157,7 +157,7 @@ issuer:
           enabled: true
           name: issuer-secret
           vc: vc
-          privateKey: private-key
+          cryptoPrivateKey: private-key
           credentialDidKey: did-key
     db:
       host: issuer-postgres
