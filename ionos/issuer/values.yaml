@@ -204,7 +204,7 @@ issuer:
         host: issuer.dome-marketplace-lcl.org
         # internalPort is only used if externalService is false
         internalPort: 30002
-        path: /issuer-keycloak/realms/dome-issuer
+        path: /issuer-keycloak/realms/issuer-dome
       clientId: vc-auth-client
       scope: openid profile email offline_access vc mandator
       grantType: code
