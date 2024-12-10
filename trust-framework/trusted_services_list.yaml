@@ -70,3 +70,15 @@ clients:
     requireProofKey: false
     jwkSetUrl: "https://verifier.dome-marketplace-lcl.org/oidc/did/did:key:zDna...."
     tokenEndpointAuthenticationSigningAlgorithm: "ES256"
+
+  - clientId: "issuer-dome"
+    url: "https://issuer.dome-marketplace-lcl.org"
+    redirectUris: [ "https://issuer.dome-marketplace-lcl.org/issuer-keycloak/realms/issuer-dome/broker/vc/endpoint" ]
+    scopes: [ "openid_learcredential" ]
+    clientAuthenticationMethods: [ "client_secret_jwt" ]
+    authorizationGrantTypes: [ "authorization_code" ]
+    postLogoutRedirectUris: [ "https://issuer.dome-marketplace-lcl.org/issuer-keycloak" ]
+    requireAuthorizationConsent: false
+    requireProofKey: false
+    jwkSetUrl: "https://issuer.dome-marketplace-lcl.org/issuer-keycloak/realms/issuer-dome/protocol/openid-connect/certs"
+    tokenEndpointAuthenticationSigningAlgorithm: "ES256"
