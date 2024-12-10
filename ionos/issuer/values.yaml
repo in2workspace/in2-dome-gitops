@@ -115,7 +115,7 @@ issuer:
         realm: issuer-dome
         client:
           clientId: issuer-api-client
-          username: user
+          username: issuer-api-user
           existingSecret:
             enabled: true
             name: issuer-secret
