@@ -119,6 +119,7 @@ issuer:
           existingSecret:
             enabled: true
             name: issuer-secret
+            clientSecretKey: authServerClientSecret
             clientPasswordKey: issuer-api-user-password
       ui:
         externalDomain:
