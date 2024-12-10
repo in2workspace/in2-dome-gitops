@@ -121,6 +121,8 @@ issuer:
             name: issuer-secret
             clientSecretKey: authServerClientSecret
             clientPasswordKey: issuer-api-user-password
+        paths:
+          tokenPath: /realms/issuer-dome/protocol/openid-connect/token
       ui:
         externalDomain:
           # if deployed locally set to false
