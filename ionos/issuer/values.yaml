@@ -112,19 +112,14 @@ issuer:
           internalPort: 30002
           path: /issuer-keycloak
         internalDomain: http://dome-issuer-keycloak:8080/issuer-keycloak
-        realm: CredentialIssuer
+        realm: issuer-dome
         client:
-          clientId: oidc4vci-wallet-client
-          clientSecret: oidc4vci-wallet-client-secret
+          clientId: issuer-api-client
           username: user
-          password: user
           existingSecret:
-            enabled: false
-            name: auth-secret
-            clientSecretKey: authServerClientSecret
-            clientPasswordKey: authServerClientPassword
-        paths:
-          tokenPath: /realms/CredentialIssuer/protocol/openid-connect/token
+            enabled: true
+            name: issuer-secret
+            clientPasswordKey: issuer-api-user-password
       ui:
         externalDomain:
           # if deployed locally set to false
