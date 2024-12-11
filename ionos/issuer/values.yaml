@@ -5,7 +5,7 @@ issuer:
     image:
       repository: in2workspace/in2-issuer-api
       # Overrides the image tag whose default is the chart appVersion.
-      tag: v1.1.1-snapshot
+      tag: v1.2.0-snapshot
       pullPolicy: Always
     ingress:
       enabled: true
@@ -34,7 +34,6 @@ issuer:
               pathType: Prefix
               serviceName: dome-issuer-keycloak
               servicePort: 8080
-
       tls:
         - hosts:
             - issuer.dome-marketplace-lcl.org
@@ -58,7 +57,9 @@ issuer:
           secretName: issuer-tls-secret
     app:
       profile: default
-      logLevel: INFO
+      logLevel:
+        app: INFO
+        security: INFO
       internalServerPort: 8080
       mail:
         host: smtp.ionos.de
@@ -139,25 +140,22 @@ issuer:
       trustFramework:
         url: "http://trusted-issuers-list.marketplace.svc.cluster.local:8080"
       defaultSigner:
-        commonName: DOME DIGITAL IDENTITY
-        country: ES
-        email: domesupport@in2.es
-        organizationIdentifier: VATEU-B99999999
-        organization: IN2
-        serialNumber: IDCES-56565656P
-      verifier:
-        verifierDidKey: did:key:zDnaekiwkWcXnHaW6au3BpmfWfrtVTJZrA3EHgLvcbm6EZnup
-        externalDomain: https://verifier.dome-marketplace-lcl.org
-        credentialSubjectKey: did:key:zDnaezLhSFWRZ1zrYQRwLxV8nDWmb2REHoUf7N3qvna1TFina
         existingSecret:
           enabled: true
           name: issuer-secret
-          vcKey: vc
+          commonName: common-name
+          country: country
+          email: email
+          organizationIdentifier: organization-identifier
+          organization: organization
+          serialNumber: serial-number
+      issuerIdentity:
+        existingSecret:
+          enabled: true
+          name: issuer-secret
+          vc: vc
           cryptoPrivateKey: private-key
-        clientAssertion:
-          token:
-            cronUnit: MINUTES
-            expiration: 2
+          credentialDidKey: did-key
     db:
       host: issuer-postgres
       port: 5432
@@ -176,7 +174,7 @@ issuer:
     image:
       repository: in2workspace/in2-issuer-ui
       # Overrides the image tag whose default is the chart appVersion.
-      tag: v1.2.2-snapshot
+      tag: v1.2.3-snapshot
       pullPolicy: Always
     ingress:
       enabled: true
