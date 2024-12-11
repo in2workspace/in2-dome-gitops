@@ -56,7 +56,7 @@ issuer:
             - issuer.dome-marketplace-lcl.org
           secretName: issuer-tls-secret
     app:
-      profile: default
+      profile: lcl
       logLevel:
         app: INFO
         security: INFO
