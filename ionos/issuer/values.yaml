@@ -115,10 +115,8 @@ issuer:
         internalDomain: http://dome-issuer-keycloak:8080/issuer-keycloak
         realm: issuer-dome
         client:
-          clientId: oidc4vci-wallet-client
-          clientSecret: oidc4vci-wallet-client-secret
-          username: user
-          password: user
+          clientId: issuer-api-client
+          username: issuer-api-user
           existingSecret:
             enabled: true
             name: issuer-secret
