@@ -229,6 +229,7 @@ issuer:
         # change by the external url or set to localhost if deployed locally
         host: knowledgebase.dome-marketplace-sbx.org
         path: /
+      profile: local
       procedures: /api/v1/procedures
       saveCredential: /api/v1/credentials?type=LEARCredentialEmployee
       credentialOfferUrl: /api/v1/credential-offer
