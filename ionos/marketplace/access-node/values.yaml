@@ -108,6 +108,7 @@ access-node:
       key: dlt-private-key
     env:
       DEBUG: "*"
+      RPC_ADDRESS: "https://red-t.alastria.io/v0/9461d9f4292b41230527d57ee90652a6"
       ISS: "0xa559c43a8127569c71c42a04a41e82bcfcf86a82b61284b2c906afbe67d4b839"
 
   ## configuration of postgres to be used for the blockchain-connector - see https://github.com/bitnami/charts/tree/main/bitnami/postgresql for details
@@ -219,6 +220,24 @@ access-node:
     nameOverride: tm-forum-api
     # -- should tm-forum-api be enabled
     enabled: true
+    ## configuration to be used by every api-deployment if nothing specific is provided.
+    defaultConfig:
+      # -- configuration to be used for the image of the containers
+      image:
+        # -- current latest tag
+        tag: "0.29.0"
+      # -- ngsi-ld broker connection information
+      ngsiLd:
+        # -- address of the broker
+        url: http://scorpio:9090
+      # -- default context to be used when contacting the context broker
+      contextUrl: https://uri.etsi.org/ngsi-ld/v1/ngsi-ld-core-context.jsonld
+      # -- host that the tm-forum api can be reached at, when the proxy is enabled it should be set to that address. If not, set the host for each api individually
+      serverHost: http://localhost:8080
+    ## configuration for the api proxy, to serve all apis through one kubernetes service
+    apiProxy:
+      # -- the proxy must be enabled
+      enabled: true
 
     apis:
       - name: party-catalog
