@@ -16,7 +16,7 @@ clients:
     redirectUris: ["http://localhost:8081/cb"]
     scopes: ["openid_learcredential"]
     clientAuthenticationMethods: ["client_secret_jwt"]
-    authorizationGrantTypes: ["authorization_code"]
+    authorizationGrantTypes: ["authorization_code","refresh_token"]
     postLogoutRedirectUris: ["http://localhost:8081/cb"]
     requireAuthorizationConsent: false
     requireProofKey: false
