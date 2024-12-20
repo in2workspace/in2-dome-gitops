@@ -25,8 +25,8 @@ verifier-api:
         app: DEBUG
     externalDomain: "https://verifier.dome-marketplace-lcl.org"
     accessToken:
-      expirationUnitTime: DAYS
-      expirationTime: 1
+      expirationUnitTime: MINUTES
+      expirationTime: 10
     idToken:
         expirationUnitTime: MINUTES
         expirationTime: 5
