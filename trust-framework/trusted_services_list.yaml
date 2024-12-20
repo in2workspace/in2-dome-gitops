@@ -29,7 +29,7 @@ clients:
     url: "https://dome-marketplace-lcl.org/"
     scopes: [ "openid_learcredential" ]
     clientAuthenticationMethods: [ "client_secret_jwt" ]
-    authorizationGrantTypes: [ "authorization_code" ]
+    authorizationGrantTypes: ["authorization_code","refresh_token"]
     postLogoutRedirectUris: [ "https://dome-marketplace-lcl.org/" ]
     requireAuthorizationConsent: false
     requireProofKey: false
@@ -64,7 +64,7 @@ clients:
     redirectUris: [ "https://issuer.dome-marketplace-lcl.org/issuer-keycloak/realms/issuer-dome/broker/vc/endpoint" ]
     scopes: [ "openid_learcredential" ]
     clientAuthenticationMethods: [ "client_secret_jwt" ]
-    authorizationGrantTypes: [ "authorization_code" ]
+    authorizationGrantTypes: ["authorization_code","refresh_token"]
     postLogoutRedirectUris: [ "https://issuer.dome-marketplace-lcl.org/issuer-keycloak" ]
     requireAuthorizationConsent: false
     requireProofKey: false
