@@ -53,6 +53,9 @@ access-node:
       externalAccessNodesUrls:
         enableCustomUrls: true
         customUrls: ""
+      trustedAccessNodesList:
+        enableCustomTrustedList: true
+        customTrustedList: "https://raw.githubusercontent.com/in2workspace/in2-dome-gitops/refs/heads/main/trust-framework/trusted_access_nodes_list.yaml"
       # -- configuration to set your private key
       privateKey:
         existingSecret:
