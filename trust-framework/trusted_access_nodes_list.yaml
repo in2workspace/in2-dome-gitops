@@ -1,5 +1,9 @@
 organizations:
-  - name: DOME
-    publicKey: 0x0486573f96a9e5a0007855cba27af53d2d73d69cc143266bc336e361d2f5124f6639c813e62a1c8642132de455b72d65c620f18d69c09e30123d420fcb85de361d
-    url: https://desmos.dome-marketplace-sbx.org
-    dlt_address:
+  - name: IN2
+    publicKey: 0x0481fd5909250ed5da0c77af1469f67ab990c942a1439923dbb94fd06e68c7f0c60e75795d93dc0b6523c5d3400ae47c2a1a5ef2e8bfec45a03991e1549f870bb7
+    url: https://desmos.dome-marketplace-lcl.org
+    dlt_address: 0xea375D05cfb3A723208C3Cce3B843D0Dd1117086
+  - name: IN2-2
+    publicKey: 0x0429e92f36889bb770200ae9283b4bea7960229c312c503ee3bfdd13d5d6a4939abef52a79e11bd098174e8cf5320adecb7266e75b14cd387aed0612a3e0ff9ffc
+    url: http://desmos.marketplace-2.svc.cluster.local:8080
+    dlt_address: 0x59B59Ff49e9a7c9B0d9623fAf6c67f9Ec11EDFB3
