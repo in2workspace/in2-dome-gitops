@@ -58,8 +58,8 @@ issuer:
     app:
       profile: lcl
       logLevel:
-        app: INFO
-        security: INFO
+        app: DEBUG
+        security: DEBUG
       internalServerPort: 8080
       mail:
         host: smtp.ionos.de
