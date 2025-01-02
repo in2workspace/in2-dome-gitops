@@ -8,4 +8,4 @@ dependencies:
   - name: wallet
     condition: wallet.enabled
     repository: https://in2workspace.github.io/helm-charts
-    version: 1.0.3
+    version: 1.0.4
