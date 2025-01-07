@@ -8,7 +8,7 @@ access-node:
     image:
       repository: in2workspace/in2-desmos-api
       # Overrides the image tag whose default is the chart appVersion.
-      tag: v1.0.2-snapshot
+      tag: v1.0.4-snapshot
       pullPolicy: Always
     readinessProbe:
       failureThreshold: 10
@@ -136,6 +136,12 @@ access-node:
   scorpio:
     # -- should scorpio be enabled
     enabled: true
+    ## configuration of the image to be used
+    image:
+      # -- repository to be used - resource friendly all-in-one-runner without kafka
+      repository: scorpiobroker/all-in-one-runner
+      # -- tag of the image to be used - latest java image without kafka
+      tag: java-4.1.10
     ## configuration of the database to be used by broker
     db:
       # -- host of the db
