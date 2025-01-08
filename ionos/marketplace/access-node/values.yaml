@@ -8,7 +8,7 @@ access-node:
     image:
       repository: in2workspace/in2-desmos-api
       # Overrides the image tag whose default is the chart appVersion.
-      tag: v1.0.4-snapshot
+      tag: v1.0.2
       pullPolicy: Always
     readinessProbe:
       failureThreshold: 10
@@ -49,7 +49,7 @@ access-node:
       ## configuration of ngsi-ld entities to listen for
       ngsiSubscription:
         # -- a list of entity-types the connector is interested in
-        entityTypes:
+        entityTypes: catalog,product-offering,category,individual,organization,product,service-specification,product-offering-price,resource-specification,product-specification
       ## configuration to connect to the dlt-adapter
       dltAdapter:
         # -- provider of the dlt-adapter component
@@ -61,15 +61,15 @@ access-node:
         ## configuration of subscriptions at the blockchain
       txSubscription:
         # -- a list of entity-types the connector is interested in
-        entityTypes:
+        entityTypes: catalog,product-offering,category,individual,organization,product,service-specification,product-offering-price,resource-specification,product-specification
       # -- operator external domain
       externalDomain: "https://desmos.dome-marketplace-lcl.org"
-      externalAccessNodesUrls:
-        enableCustomUrls: true
-        customUrls: "http://desmos.marketplace-2.svc.cluster.local:8080"
-      trustedAccessNodesList:
-        enableCustomTrustedList: true
-        customTrustedList: "https://raw.githubusercontent.com/in2workspace/in2-dome-gitops/refs/heads/main/trust-framework/trusted_access_nodes_list.yaml"
+      #      externalAccessNodesUrls:
+      #        enableCustomUrls: true
+      #        customUrls: "http://desmos.marketplace-2.svc.cluster.local:8080"
+      #      trustedAccessNodesList:
+      #        enableCustomTrustedList: true
+      #        customTrustedList: "https://raw.githubusercontent.com/in2workspace/in2-dome-gitops/refs/heads/main/trust-framework/trusted_access_nodes_list.yaml"
       # -- configuration to set your private key
       privateKey:
         existingSecret:
@@ -79,7 +79,6 @@ access-node:
           name: access-node-secret
           # -- key to retrieve the password from
           key: desmos-private-key
-      ## configuration of the database to be used by the blockchain-connector
     ## configuration of the database to be used by the blockchain-connector
     db:
       # -- host of the db
