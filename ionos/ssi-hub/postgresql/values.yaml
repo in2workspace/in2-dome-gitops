@@ -1,0 +1,20 @@
+db:
+  # -- host of the db
+  host: postgresql-connector
+  # -- port of the host of the db
+  port: 5432
+  # -- should be true if is an external service
+  externalService: false
+  # -- name of the db
+  name: postgres
+  # -- username to be used
+  username: postgres
+  # -- default password to be used
+  password: postgres
+  existingSecret:
+    # -- should an existing secret be used
+    enabled: false
+    # -- name of the secret
+    name: postgres-db-secret
+    # -- key to retrieve the password from
+    key: postgres-db-password
