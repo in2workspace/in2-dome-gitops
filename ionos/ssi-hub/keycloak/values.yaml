@@ -1,3 +1,5 @@
+keycloak:
+  enabled: true
 ## Bitnami Keycloak image version
 ## ref: https://hub.docker.com/r/bitnami/keycloak/tags/
 ## @param image.registry [default: REGISTRY_NAME] Keycloak image registry
@@ -9,6 +11,7 @@
 ## @param image.debug Specify if debug logs should be enabled
 ##
 image:
+  registry: docker.io
   repository: in2workspace/dome-issuer-keycloak
   tag: v1.0.3
 
