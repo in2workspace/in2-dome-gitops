@@ -25,6 +25,10 @@ image:
 ##
 postgresql:
   enabled: false
+  auth:
+    username: ""
+    password: ""
+    database: ""
 
 ## External PostgreSQL configuration
 ## All of these values are only used when postgresql.enabled is set to false
@@ -47,3 +51,16 @@ externalDatabase:
   user: postgres
   database: postgres_ssi_hub
   password: "postgres"
+
+
+extraEnvVars:
+  - name: KC_DB_URL
+    value: "jdbc:postgresql://postgresql.ssi-hub.svc.cluster.local:5432/postgres_ssi_hub"
+  - name: KC_DB_USERNAME
+    value: "postgres"
+  - name: KC_DB_PASSWORD
+    value: "postgres"
+  - name: DB_SCHEMA
+    value: "keycloak"
+  - name: KC_DB_SCHEMA
+    value: "keycloak"
