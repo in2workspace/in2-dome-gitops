@@ -1,8 +1,0 @@
-keycloak:
-  enabled: true
-  auth:
-    adminUser: admin
-    adminPassword: admin
-
-postgresql:
-  enabled: false
