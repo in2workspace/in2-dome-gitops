@@ -22,4 +22,4 @@ postgresql:
       scripts:
         # -- create the database as expected
         create.sh: |
-          psql postgresql://postgres:${POSTGRES_PASSWORD}@localhost:5432 -c "CREATE DATABASE postgres-ssi-hub;"
+          psql postgresql://postgres:${POSTGRES_PASSWORD}@localhost:5432 -c "CREATE DATABASE postgres_ssi_hub;"
