@@ -1,0 +1,12 @@
+apiVersion: v2
+name: ssi-hub-postgresql
+description: Chart holder for ArgoCD
+type: application
+version: 0.0.1
+appVersion: "v0.0.1"
+dependencies:
+  - name: postgresql
+    condition: postgresql.enabled
+    alias: postgresql
+    repository: oci://registry-1.docker.io/bitnamicharts
+    version: 13.1.5
