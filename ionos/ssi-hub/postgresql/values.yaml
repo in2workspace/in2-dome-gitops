@@ -14,14 +14,6 @@ postgresql:
     password: postgres
     # -- should the default postgres user be enabled
     enablePostgresUser: true
-    # -- existing secret
-    existingSecret:
-      # -- should an existing secret be used
-      enabled: false
-      # -- name of the secret
-      name: ssi-postgres-db-secret
-      # -- key to retrieve the password from
-      key: ssi-postgres-db-password
   ## configuration of the postgres primary replica
   primary:
     ## provide db initialization
