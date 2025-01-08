@@ -1,0 +1,12 @@
+apiVersion: v2
+name: ssi-hub-keycloak
+description: Chart holder for ArgoCD
+type: application
+version: 0.0.1
+appVersion: "v0.0.1"
+dependencies:
+  - name: keycloak
+    condition: keycloak.enabled
+    alias: keycloak
+    repository: oci://registry-1.docker.io/bitnamicharts
+    version: 24.3.2
