@@ -8,12 +8,26 @@ access-node:
     image:
       repository: in2workspace/in2-desmos-api
       # Overrides the image tag whose default is the chart appVersion.
-      tag: v1.0.4-snapshot
+      tag: v1.0.2
       pullPolicy: Always
     readinessProbe:
       failureThreshold: 10
     livenessProbe:
       failureThreshold: 10
+    ingress:
+      enabled: true
+      className: nginx
+      annotations:
+        cert-manager.io/cluster-issuer: letsencrypt-in2-test-issuer
+      hosts:
+        - host: desmos.dome-marketplace-lcl.org
+          paths:
+            - path: /
+              pathType: Prefix
+      tls:
+        - hosts:
+            - desmos.dome-marketplace-lcl.org
+          secretName: desmos-tls-secret
     ## deployment specific configuration
     app:
       ## profile (test == dev)
@@ -23,7 +37,7 @@ access-node:
       ## information about the access-node operator
       operator:
         # -- did of the organization running the node
-        organizationIdentifier: did:key:zDnaeTFZzSv1BKp314fjH7WA5iJ7Jkb4gArs5THqmpycbPfdj
+        organizationIdentifier: did:key:zDnaerQi587EqQLqEaj7qbxc46hzdjX2goNsmLTq1X6HqzzjP
       ## connection information for the context broker
       broker:
         # -- provider of the broker
@@ -35,7 +49,7 @@ access-node:
       ## configuration of ngsi-ld entities to listen for
       ngsiSubscription:
         # -- a list of entity-types the connector is interested in
-        entityTypes:
+        entityTypes: catalog,product-offering,category,individual,organization,product,service-specification,product-offering-price,resource-specification,product-specification
       ## configuration to connect to the dlt-adapter
       dltAdapter:
         # -- provider of the dlt-adapter component
@@ -47,15 +61,15 @@ access-node:
         ## configuration of subscriptions at the blockchain
       txSubscription:
         # -- a list of entity-types the connector is interested in
-        entityTypes:
+        entityTypes: catalog,product-offering,category,individual,organization,product,service-specification,product-offering-price,resource-specification,product-specification
       # -- operator external domain
-      externalDomain: "http://desmos.marketplace-2.svc.cluster.local:8080"
-      externalAccessNodesUrls:
-        enableCustomUrls: true
-        customUrls: ""
-      trustedAccessNodesList:
-        enableCustomTrustedList: true
-        customTrustedList: "https://raw.githubusercontent.com/in2workspace/in2-dome-gitops/refs/heads/main/trust-framework/trusted_access_nodes_list.yaml"
+      externalDomain: "https://desmos.dome-marketplace-lcl.org"
+      #      externalAccessNodesUrls:
+      #        enableCustomUrls: true
+      #        customUrls: "http://desmos.marketplace-2.svc.cluster.local:8080"
+      #      trustedAccessNodesList:
+      #        enableCustomTrustedList: true
+      #        customTrustedList: "https://raw.githubusercontent.com/in2workspace/in2-dome-gitops/refs/heads/main/trust-framework/trusted_access_nodes_list.yaml"
       # -- configuration to set your private key
       privateKey:
         existingSecret:
@@ -65,7 +79,6 @@ access-node:
           name: access-node-secret
           # -- key to retrieve the password from
           key: desmos-private-key
-      ## configuration of the database to be used by the blockchain-connector
     ## configuration of the database to be used by the blockchain-connector
     db:
       # -- host of the db
@@ -101,7 +114,7 @@ access-node:
     env:
       DEBUG: "*"
       RPC_ADDRESS: "https://red-t.alastria.io/v0/9461d9f4292b41230527d57ee90652a6"
-      ISS: "0xb19dfa3c1bd256933d513e9fcfd349151cb17760c4f67d0643afddf503b314b8"
+      ISS: "0xa559c43a8127569c71c42a04a41e82bcfcf86a82b61284b2c906afbe67d4b839"
 
   ## configuration of postgres to be used for the blockchain-connector - see https://github.com/bitnami/charts/tree/main/bitnami/postgresql for details
   postgresql:
