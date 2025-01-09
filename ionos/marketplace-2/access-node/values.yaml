@@ -19,7 +19,8 @@ access-node:
       ## profile (test == dev)
       profile: dev
       ## debug level
-      logLevel: INFO
+      logLevel:
+        app: DEBUG
       ## information about the access-node operator
       operator:
         # -- did of the organization running the node
@@ -32,10 +33,6 @@ access-node:
         internalDomain: http://scorpio:9090
         # -- external address of the broker. Will be included in the hashlink and used by other access-nodes to retrieve the actual entities
         externalDomain: http://scorpio:9090
-      ## configuration of ngsi-ld entities to listen for
-      ngsiSubscription:
-        # -- a list of entity-types the connector is interested in
-        entityTypes:
       ## configuration to connect to the dlt-adapter
       dltAdapter:
         # -- provider of the dlt-adapter component
@@ -44,10 +41,6 @@ access-node:
         internalDomain: http://dlt-adapter:8080
         # -- (external) address of the dlt-adapter
         externalDomain: http://dlt-adapter:8080
-        ## configuration of subscriptions at the blockchain
-      txSubscription:
-        # -- a list of entity-types the connector is interested in
-        entityTypes:
       # -- operator external domain
       externalDomain: "http://desmos.marketplace-2.svc.cluster.local:8080"
       externalAccessNodesUrls:
@@ -136,12 +129,6 @@ access-node:
   scorpio:
     # -- should scorpio be enabled
     enabled: true
-    ## configuration of the image to be used
-    image:
-      # -- repository to be used - resource friendly all-in-one-runner without kafka
-      repository: scorpiobroker/all-in-one-runner
-      # -- tag of the image to be used - latest java image without kafka
-      tag: java-4.1.10
     ## configuration of the database to be used by broker
     db:
       # -- host of the db
