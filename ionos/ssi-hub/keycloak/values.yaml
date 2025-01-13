@@ -2,9 +2,10 @@ keycloak:
   keycloak:
     enabled: true
     image:
-      registry: docker.io
       repository: in2workspace/dome-issuer-keycloak
+      # Overrides the image tag whose default is the chart appVersion.
       tag: v1.0.3
+      pullPolicy: Always
 
   postgresql:
     enabled: false
