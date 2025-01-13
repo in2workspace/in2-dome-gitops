@@ -1,12 +1,13 @@
-keycloak:
-  enabled: true
+ssi-hub-keycloak:
+  keycloak:
+    enabled: true
 
-postgresql:
-  enabled: false
+  postgresql:
+    enabled: false
 
-externalDatabase:
-  host: "postgres"
-  port: 5432
-  user: "postgres"
-  password: "postgres"
-  database: "postgres_ssi_hub"
+  externalDatabase:
+    host: "postgres"
+    port: 5432
+    user: "postgres"
+    password: "postgres"
+    database: "postgres_ssi_hub"
