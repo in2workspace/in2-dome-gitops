@@ -6,8 +6,14 @@ keycloak:
     enabled: false
 
   externalDatabase:
-    host: "postgres"
+    host: "postgres.ssi-hub.svc.cluster.local"
     port: 5432
     user: "postgres"
     password: "postgres"
     database: "postgres_ssi_hub"
+
+  extraEnvVars:
+    - name: DB_SCHEMA
+      value: "keycloak"
+    - name: KC_DB_SCHEMA
+      value: "keycloak"
