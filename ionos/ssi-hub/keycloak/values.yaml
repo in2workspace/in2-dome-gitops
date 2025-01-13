@@ -1,4 +1,4 @@
-ssi-hub-keycloak:
+keycloak:
   keycloak:
     enabled: true
 
