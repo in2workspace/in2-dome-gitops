@@ -1,10 +1,12 @@
 keycloak:
+
   keycloak:
     enabled: true
-    image:
-      repository: bitnami/keycloak
-      tag: 26.0.6
-      pullPolicy: "IfNotPresent"
+
+  image:
+    repository: bitnami/keycloak
+    tag: 26.0.6
+    pullPolicy: "IfNotPresent"
 
   postgresql:
     enabled: false
