@@ -1,17 +1,8 @@
 keycloak:
   enabled: true
-  args:
-    extraEnvVars:
-      - name: KC_DB_URL
-        value: "jdbc:postgresql://postgres:5432/postgres_ssi_hub"
-      - name: KC_DB_USERNAME
-        value: "postgres"
-      - name: KC_DB_PASSWORD
-        value: "postgres"
-      - name: KC_DB_SCHEMA
-        value: "keycloak"
-      - name: DB_SCHEMA
-        value: "keycloak"
+
+postgresql:
+  enabled: false
 
 externalDatabase:
   host: "postgres"
@@ -19,6 +10,3 @@ externalDatabase:
   user: "postgres"
   password: "postgres"
   database: "postgres_ssi_hub"
-
-postgresql:
-  enabled: false
