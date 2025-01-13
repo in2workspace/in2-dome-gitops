@@ -1,11 +1,7 @@
 keycloak:
   keycloak:
     enabled: true
-    image:
-      repository: in2workspace/dome-issuer-keycloak
-      # Overrides the image tag whose default is the chart appVersion.
-      tag: v1.0.3
-      pullPolicy: Always
+    image: in2workspace/dome-issuer-keycloak:v1.0.3
 
   postgresql:
     enabled: false
