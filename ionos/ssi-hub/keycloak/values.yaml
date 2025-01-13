@@ -6,7 +6,7 @@ keycloak:
     enabled: false
 
   externalDatabase:
-    host: "postgres"
+    host: "postgres.ssi-hub.svc.cluster.local"
     port: 5432
     user: "postgres"
     password: "postgres"
