@@ -11,3 +11,9 @@ keycloak:
     user: "postgres"
     password: "postgres"
     database: "postgres_ssi_hub"
+
+  extraEnvVars:
+    - name: DB_SCHEMA
+      value: "keycloak"
+    - name: KC_DB_SCHEMA
+      value: "keycloak"
