@@ -1,6 +1,10 @@
 keycloak:
   keycloak:
     enabled: true
+    image:
+      registry: docker.io
+      repository: in2workspace/dome-issuer-keycloak
+      tag: v1.0.3
 
   postgresql:
     enabled: false
