@@ -26,6 +26,12 @@ keycloak:
   extraEnvVars:
     - name: DB_SCHEMA
       value: "keycloak"
+    - name: KC_DB_URL
+      value: jdbc:postgresql://postgres.ssi-hub.svc.cluster.local:5432/postgres_ssi_hub
+    - name: KC_DB_USERNAME
+      value: "postgres"
+    - name: KC_DB_PASSWORD
+      value: "postgres"
     - name: KC_DB_SCHEMA
       value: "keycloak"
 
