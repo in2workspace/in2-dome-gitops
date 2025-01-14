@@ -30,3 +30,6 @@ keycloak:
       value: "keycloak"
 
   enableDefaultInitContainers: false
+
+  containerSecurityContext:
+    readOnlyRootFilesystem: false
