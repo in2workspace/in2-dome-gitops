@@ -2,7 +2,7 @@ apiVersion: v2
 name: ssi-hub-keycloak
 description: Chart holder for ArgoCD
 type: application
-version: 0.0.29
+version: 0.0.30
 appVersion: "v0.0.1"
 dependencies:
   - name: keycloak
