@@ -4,8 +4,8 @@ keycloak:
     enabled: true
 
   image:
-    repository: bitnami/keycloak
-    tag: 26.0.6
+    repository: in2workspace/dome-issuer-keycloak
+    tag: v1.0.3
     pullPolicy: "IfNotPresent"
 
   postgresql:
