@@ -50,10 +50,16 @@ keycloak:
       value: "http://postgres.ssi-hub.svc.cluster.local:5432/"
     - name: KC_HOSTNAME_ADMIN_URL
       value: "http://postgres.ssi-hub.svc.cluster.local:5432/"
-    - name: KC_HTTPS_TRUST_STORE_FILE
-      value: "/opt/keycloak/truststore/truststore.jks"
-    - name: KC_HTTPS_TRUST_STORE_PASSWORD
-      value: "pempas"
+
+      # The following used options or option values are DEPRECATED and will be removed in a future release:
+      # - https-trust-store-password: Use the System Truststore instead, see the docs for details.
+      # - proxy: Use proxy-headers.
+      # - https-trust-store-file: Use the System Truststore instead, see the docs for details.
+      #- name: KC_HTTPS_TRUST_STORE_FILE
+      #value: "/opt/keycloak/truststore/truststore.jks"
+      #- name: KC_HTTPS_TRUST_STORE_PASSWORD
+      #value: "pempas"
+
     - name: KC_HTTPS_CLIENT_AUTH
       value: "request"
     - name: KC_DB
@@ -78,7 +84,3 @@ keycloak:
       value: "MINUTES"
     - name: TOKEN_EXPIRATION
       value: "2592000"
-    - name: QUARKUS_LOG_CATEGORY__ORG_KEYCLOAK_SERVICES_X509__LEVEL
-      value: "TRACE"
-    - name: KEYCLOAK_LOGLEVEL
-      value: "DEBUG"
