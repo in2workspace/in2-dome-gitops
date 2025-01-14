@@ -14,9 +14,6 @@ access-node:
       failureThreshold: 10
     livenessProbe:
       failureThreshold: 10
-    resources:
-      requests:
-        cpu: "3"
     ingress:
       enabled: true
       className: nginx
