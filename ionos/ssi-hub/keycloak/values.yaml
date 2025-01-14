@@ -4,6 +4,7 @@ keycloak:
     enabled: true
 
   global:
+    imageRegistry: "docker.io"
     security:
       allowInsecureImages: true
 
