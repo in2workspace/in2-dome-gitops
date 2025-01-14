@@ -35,3 +35,5 @@ keycloak:
 
   containerSecurityContext:
     readOnlyRootFilesystem: false
+    # Not recommended in production
+    runAsNonRoot: false
