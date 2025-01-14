@@ -29,14 +29,6 @@ keycloak:
     - name: KC_DB_SCHEMA
       value: "keycloak"
 
-  extraVolumes:
-    - name: emptydir
-      emptyDir: { }
-
-  extraVolumeMounts:
-    - name: emptydir
-      mountPath: /emptydir
-
   initContainers:
     - name: prepare-write-dirs
       image: docker.io/in2workspace/dome-issuer-keycloak:v1.0.3
@@ -44,8 +36,9 @@ keycloak:
         - /bin/bash
         - -c
         - |
+          echo "Creating writable directories in /emptydir"
           mkdir -p /emptydir/app-quarkus-dir /emptydir/app-data-dir /emptydir/app-providers-dir
-          echo "Required directories created in /emptydir"
+          echo "Directory creation completed"
       volumeMounts:
         - name: emptydir
           mountPath: /emptydir
