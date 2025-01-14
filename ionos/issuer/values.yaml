@@ -220,7 +220,7 @@ issuer:
         externalService: true
         scheme: https
         # change by the external url or set to localhost if deployed locally
-        host: wallet.dome-marketplace-prd.org
+        host: wallet.dome-marketplace-lcl.org
         # internalPort is only used if externalService is false
         internalPort: 30003
         path: /
@@ -229,7 +229,7 @@ issuer:
         externalService: true
         scheme: https
         # change by the external url or set to localhost if deployed locally
-        host: wallet.dome-marketplace-lcl.org
+        host: wallet.dome-marketplace-prd.org
         # internalPort is only used if externalService is false
         internalPort: 30003
         path: /
