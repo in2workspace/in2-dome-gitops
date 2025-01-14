@@ -28,12 +28,11 @@ keycloak:
       value: "keycloak"
     - name: KC_DB_SCHEMA
       value: "keycloak"
-    - name: QUARKUS_TEMP_DIR
-      value: "/tmp"
 
   enableDefaultInitContainers: false
 
   containerSecurityContext:
     readOnlyRootFilesystem: false
-    # Not recommended in production
+    runAsUser: 0
+    runAsGroup: 0
     runAsNonRoot: false
