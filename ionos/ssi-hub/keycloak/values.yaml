@@ -3,6 +3,10 @@ keycloak:
   keycloak:
     enabled: true
 
+  global:
+    security:
+      allowInsecureImages: true
+
   image:
     repository: in2workspace/dome-issuer-keycloak
     tag: v1.0.3
