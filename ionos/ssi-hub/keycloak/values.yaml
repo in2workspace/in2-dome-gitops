@@ -38,7 +38,7 @@ keycloak:
 
   customReadinessProbe:
     httpGet:
-      path: /keycloak/health
+      path: /keycloak/realms/master
       port: 8080
       scheme: HTTP
     initialDelaySeconds: 40
