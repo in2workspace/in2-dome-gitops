@@ -36,9 +36,20 @@ keycloak:
     runAsGroup: 0
     runAsNonRoot: false
 
+  customLivenessProbe:
+    httpGet:
+      path: /health
+      port: 8080
+      scheme: HTTP
+    initialDelaySeconds: 40
+    periodSeconds: 10
+    timeoutSeconds: 1
+    successThreshold: 1
+    failureThreshold: 6
+
   customReadinessProbe:
     httpGet:
-      path: /issuer-keycloak/health
+      path: /health
       port: 8080
       scheme: HTTP
     initialDelaySeconds: 40
