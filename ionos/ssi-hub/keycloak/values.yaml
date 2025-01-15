@@ -36,14 +36,21 @@ keycloak:
     runAsGroup: 0
     runAsNonRoot: false
 
+  livenessProbe:
+    enabled: true
+    path: /keycloak/realms/master
+
+  readinessProbe:
+    enabled: true
+    path: /keycloak/realms/master
+
+
   # Environment variables needed for deploying our custom Keycloak image or other dependencies.
   extraEnvVars:
     - name: KEYCLOAK_ADMIN
       value: "admin"
     - name: KEYCLOAK_ADMIN_PASSWORD
       value: "admin"
-    - name: KC_PROXY
-      value: "edge"
     - name: KC_HTTP_RELATIVE_PATH
       value: "/keycloak/"
     - name: KC_HOSTNAME_URL
