@@ -44,8 +44,8 @@ keycloak:
       value: "admin"
     - name: KC_PROXY
       value: "edge"
-    - name: KC_HTTP_RELATIVE_PATH
-      value: "/keycloak"
+      #- name: KC_HTTP_RELATIVE_PATH
+      #value: "/keycloak"
     - name: KC_HOSTNAME_URL
       value: "http://postgres.ssi-hub.svc.cluster.local:5432/"
     - name: KC_HOSTNAME_ADMIN_URL
