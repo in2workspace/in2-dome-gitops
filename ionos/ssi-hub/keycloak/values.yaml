@@ -38,13 +38,13 @@ keycloak:
 
   customLivenessProbe:
     httpGet:
-      path: /health
-      port: http
+      path: /keycloak/health
+      port: 8080
 
   customReadinessProbe:
     httpGet:
-      path: /health
-      port: http
+      path: /keycloak/health
+      port: 8080
 
   # Environment variables needed for deploying our custom Keycloak image or other dependencies.
   extraEnvVars:
