@@ -39,24 +39,12 @@ keycloak:
   customLivenessProbe:
     httpGet:
       path: /health
-      port: 8080
-      scheme: HTTP
-    initialDelaySeconds: 40
-    periodSeconds: 10
-    timeoutSeconds: 1
-    successThreshold: 1
-    failureThreshold: 6
+      port: http
 
   customReadinessProbe:
     httpGet:
       path: /health
-      port: 8080
-      scheme: HTTP
-    initialDelaySeconds: 40
-    periodSeconds: 10
-    timeoutSeconds: 1
-    successThreshold: 1
-    failureThreshold: 6
+      port: http
 
   # Environment variables needed for deploying our custom Keycloak image or other dependencies.
   extraEnvVars:
