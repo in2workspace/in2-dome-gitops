@@ -36,6 +36,9 @@ keycloak:
     runAsGroup: 0
     runAsNonRoot: false
 
+  readinessProbe:
+    enabled: false
+
   # Environment variables needed for deploying our custom Keycloak image or other dependencies.
   extraEnvVars:
     - name: KEYCLOAK_ADMIN
