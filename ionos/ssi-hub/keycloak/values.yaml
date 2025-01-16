@@ -36,16 +36,6 @@ keycloak:
     runAsGroup: 0
     runAsNonRoot: false
 
-  customLivenessProbe:
-    httpGet:
-      path: /keycloak/health
-      port: 80
-
-  customReadinessProbe:
-    httpGet:
-      path: /keycloak/health
-      port: 80
-
   # Environment variables needed for deploying our custom Keycloak image or other dependencies.
   extraEnvVars:
     - name: KEYCLOAK_ADMIN
