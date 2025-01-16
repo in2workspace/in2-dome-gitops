@@ -37,7 +37,12 @@ keycloak:
     runAsNonRoot: false
 
   readinessProbe:
-    enabled: false
+    enabled: true
+    initialDelaySeconds: 300
+    periodSeconds: 1
+    timeoutSeconds: 5
+    failureThreshold: 3
+    successThreshold: 1
 
   # Environment variables needed for deploying our custom Keycloak image or other dependencies.
   extraEnvVars:
