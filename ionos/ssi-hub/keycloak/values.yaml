@@ -37,8 +37,8 @@ keycloak:
     runAsNonRoot: false
 
   customReadinessProbe:
-    enabled: true
-    path: /keycloak/health
+    httpGet:
+      path: /keycloak/health
     initialDelaySeconds: 300
     periodSeconds: 1
     timeoutSeconds: 5
