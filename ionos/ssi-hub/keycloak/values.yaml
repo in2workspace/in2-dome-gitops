@@ -39,6 +39,7 @@ keycloak:
   customReadinessProbe:
     httpGet:
       path: /keycloak/health
+      port: 8080
     initialDelaySeconds: 300
     periodSeconds: 1
     timeoutSeconds: 5
