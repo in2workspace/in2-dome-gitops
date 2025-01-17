@@ -24,7 +24,7 @@ verifier-api:
     logLevel:
         app: DEBUG
         security: DEBUG
-        securityOauth2: DEBUG
+        securityOauth2: TRACE
         webFilter: DEBUG
     externalDomain: "https://verifier.dome-marketplace-lcl.org"
     accessToken:
