@@ -7,3 +7,7 @@ organizations:
     publicKey: 0x0429e92f36889bb770200ae9283b4bea7960229c312c503ee3bfdd13d5d6a4939abef52a79e11bd098174e8cf5320adecb7266e75b14cd387aed0612a3e0ff9ffc
     url: http://desmos.marketplace-2.svc.cluster.local:8080
     dlt_address: 0x59B59Ff49e9a7c9B0d9623fAf6c67f9Ec11EDFB3
+  - name: Jesus
+    publicKey: 0x041fd0185c581bf9accb252d474e7fe0fa4ebe4c1438d60736451ef1840a6eaef444109da5c16e33ab7a7c190d64642d3c6d935a188620531a939b32641b81fbcb
+    url: http://desmos.jesusruiz.example
+    dlt_address: 0x8edf3CFdf87F6f4310e63Ee5c65E1a4d96e55381
