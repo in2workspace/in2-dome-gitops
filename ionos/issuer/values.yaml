@@ -160,10 +160,10 @@ issuer:
           credentialDidKey: did-key
     db:
       externalService: false
-      schema: public
+      schema: test_schema
       host: issuer-postgres
       port: 5432
-      name: issuer
+      name: test_database
       username: postgres
       password: postgres
       existingSecret:
@@ -383,6 +383,17 @@ issuer:
       enablePostgresUser: true
       # -- password to be used
       password: postgres
+    ## configuration of the postgres primary replica
+    primary:
+      ## provide db initialization
+      initdb:
+        ## provide scripts for initialization
+        scripts:
+          # -- create the database
+          # -- !!Put the same database name and the same database schema
+          create.sh: |
+            psql postgresql://postgres:${POSTGRES_PASSWORD}@localhost:5432 -c "CREATE DATABASE test_database;"
+            psql postgresql://postgres:${POSTGRES_PASSWORD}@localhost:5432/test_database -c "CREATE SCHEMA IF NOT EXISTS test_schema AUTHORIZATION public;"
 
   issuer-keycloak-postgres:
     # -- should the postgresql deployment be enabled
