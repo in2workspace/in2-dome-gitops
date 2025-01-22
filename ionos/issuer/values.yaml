@@ -383,17 +383,6 @@ issuer:
       enablePostgresUser: true
       # -- password to be used
       password: postgres
-    ## configuration of the postgres primary replica
-    primary:
-      ## provide db initialization
-      initdb:
-        ## provide scripts for initialization
-        scripts:
-          # -- create the database
-          create.sh: |
-            psql postgresql://postgres:${POSTGRES_PASSWORD}@localhost:5432 -c "CREATE DATABASE {{ .Values.db.name }};"
-            psql postgresql://postgres:${POSTGRES_PASSWORD}@localhost:5432/{{ .Values.db.name }} -c "CREATE SCHEMA IF NOT EXISTS public AUTHORIZATION {{ .Values.db.schema }};"
-
 
   issuer-keycloak-postgres:
     # -- should the postgresql deployment be enabled
