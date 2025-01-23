@@ -156,9 +156,9 @@ issuer:
     db:
       externalService: true
       host: external-database
-      schema: custom_schema
+      schema: test_schema
       port: 5432
-      name: public
+      name: test_database
       username: postgres
       password: postgres
       existingSecret:
