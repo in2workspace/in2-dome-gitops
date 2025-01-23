@@ -154,11 +154,10 @@ issuer:
           cryptoPrivateKey: private-key
           credentialDidKey: did-key
     db:
-      externalService: false
-      schema: test_schema
       host: issuer-postgres
       port: 5432
-      name: test_database
+      externalService: false
+      name: issuer
       username: postgres
       password: postgres
       existingSecret:
@@ -364,7 +363,7 @@ issuer:
       expiration: "2592000"
 
   issuer-postgres:
-    # -- should the postgresql deployment be enabled if issuer.issuer-api.db.externalService is false
+    # -- should the postgresql deployment be enabled
     enabled: true
     # -- overrides the generated name, provides stable service names - this should be avoided if multiple instances are available in the same namespace
     fullnameOverride: issuer-postgres
@@ -385,10 +384,9 @@ issuer:
         ## provide scripts for initialization
         scripts:
           # -- create the database
-          # -- !!Put the same database name and the same database schema
           create.sh: |
-            psql postgresql://postgres:${POSTGRES_PASSWORD}@localhost:5432 -c "CREATE DATABASE test_database;"
-            psql postgresql://postgres:${POSTGRES_PASSWORD}@localhost:5432/test_database -c "CREATE SCHEMA IF NOT EXISTS test_schema AUTHORIZATION public;"
+            psql postgresql://postgres:${POSTGRES_PASSWORD}@localhost:5432 -c "CREATE DATABASE issuer;"
+
 
   issuer-keycloak-postgres:
     # -- should the postgresql deployment be enabled
