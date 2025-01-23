@@ -154,10 +154,11 @@ issuer:
           cryptoPrivateKey: private-key
           credentialDidKey: did-key
     db:
-      host: issuer-postgres
+      externalService: true
+      host: external-database
+      schema: custom_schema
       port: 5432
-      externalService: false
-      name: issuer
+      name: public
       username: postgres
       password: postgres
       existingSecret:
@@ -364,42 +365,12 @@ issuer:
 
   issuer-postgres:
     # -- should the postgresql deployment be enabled
-    enabled: false
-    # -- overrides the generated name, provides stable service names - this should be avoided if multiple instances are available in the same namespace
-    fullnameOverride: issuer-postgres
-    # -- overrides the generated name, provides stable service names - this should be avoided if multiple instances are available in the same namespace
-    nameOverride: issuer-postgres
-    ## auth configuration for the database
-    auth:
-      # -- username to be used
-      username: postgres
-      # -- should the default postgres user be enabled
-      enablePostgresUser: true
-      # -- password to be used
-      password: postgres
-
+    enabled: true
 
   issuer-keycloak-postgres:
     # -- should the postgresql deployment be enabled
     enabled: true
-    # -- overrides the generated name, provides stable service names - this should be avoided if multiple instances are available in the same namespace
-    fullnameOverride: dome-issuer-keycloak-postgres
-    # -- overrides the generated name, provides stable service names - this should be avoided if multiple instances are available in the same namespace
-    nameOverride: dome-issuer-keycloak-postgres
-    ## auth configuration for the database
-    auth:
-      # -- username to be used
-      username: postgres
-      # -- should the default postgres user be enabled
-      enablePostgresUser: true
-      # -- password to be used
-      password: postgres
-    ## configuration of the postgres primary replica
-    primary:
-      ## provide db initialization
-      initdb:
-        ## provide scripts for initialization
-        scripts:
-          # -- create the database
-          create.sh: |
-            psql postgresql://postgres:${POSTGRES_PASSWORD}@localhost:5432 -c "CREATE DATABASE cred;"
+
+  external-database:
+    # -- should the postgresql deployment be enabled
+    enabled: true
