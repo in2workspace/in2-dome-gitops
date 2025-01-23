@@ -153,18 +153,18 @@ issuer:
           vc: vc
           cryptoPrivateKey: private-key
           credentialDidKey: did-key
-#    db:
-#      externalService: true
-#      host: external-database
-#      schema: test_schema
-#      port: 5432
-#      name: test_database
-#      username: postgres
-#      password: postgres
-#      existingSecret:
-#        enabled: false
-#        name: db-secret
-#        key: db-password
+    db:
+      externalService: false
+      host: issuer-postgres
+      schema: public
+      port: 5432
+      name: issuer
+      username: postgres
+      password: postgres
+      existingSecret:
+        enabled: false
+        name: db-secret
+        key: db-password
 
   issuer-ui:
     fullnameOverride: issuer-ui
@@ -373,4 +373,4 @@ issuer:
 
   external-database:
     # -- should the postgresql deployment be enabled
-    enabled: true
+    enabled: false
