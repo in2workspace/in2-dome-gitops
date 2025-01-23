@@ -5,7 +5,7 @@ issuer:
     image:
       repository: in2workspace/in2-issuer-api
       # Overrides the image tag whose default is the chart appVersion.
-      tag: v1.2.2-snapshot
+      tag: v1.3.0-snapshot
       pullPolicy: Always
     ingress:
       enabled: true
@@ -78,15 +78,10 @@ issuer:
               ssl:
                 trust: smtp.ionos.de
       remoteSignature:
-        externalDomain:
-          # if deployed locally set to false
-          externalService: true
+        domain:
           scheme: http
           # change by the external url or set to localhost if deployed locally
           host: dome-dss:8080
-          # internalPort is only used if externalService is false
-          internalPort: 30003
-        internalDomain: http://dome-dss:8080
       api:
         externalDomain:
           # if deployed locally set to false
@@ -159,10 +154,9 @@ issuer:
           cryptoPrivateKey: private-key
           credentialDidKey: did-key
     db:
-      externalService: false
-      schema: public
       host: issuer-postgres
       port: 5432
+      externalService: false
       name: issuer
       username: postgres
       password: postgres
@@ -369,7 +363,7 @@ issuer:
       expiration: "2592000"
 
   issuer-postgres:
-    # -- should the postgresql deployment be enabled if issuer.issuer-api.db.externalService is false
+    # -- should the postgresql deployment be enabled
     enabled: true
     # -- overrides the generated name, provides stable service names - this should be avoided if multiple instances are available in the same namespace
     fullnameOverride: issuer-postgres
@@ -391,8 +385,8 @@ issuer:
         scripts:
           # -- create the database
           create.sh: |
-            psql postgresql://postgres:${POSTGRES_PASSWORD}@localhost:5432 -c "CREATE DATABASE {{ .Values.db.name }};"
-            psql postgresql://postgres:${POSTGRES_PASSWORD}@localhost:5432/{{ .Values.db.name }} -c "CREATE SCHEMA IF NOT EXISTS public AUTHORIZATION {{ .Values.db.schema }};"
+            psql postgresql://postgres:${POSTGRES_PASSWORD}@localhost:5432 -c "CREATE DATABASE issuer;"
+
 
   issuer-keycloak-postgres:
     # -- should the postgresql deployment be enabled
