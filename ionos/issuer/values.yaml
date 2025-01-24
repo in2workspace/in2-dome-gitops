@@ -311,7 +311,7 @@ issuer:
           trustStorePasswordKey: keycloakTrustStorePassword
         clientAuth: request
       db:
-        host: dome-issuer-keycloak-postgres
+        host: issuer-keycloak-postgres
         port: 5432
         externalService: false
         name: cred
