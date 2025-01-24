@@ -76,13 +76,18 @@ wallet:
           name: wallet-vault-unseal-secret
 #          # -- key to retrieve the token from
           key: root
-      broker:
-        provider: scorpio
-        internal:
-          scheme: http
-          domain: scorpio
-          port: 9090
-        pathsEntities: /ngsi-ld/v1/entities
+    db:
+      externalService: false
+      schema: wallet
+      host: wallet-postgres
+      port: 5432
+      name: wallet
+      username: postgres
+      password: postgres
+      existingSecret:
+        enabled: true
+        name: issuer-secret
+        passwordKey: db-password
 
   ## configuration for the dome-wallet-ui
   dome-wallet-ui:
@@ -290,3 +295,33 @@ wallet:
           enable.sh: |
             psql postgresql://postgres:${POSTGRES_PASSWORD}@localhost:5432 -c "CREATE EXTENSION postgis;"
             psql postgresql://postgres:${POSTGRES_PASSWORD}@localhost:5432 -c "CREATE DATABASE ngb;"
+
+  ## configuration of postgres
+  wallet-postgresql:
+    # -- should the postgresql deployment be enabled
+    enabled: true
+    # -- overrides the generated name, provides stable service names - this should be avoided if multiple instances are available in the same namespace
+    fullnameOverride: wallet-postgres
+    # -- overrides the generated name, provides stable service names - this should be avoided if multiple instances are available in the same namespace
+    nameOverride: wallet-postgres
+    ## auth configuration for the database
+    auth:
+      # -- username to be used
+      username: postgres
+      # -- should the default postgres user be enabled
+      enablePostgresUser: true
+      # -- password to be used
+      existingSecret: wallet-secret
+      secretKeys:
+        adminPasswordKey: db-password
+        userPasswordKey: db-password
+    ## configuration of the postgres primary replica
+    primary:
+      ## provide db initialization
+      initdb:
+        ## provide scripts for initialization
+        scripts:
+          # -- create the database as expected
+          create.sh: |
+            psql postgresql://postgres:${POSTGRES_PASSWORD}@localhost:5432 -c "CREATE DATABASE wallet;"
+            psql postgresql://postgres:${POSTGRES_PASSWORD}@localhost:5432/wallet -c "CREATE SCHEMA wallet;"
