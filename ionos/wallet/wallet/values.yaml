@@ -300,10 +300,6 @@ wallet:
   wallet-postgresql:
     # -- should the postgresql deployment be enabled
     enabled: true
-    # -- overrides the generated name, provides stable service names - this should be avoided if multiple instances are available in the same namespace
-    fullnameOverride: wallet-postgres
-    # -- overrides the generated name, provides stable service names - this should be avoided if multiple instances are available in the same namespace
-    nameOverride: wallet-postgres
     ## auth configuration for the database
     auth:
       # -- username to be used
@@ -315,13 +311,3 @@ wallet:
       secretKeys:
         adminPasswordKey: db-password
         userPasswordKey: db-password
-    ## configuration of the postgres primary replica
-    primary:
-      ## provide db initialization
-      initdb:
-        ## provide scripts for initialization
-        scripts:
-          # -- create the database as expected
-          create.sh: |
-            psql postgresql://postgres:${POSTGRES_PASSWORD}@localhost:5432 -c "CREATE DATABASE wallet;"
-            psql postgresql://postgres:${POSTGRES_PASSWORD}@localhost:5432/wallet -c "CREATE SCHEMA wallet;"
