@@ -104,17 +104,6 @@ clients:
     jwkSetUrl: "https://verifier.dome-marketplace-lcl.org/oidc/did/did:key:zDnaerQi587EqQLqEaj7qbxc46hzdjX2goNsmLTq1X6HqzzjP"
     tokenEndpointAuthenticationSigningAlgorithm: "ES256"
 
-  - clientId: "did:key:zDnaeU19NRqJ71hcwmbPZGuAWuEW1xzqCtE2jxH8qHR1tgm1N"
-    redirectUris: [ ]
-    scopes: [ ]
-    clientAuthenticationMethods: [ "client_secret_jwt" ]
-    authorizationGrantTypes: [ "client_credentials" ]
-    postLogoutRedirectUris: [ ]
-    requireAuthorizationConsent: false
-    requireProofKey: false
-    jwkSetUrl: "https://verifier.dome-marketplace-lcl.org/oidc/did/did:key:zDnaeU19NRqJ71hcwmbPZGuAWuEW1xzqCtE2jxH8qHR1tgm1N"
-    tokenEndpointAuthenticationSigningAlgorithm: "ES256"
-
   - clientId: "did:key:zDnaekNHaKXkDGfFARbWDKkaBroRtGmSH3m8y77e5dcwBkQuE"
     redirectUris: [ ]
     scopes: [ ]
