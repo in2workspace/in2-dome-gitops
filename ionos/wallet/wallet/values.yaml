@@ -86,7 +86,7 @@ wallet:
       password: postgres
       existingSecret:
         enabled: true
-        name: issuer-secret
+        name: wallet-secret
         passwordKey: db-password
 
   ## configuration for the dome-wallet-ui
