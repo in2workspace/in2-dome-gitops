@@ -232,9 +232,6 @@ wallet:
   wallet-postgresql:
     # -- should the postgresql deployment be enabled
     enabled: true
-    ## auth configuration for the database
-    networkPolicy:
-      enabled: false
     auth:
       # -- username to be used
       username: postgres
