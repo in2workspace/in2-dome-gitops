@@ -5,6 +5,6 @@ metadata:
   labels:
     app.kubernetes.io/managed-by: argocd
     environment: development
-    team: platform
+    team: architecture
   annotations:
     argocd.argoproj.io/sync-options: "PruneLast=true"
