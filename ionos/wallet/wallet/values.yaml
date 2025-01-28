@@ -87,7 +87,7 @@ wallet:
       existingSecret:
         enabled: true
         name: wallet-secret
-        passwordKey: db-password
+        key: db-password
 
   ## configuration for the dome-wallet-ui
   dome-wallet-ui:
