@@ -1,0 +1,20 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: identity-security
+  namespace: argocd
+  labels:
+    purpose: in2
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/in2workspace/in2-dome-gitops
+    targetRevision: HEAD
+    path: ionos/identity-security
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: identity-security
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true

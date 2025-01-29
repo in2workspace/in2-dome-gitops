@@ -1,0 +1,11 @@
+apiVersion: v2
+name: identity-security
+description: Chart holder for ArgoCD
+type: application
+version: 1.0.0
+appVersion: "v1.0.10"
+dependencies:
+  - name: identity-security
+    condition: identity-security.enabled
+    repository: https://in2workspace.github.io/helm-charts
+    version: 1.0.0
