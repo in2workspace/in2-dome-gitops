@@ -8,7 +8,7 @@ metadata:
 spec:
   destination:
     server: https://kubernetes.default.svc
-  project: ssi-hub
+  project: default
   source:
     path: core/namespaces
     repoURL: https://github.com/in2workspace/in2-dome-gitops
