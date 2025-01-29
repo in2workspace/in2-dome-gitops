@@ -93,7 +93,7 @@ kubectl apply -k ./extension/ -n argocd
 ## 3. Deploying Namespaces Application
 
 ```bash
-kubectl apply -f applications/namespaces.yaml -n argocd
+kubectl apply -f applications/keycloak.yaml -n argocd
 ```
 
 ## 4. Deploying Sealed-Secrets Application
