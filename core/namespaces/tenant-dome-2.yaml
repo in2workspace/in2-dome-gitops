@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: Namespace
 metadata:
-  name: tenant-dome
+  name: tenant-dome-2
   labels:
     app.kubernetes.io/managed-by: argocd
     environment: development
