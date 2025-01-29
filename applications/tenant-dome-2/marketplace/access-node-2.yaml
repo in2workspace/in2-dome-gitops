@@ -1,19 +1,19 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: access-node-2
+  name: access-node
   namespace: argocd
   labels:
     purpose: marketplace
 spec:
-  project: default
+  project: ssi-hub
   source:
     repoURL: https://github.com/in2workspace/in2-dome-gitops
     targetRevision: HEAD
-    path: ionos/marketplace-2/access-node
+    path: charts/tenant-dome-2/marketplace/access-node
   destination:
     server: https://kubernetes.default.svc
-    namespace: marketplace-2
+    namespace: tenant-dome-2
   syncPolicy:
     automated:
       prune: true
