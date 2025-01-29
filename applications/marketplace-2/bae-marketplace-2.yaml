@@ -10,7 +10,7 @@ spec:
   source:
     repoURL: https://github.com/in2workspace/in2-dome-gitops
     targetRevision: HEAD
-    path: ionos/marketplace/bae-2
+    path: ionos/marketplace-2/bae
   destination:
     server: https://kubernetes.default.svc
     namespace: marketplace-2
