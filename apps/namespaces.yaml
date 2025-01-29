@@ -4,13 +4,13 @@ metadata:
   name: namespaces
   namespace: argocd
   labels:
-    purpose: infra
+    purpose: core
 spec:
   destination:
     server: https://kubernetes.default.svc
-  project: default
+  project: ssi-hub
   source:
-    path: ionos/namespaces
+    path: charts/namespaces
     repoURL: https://github.com/in2workspace/in2-dome-gitops
     targetRevision: HEAD
   syncPolicy:
