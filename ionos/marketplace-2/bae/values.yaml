@@ -50,7 +50,7 @@ business-api-ecosystem:
 
   siop:
     enabled: true
-    clientId: did:key:zDnaefwMbENtpCoCCdYgFLKJCuVtkGZ8PhEg7gWAYBeeKAyuy
+    clientId: did:key:zDnaepbqHQzLvDFUMFZ4u3aENpuGU77y43DqtncHfH4Yh1xyY
     verifier:
       host: https://verifier.dome-marketplace-lcl.org
       qrCodePath: /oidc/authorize
@@ -62,56 +62,56 @@ business-api-ecosystem:
       - admin
     # Configuration for the Credential Config Service initiation
     ccs:
-      endpoint: "http://credentials-config-service:8080"
+      endpoint: "http://credentials-config-service.marketplace.svc.cluster.local:8080"
       defaultOidcScope: "defaultScope"
       # -- Credential configurations for particular scopes
       oidcScopes:
         didRead:
           - type: "VerifiableCredential"
             trustedParticipantsLists: [
-              "http://trusted-issuers-list:8080"
+              "http://trusted-issuers-list.marketplace.svc.cluster.local:8080"
             ]
             trustedIssuersLists: [
-              "http://trusted-issuers-list:8080"
+              "http://trusted-issuers-list.marketplace.svc.cluster.local:8080"
             ]
           - type: "LegalPersonCredential"
             trustedParticipantsLists: [
-              "http://trusted-issuers-list:8080"
+              "http://trusted-issuers-list.marketplace.svc.cluster.local:8080"
             ]
             trustedIssuersLists: [
-              "http://trusted-issuers-list:8080"
+              "http://trusted-issuers-list.marketplace.svc.cluster.local:8080"
             ]
           - type: "LEARCredentialEmployee"
             trustedParticipantsLists: [
-              "http://trusted-issuers-list:8080"
+              "http://trusted-issuers-list.marketplace.svc.cluster.local:8080"
             ]
             trustedIssuersLists: [
-              "http://trusted-issuers-list:8080"
+              "http://trusted-issuers-list.marketplace.svc.cluster.local:8080"
             ]
         defaultScope:
           - type: "VerifiableCredential"
             trustedParticipantsLists: [
-              "http://trusted-issuers-list:8080"
+              "http://trusted-issuers-list.marketplace.svc.cluster.local:8080"
             ]
             trustedIssuersLists: [
-              "http://trusted-issuers-list:8080"
+              "http://trusted-issuers-list.marketplace.svc.cluster.local:8080"
             ]
           - type: "LegalPersonCredential"
             trustedParticipantsLists: [
-              "http://trusted-issuers-list:8080"
+              "http://trusted-issuers-list.marketplace.svc.cluster.local:8080"
             ]
             trustedIssuersLists: [
-              "http://trusted-issuers-list:8080"
+              "http://trusted-issuers-list.marketplace.svc.cluster.local:8080"
             ]
           - type: "LEARCredentialEmployee"
             trustedParticipantsLists: [
-              "http://trusted-issuers-list:8080"
+              "http://trusted-issuers-list.marketplace.svc.cluster.local:8080"
             ]
             trustedIssuersLists: [
-              "http://trusted-issuers-list:8080"
+              "http://trusted-issuers-list.marketplace.svc.cluster.local:8080"
             ]
 
-  externalUrl: https://dome-marketplace-lcl.org
+  externalUrl: https://marketplace-dev.dome-2.ssihub.org
   bizEcosystemChargingBackend:
 
     maxUploadSize: "5242880"
@@ -177,10 +177,10 @@ business-api-ecosystem:
         cert-manager.io/cluster-issuer: letsencrypt-in2-test-issuer
       tls:
         -  hosts:
-             - dome-marketplace-lcl.org
+             - marketplace-dev.dome-2.ssihub.org
            secretName: bae-tls-secret
       hosts:
-        - host: dome-marketplace-lcl.org
+        - host: marketplace-dev.dome-2.ssihub.org
           paths:
             - "/"
 

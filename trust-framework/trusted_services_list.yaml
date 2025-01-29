@@ -114,3 +114,16 @@ clients:
     requireProofKey: false
     jwkSetUrl: "https://verifier.dome-marketplace-lcl.org/oidc/did/did:key:zDnaekNHaKXkDGfFARbWDKkaBroRtGmSH3m8y77e5dcwBkQuE"
     tokenEndpointAuthenticationSigningAlgorithm: "ES256"
+
+  - clientId: "did:key:zDnaepbqHQzLvDFUMFZ4u3aENpuGU77y43DqtncHfH4Yh1xyY"
+    id: "did:key:zDnaepbqHQzLvDFUMFZ4u3aENpuGU77y43DqtncHfH4Yh1xyY"
+    redirectUris: [ "https://marketplace-dev.dome-2.ssihub.org/auth/vc/callback" ]
+    url: "https://marketplace-dev.dome-2.ssihub.org/"
+    scopes: [ "openid_learcredential" ]
+    clientAuthenticationMethods: [ "client_secret_jwt" ]
+    authorizationGrantTypes: [ "authorization_code","refresh_token" ]
+    postLogoutRedirectUris: [ "https://marketplace-dev.dome-2.ssihub.org/" ]
+    requireAuthorizationConsent: false
+    requireProofKey: false
+    jwkSetUrl: "https://verifier.dome-marketplace-lcl.org/oidc/did/did:key:zDnaepbqHQzLvDFUMFZ4u3aENpuGU77y43DqtncHfH4Yh1xyY"
+    tokenEndpointAuthenticationSigningAlgorithm: "ES256"
