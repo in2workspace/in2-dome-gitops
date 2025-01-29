@@ -10,7 +10,7 @@ spec:
     server: https://kubernetes.default.svc
   project: ssi-hub
   source:
-    path: charts/namespaces
+    path: core/namespaces
     repoURL: https://github.com/in2workspace/in2-dome-gitops
     targetRevision: HEAD
   syncPolicy:

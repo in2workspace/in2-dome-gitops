@@ -1,0 +1,19 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: keycloak
+  namespace: identity-security
+  labels:
+    purpose: identity
+spec:
+  destination:
+    server: https://kubernetes.default.svc
+  project: ssi-hub
+  source:
+    path: charts/identity-security/keycloak
+    repoURL: https://github.com/in2workspace/in2-dome-gitops
+    targetRevision: HEAD
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
