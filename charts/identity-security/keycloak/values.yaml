@@ -8,14 +8,14 @@ fullnameOverride: keycloak
 nameOverride: keycloak
 
 readinessProbe:
-  path: /keycloak/health
+  path: /health
   port: 80
   initialDelaySeconds: 30
   failureThreshold: 6
   periodSeconds: 10
 
 livenessProbe:
-  path: /keycloak/health
+  path: /health
   port: 80
   initialDelaySeconds: 30
   failureThreshold: 6
@@ -49,7 +49,7 @@ keycloak:
       enabled: false
       name: keycloak-secrets
       passwordKey: keycloakAdminPassword
-  relativePath: "/keycloak/"
+  relativePath: /
   hostname:
     url:
       # if deployed locally set to false
@@ -59,7 +59,7 @@ keycloak:
       host: issuer.dome-marketplace-lcl.org
       # internalPort is only used if externalService is false
       internalPort: 30002
-      path: /keycloak
+      path: /
     adminUrl:
       # if deployed locally set to false
       externalService: true
@@ -68,7 +68,7 @@ keycloak:
       host: issuer.dome-marketplace-lcl.org
       # internalPort is only used if externalService is false
       internalPort: 30002
-      path: /keycloak
+      path: /
   https:
     certificateKeyFile: /opt/keycloak/pem/server.key.pem
     certificateFile: /opt/keycloak/pem/server.crt.pem
