@@ -1,0 +1,20 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: in2-tms-frontend
+  namespace: argocd
+  labels:
+    purpose: tms
+spec:
+  destination:
+    namespace: tenant-in2
+    server: https://kubernetes.default.svc
+  project: default
+  source:
+    path: charts/tenant-in2/tms/frontend
+    repoURL: https://github.com/in2workspace/in2-dome-gitops
+    targetRevision: HEAD
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
