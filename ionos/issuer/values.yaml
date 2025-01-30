@@ -5,7 +5,7 @@ issuer:
     image:
       repository: in2workspace/in2-issuer-api
       # Overrides the image tag whose default is the chart appVersion.
-      tag: v1.3.0-snapshot
+      tag: v1.2.3-snapshot
       pullPolicy: Always
     ingress:
       enabled: true
@@ -153,6 +153,11 @@ issuer:
           vc: vc
           cryptoPrivateKey: private-key
           credentialDidKey: did-key
+      cors:
+        default:
+          allowedOrigins: "https://issuer.dome-marketplace-lcl.org"
+        external:
+          allowedOrigins: "https://issuer.dome-marketplace-lcl.org"
     db:
       externalService: false
       host: issuer-postgres
