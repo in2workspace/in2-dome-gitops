@@ -1,9 +1,9 @@
 keycloak:
   image:
-    repository: in2workspace/dome-issuer-keycloak
+    repository: in2workspace/in2-keycloak-extension
     pullPolicy: Always
     # Overrides the image tag whose default is the chart appVersion.
-    tag: v1.0.3
+    tag: v1.2.0
 
   fullnameOverride: keycloak
   nameOverride: keycloak
@@ -93,26 +93,6 @@ keycloak:
       name: keycloak-secrets
       passwordKey: keycloakDbPassword
     type: postgres
-
-  mail:
-    host: smtp.ionos.de
-    port: 587
-    from: digitalidentitysupport@dome-marketplace.eu
-    fromDisplayName: Digital Identity Support Dome
-    replyTo: digitalidentitysupport@dome-marketplace.eu
-    existingSecret:
-      enabled: true
-      name: issuer-secret
-      userKey: username
-      passwordKey: password
-    properties:
-      mail:
-        smtp:
-          auth: true
-          starttls:
-            enable: true
-          ssl:
-            enable: false
 
   keycloakExtension:
     preAuthorizedCode:
