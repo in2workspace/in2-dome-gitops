@@ -37,7 +37,6 @@ keycloak:
           - issuer.dome-marketplace-lcl.org
         secretName: issuer-tls-secret
 
-
   keycloak:
     internalServerPort: 8080
     proxy: edge
@@ -75,10 +74,6 @@ keycloak:
       certificateFile: /opt/keycloak/pem/server.crt.pem
       trustStoreFile: /opt/keycloak/truststore/truststore.jks
       trustStorePassword: pempas
-      existingSecret:
-        enabled: false
-        name: keycloak-secrets
-        trustStorePasswordKey: keycloakTrustStorePassword
       clientAuth: request
 
   db:
