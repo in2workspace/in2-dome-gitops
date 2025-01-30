@@ -8,14 +8,14 @@ fullnameOverride: keycloak
 nameOverride: keycloak
 
 readinessProbe:
-  path: /health
+  path: /keycloak/health
   port: 80
   initialDelaySeconds: 30
   failureThreshold: 6
   periodSeconds: 10
 
 livenessProbe:
-  path: /health
+  path: /keycloak/health
   port: 80
   initialDelaySeconds: 30
   failureThreshold: 6
