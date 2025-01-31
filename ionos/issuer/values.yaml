@@ -26,13 +26,13 @@ issuer:
       className: nginx
       annotations:
         cert-manager.io/cluster-issuer: letsencrypt-in2-test-issuer
-        nginx.ingress.kubernetes.io/rewrite-target: /issuer-keycloak/realms/issuer-dome/verifiable-credential/did:key:z6MkqmaCT2JqdUtLeKah7tEVfNXtDXtQyj4yxEgV11Y5CqUa/.well-known/openid-configuration
+        nginx.ingress.kubernetes.io/rewrite-target: /keycloak/realms/issuer-dome/verifiable-credential/did:key:z6MkqmaCT2JqdUtLeKah7tEVfNXtDXtQyj4yxEgV11Y5CqUa/.well-known/openid-configuration
       hosts:
         - host: issuer.dome-marketplace-lcl.org
           paths:
             - path: /issuer-api/.well-known/openid-configuration
               pathType: Prefix
-              serviceName: dome-issuer-keycloak
+              serviceName: keycloak
               servicePort: 8080
       tls:
         - hosts:
@@ -43,13 +43,13 @@ issuer:
       className: nginx
       annotations:
         cert-manager.io/cluster-issuer: letsencrypt-in2-test-issuer
-        nginx.ingress.kubernetes.io/rewrite-target: /issuer-keycloak/realms/issuer-dome/verifiable-credential/did:key:z6MkqmaCT2JqdUtLeKah7tEVfNXtDXtQyj4yxEgV11Y5CqUa/token
+        nginx.ingress.kubernetes.io/rewrite-target: /keycloak/realms/issuer-dome/verifiable-credential/did:key:z6MkqmaCT2JqdUtLeKah7tEVfNXtDXtQyj4yxEgV11Y5CqUa/token
       hosts:
         - host: issuer.dome-marketplace-lcl.org
           paths:
             - path: /issuer-api/token
               pathType: Prefix
-              serviceName: dome-issuer-keycloak
+              serviceName: keycloak
               servicePort: 8080
       tls:
         - hosts:
@@ -106,8 +106,8 @@ issuer:
           host: issuer.dome-marketplace-lcl.org
           # internalPort is only used if externalService is false
           internalPort: 30002
-          path: /issuer-keycloak
-        internalDomain: http://dome-issuer-keycloak:8080/issuer-keycloak
+          path: /keycloak
+        internalDomain: http://keycloak:8080/keycloak
         realm: issuer-dome
         client:
           clientId: issuer-api-client
@@ -203,7 +203,7 @@ issuer:
         host: issuer.dome-marketplace-lcl.org
         # internalPort is only used if externalService is false
         internalPort: 30002
-        path: /issuer-keycloak/realms/issuer-dome
+        path: /keycloak/realms/issuer-dome
       clientId: vc-auth-client
       scope: openid profile email offline_access vc mandator
       grantType: code
@@ -247,18 +247,18 @@ issuer:
       credentialOfferUrl: /api/v1/credential-offer
       notification: /api/v1/notifications
 
-  dome-issuer-keycloak:
-    fullnameOverride: dome-issuer-keycloak
-    nameOverride: dome-issuer-keycloak
+  keycloak:
+    fullnameOverride: keycloak
+    nameOverride: keycloak
     image:
-      repository: in2workspace/dome-issuer-keycloak
+      repository: in2workspace/in2-keycloak-extension
       pullPolicy: Always
       # Overrides the image tag whose default is the chart appVersion.
-      tag: v1.0.3
+      tag: v1.2.0-snapshot
     readinessProbe:
-      path: /issuer-keycloak/health
+      path: /keycloak/health
     livenessProbe:
-      path: /issuer-keycloak/health
+      path: /keycloak/health
     ingress:
       enabled: true
       className: nginx
@@ -267,7 +267,7 @@ issuer:
       hosts:
         - host: issuer.dome-marketplace-lcl.org
           paths:
-            - path: /issuer-keycloak
+            - path: /keycloak
               pathType: Prefix
       tls:
         - hosts:
@@ -285,7 +285,7 @@ issuer:
           enabled: false
           name: keycloak-secrets
           passwordKey: keycloakAdminPassword
-      relativePath: "/issuer-keycloak/"
+      relativePath: "/keycloak/"
       hostname:
         url:
           # if deployed locally set to false
@@ -295,7 +295,7 @@ issuer:
           host: issuer.dome-marketplace-lcl.org
           # internalPort is only used if externalService is false
           internalPort: 30002
-          path: /issuer-keycloak
+          path: /keycloak
         adminUrl:
           # if deployed locally set to false
           externalService: true
@@ -304,47 +304,21 @@ issuer:
           host: issuer.dome-marketplace-lcl.org
           # internalPort is only used if externalService is false
           internalPort: 30002
-          path: /issuer-keycloak
+          path: /keycloak
       https:
-        certificateKeyFile: /opt/keycloak/pem/server.key.pem
-        certificateFile: /opt/keycloak/pem/server.crt.pem
-        trustStoreFile: /opt/keycloak/truststore/truststore.jks
-        trustStorePassword: pempas
-        existingSecret:
-          enabled: false
-          name: keycloak-secrets
-          trustStorePasswordKey: keycloakTrustStorePassword
         clientAuth: request
       db:
-        host: issuer-keycloak-postgres
+        host: postgres-keycloak
         port: 5432
-        externalService: false
-        name: cred
+        externalService: true
+        name: postgres_keycloak
         username: postgres
         password: postgres
         existingSecret:
           enabled: false
           name: keycloak-secrets
           passwordKey: keycloakDbPassword
-      mail:
-        host: smtp.ionos.de
-        port: 587
-        from: digitalidentitysupport@dome-marketplace.eu
-        fromDisplayName: Digital Identity Support Dome
-        replyTo: digitalidentitysupport@dome-marketplace.eu
-        existingSecret:
-          enabled: true
-          name: issuer-secret
-          userKey: username
-          passwordKey: password
-        properties:
-          mail:
-            smtp:
-              auth: true
-              starttls:
-                enable: true
-              ssl:
-                enable: false
+        type: postgres
 
     # Issuer API Configuration
     issuerApi:
@@ -371,11 +345,3 @@ issuer:
   issuer-postgres:
     # -- should the postgresql deployment be enabled
     enabled: true
-
-  issuer-keycloak-postgres:
-    # -- should the postgresql deployment be enabled
-    enabled: true
-
-  external-database:
-    # -- should the postgresql deployment be enabled
-    enabled: false
