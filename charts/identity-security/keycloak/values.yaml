@@ -39,7 +39,7 @@ keycloak:
 
   keycloak:
     internalServerPort: 8080
-    proxy: edge
+    proxyHeaders: edge
     logsCertsLevel: TRACE
     logLevel: ALL
     admin:
@@ -70,10 +70,6 @@ keycloak:
         internalPort: 30002
         path: /keycloak
     https:
-      certificateKeyFile: /opt/keycloak/pem/server.key.pem
-      certificateFile: /opt/keycloak/pem/server.crt.pem
-      trustStoreFile: /opt/keycloak/truststore/truststore.jks
-      trustStorePassword: pempas
       clientAuth: request
 
   db:
