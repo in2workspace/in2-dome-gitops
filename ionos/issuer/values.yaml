@@ -88,7 +88,7 @@ issuer:
         domain:
           scheme: https
           # change by the external url or set to localhost if deployed locally
-          host: https://dts-component-rdss-csc.pre-api.digitelts.com
+          host: dts-component-rdss-csc.pre-api.digitelts.com
       api:
         externalDomain:
           # if deployed locally set to false
