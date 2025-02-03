@@ -26,7 +26,7 @@ issuer:
       className: nginx
       annotations:
         cert-manager.io/cluster-issuer: letsencrypt-in2-test-issuer
-        nginx.ingress.kubernetes.io/rewrite-target: /issuer-keycloak/realms/issuer-dome/verifiable-credential/did:key:z6MkqmaCT2JqdUtLeKah7tEVfNXtDXtQyj4yxEgV11Y5CqUa/.well-known/openid-configuration
+        nginx.ingress.kubernetes.io/rewrite-target: /keycloak/realms/issuer-dome/verifiable-credential/did:key:z6MkqmaCT2JqdUtLeKah7tEVfNXtDXtQyj4yxEgV11Y5CqUa/.well-known/openid-configuration
       hosts:
         - host: issuer.dome-marketplace-lcl.org
           paths:
@@ -43,7 +43,7 @@ issuer:
       className: nginx
       annotations:
         cert-manager.io/cluster-issuer: letsencrypt-in2-test-issuer
-        nginx.ingress.kubernetes.io/rewrite-target: /issuer-keycloak/realms/issuer-dome/verifiable-credential/did:key:z6MkqmaCT2JqdUtLeKah7tEVfNXtDXtQyj4yxEgV11Y5CqUa/token
+        nginx.ingress.kubernetes.io/rewrite-target: /keycloak/realms/issuer-dome/verifiable-credential/did:key:z6MkqmaCT2JqdUtLeKah7tEVfNXtDXtQyj4yxEgV11Y5CqUa/token
       hosts:
         - host: issuer.dome-marketplace-lcl.org
           paths:
@@ -106,8 +106,8 @@ issuer:
           host: issuer.dome-marketplace-lcl.org
           # internalPort is only used if externalService is false
           internalPort: 30002
-          path: /issuer-keycloak
-        internalDomain: http://dome-issuer-keycloak:8080/issuer-keycloak
+          path: /keycloak
+        internalDomain: http://keycloak.identity-security.svc.cluster.local:8080/keycloak
         realm: issuer-dome
         client:
           clientId: issuer-api-client
@@ -203,7 +203,7 @@ issuer:
         host: issuer.dome-marketplace-lcl.org
         # internalPort is only used if externalService is false
         internalPort: 30002
-        path: /issuer-keycloak/realms/issuer-dome
+        path: /keycloak/realms/issuer-dome
       clientId: vc-auth-client
       scope: openid profile email offline_access vc mandator
       grantType: code
@@ -369,10 +369,6 @@ issuer:
       expiration: "2592000"
 
   issuer-postgres:
-    # -- should the postgresql deployment be enabled
-    enabled: true
-
-  issuer-keycloak-postgres:
     # -- should the postgresql deployment be enabled
     enabled: true
 
