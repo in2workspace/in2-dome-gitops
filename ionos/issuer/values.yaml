@@ -89,6 +89,11 @@ issuer:
           scheme: http
           # change by the external url or set to localhost if deployed locally
           host: dome-dss:8080
+        colors:
+          primary: "#00ADD3"
+          primaryContrast: "#ffffff"
+          secondary: "#50c8ff"
+          secondaryContrast: "#50c8ff"
       api:
         externalDomain:
           # if deployed locally set to false
@@ -184,7 +189,7 @@ issuer:
     image:
       repository: in2workspace/in2-issuer-ui
       # Overrides the image tag whose default is the chart appVersion.
-      tag: v1.4.4-snapshot
+      tag: v1.6.0-snapshot
       pullPolicy: Always
     ingress:
       enabled: true
