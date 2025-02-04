@@ -61,6 +61,11 @@ issuer:
         app: DEBUG
         security: INFO
       internalServerPort: 8080
+      colors:
+        primary: "#ec3dc1"
+        primaryContrast: "#50c8ff"
+        secondary: "#50c8ff"
+        secondaryContrast: "#50c8ff"
       mail:
         host: smtp.ionos.de
         port: 587
@@ -89,11 +94,6 @@ issuer:
           scheme: http
           # change by the external url or set to localhost if deployed locally
           host: dome-dss:8080
-      colors:
-          primary: "#00ADD3"
-          primaryContrast: "#ffffff"
-          secondary: "#50c8ff"
-          secondaryContrast: "#50c8ff"
       api:
         externalDomain:
           # if deployed locally set to false
