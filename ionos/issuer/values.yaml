@@ -89,7 +89,7 @@ issuer:
           scheme: http
           # change by the external url or set to localhost if deployed locally
           host: dome-dss:8080
-        colors:
+      colors:
           primary: "#00ADD3"
           primaryContrast: "#ffffff"
           secondary: "#50c8ff"
