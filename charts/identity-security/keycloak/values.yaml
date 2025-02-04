@@ -35,7 +35,7 @@ keycloak:
     tls:
       - hosts:
           - keycloak-dev.ssihub.org
-        secretName: keycloak-tls-secret
+        secretName: keycloak-tls-sec
 
   keycloak:
     internalServerPort: 8080
