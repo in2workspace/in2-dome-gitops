@@ -34,17 +34,17 @@ wallet:
       authServer:
         external:
           scheme: https
-          domain: wallet.dome-marketplace-lcl.org
+          domain: issuer.dome-marketplace-lcl.org
           port: 443
           path: /keycloak/realms/wallet
         internal:
           scheme: http
-          domain: dome-wallet-keycloak
-          port: 8080
+          domain: keycloak.identity-security.svc.cluster.local
+          port: 80
           path: /keycloak/realms/wallet
         jwtDecoderPath: /protocol/openid-connect/certs
       ebsiTest:
-        url: http://dome-wallet-keycloak:8080/keycloak/realms/wallet/protocol/openid-connect/token
+        url: http://keycloak.identity-security.svc.cluster.local:80/keycloak/realms/wallet/protocol/openid-connect/token
         client:
           id: user-registry-client
           existingSecret:
