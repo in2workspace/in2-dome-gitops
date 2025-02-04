@@ -26,14 +26,14 @@ issuer:
       className: nginx
       annotations:
         cert-manager.io/cluster-issuer: letsencrypt-in2-test-issuer
-        nginx.ingress.kubernetes.io/rewrite-target: /keycloak/realms/issuer-dome/verifiable-credential/did:key:z6MkqmaCT2JqdUtLeKah7tEVfNXtDXtQyj4yxEgV11Y5CqUa/.well-known/openid-configuration
+        nginx.ingress.kubernetes.io/proxy-pass: https://keycloak-dev.sshihub.org/realms/issuer-dome/verifiable-credential/did:key:z6MkqmaCT2JqdUtLeKah7tEVfNXtDXtQyj4yxEgV11Y5CqUa/.well-known/openid-configuration
       hosts:
         - host: issuer.dome-marketplace-lcl.org
           paths:
             - path: /issuer-api/.well-known/openid-configuration
               pathType: Prefix
-              serviceName: keycloak.identity-security.svc.cluster.local
-              servicePort: 80
+#              serviceName: keycloak.identity-security.svc.cluster.local
+#              servicePort: 80
       tls:
         - hosts:
             - issuer.dome-marketplace-lcl.org
@@ -43,14 +43,14 @@ issuer:
       className: nginx
       annotations:
         cert-manager.io/cluster-issuer: letsencrypt-in2-test-issuer
-        nginx.ingress.kubernetes.io/rewrite-target: /keycloak/realms/issuer-dome/verifiable-credential/did:key:z6MkqmaCT2JqdUtLeKah7tEVfNXtDXtQyj4yxEgV11Y5CqUa/token
+        nginx.ingress.kubernetes.io/proxy-pass: https://keycloak-dev.sshihub.org/realms/issuer-dome/verifiable-credential/did:key:z6MkqmaCT2JqdUtLeKah7tEVfNXtDXtQyj4yxEgV11Y5CqUa/token
       hosts:
         - host: issuer.dome-marketplace-lcl.org
           paths:
             - path: /issuer-api/token
               pathType: Prefix
-              serviceName: keycloak.identity-security.svc.cluster.local
-              servicePort: 80
+#              serviceName: keycloak.identity-security.svc.cluster.local
+#              servicePort: 80
       tls:
         - hosts:
             - issuer.dome-marketplace-lcl.org
