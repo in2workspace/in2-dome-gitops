@@ -9,14 +9,14 @@ keycloak:
   nameOverride: keycloak
 
   readinessProbe:
-    path: /keycloak/health
+    path: /health
     port: 80
     initialDelaySeconds: 30
     failureThreshold: 6
     periodSeconds: 10
 
   livenessProbe:
-    path: /keycloak/health
+    path: /health
     port: 80
     initialDelaySeconds: 30
     failureThreshold: 6
@@ -30,7 +30,7 @@ keycloak:
     hosts:
       - host: keycloak-dev.ssihub.org
         paths:
-          - path: /keycloak
+          - path: /
             pathType: Prefix
     tls:
       - hosts:
@@ -49,7 +49,7 @@ keycloak:
         enabled: false
         name: keycloak-secrets
         passwordKey: keycloakAdminPassword
-    relativePath: "/keycloak/"
+    relativePath: "/"
     hostname:
       url:
         # if deployed locally set to false
@@ -59,7 +59,7 @@ keycloak:
         host: keycloak-dev.ssihub.org
         # internalPort is only used if externalService is false
         internalPort: 30002
-        path: /keycloak
+        path: /
       adminUrl:
         # if deployed locally set to false
         externalService: true
@@ -68,7 +68,7 @@ keycloak:
         host: keycloak-dev.ssihub.org
         # internalPort is only used if externalService is false
         internalPort: 30002
-        path: /keycloak
+        path: /
     https:
       clientAuth: request
 
