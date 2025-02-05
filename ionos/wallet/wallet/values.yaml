@@ -139,6 +139,7 @@ wallet:
         primaryContrast: "#ffffff"
         secondary: "#50c8ff"
         secondaryContrast: "#50c8ff"
+      logoSrc: "assets/logos/no-image.png"
       iam:
         external_domain: https://wallet.dome-marketplace-lcl.org/keycloak
 #        realm_path: /realms/wallet
