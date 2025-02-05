@@ -77,15 +77,15 @@ wallet:
 #          # -- key to retrieve the token from
           key: root
     db:
-      externalService: false
-      schema: wallet
-      host: wallet-postgres
+      externalService: true
+      schema: test_schema
+      host: wallet-external-database
       port: 5432
-      name: wallet
+      name: test_database
       username: postgres
       password: postgres
       existingSecret:
-        enabled: true
+        enabled: false
         name: wallet-secret
         key: db-password
 
@@ -236,7 +236,7 @@ wallet:
   ## configuration of postgres
   wallet-postgresql:
     # -- should the postgresql deployment be enabled
-    enabled: true
+    enabled: false
     auth:
       # -- username to be used
       username: postgres
@@ -247,3 +247,7 @@ wallet:
       secretKeys:
         adminPasswordKey: db-password
         userPasswordKey: db-password
+
+  wallet-external-database:
+    # -- should the postgresql deployment be enabled
+    enabled: true
