@@ -20,18 +20,12 @@ issuer:
               pathType: Prefix
             - path: /issuer-api/.well-known/openid-configuration
               pathType: Prefix
-              backend:
-                service:
-                  name: keycloak.identity-security.svc.cluster.local
-                  port:
-                    number: 80
+              serviceName: keycloak.identity-security.svc.cluster.local
+              servicePort: 80
             - path: /issuer-api/token
               pathType: Prefix
-              backend:
-                service:
-                  name: keycloak.identity-security.svc.cluster.local
-                  port:
-                    number: 80
+              serviceName: keycloak.identity-security.svc.cluster.local
+              servicePort: 80
       tls:
         - hosts:
             - issuer.dome-marketplace-lcl.org
