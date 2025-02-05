@@ -128,7 +128,7 @@ issuer:
           # internalPort is only used if externalService is false
           internalPort: 30002
           path: /
-        internalDomain: http://keycloak.identity-security.svc.cluster.local:80/keycloak
+        internalDomain: http://keycloak.identity-security.svc.cluster.local:80/
         realm: issuer-dome
         client:
           clientId: issuer-api-client
