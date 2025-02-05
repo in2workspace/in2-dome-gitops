@@ -12,20 +12,31 @@ issuer:
       className: nginx
       annotations:
         cert-manager.io/cluster-issuer: letsencrypt-in2-test-issuer
-        nginx.ingress.kubernetes.io/rewrite-target: /realms/issuer-dome/.well-known/openid-configuration
+        nginx.ingress.kubernetes.io/proxy-pass-headers: "Authorization"
       hosts:
         - host: issuer.dome-marketplace-lcl.org
           paths:
-            - path: /issuer-api
-              pathType: Prefix
+            # Redirigir /.well-known/openid-configuration a Keycloak interno
             - path: /issuer-api/.well-known/openid-configuration
               pathType: Prefix
-              serviceName: keycloak.identity-security.svc.cluster.local
-              servicePort: 80
+              backend:
+                service:
+                  name: keycloak.identity-security.svc.cluster.local
+                  port:
+                    number: 80
+              pathRewrite:
+                - "/issuer-api/.well-known/openid-configuration=/realms/issuer-dome/.well-known/openid-configuration"
+
+            # Redirigir /token a Keycloak interno
             - path: /issuer-api/token
               pathType: Prefix
-              serviceName: keycloak.identity-security.svc.cluster.local
-              servicePort: 80
+              backend:
+                service:
+                  name: keycloak.identity-security.svc.cluster.local
+                  port:
+                    number: 80
+              pathRewrite:
+                - "/issuer-api/token=/realms/issuer-dome/protocol/openid-connect/token"
       tls:
         - hosts:
             - issuer.dome-marketplace-lcl.org
