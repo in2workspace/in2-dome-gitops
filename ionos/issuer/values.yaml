@@ -12,7 +12,7 @@ issuer:
       className: nginx
       annotations:
         cert-manager.io/cluster-issuer: letsencrypt-in2-test-issuer
-        nginx.ingress.kubernetes.io/proxy-pass-headers: "Authorization"
+        #nginx.ingress.kubernetes.io/proxy-pass-headers: "Authorization"
       hosts:
         - host: issuer.dome-marketplace-lcl.org
           paths:
@@ -232,7 +232,7 @@ issuer:
         externalService: true
         scheme: https
         # change by the external url or set to localhost if deployed locally
-        host: issuer.dome-marketplace-lcl.org
+        host: keycloak-dev.ssihub.org
         # internalPort is only used if externalService is false
         internalPort: 30002
         path: /realms/issuer-dome
