@@ -121,6 +121,12 @@ wallet:
     app:
       internalServerPort: 8080
       logsEnabled: true
+      colors:
+        primary: "#a32a91"
+        primaryContrast: "#ffffff"
+        secondary: "#50c8ff"
+        secondaryContrast: "#50c8ff"
+      logoSrc: "assets/logos/no-image.png"
       walletApi:
         # Este internalDomain es en realidad el external
         internalDomain: https://wallet.dome-marketplace-lcl.org/wallet-api
@@ -134,12 +140,7 @@ wallet:
 #        credentialsByIdPath: /api/v1/credentials?credentialId=
 #        requestSignedCredentialPath: /api/v1/request-signed-credential
 #        cborPath: /api/v1/vp/cbor
-      colors:
-        primary: "#00ADD3"
-        primaryContrast: "#ffffff"
-        secondary: "#50c8ff"
-        secondaryContrast: "#50c8ff"
-      logoSrc: "assets/logos/no-image.png"
+      
       iam:
         external_domain: https://wallet.dome-marketplace-lcl.org/keycloak
 #        realm_path: /realms/wallet
