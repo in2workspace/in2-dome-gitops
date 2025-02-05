@@ -1,7 +1,7 @@
 verifier-api:
   image:
     repository: in2workspace/in2-verifier-api
-    tag: v1.0.17-snapshot
+    tag: v1.1.0-snapshot
     pullPolicy: Always
 
   ingress:
@@ -27,6 +27,16 @@ verifier-api:
         securityOauth2: TRACE
         webFilter: DEBUG
     externalDomain: "https://verifier.dome-marketplace-lcl.org"
+    colors:
+      primary: "#14274A"
+      primaryContrast: "#ffffff"
+      secondary: "#00ADD3"
+      primary: "#bb8fce"
+      primaryContrast: "#2c3e50"
+      secondary: "#f9e79f"
+      secondaryContrast: "#000000"
+    logoSrc: "img/dome_logo_white.png"
+    faviconSrc: "img/dome_logo_favicon.png"
     accessToken:
       expirationUnitTime: MINUTES
       expirationTime: 10
