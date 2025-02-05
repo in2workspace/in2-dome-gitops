@@ -30,40 +30,40 @@ issuer:
         - hosts:
             - issuer.dome-marketplace-lcl.org
           secretName: issuer-tls-secret
-#    ingressWellKnown:
-#      enabled: true
-#      className: nginx
-#      annotations:
-#        cert-manager.io/cluster-issuer: letsencrypt-in2-test-issuer
-#        nginx.ingress.kubernetes.io/rewrite-target: /keycloak/realms/issuer-dome/verifiable-credential/did:key:z6MkqmaCT2JqdUtLeKah7tEVfNXtDXtQyj4yxEgV11Y5CqUa/.well-known/openid-configuration
-#      hosts:
-#        - host: issuer.dome-marketplace-lcl.org
-#          paths:
-#            - path: /issuer-api/.well-known/openid-configuration
-#              pathType: Prefix
-#              serviceName: keycloak.identity-security.svc.cluster.local
-#              servicePort: 80
-#      tls:
-#        - hosts:
-#            - issuer.dome-marketplace-lcl.org
-#          secretName: issuer-tls-secret
-#    ingressToken:
-#      enabled: true
-#      className: nginx
-#      annotations:
-#        cert-manager.io/cluster-issuer: letsencrypt-in2-test-issuer
-#        nginx.ingress.kubernetes.io/rewrite-target: /keycloak/realms/issuer-dome/verifiable-credential/did:key:z6MkqmaCT2JqdUtLeKah7tEVfNXtDXtQyj4yxEgV11Y5CqUa/.well-known/openid-configuration
-#      hosts:
-#        - host: issuer.dome-marketplace-lcl.org
-#          paths:
-#            - path: /issuer-api/token
-#              pathType: Prefix
-#              serviceName: keycloak.identity-security.svc.cluster.local
-#              servicePort: 80
-#      tls:
-#        - hosts:
-#            - issuer.dome-marketplace-lcl.org
-#          secretName: issuer-tls-secret
+    #    ingressWellKnown:
+    #      enabled: true
+    #      className: nginx
+    #      annotations:
+    #        cert-manager.io/cluster-issuer: letsencrypt-in2-test-issuer
+    #        nginx.ingress.kubernetes.io/rewrite-target: /keycloak/realms/issuer-dome/verifiable-credential/did:key:z6MkqmaCT2JqdUtLeKah7tEVfNXtDXtQyj4yxEgV11Y5CqUa/.well-known/openid-configuration
+    #      hosts:
+    #        - host: issuer.dome-marketplace-lcl.org
+    #          paths:
+    #            - path: /issuer-api/.well-known/openid-configuration
+    #              pathType: Prefix
+    #              serviceName: keycloak.identity-security.svc.cluster.local
+    #              servicePort: 80
+    #      tls:
+    #        - hosts:
+    #            - issuer.dome-marketplace-lcl.org
+    #          secretName: issuer-tls-secret
+    #    ingressToken:
+    #      enabled: true
+    #      className: nginx
+    #      annotations:
+    #        cert-manager.io/cluster-issuer: letsencrypt-in2-test-issuer
+    #        nginx.ingress.kubernetes.io/rewrite-target: /keycloak/realms/issuer-dome/verifiable-credential/did:key:z6MkqmaCT2JqdUtLeKah7tEVfNXtDXtQyj4yxEgV11Y5CqUa/.well-known/openid-configuration
+    #      hosts:
+    #        - host: issuer.dome-marketplace-lcl.org
+    #          paths:
+    #            - path: /issuer-api/token
+    #              pathType: Prefix
+    #              serviceName: keycloak.identity-security.svc.cluster.local
+    #              servicePort: 80
+    #      tls:
+    #        - hosts:
+    #            - issuer.dome-marketplace-lcl.org
+    #          secretName: issuer-tls-secret
     app:
       profile: lcl
       logLevel:
@@ -124,10 +124,10 @@ issuer:
           externalService: true
           scheme: https
           # change by the external url or set to localhost if deployed locally
-          host: issuer.dome-marketplace-lcl.org
+          host:  https://keycloak-dev.ssihub.org
           # internalPort is only used if externalService is false
           internalPort: 30002
-          path: /keycloak
+          path: /
         internalDomain: http://keycloak.identity-security.svc.cluster.local:80/keycloak
         realm: issuer-dome
         client:
@@ -224,7 +224,7 @@ issuer:
         host: issuer.dome-marketplace-lcl.org
         # internalPort is only used if externalService is false
         internalPort: 30002
-        path: /keycloak/realms/issuer-dome
+        path: /realms/issuer-dome
       clientId: vc-auth-client
       scope: openid profile email offline_access vc mandator
       grantType: code
