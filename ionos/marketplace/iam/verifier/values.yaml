@@ -28,9 +28,9 @@ verifier-api:
         webFilter: DEBUG
     externalDomain: "https://verifier.dome-marketplace-lcl.org"
     colors:
-      primary: "#bb8fce"
-      primaryContrast: "#2c3e50"
-      secondary: "#f9e79f"
+      primary: "#14274A"
+      primaryContrast: "#ffffff"
+      secondary: "#00ADD3"
       secondaryContrast: "#000000"
     logoSrc: "img/dome_logo_white.png"
     faviconSrc: "img/dome_logo_favicon.png"
