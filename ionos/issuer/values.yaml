@@ -237,11 +237,11 @@ issuer:
         internalPort: 30003
         path: /
       colors:
-        primary: "#31f75e"
-        primaryContrast: "#50c8ff"
-        secondary: "#50c8ff"
-        secondaryContrast: "#50c8ff"
-      logoSrc: "assets/logos/IN2_logo_white.png"
+        primary: "#2d58a7"
+        primaryContrast: "#ffffff"
+        secondary: "#2cb6b2"
+        secondaryContrast: "#dde6f6"
+      logoSrc: "assets/logos/logo-dome-issuer-reduced.png"
       faviconSrc: "assets/icon/favicon.png"
       walletUrl:
         # if deployed locally set to false
