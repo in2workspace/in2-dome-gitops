@@ -1,8 +1,0 @@
-apiVersion: v1
-kind: Service
-metadata:
-  name: keycloak-svc-bridge
-  namespace: in2
-spec:
-  type: ExternalName
-  externalName: keycloak.identity-security
