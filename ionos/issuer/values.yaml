@@ -35,7 +35,7 @@ issuer:
               pathType: Prefix
               backend:
                 service:
-                  name: keycloak
+                  name: keycloak.identity-security.svc.cluster.local
                   namespace: identity-security
                   port:
                     number: 8080
@@ -57,7 +57,7 @@ issuer:
               pathType: Prefix
               backend:
                 service:
-                  name: keycloak
+                  name: keycloak.identity-security.svc.cluster.local
                   namespace: identity-security
                   port:
                     number: 8080
