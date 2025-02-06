@@ -21,44 +21,6 @@ issuer:
         - hosts:
             - issuer.dome-marketplace-lcl.org
           secretName: issuer-secret-tls
-    ingressWellKnown:
-      enabled: true
-      className: nginx
-      annotations:
-        cert-manager.io/cluster-issuer: letsencrypt-in2-test-issuer
-      hosts:
-        - host: issuer.dome-marketplace-lcl.org
-          paths:
-            - path: /issuer-api/.well-known/openid-configuration
-              pathType: Prefix
-              backend:
-                service:
-                  name: keycloak-svc-bridge
-                  port:
-                    number: 8080
-      tls:
-        - hosts:
-            - issuer.dome-marketplace-lcl.org
-          secretName: issuer-secret-tls
-    ingressToken:
-      enabled: true
-      className: nginx
-      annotations:
-        cert-manager.io/cluster-issuer: letsencrypt-in2-test-issuer
-      hosts:
-        - host: issuer.dome-marketplace-lcl.org
-          paths:
-            - path: /issuer-api/token
-              pathType: Prefix
-              backend:
-                service:
-                  name: keycloak-svc-bridge
-                  port:
-                    number: 8080
-      tls:
-        - hosts:
-            - issuer.dome-marketplace-lcl.org
-          secretName: issuer-secret-tls
     app:
       profile: lcl
       logLevel:
