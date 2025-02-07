@@ -1,0 +1,236 @@
+issuer:
+  issuer-api:
+    fullnameOverride: issuer-api
+    nameOverride: issuer-api
+    image:
+      repository: in2workspace/in2-issuer-api
+      # Overrides the image tag whose default is the chart appVersion.
+      tag: v1.2.3-snapshot
+      pullPolicy: Always
+    ingress:
+      enabled: true
+      className: nginx
+      annotations:
+        cert-manager.io/cluster-issuer: letsencrypt-in2-test-issuer
+      hosts:
+        - host: issuer-dev.in2.ssihub.org
+          paths:
+            - path: /issuer-api
+              pathType: Prefix
+      tls:
+        - hosts:
+            - issuer-dev.in2.ssihub.org
+          secretName: issuer-secret-tls
+    app:
+      profile: lcl
+      logLevel:
+        app: INFO
+        security: INFO
+      internalServerPort: 8080
+      mail:
+        host: smtp.ionos.de
+        port: 587
+        existingSecret:
+          enabled: true
+          name: issuer-secret
+          userKey: username
+          passwordKey: password
+        properties:
+          mail:
+            smtp:
+              auth: true
+              starttls:
+                enable: true
+              ssl:
+                trust: smtp.ionos.de
+      remoteSignature:
+        existingSecret:
+          enabled: true
+          name: issuer-secret
+          clientId: client-id
+          clientSecret: client-secret
+          credentialId: credential-id
+          credentialPassword: credential-password
+        domain:
+          scheme: http
+          # change by the external url or set to localhost if deployed locally
+          host: dome-dss:8080
+      api:
+        externalDomain:
+          # if deployed locally set to false
+          externalService: true
+          scheme: https
+          # change by the external url or set to localhost if deployed locally
+          host: issuer-dev.in2.ssihub.org
+          # internalPort is only used if externalService is false
+          internalPort: 30001
+          path: /issuer-api
+        internalDomain: http://issuer-api:8080
+        configSource: yaml
+        cacheLifetimeCredentialOffer: 10
+        cacheLifetimeVerifiableCredential: 10
+      authServer:
+        provider: keycloak
+        externalDomain:
+          # if deployed locally set to false
+          externalService: true
+          scheme: https
+          # change by the external url or set to localhost if deployed locally
+          host:  keycloak-dev.ssihub.org
+          # internalPort is only used if externalService is false
+          internalPort: 30002
+          path: /issuer-keycloak
+        internalDomain: http://keycloak.identity-security.svc.cluster.local:80
+        realm: issuer-dome
+        client:
+          clientId: issuer-api-client
+          username: issuer-api-user
+          existingSecret:
+            enabled: true
+            name: issuer-secret
+            clientSecretKey: authServerClientSecret
+            clientPasswordKey: issuer-api-user-password
+        paths:
+          tokenPath: /realms/issuer-dome/protocol/openid-connect/token
+      ui:
+        externalDomain:
+          # if deployed locally set to false
+          externalService: true
+          scheme: https
+          # change by the external url or set to localhost if deployed locally
+          host: issuer-dev.in2.ssihub.org
+          # internalPort is only used if externalService is false
+          internalPort: 30000
+          path: /
+        internalDomain: http://dome-wallet-ui:8080
+      trustFramework:
+        url: "http://trusted-issuers-list.marketplace.svc.cluster.local:8080"
+      wallet:
+        url: https://wallet.dome-marketplace.org/
+      knowledgebase:
+        url: "https://knowledgebase.dome-marketplace-dev2.org"
+      defaultSigner:
+        existingSecret:
+          enabled: true
+          name: issuer-secret
+          commonName: common-name
+          country: country
+          email: email
+          organizationIdentifier: organization-identifier
+          organization: organization
+          serialNumber: serial-number
+      issuerIdentity:
+        existingSecret:
+          enabled: true
+          name: issuer-secret
+          vc: vc
+          cryptoPrivateKey: private-key
+          credentialDidKey: did-key
+      cors:
+        default:
+          allowedOrigins: "https://issuer-dev.in2.ssihub.org"
+        external:
+          allowedOrigins: "https://issuer-dev.in2.ssihub.org"
+    db:
+      externalService: false
+      host: issuer-postgres
+      schema: public
+      port: 5432
+      name: issuer
+      username: postgres
+      password: postgres
+      existingSecret:
+        enabled: false
+        name: db-secret
+        key: db-password
+
+  issuer-ui:
+    fullnameOverride: issuer-ui
+    nameOverride: issuer-ui
+    image:
+      repository: in2workspace/in2-issuer-ui
+      # Overrides the image tag whose default is the chart appVersion.
+      tag: v1.6.1-snapshot
+      pullPolicy: Always
+    ingress:
+      enabled: true
+      className: nginx
+      annotations:
+        cert-manager.io/cluster-issuer: letsencrypt-in2-test-issuer
+      hosts:
+        - host: issuer-dev.in2.ssihub.org
+          paths:
+            - path: /
+              pathType: Prefix
+      tls:
+        - hosts:
+            - issuer-dev.in2.ssihub.org
+          secretName: issuer-tls-secret
+    app:
+      internalServerPort: 8080
+      loginUrl:
+        # if deployed locally set to false
+        externalService: true
+        scheme: https
+        # change by the external url or set to localhost if deployed locally
+        host: issuer-dev.in2.ssihub.org
+        # internalPort is only used if externalService is false
+        internalPort: 30002
+        path: /realms/issuer-dome
+      clientId: vc-auth-client
+      scope: openid profile email offline_access vc mandator
+      grantType: code
+      baseUrl:
+        # if deployed locally set to false
+        externalService: true
+        scheme: https
+        # change by the external url or set to localhost if deployed locally
+        host: issuer-dev.in2.ssihub.org
+        # internalPort is only used if externalService is false
+        internalPort: 30001
+        path: /issuer-api
+      walletUrlTest:
+        # if deployed locally set to false
+        externalService: true
+        scheme: https
+        # change by the external url or set to localhost if deployed locally
+        host: wallet.dome-marketplace-lcl.org
+        # internalPort is only used if externalService is false
+        internalPort: 30003
+        path: /
+      walletUrl:
+        # if deployed locally set to false
+        externalService: true
+        scheme: https
+        # change by the external url or set to localhost if deployed locally
+        host: wallet.dome-marketplace-prd.org
+        # internalPort is only used if externalService is false
+        internalPort: 30003
+        path: /
+      knowledgebaseUrl:
+        # if deployed locally set to false
+        externalService: true
+        scheme: https
+        # change by the external url or set to localhost if deployed locally
+        host: knowledgebase.dome-marketplace-sbx.org
+        path: /
+      profile: lcl
+      procedures: /api/v1/procedures
+      saveCredential: /api/v1/credentials?type=LEARCredentialEmployee
+      credentialOfferUrl: /api/v1/credential-offer
+      notification: /api/v1/notifications
+
+  dome-issuer-keycloak:
+    enabled: false
+
+  issuer-postgres:
+    # -- should the postgresql deployment be enabled
+    enabled: true
+
+  issuer-keycloak-postgres:
+    # -- should the postgresql deployment be enabled
+    enabled: false
+
+  external-database:
+    # -- should the postgresql deployment be enabled
+    enabled: false
