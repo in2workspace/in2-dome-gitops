@@ -81,7 +81,7 @@ issuer:
           internalPort: 30002
           path: /issuer-keycloak
         internalDomain: http://keycloak.identity-security.svc.cluster.local:80
-        realm: issuer-dome
+        realm: in2-issuer
         client:
           clientId: issuer-api-client
           username: issuer-api-user
@@ -91,7 +91,7 @@ issuer:
             clientSecretKey: authServerClientSecret
             clientPasswordKey: issuer-api-user-password
         paths:
-          tokenPath: /realms/issuer-dome/protocol/openid-connect/token
+          tokenPath: /realms/in2-issuer/protocol/openid-connect/token
       ui:
         externalDomain:
           # if deployed locally set to false
@@ -176,7 +176,7 @@ issuer:
         host: issuer-dev.in2.ssihub.org
         # internalPort is only used if externalService is false
         internalPort: 30002
-        path: /realms/issuer-dome
+        path: /realms/in2-issuer
       clientId: vc-auth-client
       scope: openid profile email offline_access vc mandator
       grantType: code
