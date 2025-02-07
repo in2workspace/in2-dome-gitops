@@ -65,10 +65,10 @@ clients:
     scopes: [ "openid_learcredential" ]
     clientAuthenticationMethods: [ "client_secret_jwt" ]
     authorizationGrantTypes: [ "authorization_code","refresh_token" ]
-    postLogoutRedirectUris: [ "https://keycloak-dev.ssihub.org/" ]
+    postLogoutRedirectUris: [ "https://issuer.dome-marketplace-lcl.org/" ]
     requireAuthorizationConsent: false
     requireProofKey: false
-    jwkSetUrl: "https://issuer.dome-marketplace-lcl.org/realms/issuer-dome/protocol/openid-connect/certs"
+    jwkSetUrl: "https://issuer.dome-marketplace-lcl.org/issuer-keycloak/realms/issuer-dome/protocol/openid-connect/certs"
     tokenEndpointAuthenticationSigningAlgorithm: "ES256"
 
   - clientId: "did:key:zDnaeU19NRqJ71hcwmbPZGuAWuEW1xzqCtE2jxH8qHR1tgm1N"
