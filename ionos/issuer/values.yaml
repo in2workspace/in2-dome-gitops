@@ -5,7 +5,7 @@ issuer:
     image:
       repository: in2workspace/in2-issuer-api
       # Overrides the image tag whose default is the chart appVersion.
-      tag: v1.2.3-snapshot
+      tag: v1.3.0-snapshot
       pullPolicy: Always
     ingress:
       enabled: true
@@ -85,10 +85,11 @@ issuer:
           clientSecret: client-secret
           credentialId: credential-id
           credentialPassword: credential-password
+        externalService: true
         domain:
-          scheme: http
+          scheme: https
           # change by the external url or set to localhost if deployed locally
-          host: dome-dss:8080
+          host: dts-component-rdss-csc.pre-api.digitelts.com
       api:
         externalDomain:
           # if deployed locally set to false
