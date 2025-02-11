@@ -85,11 +85,11 @@ issuer:
           clientSecret: client-secret
           credentialId: credential-id
           credentialPassword: credential-password
-        externalService: false
+        type: cloud
         domain:
-          scheme: http
+          scheme: https
           # change by the external url or set to localhost if deployed locally
-          host: dome-dss:8080
+          host: dts-component-rdss-csc.pre-api.digitelts.com
       api:
         externalDomain:
           # if deployed locally set to false
