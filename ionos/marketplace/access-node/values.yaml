@@ -63,9 +63,9 @@ access-node:
           #      trustedAccessNodesList:
           #        enableCustomTrustedList: true
           #        customTrustedList: "https://raw.githubusercontent.com/in2workspace/in2-dome-gitops/refs/heads/main/trust-framework/trusted_access_nodes_list.yaml"
-#      externalAccessNodesUrls:
-#        enableCustomUrls: true
-#        customUrls: ""
+      externalAccessNodesUrls:
+        enableCustomUrls: true
+        customUrls: "http://www.example.org"
 #      verifier:
 #        enableCustomVerifier: true
 #        customVerifier: "https://verifier.dome-marketplace-lcl.org"
