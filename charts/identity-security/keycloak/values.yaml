@@ -92,13 +92,13 @@ keycloak:
     token:
       expiration: "2592000"
     credentialIssuer:
-      url: http://issuer-api:8080/issuer-api
+      url: http://issuer-api.in2-tenant.svc.cluster.local:8080/issuer-api
       externalUrl:
         # if deployed locally set to false
         externalService: true
         scheme: https
         # change by the external url or set to localhost if deployed locally
-        host: issuer.dome-marketplace-lcl.org
+        host: issuer-dev.in2.ssihub.org
         # internalPort is only used if externalService is false
         internalPort: 30001
         path: /issuer-api

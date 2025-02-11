@@ -38,6 +38,23 @@ issuer:
         - hosts:
             - issuer-dev.in2.ssihub.org
           secretName: issuer-secret-tls
+    ingressToken:
+      enabled: true
+      className: nginx
+      annotations:
+        cert-manager.io/cluster-issuer: letsencrypt-in2-test-issuer
+        nginx.ingress.kubernetes.io/rewrite-target: /realms/in2-issuer/verifiable-credential/did:key:z6MkqmaCT2JqdUtLeKah7tEVfNXtDXtQyj4yxEgV11Y5CqUa/token
+      hosts:
+        - host: issuer-dev.in2.ssihub.org
+          paths:
+            - path: /issuer-api/token
+              pathType: Prefix
+              serviceName: keycloak-proxy
+              servicePort: 80
+      tls:
+        - hosts:
+            - issuer-dev.in2.ssihub.org
+          secretName: issuer-secret-tls
     app:
       profile: lcl
       logLevel:
