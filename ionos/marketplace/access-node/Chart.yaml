@@ -7,6 +7,6 @@ appVersion: 0.1.0
 dependencies:
   - name: access-node
     condition: access-node.enabled
-    repository: https://dome-marketplace.github.io/access-node/pre
+    repository: https://dome-marketplace.github.io/access-node
 #    version: 0.8.2-PRE-66
     version: 0.8.2
