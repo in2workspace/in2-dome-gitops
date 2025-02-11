@@ -8,4 +8,5 @@ dependencies:
   - name: access-node
     condition: access-node.enabled
     repository: https://dome-marketplace.github.io/access-node/pre
-    version: 0.8.2-PRE-66
+#    version: 0.8.2-PRE-66
+    version: 0.8.1
