@@ -88,7 +88,7 @@ issuer:
         domain:
           scheme: http
           # change by the external url or set to localhost if deployed locally
-          host: dome-dss:8080
+          host: dss:8080
       api:
         externalDomain:
           # if deployed locally set to false
