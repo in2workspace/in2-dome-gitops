@@ -1,0 +1,8 @@
+vaultPodName: vault-server-0
+namespace: tenant-in2
+unsealSecretName: vault-unseal-secret
+vault:
+  fullnameOverride: vault
+  nameOverride: vault
+  injector:
+    enabled: false
