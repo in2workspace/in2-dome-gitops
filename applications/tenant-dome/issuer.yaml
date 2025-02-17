@@ -1,19 +1,19 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: tenant-in2-vault
+  name: tenant-dome-issuer
   namespace: argocd
   labels:
-    purpose: tenant-in2
+    purpose: tenant-dome
 spec:
-  destination:
-    namespace: tenant-in2
-    server: https://kubernetes.default.svc
   project: default
   source:
-    path: charts/tenant-in2/vault
     repoURL: https://github.com/in2workspace/in2-dome-gitops
     targetRevision: HEAD
+    path: charts/tenant-dome/issuer
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: tenant-dome
   syncPolicy:
     automated:
       prune: true
