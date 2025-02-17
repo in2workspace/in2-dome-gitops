@@ -139,3 +139,15 @@ clients:
     requireProofKey: false
     jwkSetUrl: "https://keycloak-dev.ssihub.org/realms/in2-issuer/protocol/openid-connect/certs"
     tokenEndpointAuthenticationSigningAlgorithm: "ES256"
+
+  - clientId: "dome-issuer"
+    url: "https://issuer-dev.dome.ssihub.org"
+    redirectUris: [ "https://keycloak-dev.ssihub.org/realms/dome-issuer/broker/vc/endpoint" ]
+    scopes: [ "openid_learcredential" ]
+    clientAuthenticationMethods: [ "client_secret_jwt" ]
+    authorizationGrantTypes: [ "authorization_code","refresh_token" ]
+    postLogoutRedirectUris: [ "https://issuer-dev.dome.ssihub.org/" ]
+    requireAuthorizationConsent: false
+    requireProofKey: false
+    jwkSetUrl: "https://keycloak-dev.ssihub.org/realms/dome-issuer/protocol/openid-connect/certs"
+    tokenEndpointAuthenticationSigningAlgorithm: "ES256"
