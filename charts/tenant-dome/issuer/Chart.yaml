@@ -1,0 +1,11 @@
+apiVersion: v2
+name: tenant-dome-issuer
+description: Chart holder for ArgoCD
+type: application
+version: 1.0.0
+appVersion: "v1.0.0"
+dependencies:
+  - name: issuer
+    condition: issuer.enabled
+    repository: https://in2workspace.github.io/helm-charts
+    version: 1.3.5
