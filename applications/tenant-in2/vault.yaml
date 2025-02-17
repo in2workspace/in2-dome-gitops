@@ -11,7 +11,7 @@ spec:
     server: https://kubernetes.default.svc
   project: default
   source:
-    path: charts/vault
+    path: charts/tenant-in2/vault
     repoURL: https://github.com/in2workspace/in2-dome-gitops
     targetRevision: HEAD
   syncPolicy:

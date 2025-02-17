@@ -2,10 +2,10 @@ apiVersion: v2
 name: dss
 description: Helm chart for DSS
 type: application
-version: 1.0.0
+version: 1.0.1
 appVersion: "v0.6.0"
 dependencies:
   - name: dss
     condition: dss.enabled
     repository: https://in2workspace.github.io/helm-charts
-    version: 1.0.0
+    version: 1.0.1
