@@ -1,4 +1,6 @@
 dss:
+  fullnameOverride: dss
+  nameOverride: dss
   app:
     internalServerPort: 8080
     config:
