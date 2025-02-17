@@ -168,6 +168,11 @@ wallet:
       secretKeys:
         adminPasswordKey: db-password
         userPasswordKey: db-password
+    initdb:
+      scripts:
+        create.sh: |
+          psql postgresql://postgres:${POSTGRES_PASSWORD}@localhost:5432 -c "CREATE DATABASE wallet;"
+          psql postgresql://postgres:${POSTGRES_PASSWORD}@localhost:5432/wallet -c "CREATE SCHEMA wallet;"
 
   wallet-external-database:
     # -- should the postgresql deployment be enabled
