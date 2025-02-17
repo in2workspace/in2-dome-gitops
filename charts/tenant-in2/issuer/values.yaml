@@ -228,6 +228,13 @@ issuer:
         # internalPort is only used if externalService is false
         internalPort: 30003
         path: /
+      colors:
+        primary: "#2d58a7"
+        primaryContrast: "#ffffff"
+        secondary: "#2cb6b2"
+        secondaryContrast: "#dde6f6"
+      logoSrc: "assets/logos/logo-dome-issuer-reduced.png"
+      faviconSrc: "assets/icon/favicon.png"
       walletUrl:
         # if deployed locally set to false
         externalService: true
