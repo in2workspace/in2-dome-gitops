@@ -2,7 +2,7 @@ apiVersion: v2
 name: wallet
 description: Chart holder for ArgoCD
 type: application
-version: 1.0.3
+version: 1.0.4
 dependencies:
   - name: wallet
     condition: wallet.enabled
