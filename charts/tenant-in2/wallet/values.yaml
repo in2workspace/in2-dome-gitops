@@ -142,8 +142,8 @@ wallet:
 #        cborPath: /api/v1/vp/cbor
       
       iam:
-        external_domain: https://wallet-dev.in2.ssihub.org
-#        realm_path: /realms/in2-wallet
+        external_domain: https://keycloak-dev.ssihub.org
+        realm_path: /realms/in2-wallet
 
   ## configuration for the dome-wallet-keycloak
   dome-wallet-keycloak:
