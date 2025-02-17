@@ -59,7 +59,7 @@ issuer:
       profile: lcl
       logLevel:
         app: INFO
-        security: INFO
+        security: DEBUG
       internalServerPort: 8080
       mail:
         host: smtp.ionos.de
@@ -158,9 +158,9 @@ issuer:
           credentialDidKey: did-key
       cors:
         default:
-          allowedOrigins: "https://issuer-dev.in2.ssihub.org"
+          allowedOrigins: "https://issuer-dev.dome.ssihub.org"
         external:
-          allowedOrigins: "https://issuer-dev.in2.ssihub.org"
+          allowedOrigins: "https://issuer-dev.dome.ssihub.org"
     db:
       externalService: false
       host: issuer-postgres
