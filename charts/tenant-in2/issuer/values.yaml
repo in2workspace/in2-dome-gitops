@@ -158,9 +158,9 @@ issuer:
           credentialDidKey: did-key
       cors:
         default:
-          allowedOrigins: "https://issuer-dev.in2.ssihub.org, http://localhost:4200"
+          allowedOrigins: "https://issuer-dev.in2.ssihub.org, http://localhost:4200/"
         external:
-          allowedOrigins: "https://issuer-dev.in2.ssihub.org, http://localhost:4200"
+          allowedOrigins: "https://issuer-dev.in2.ssihub.org, http://localhost:4200/"
     db:
       externalService: false
       host: issuer-postgres
