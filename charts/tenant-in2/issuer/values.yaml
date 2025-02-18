@@ -5,7 +5,7 @@ issuer:
     image:
       repository: in2workspace/in2-issuer-api
       # Overrides the image tag whose default is the chart appVersion.
-      tag: v1.2.4-snapshot
+      tag: v1.2.3
       pullPolicy: Always
     ingress:
       enabled: true
@@ -158,9 +158,9 @@ issuer:
           credentialDidKey: did-key
       cors:
         default:
-          allowedOrigins: "https://issuer-dev.in2.ssihub.org, http://localhost:4200/"
+          allowedOrigins: "http://localhost:4200, https://issuer-dev.in2.ssihub.org"
         external:
-          allowedOrigins: "https://issuer-dev.in2.ssihub.org, http://localhost:4200/"
+          allowedOrigins: "http://localhost:4200, https://issuer-dev.in2.ssihub.org"
     db:
       externalService: false
       host: issuer-postgres
