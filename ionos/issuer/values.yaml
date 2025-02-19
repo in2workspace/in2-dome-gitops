@@ -88,7 +88,7 @@ issuer:
         #types allowed: server, cloud
         type: cloud
         domain:
-          scheme: dummy
+          scheme: https
           # change by the external url or set to localhost if deployed locally
           # server type host is dome-dss:8080
           host: dts-component-rdss-csc.pre-api.digitelts.com
