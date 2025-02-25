@@ -145,7 +145,7 @@ issuer:
       wallet:
         url: https://wallet.dome-marketplace.org/
       knowledgebase:
-        url: "https://knowledgebase.dome-marketplace-dev2.org"
+        walletUrl: "https://knowledgebase.dome-marketplace-dev2.org/books/dome-digital-wallet-user-guide"
       defaultSigner:
         existingSecret:
           enabled: true
