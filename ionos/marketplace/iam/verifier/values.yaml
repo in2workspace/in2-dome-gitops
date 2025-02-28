@@ -21,7 +21,6 @@ verifier-api:
 
   app:
     # todo
-    profile:
     logging:
       level:
         # Sets logging level for Spring Security
@@ -57,11 +56,10 @@ verifier-api:
         faviconSrc: "dome_logo_favicon.png"
       backend:
         # Placeholder for backend URL (REQUIRED)
-        url:
+        url: "https://verifier.dome-marketplace-lcl.org"
         identity:
           # Placeholder for private key used in identity verification (REQUIRED)
           privateKey:
-            value: your-private-key
             existingSecret:
               enabled: true
               name: private-key-secret
