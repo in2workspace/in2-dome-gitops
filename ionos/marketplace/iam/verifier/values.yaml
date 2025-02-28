@@ -41,13 +41,9 @@ verifier-api:
           wallet: "https://wallet.dome-marketplace-lcl.org"
         colors:
           # Defines primary color for the frontend (OPTIONAL with default value)
-          primary: "#B22222"
-          # Defines contrasting text color for primary color (OPTIONAL with default value)
-          primaryContrast: "#000000"
+          # todo only one color for test purposes
+          primary: "#FF69B4"
           # Defines secondary color for the frontend (OPTIONAL with default value)
-          secondary: "#00ADD3"
-          # Defines contrasting text color for secondary color (OPTIONAL with default value)
-          secondaryContrast: "#000000"
         # Placeholder for logo source path (REQUIRED)
         # This routes must point to internal folder: src/main/resources/static/img/<file_name.png>
         logoSrc: "dome_logo_white.png"
