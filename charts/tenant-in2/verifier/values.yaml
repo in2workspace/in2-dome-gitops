@@ -8,7 +8,7 @@ verifier-api:
     enabled: true
     className: nginx
     annotations:
-      cert-manager.io/cluster-issuer: letsencrypt-sbx-issuer
+      cert-manager.io/cluster-issuer: letsencrypt-in2-test-issuer
     hosts:
       - host: verifier-dev.in2.ssihub.org
         paths:
