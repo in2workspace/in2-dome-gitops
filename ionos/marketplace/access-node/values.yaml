@@ -58,23 +58,6 @@ access-node:
         externalDomain: http://dlt-adapter:8080
       # -- operator external domain
       externalDomain: "https://desmos.dome-marketplace-lcl.org"
-          ##      externalAccessNodesUrls:
-          ##        enableCustomUrls: true
-          ##        customUrls: "http://desmos.marketplace-2.svc.cluster.local:8080"
-          ##      trustedAccessNodesList:
-          ##        enableCustomTrustedList: true
-          ##        customTrustedList: "https://raw.githubusercontent.com/in2workspace/in2-dome-gitops/refs/heads/main/trust-framework/trusted_access_nodes_list.yaml"
-      externalAccessNodesUrls:
-        enableCustomUrls: true
-        customUrls: ""
-      verifier:
-        enableCustomVerifier: true
-        customVerifier: "https://verifier.dome-marketplace-lcl.org"
-      learCredentialMachineInBase64:
-        existingSecret:
-          enabled: true
-          name: access-node-secret
-          key: lear-credential-machine
       # -- configuration to set your private key
       privateKey:
         existingSecret:
@@ -84,6 +67,11 @@ access-node:
           name: access-node-secret
           # -- key to retrieve the password from
           key: desmos-private-key
+      learCredentialMachineInBase64:
+        existingSecret:
+          enabled: true
+          name: access-node-secret
+          key: lear-credential-machine
     ## configuration of the database to be used by the blockchain-connector
     db:
       # -- host of the db
