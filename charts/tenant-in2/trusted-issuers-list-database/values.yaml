@@ -1,0 +1,8 @@
+mysql:
+  fullnameOverride: trusted-issuer-list-database
+  auth:
+    existingSecret: til-database-secret
+  initdbScripts:
+    create.sql: |
+      CREATE DATABASE til;
+      CREATE DATABASE ccs;
