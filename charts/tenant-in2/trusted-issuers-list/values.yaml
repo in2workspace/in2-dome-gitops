@@ -4,6 +4,8 @@ trusted-issuers-list:
     image:  
       tag: 0.2.0
 
+  fullnameOverride: trusted-issuers-list
+
   # Configure an Ingress or OpenShift Route
   ingress:
     til:
