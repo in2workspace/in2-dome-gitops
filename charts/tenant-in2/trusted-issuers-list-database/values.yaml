@@ -1,5 +1,5 @@
 mysql:
-  fullnameOverride: trusted-issuer-list-database
+  fullnameOverride: trusted-issuers-list-database
   auth:
     existingSecret: til-database-secret
   initdbScripts:

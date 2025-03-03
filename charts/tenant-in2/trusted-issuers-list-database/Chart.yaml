@@ -3,7 +3,7 @@ name: mysql
 description: Chart holder for argo-cd
 
 type: application
-version: 9.4.5
+version: 9.4.6
 appVersion: "8.0.31"
 
 dependencies:
