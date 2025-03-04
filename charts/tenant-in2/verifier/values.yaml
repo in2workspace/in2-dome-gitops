@@ -1,7 +1,7 @@
 verifier-api:
   image:
     repository: in2workspace/in2-verifier-api
-    tag: v1.1.1
+    tag: v1.2.0
     pullPolicy: Always
 
   fullnameOverride: verifier-api
@@ -22,36 +22,55 @@ verifier-api:
         secretName: verifier-tls-sec
 
   app:
-    profile: lcl
-    externalDomain: "https://verifier-dev.in2.ssihub.org"
-    colors:
-      primary: "#14274A"
-      primaryContrast: "#ffffff"
-      secondary: "#00ADD3"
-      secondaryContrast: "#000000"
-    logoSrc: "img/dome_logo_white.png"
-    faviconSrc: "img/dome_logo_favicon.png"
-    accessToken:
-      expirationUnitTime: MINUTES
-      expirationTime: 60
-    idToken:
-      expirationUnitTime: MINUTES
-      expirationTime: 5
-    loginQrCode:
-      expirationUnitTime: MINUTES
-      expirationTime: 3
-    clientsRepository:
-      uri: "https://raw.githubusercontent.com/in2workspace/in2-dome-gitops/refs/heads/main/tenant-in2-trust-framework/trusted_services_list.yaml"
-    trustedIssuerList:
-      uri: "http://trusted-issuers-list:8080/v4/issuers/"
-    revocationList:
-      uri: "https://raw.githubusercontent.com/in2workspace/in2-dome-gitops/refs/heads/main/tenant-in2-trust-framework/revoked_credential_list.yaml"
-    privateKey:
-      existingSecret:
-        enabled: true
-        name: private-key-secret
-        key: private-key
-    verifierUiLoginUris:
-      onboardingUri: "https://knowledgebase.dome-marketplace.org/shelves/company-onboarding-process"
-      supportUri: "https://ticketing.dome-marketplace.org"
-      walletUri: "https://wallet.dome-marketplace.org"
+    # todo
+    logging:
+      level:
+        # Sets logging level for Spring Security
+        org.springframework.security: INFO
+        # Sets logging level for web filters
+        org.springframework.web.filter: DEBUG
+        # Sets logging level for the custom package "es.in2.vcverifier"
+        es.in2.vcverifier: TRACE
+
+    verifier:
+      frontend:
+        urls:
+          # Placeholder for onboarding URL (REQUIRED)
+          onboarding: "https://knowledgebase.dome-marketplace.org/shelves/company-onboarding-process"
+          # Placeholder for support URL (REQUIRED)
+          support: "https://ticketing.dome-marketplace.org"
+          # Placeholder for wallet URL (REQUIRED)
+          wallet: "https://wallet.dome-marketplace-lcl.org"
+        colors:
+          primary: "#2D58A7"
+          # Defines contrasting text color for primary color (OPTIONAL with default value)
+          primaryContrast: "#ffffff"
+          # Defines secondary color for the frontend (OPTIONAL with default value)
+          secondary: "#14274A"
+          # Defines contrasting text color for secondary color (OPTIONAL with default value)
+          secondaryContrast: "#00ADD3"
+        # Placeholder for logo source path (REQUIRED)
+        # This routes must point to internal folder: src/main/resources/static/img/<file_name.png>
+        logoSrc: "dome_logo_white.png"
+        # Placeholder for favicon source path (OPTIONAL)
+        # This routes must point to internal folder: src/main/resources/static/img/<file_name.png>
+        faviconSrc: "dome_logo_favicon.png"
+      backend:
+        # Placeholder for backend URL (REQUIRED)
+        url: "https://verifier-dev.in2.ssihub.org"
+        identity:
+          # Placeholder for private key used in identity verification (REQUIRED)
+          privateKey:
+            existingSecret:
+              enabled: true
+              name: private-key-secret
+              key: private-key
+        trustFrameworks:
+          # Placeholder for the name of a trust framework (REQUIRED)
+          - name: DOME
+            # Placeholder for trusted issuers list URL
+            trustedIssuersListUrl: "http://trusted-issuers-list:8080/v4/issuers/"
+            # Placeholder for trusted services list URL
+            trustedServicesListUrl: "https://raw.githubusercontent.com/in2workspace/in2-dome-gitops/refs/heads/main/tenant-in2-trust-framework/trusted_services_list.yaml"
+            # Placeholder for revoked credentials list URL
+            revokedCredentialListUrl: "https://raw.githubusercontent.com/in2workspace/in2-dome-gitops/refs/heads/main/tenant-in2-trust-framework/revoked_credential_list.yaml"
