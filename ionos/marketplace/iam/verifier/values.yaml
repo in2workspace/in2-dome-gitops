@@ -19,14 +19,13 @@ verifier-api:
           - verifier.dome-marketplace-lcl.org
         secretName: verifier-tls-sec
 
-#  resources:
-#    limits:
-#      cpu: 100m
-#      memory: 192Mi
-#    requests:
-#      cpu: 100m
-#      memory: 128Mi
-  resources: {}
+  resources:
+    limits:
+      cpu: 500m
+      memory: 512Mi
+    requests:
+      cpu: 250m
+      memory: 256Mi
 
   app:
     # todo
