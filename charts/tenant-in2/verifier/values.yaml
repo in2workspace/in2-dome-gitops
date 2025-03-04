@@ -41,11 +41,11 @@ verifier-api:
       expirationUnitTime: MINUTES
       expirationTime: 3
     clientsRepository:
-      uri: "https://raw.githubusercontent.com/DOME-Marketplace/tenant-in2-trust-framework/refs/heads/main/sbx/trusted_services_list.yaml"
+      uri: "https://raw.githubusercontent.com/in2workspace/in2-dome-gitops/refs/heads/main/tenant-in2-trust-framework/trusted_services_list.yaml"
     trustedIssuerList:
-      uri: "http://trusted-issuers-list.marketplace.svc.cluster.local:8080/v4/issuers/"
+      uri: "http://trusted-issuers-list:8080/v4/issuers/"
     revocationList:
-      uri: "https://raw.githubusercontent.com/DOME-Marketplace/tenant-in2-trust-framework/refs/heads/main/sbx/revoked_credential_list.yaml"
+      uri: "https://raw.githubusercontent.com/in2workspace/in2-dome-gitops/refs/heads/main/tenant-in2-trust-framework/revoked_credential_list.yaml"
     privateKey:
       existingSecret:
         enabled: true
