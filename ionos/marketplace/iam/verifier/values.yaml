@@ -58,7 +58,7 @@ verifier-api:
           secondaryContrast: "#00ADD3"
         # Placeholder for logo source path (REQUIRED)
         # This routes must point to internal folder: src/main/resources/static/img/<file_name.png>
-        logoSrc: "dome_logo_white.png"
+        logoSrc: "dome_logo_white.svg"
         # Placeholder for favicon source path (OPTIONAL)
         # This routes must point to internal folder: src/main/resources/static/img/<file_name.png>
         faviconSrc: "dome_logo_favicon.png"
