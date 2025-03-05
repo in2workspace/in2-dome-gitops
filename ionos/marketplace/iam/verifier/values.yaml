@@ -23,7 +23,7 @@ verifier-api:
   resources:
     limits:
       cpu: 1000m
-      memory: 192Mi
+      memory: 200Mi
     requests:
       cpu: 600m
       memory: 200Mi
