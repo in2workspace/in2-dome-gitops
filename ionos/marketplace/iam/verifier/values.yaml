@@ -21,10 +21,10 @@ verifier-api:
 
   resources:
     limits:
-      cpu: 140m
+      cpu: 150m
       memory: 192Mi
     requests:
-      cpu: 140m
+      cpu: 150m
       memory: 128Mi
 
   app:
