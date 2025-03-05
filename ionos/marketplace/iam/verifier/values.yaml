@@ -21,12 +21,12 @@ verifier-api:
 
   #  Uncomment to override default resources values (value Helm Chart verifier-api chart)
   #  resources:
-  #    limits:
-  #      cpu: 220m
-  #      memory: 192Mi
-  #    requests:
-  #      cpu: 180m
-  #      memory: 128Mi
+  limits:
+    cpu: 1000m
+    memory: 192Mi
+  requests:
+    cpu: 600m
+    memory: 200Mi
 
   app:
     # todo
