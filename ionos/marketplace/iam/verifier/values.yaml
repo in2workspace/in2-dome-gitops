@@ -25,7 +25,7 @@ verifier-api:
       memory: 222Mi
     requests:
       cpu: 150m
-      memory: 170Mi
+      memory: 128Mi
 
   app:
     # todo
