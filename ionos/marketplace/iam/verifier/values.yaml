@@ -19,13 +19,14 @@ verifier-api:
           - verifier.dome-marketplace-lcl.org
         secretName: verifier-tls-sec
 
-  resources:
-    limits:
-      cpu: 220m
-      memory: 192Mi
-    requests:
-      cpu: 180m
-      memory: 128Mi
+  #  Uncomment to override default resources values (value Helm Chart verifier-api chart)
+  #  resources:
+  #    limits:
+  #      cpu: 220m
+  #      memory: 192Mi
+  #    requests:
+  #      cpu: 180m
+  #      memory: 128Mi
 
   app:
     # todo
