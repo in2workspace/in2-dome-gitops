@@ -20,13 +20,13 @@ verifier-api:
         secretName: verifier-tls-sec
 
   #  Uncomment to override default resources values (value Helm Chart verifier-api chart)
-  resources:
-    limits:
-      cpu: 1000m
-      memory: 200Mi
-    requests:
-      cpu: 600m
-      memory: 200Mi
+  #  resources:
+  #    limits:
+  #      cpu:
+  #      memory:
+  #    requests:
+  #      cpu:
+  #      memory:
 
   app:
     # todo
