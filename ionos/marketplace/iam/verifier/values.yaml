@@ -21,11 +21,11 @@ verifier-api:
 
   resources:
     limits:
-      cpu: 300m
-      memory: 252Mi
-    requests:
       cpu: 200m
-      memory: 220Mi
+      memory: 222Mi
+    requests:
+      cpu: 150m
+      memory: 170Mi
 
   app:
     # todo
