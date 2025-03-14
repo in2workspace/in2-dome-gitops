@@ -2,7 +2,7 @@ global:
   tenantName: "in2"
   environment: "dev"
   # Se usa para construir el ingress.hosts.host: wallet.{{ tenantName }}.{{ externalDomain }}
-  externalDomain: "wallet-dev.in2.ssihub.org"
+  externalDomain: "in2.ssihub.org"
   ingress:
     enabled: true
     className: "nginx"
