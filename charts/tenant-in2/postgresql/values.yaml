@@ -1,0 +1,20 @@
+postgresql:
+  global:
+    storageClass: ""
+
+  ## network policy configuration
+  networkPolicy:
+    enabled: false
+
+  auth:
+    username: postgres
+    existingSecret:
+      enabled: true
+      name: tenant-in2-postgresql-secret
+      key: postgres-password
+    enablePostgresUser: true
+    database: in2
+
+  service:
+    type: ClusterIP
+    port: 5432
