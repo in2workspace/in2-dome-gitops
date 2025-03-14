@@ -35,7 +35,7 @@ wallet:
       tls:
         - hosts:
             - wallet-dev.in2.ssihub.org
-          secretName: wallet-tls-secret
+          secretName: wallet-dev-tls-secret
     app:
       logLevel: DEBUG
       db:
@@ -93,7 +93,7 @@ wallet:
       tls:
         - hosts:
             - wallet-dev.in2.ssihub.org
-          secretName: wallet-tls-secret
+          secretName: wallet-dev-tls-secret
     # Application specific configuration
     app:
       logsEnabled: false
