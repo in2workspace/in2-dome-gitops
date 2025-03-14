@@ -22,6 +22,20 @@ wallet:
       pullPolicy: Always
       tag: v1.4.1
     # Application specific configuration
+    ingress:
+      enabled: true
+      className: nginx
+      annotations:
+        cert-manager.io/cluster-issuer: letsencrypt-in2-test-issuer
+      hosts:
+        - host: wallet-dev.in2.ssihub.org
+          paths:
+            - path: /api
+              pathType: Prefix
+      tls:
+        - hosts:
+            - wallet-dev.in2.ssihub.org
+          secretName: wallet-tls-secret
     app:
       logLevel: DEBUG
       db:
@@ -66,6 +80,20 @@ wallet:
     image:
       pullPolicy: Always
       tag: v1.8.0-snapshot
+    ingress:
+      enabled: true
+      className: nginx
+      annotations:
+        cert-manager.io/cluster-issuer: letsencrypt-in2-test-issuer
+      hosts:
+        - host: wallet-dev.in2.ssihub.org
+          paths:
+            - path: /
+              pathType: Prefix
+      tls:
+        - hosts:
+            - wallet-dev.in2.ssihub.org
+          secretName: wallet-tls-secret
     # Application specific configuration
     app:
       logsEnabled: false
