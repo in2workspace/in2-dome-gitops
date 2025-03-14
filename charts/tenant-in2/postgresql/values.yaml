@@ -8,13 +8,14 @@ postgresql:
 
   auth:
     username: postgres
-    existingSecret:
-      enabled: true
-      name: tenant-in2-postgresql-secret
-      key: postgres-password
+    existingSecret: tenant-in2-postgresql-secret
+    secretKeys:
+      userPasswordKey: postgres-password
     enablePostgresUser: true
     database: in2
 
   service:
     type: ClusterIP
-    port: 5432
+    ports:
+      postgresql: 5432
+#    port: 5432
