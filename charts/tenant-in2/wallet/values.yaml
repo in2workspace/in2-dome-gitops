@@ -8,7 +8,7 @@ global:
     className: "nginx"
     sslRedirect: false
     backendProtocol: "HTTP"
-    enableTLS: false
+    enableTLS: true
     clusterIssuer: "letsencrypt-in2-test-issuer"
 
 wallet:
