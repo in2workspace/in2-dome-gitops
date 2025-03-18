@@ -1,7 +1,7 @@
 wallet:
 
   ## configuration for the wallet-api
-  wallet-api:
+  dome-wallet-api:
     # -- should be enabled?
     enabled: true
     # -- overrides the generated name, provides stable service names - this should be avoided if multiple instances are available in the same namespace
