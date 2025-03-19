@@ -35,7 +35,7 @@ verifier-api:
         # Sets logging level for Spring Security
         org.springframework.security: DEBUG
         # Sets logging level for web filters
-        org.springframework.web.filter: DEBUG
+        org.springframework.web.filter: INFO
         # Sets logging level for the custom package "es.in2.vcverifier"
         es.in2.vcverifier: TRACE
 
