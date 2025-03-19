@@ -1,7 +1,7 @@
 verifier-api:
   image:
     repository: in2workspace/in2-verifier-api
-    tag: v1.3.6-snapshot
+    tag: v1.3.7-snapshot
     pullPolicy: Always
 
   ingress:
@@ -70,8 +70,13 @@ verifier-api:
           privateKey:
             existingSecret:
               enabled: true
-              name: private-key-secret
+              name: verifier-secret
               key: private-key
+          learCredentialMachineInBase64:
+            existingSecret:
+              enabled: true
+              name: verifier-secret
+              key: lear-credential-machine
         trustFrameworks:
           # Placeholder for the name of a trust framework (REQUIRED)
           - name: DOME
