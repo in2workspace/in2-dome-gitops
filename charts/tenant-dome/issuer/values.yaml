@@ -5,7 +5,7 @@ issuer:
     image:
       repository: in2workspace/in2-issuer-api
       # Overrides the image tag whose default is the chart appVersion.
-      tag: v1.5.1-snapshot
+      tag: v1.5.0-snapshot
       pullPolicy: Always
     ingress:
       enabled: true
@@ -59,7 +59,7 @@ issuer:
       profile: lcl
       logLevel:
         app: INFO
-        security: DEBUG
+        security: INFO
       internalServerPort: 8080
       mail:
         host: smtp.ionos.de
