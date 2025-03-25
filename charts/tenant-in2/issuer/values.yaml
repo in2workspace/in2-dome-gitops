@@ -58,7 +58,7 @@ issuer:
     app:
       profile: lcl
       logLevel:
-        app: INFO
+        app: DEBUG
         security: INFO
       internalServerPort: 8080
       mail:
