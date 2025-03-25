@@ -2,11 +2,11 @@ apiVersion: v2
 name: wallet
 description: Parent chart managing all the components of the Wallet application
 type: application
-version: 2.0.18
+version: 2.0.19
 appVersion: "1.0.0"
 
 dependencies:
   - name: wallet
-    version: "2.0.6"
+    version: "2.0.7"
     repository: https://in2workspace.github.io/helm-charts
     condition: wallet.enabled
