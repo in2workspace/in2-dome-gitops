@@ -5,7 +5,7 @@ issuer:
     image:
       repository: in2workspace/in2-issuer-api
       # Overrides the image tag whose default is the chart appVersion.
-      tag: v1.4.2-snapshot
+      tag: v1.4.3-snapshot
       pullPolicy: Always
     ingress:
       enabled: true
@@ -58,7 +58,7 @@ issuer:
     app:
       profile: lcl
       logLevel:
-        app: INFO
+        app: DEBUG
         security: INFO
       internalServerPort: 8080
       mail:
@@ -164,7 +164,7 @@ issuer:
     db:
       externalService: false
       host: issuer-postgres
-      schema: public
+      schema: issuer
       port: 5432
       name: issuer
       username: postgres

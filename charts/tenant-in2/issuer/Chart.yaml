@@ -2,10 +2,10 @@ apiVersion: v2
 name: tenant-in2-issuer
 description: Chart holder for ArgoCD
 type: application
-version: 1.6.3
+version: 1.6.10
 appVersion: "v1.0.10"
 dependencies:
   - name: issuer
     condition: issuer.enabled
     repository: https://in2workspace.github.io/helm-charts
-    version: 1.3.5
+    version: 1.3.12
