@@ -170,7 +170,7 @@ dome-issuer:
           allowedOrigins: "https://issuer.dome-marketplace-lcl.org"
     db:
       externalService: false
-      host: dome-issuer-postgres
+      host: issuer-postgres
       schema: public
       port: 5432
       name: credentials
