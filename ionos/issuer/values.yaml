@@ -173,7 +173,7 @@ dome-issuer:
       host: dome-issuer-postgres
       schema: public
       port: 5432
-      name: issuer
+      name: credentials
       username: postgres
       password: postgres
       existingSecret:
