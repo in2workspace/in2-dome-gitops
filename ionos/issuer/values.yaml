@@ -1,5 +1,5 @@
-issuer:
-  issuer-api:
+dome-issuer:
+  dome-issuer-api:
     fullnameOverride: issuer-api
     nameOverride: issuer-api
     image:
@@ -181,7 +181,7 @@ issuer:
         name: db-secret
         key: db-password
 
-  issuer-ui:
+  dome-issuer-ui:
     fullnameOverride: issuer-ui
     nameOverride: issuer-ui
     image:
@@ -386,11 +386,11 @@ issuer:
     token:
       expiration: "2592000"
 
-  issuer-postgres:
+  dome-issuer-postgres:
     # -- should the postgresql deployment be enabled
     enabled: true
 
-  issuer-keycloak-postgres:
+  dome-issuer-keycloak-postgres:
     # -- should the postgresql deployment be enabled
     enabled: true
 
