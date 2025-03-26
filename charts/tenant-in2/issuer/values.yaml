@@ -161,6 +161,8 @@ issuer:
           allowedOrigins: "http://localhost:4200, https://issuer-dev.in2.ssihub.org, http://localhost:63342"
         external:
           allowedOrigins: "http://localhost:4200, https://issuer-dev.in2.ssihub.org, http://localhost:63342"
+      verifier:
+        url: "https://verifier-dev.in2.ssihub.org"
     db:
       externalService: false
       host: issuer-postgres

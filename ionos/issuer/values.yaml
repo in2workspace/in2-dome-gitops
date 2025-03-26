@@ -168,6 +168,8 @@ dome-issuer:
           allowedOrigins: "https://issuer.dome-marketplace-lcl.org"
         external:
           allowedOrigins: "https://issuer.dome-marketplace-lcl.org"
+      verifier:
+        url: "https://verifier.dome-marketplace-lcl.org"
     db:
       externalService: false
       host: issuer-postgres
