@@ -71,6 +71,9 @@ access-node:
           enabled: true
           name: access-node-secret
           key: lear-credential-machine
+      externalAccessNodesUrls:
+        enableCustomUrls: true
+        customUrls: ""
     ## configuration of the database to be used by the blockchain-connector
     db:
       # -- host of the db
