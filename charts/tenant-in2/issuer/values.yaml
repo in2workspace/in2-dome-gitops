@@ -1,11 +1,11 @@
-issuer:
-  issuer-api:
+dome-issuer:
+  dome-issuer-api:
     fullnameOverride: issuer-api
     nameOverride: issuer-api
     image:
       repository: in2workspace/in2-issuer-api
       # Overrides the image tag whose default is the chart appVersion.
-      tag: v1.4.3-snapshot
+      tag: v1.5.1-snapshot
       pullPolicy: Always
     ingress:
       enabled: true
@@ -85,6 +85,7 @@ issuer:
           clientSecret: client-secret
           credentialId: credential-id
           credentialPassword: credential-password
+        type: server
         domain:
           scheme: http
           # change by the external url or set to localhost if deployed locally
@@ -176,13 +177,13 @@ issuer:
         name: db-secret
         key: db-password
 
-  issuer-ui:
+  dome-issuer-ui:
     fullnameOverride: issuer-ui
     nameOverride: issuer-ui
     image:
       repository: in2workspace/in2-issuer-ui
       # Overrides the image tag whose default is the chart appVersion.
-      tag: v1.8.0-snapshot
+      tag: v1.10.0-snapshot
       pullPolicy: Always
     ingress:
       enabled: true
@@ -262,14 +263,14 @@ issuer:
   dome-issuer-keycloak:
     enabled: false
 
-  issuer-postgres:
+  dome-issuer-postgres:
     # -- should the postgresql deployment be enabled
     enabled: true
 
-  issuer-keycloak-postgres:
+  dome-issuer-keycloak-postgres:
     # -- should the postgresql deployment be enabled
     enabled: false
 
-  external-database:
+  dome-external-database:
     # -- should the postgresql deployment be enabled
     enabled: false
