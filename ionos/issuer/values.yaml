@@ -173,7 +173,7 @@ dome-issuer:
     db:
       externalService: false
       host: issuer-postgres
-      schema: credentials
+      schema: issuer
       port: 5432
       name: issuer
       username: postgres
