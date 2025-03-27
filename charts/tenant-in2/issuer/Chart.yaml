@@ -2,7 +2,7 @@ apiVersion: v2
 name: tenant-in2-issuer
 description: Chart holder for ArgoCD
 type: application
-version: 1.7.2
+version: 1.7.1
 appVersion: "v1.0.10"
 dependencies:
   - name: dome-issuer
