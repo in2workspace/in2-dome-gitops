@@ -76,7 +76,7 @@ dome-issuer:
               starttls:
                 enable: true
               ssl:
-                trust: smtp.ionos.de
+                trust: smtp.ionos.delta
       remoteSignature:
         existingSecret:
           enabled: true
