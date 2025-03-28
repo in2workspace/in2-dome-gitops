@@ -72,9 +72,9 @@ dome-issuer:
         properties:
           mail:
             smtp:
-              auth: true
+              auth: false
               starttls:
-                enable: true
+                enable: false
               ssl:
                 trust: smtp.ionos.de
       remoteSignature:
