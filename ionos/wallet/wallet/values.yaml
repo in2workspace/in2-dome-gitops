@@ -75,18 +75,18 @@ dome-wallet:
           name: wallet-vault-unseal-secret
           #          # -- key to retrieve the token from
           key: root
-      db:
-        externalService: false
-        schema: wallet
-        host: wallet-postgres
-        port: 5432
-        name: wallet
-        username: postgres
-        password: postgres
-        existingSecret:
-          enabled: true
-          name: wallet-secret
-          key: db-password
+    db:
+      externalService: false
+      schema: wallet
+      host: wallet-postgres
+      port: 5432
+      name: wallet
+      username: postgres
+      password: postgres
+      existingSecret:
+        enabled: true
+        name: wallet-secret
+        key: db-password
 
   ## configuration for the dome-wallet-ui
   dome-wallet-ui:
