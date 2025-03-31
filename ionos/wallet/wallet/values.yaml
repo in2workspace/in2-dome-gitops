@@ -8,7 +8,7 @@ dome-wallet:
     image:
       repository: in2workspace/in2-wallet-api
       # Overrides the image tag whose default is the chart appVersion.
-      tag: v1.4.2-snapshot
+      tag: v1.4.3-snapshot
       pullPolicy: Always
     ingress:
       enabled: true
