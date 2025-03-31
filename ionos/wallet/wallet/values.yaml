@@ -28,7 +28,7 @@ dome-wallet:
     app:
       internalServerPort: 8080
       basePath: /wallet-api
-      logLevel: INFO
+      logLevel: DEBUG
       authServer:
         externalUrl: https://wallet.dome-marketplace-lcl.org:443/keycloak/realms/wallet
         internalUrl: http://dome-wallet-keycloak:8080/keycloak/realms/wallet
