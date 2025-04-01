@@ -95,8 +95,8 @@ dome-wallet:
       className: nginx
       annotations:
         cert-manager.io/cluster-issuer: letsencrypt-in2-test-issuer
-#        nginx.ingress.kubernetes.io/proxy-read-timeout: "3600s"
-#        nginx.ingress.kubernetes.io/proxy-send-timeout: "3600s"
+      #        nginx.ingress.kubernetes.io/proxy-read-timeout: "3600s"
+      #        nginx.ingress.kubernetes.io/proxy-send-timeout: "3600s"
       hosts:
         - host: wallet.dome-marketplace-lcl.org
           paths:
@@ -135,7 +135,7 @@ dome-wallet:
     # -- should be enabled?
     enabled: true
     # -- overrides the generated name, provides stable service names - this should be avoided if multiple instances are available in the same namespace
-    fullnameOverride: dome-wallet-keycloak    
+    fullnameOverride: dome-wallet-keycloak
     # -- Added because the rollout is not working
     readinessProbe:
       path: /keycloak/health
@@ -168,9 +168,9 @@ dome-wallet:
         existingSecret:
           # -- should an existing secret be used
           enabled: true
-#          # -- name of the secret
+          #          # -- name of the secret
           name: wallet-secret
-#          # -- key to retrieve the password from
+          #          # -- key to retrieve the password from
           key: keycloak-password
     db:
       type: postgres
@@ -182,13 +182,13 @@ dome-wallet:
       existingSecret:
         # -- should an existing secret be used
         enabled: true
-#        # -- name of the secret
+        #        # -- name of the secret
         name: wallet-secret
-#        # -- key to retrieve the password from
+        #        # -- key to retrieve the password from
         key: keycloak-db-password
 
   ## configuration of postgres to be used for the blockchain-connector - see https://github.com/bitnami/charts/tree/main/bitnami/postgresql for details
-  postgresql:
+  dome-wallet-keycloak-postgresql:
     # -- should the postgresql deployment be enabled
     enabled: true
     # -- overrides the generated name, provides stable service names - this should be avoided if multiple instances are available in the same namespace
@@ -203,8 +203,8 @@ dome-wallet:
       password: postgres
       # -- should the default postgres user be enabled
       enablePostgresUser: true
-#      # -- existing secret
-#      existingSecret: wallet-postgres-secret
+    #      # -- existing secret
+    #      existingSecret: wallet-postgres-secret
     ## configuration of the postgres primary replica
     primary:
       ## provide db initialization
@@ -216,7 +216,7 @@ dome-wallet:
             psql postgresql://postgres:${POSTGRES_PASSWORD}@localhost:5432 -c "CREATE DATABASE keycloak;"
 
   ## configuration of postgres
-  wallet-postgresql:
+  dome-wallet-postgresql:
     # -- should the postgresql deployment be enabled
     enabled: true
     auth:
@@ -229,7 +229,3 @@ dome-wallet:
       secretKeys:
         adminPasswordKey: db-password
         userPasswordKey: db-password
-
-wallet-external-database:
-  # -- should the postgresql deployment be enabled
-  enabled: false
