@@ -2,7 +2,7 @@ apiVersion: v2
 name: issuer
 description: Chart holder for ArgoCD
 type: application
-version: 1.4.79
+version: 1.4.80
 appVersion: "v1.0.10"
 dependencies:
   - name: dome-issuer
