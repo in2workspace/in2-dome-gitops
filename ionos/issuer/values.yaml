@@ -91,7 +91,7 @@ dome-issuer:
           scheme: https
           # change by the external url or set to localhost if deployed locally
           # server type host is dome-dss:8080
-          host: dts-component-rdss-csc.pre-api.digitelts.com
+          host: dfasle256dummycowgdummyfdsfdebfb54dfd.com
       api:
         externalDomain:
           # if deployed locally set to false
