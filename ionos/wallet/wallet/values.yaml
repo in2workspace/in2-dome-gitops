@@ -30,7 +30,7 @@ dome-wallet:
       basePath: /wallet-api
       logLevel: DEBUG
       authServer:
-        externalUrl: https://wallet.dome-marketplace-lcl.org:443/keycloak/realms/wallet
+        externalUrl: https://wallet.dome-marketplace-lcl.org/keycloak/realms/wallet
         internalUrl: http://dome-wallet-keycloak:8080/keycloak/realms/wallet
       cors:
         allowedOrigins: "https://wallet.dome-marketplace-lcl.org"
