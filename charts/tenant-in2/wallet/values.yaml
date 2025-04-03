@@ -30,10 +30,10 @@ dome-wallet:
       basePath: /wallet-api
       logLevel: DEBUG
       authServer:
-        externalUrl: https://wallet.dome-marketplace-lcl.org/keycloak/realms/wallet
+        externalUrl: https://wallet-dev.in2.ssihub.org/keycloak/realms/wallet
         internalUrl: http://dome-wallet-keycloak:8080/keycloak/realms/wallet
       cors:
-        allowedOrigins: "https://wallet.dome-marketplace-lcl.org"
+        allowedOrigins: "https://wallet-dev.in2.ssihub.org"
       vault:
         provider: hashicorp
         # host needs to match with the service name of the vault server
@@ -119,11 +119,11 @@ dome-wallet:
       faviconSrc: "assets/icons/dome-favicon.png"
       walletApi:
         # Este internalDomain es en realidad el external
-        internalDomain: https://wallet.dome-marketplace-lcl.org/wallet-api
+        internalDomain: https://wallet-dev.in2.ssihub.org/wallet-api
         # ws = sin certificado, wss = con certificado
-        websocketExternalDomain: wss://wallet.dome-marketplace-lcl.org/wallet-api
+        websocketExternalDomain: wss://wallet-dev.in2.ssihub.org/wallet-api
       iam:
-        externalUrl: https://wallet.dome-marketplace-lcl.org/keycloak/realms/wallet
+        externalUrl: https://wallet-dev.in2.ssihub.org/keycloak/realms/wallet
 
   ## configuration for the dome-wallet-keycloak
   dome-wallet-keycloak:
@@ -149,20 +149,20 @@ dome-wallet:
       annotations:
         cert-manager.io/cluster-issuer: letsencrypt-in2-test-issuer
       hosts:
-        - host: wallet.dome-marketplace-lcl.org
+        - host: wallet-dev.in2.ssihub.org
           paths:
             - path: /keycloak
               pathType: Prefix
       tls:
         - hosts:
-            - wallet.dome-marketplace-lcl.org
+            - wallet-dev.in2.ssihub.org
           secretName: wallet-tls-secret
     ## deployment specific configuration
     app:
       internalServerPort: 8080
       keycloak:
-        hostnameUrl: "https://wallet.dome-marketplace-lcl.org/keycloak"
-        adminUrl: "https://wallet.dome-marketplace-lcl.org/keycloak"
+        hostnameUrl: "https://wallet-dev.in2.ssihub.org/keycloak"
+        adminUrl: "https://wallet-dev.in2.ssihub.org/keycloak"
         relativePath: "/keycloak/"
         admin: admin
         existingSecret:
