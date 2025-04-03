@@ -1,94 +1,231 @@
-global:
-  tenantName: "in2"
-  environment: "dev"
-  # Se usa para construir el ingress.hosts.host: wallet.{{ tenantName }}.{{ externalDomain }}
-  externalDomain: "ssihub.org"
-  ingress:
-    enabled: true
-    className: "nginx"
-    sslRedirect: false
-    backendProtocol: "HTTP"
-    enableTLS: true
-    clusterIssuer: "letsencrypt-in2-test-issuer"
-
-wallet:
-  enabled: true
-  # Wallet Backend subchart configuration
-  wallet-backend:
+dome-wallet:
+  ## configuration for the wallet-api
+  dome-wallet-api:
     # -- should be enabled?
     enabled: true
-    # Image configuration
+    # -- overrides the generated name, provides stable service names - this should be avoided if multiple instances are available in the same namespace
+    fullnameOverride: dome-wallet-api
     image:
+      repository: in2workspace/in2-wallet-api
+      # Overrides the image tag whose default is the chart appVersion.
+      tag: v1.4.3
       pullPolicy: Always
-      tag: v1.4.3-snapshot
-    # Application specific configuration
+    ingress:
+      enabled: true
+      className: nginx
+      annotations:
+        cert-manager.io/cluster-issuer: letsencrypt-in2-test-issuer
+      hosts:
+        - host: wallet.dome-marketplace-lcl.org
+          paths:
+            - path: /wallet-api
+              pathType: Prefix
+      tls:
+        - hosts:
+            - wallet.dome-marketplace-lcl.org
+          secretName: wallet-tls-secret
+    ## deployment specific configuration
     app:
+      internalServerPort: 8080
+      basePath: /wallet-api
       logLevel: DEBUG
+      authServer:
+        externalUrl: https://wallet.dome-marketplace-lcl.org/keycloak/realms/wallet
+        internalUrl: http://dome-wallet-keycloak:8080/keycloak/realms/wallet
       cors:
-        allowedOrigins: "https://wallet-dev.in2.ssihub.org/"
-      db:
-        existingSecret:
-          # -- should an existing secret be used?
-          enabled: true
-          # -- name of the secret
-          name: tenant-in2-wallet-sealed-secret
-          # -- key to retrieve the secret from
-          key: postgres-password
-      ebsiTest:
-        client:
-          existingSecret:
-            # -- should an existing secret be used?
-            enabled: true
-            # -- name of the secret
-            name: tenant-in2-wallet-sealed-secret
-            # -- key to retrieve the secret from
-            key: ebsi-client-secret
-        userData:
-          existingSecret:
-            # -- should an existing secret be used?
-            enabled: true
-            # -- name of the secret
-            name: tenant-in2-wallet-sealed-secret
-            # -- key to retrieve the secret from
-            key: ebsi-user-password
+        allowedOrigins: "https://wallet.dome-marketplace-lcl.org"
       vault:
+        provider: hashicorp
+        # host needs to match with the service name of the vault server
+        url: http://wallet-vault-server:8200
         existingSecret:
-          # -- should an existing secret be used?
+          # -- should an existing secret be used
           enabled: true
-          # -- name of the secret
-          name: vault-unseal-secret
-          # -- key to retrieve the secret from
+          #          # -- name of the secret
+          name: wallet-vault-unseal-secret
+          #          # -- key to retrieve the token from
           key: root
+      ebsiTest:
+        url: http://dome-wallet-keycloak:8080/keycloak/realms/wallet/protocol/openid-connect/token
+        client:
+          id: user-registry-client
+          existingSecret:
+            # -- should an existing secret be used
+            enabled: true
+            # -- name of the secret
+            name: wallet-secret
+            # -- key to retrieve the password from
+            key: client-secret
+        userData:
+          name: admin
+          existingSecret:
+            # -- should an existing secret be used
+            enabled: true
+            #            # -- name of the secret
+            name: wallet-secret
+            #            # -- key to retrieve the password from
+            key: user-password
+    db:
+      externalService: false
+      schema: wallet
+      host: wallet-postgres
+      port: 5432
+      name: wallet
+      username: postgres
+      password: postgres
+      existingSecret:
+        enabled: true
+        name: wallet-secret
+        key: db-password
 
-  # Wallet Frontend subchart configuration
-  wallet-frontend:
+  ## configuration for the dome-wallet-ui
+  dome-wallet-ui:
+    image:
+      repository: in2workspace/in2-wallet-ui
+      pullPolicy: Always
+      # Overrides the image tag whose default is the chart appVersion.
+      tag: v1.9.0-snapshot
     # -- should be enabled?
     enabled: true
-    # Image configuration
-    image:
-      pullPolicy: Always
-      tag: v1.9.0-snapshot
-    # Application specific configuration
+    # -- overrides the generated name, provides stable service names - this should be avoided if multiple instances are available in the same namespace
+    fullnameOverride: dome-wallet-ui
+    ## ingress specific configuration
+    ingress:
+      enabled: true
+      className: nginx
+      annotations:
+        cert-manager.io/cluster-issuer: letsencrypt-in2-test-issuer
+      #        nginx.ingress.kubernetes.io/proxy-read-timeout: "3600s"
+      #        nginx.ingress.kubernetes.io/proxy-send-timeout: "3600s"
+      hosts:
+        - host: wallet.dome-marketplace-lcl.org
+          paths:
+            - path: /
+              pathType: Prefix
+      tls:
+        - hosts:
+            - wallet.dome-marketplace-lcl.org
+          secretName: wallet-tls-secret
+    ## deployment specific configuration
     app:
-      logsEnabled: false
+      internalServerPort: 8080
+      logsEnabled: true
       colors:
         primary: "#00ADD3"
         primaryContrast: "#ffffff"
         secondary: "#50c8ff"
-        secondaryContrast: "#50c8ff"
+        secondaryContrast: "#000000"
+      logoSrc: "assets/logos/dome-logo.png"
+      faviconSrc: "assets/icons/dome-favicon.png"
+      walletApi:
+        # Este internalDomain es en realidad el external
+        internalDomain: https://wallet.dome-marketplace-lcl.org/wallet-api
+        # ws = sin certificado, wss = con certificado
+        websocketExternalDomain: wss://wallet.dome-marketplace-lcl.org/wallet-api
+      iam:
+        externalUrl: https://wallet.dome-marketplace-lcl.org/keycloak/realms/wallet
 
-  # Wallet PostgreSQL subchart configuration
-  wallet-postgres:
+  ## configuration for the dome-wallet-keycloak
+  dome-wallet-keycloak:
+    image:
+      repository: in2workspace/dome-wallet-keycloak
+      pullPolicy: Always
+      # Overrides the image tag whose default is the chart appVersion.
+      tag: v1.0.2
     # -- should be enabled?
-    enabled: false
+    enabled: true
+    # -- overrides the generated name, provides stable service names - this should be avoided if multiple instances are available in the same namespace
+    fullnameOverride: dome-wallet-keycloak
+    # -- Added because the rollout is not working
+    readinessProbe:
+      path: /keycloak/health
+    # -- Added because the rollout is not working
+    livenessProbe:
+      path: /keycloak/health
+    ## ingress specific configuration
+    ingress:
+      enabled: true
+      className: nginx
+      annotations:
+        cert-manager.io/cluster-issuer: letsencrypt-in2-test-issuer
+      hosts:
+        - host: wallet.dome-marketplace-lcl.org
+          paths:
+            - path: /keycloak
+              pathType: Prefix
+      tls:
+        - hosts:
+            - wallet.dome-marketplace-lcl.org
+          secretName: wallet-tls-secret
+    ## deployment specific configuration
+    app:
+      internalServerPort: 8080
+      keycloak:
+        hostnameUrl: "https://wallet.dome-marketplace-lcl.org/keycloak"
+        adminUrl: "https://wallet.dome-marketplace-lcl.org/keycloak"
+        relativePath: "/keycloak/"
+        admin: admin
+        existingSecret:
+          # -- should an existing secret be used
+          enabled: true
+          #          # -- name of the secret
+          name: wallet-secret
+          #          # -- key to retrieve the password from
+          key: keycloak-password
+    db:
+      type: postgres
+      host: dome-wallet-keycloak-postgres
+      port: 5432
+      externalService: false
+      name: keycloak
+      username: postgres
+      existingSecret:
+        # -- should an existing secret be used
+        enabled: true
+        #        # -- name of the secret
+        name: wallet-secret
+        #        # -- key to retrieve the password from
+        key: keycloak-db-password
 
-  ## Keycloak subchart configuration
-  keycloak-wallet:
-    # -- should be enabled?
-    enabled: false
+  ## configuration of postgres to be used for the blockchain-connector - see https://github.com/bitnami/charts/tree/main/bitnami/postgresql for details
+  dome-wallet-keycloak-postgresql:
+    # -- should the postgresql deployment be enabled
+    enabled: true
+    # -- overrides the generated name, provides stable service names - this should be avoided if multiple instances are available in the same namespace
+    fullnameOverride: dome-wallet-keycloak-postgres
+    # -- overrides the generated name, provides stable service names - this should be avoided if multiple instances are available in the same namespace
+    nameOverride: dome-wallet-keycloak-postgres
+    ## auth configuration for the database
+    auth:
+      # -- username to be used
+      username: postgres
+      # -- password to be used
+      password: postgres
+      # -- should the default postgres user be enabled
+      enablePostgresUser: true
+    #      # -- existing secret
+    #      existingSecret: wallet-postgres-secret
+    ## configuration of the postgres primary replica
+    primary:
+      ## provide db initialization
+      initdb:
+        ## provide scripts for initialization
+        scripts:
+          # -- create the database as expected by the blockchain-connector
+          create.sh: |
+            psql postgresql://postgres:${POSTGRES_PASSWORD}@localhost:5432 -c "CREATE DATABASE keycloak;"
 
-  ## Keycloak PostgreSQL subchart configuration
-  keycloak-wallet-postgres:
-    # -- should be enabled?
-    enabled: false
-
+  ## configuration of postgres
+  dome-wallet-postgresql:
+    # -- should the postgresql deployment be enabled
+    enabled: true
+    auth:
+      # -- username to be used
+      username: postgres
+      # -- should the default postgres user be enabled
+      enablePostgresUser: true
+      # -- password to be used
+      existingSecret: wallet-secret
+      secretKeys:
+        adminPasswordKey: db-password
+        userPasswordKey: db-password
