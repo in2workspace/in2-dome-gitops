@@ -16,13 +16,13 @@ dome-wallet:
       annotations:
         cert-manager.io/cluster-issuer: letsencrypt-in2-test-issuer
       hosts:
-        - host: wallet.dome-marketplace-lcl.org
+        - host: wallet-dev.in2.ssihub.org
           paths:
             - path: /wallet-api
               pathType: Prefix
       tls:
         - hosts:
-            - wallet.dome-marketplace-lcl.org
+            - wallet-dev.in2.ssihub.org
           secretName: wallet-tls-secret
     ## deployment specific configuration
     app:
@@ -98,13 +98,13 @@ dome-wallet:
       #        nginx.ingress.kubernetes.io/proxy-read-timeout: "3600s"
       #        nginx.ingress.kubernetes.io/proxy-send-timeout: "3600s"
       hosts:
-        - host: wallet.dome-marketplace-lcl.org
+        - host: wallet-dev.in2.ssihub.org
           paths:
             - path: /
               pathType: Prefix
       tls:
         - hosts:
-            - wallet.dome-marketplace-lcl.org
+            - wallet-dev.in2.ssihub.org
           secretName: wallet-tls-secret
     ## deployment specific configuration
     app:
