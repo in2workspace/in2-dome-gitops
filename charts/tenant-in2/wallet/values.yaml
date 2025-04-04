@@ -233,5 +233,4 @@ dome-wallet:
       initdb:
         scripts:
           create-schema.sh: |
-            psql postgresql://postgres:${POSTGRES_PASSWORD}@localhost:5432/wallet -tc "SELECT 1 FROM pg_namespace WHERE nspname = 'wallet'" | grep -q 1 || \
-            psql postgresql://postgres:${POSTGRES_PASSWORD}@localhost:5432/wallet -c "CREATE SCHEMA wallet;"
+            psql postgresql://postgres:${POSTGRES_PASSWORD}@localhost:5432/wallet -c "CREATE SCHEMA IF NOT EXISTS wallet;"
