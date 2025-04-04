@@ -229,3 +229,9 @@ dome-wallet:
       secretKeys:
         adminPasswordKey: db-password
         userPasswordKey: db-password
+    primary:
+      initdb:
+        scripts:
+          create-schema.sh: |
+            psql postgresql://postgres:${POSTGRES_PASSWORD}@localhost:5432/wallet -tc "SELECT 1 FROM pg_namespace WHERE nspname = 'wallet'" | grep -q 1 || \
+            psql postgresql://postgres:${POSTGRES_PASSWORD}@localhost:5432/wallet -c "CREATE SCHEMA wallet;"
