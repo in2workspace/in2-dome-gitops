@@ -13,6 +13,7 @@ dome-issuer:
       enableTLS: true
 
   dome-issuer-api:
+    fullnameOverride: "dome-issuer-api"
     image:
       # Overrides the image tag whose default is the chart appVersion.
       tag: v1.6.1-snapshot
@@ -174,6 +175,7 @@ dome-issuer:
         key: db-password
 
   dome-issuer-frontend:
+    fullnameOverride: "dome-issuer-frontend"
     image:
       # Overrides the image tag whose default is the chart appVersion.
       tag: v1.10.2-snapshot
