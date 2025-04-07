@@ -8,7 +8,7 @@ dome-issuer:
       className: "nginx"
       annotations:
         sslRedirect: "true"
-        backendProtocol: "HTTPS"
+        backendProtocol: "HTTP"
         clusterIssuer: "letsencrypt-in2-test-issuer"
       enableTLS: true
 
