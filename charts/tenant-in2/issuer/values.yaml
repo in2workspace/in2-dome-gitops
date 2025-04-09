@@ -27,7 +27,7 @@ dome-issuer:
       hosts:
         - host: issuer-dev.in2.ssihub.org
           paths:
-            - path: /api/.well-known/openid-configuration
+            - path: /issuer-api/.well-known/openid-configuration
               pathType: Prefix
               serviceName: keycloak-proxy
               servicePort: 80
@@ -44,7 +44,7 @@ dome-issuer:
       hosts:
         - host: issuer-dev.in2.ssihub.org
           paths:
-            - path: /api/token
+            - path: /issuer-api/token
               pathType: Prefix
               serviceName: keycloak-proxy
               servicePort: 80
@@ -189,7 +189,7 @@ dome-issuer:
       logoSrc: "assets/logos/logo-dome-issuer-reduced.png"
       faviconSrc: "assets/icon/favicon.png"
       keycloakUrl: "https://keycloak-dev.ssihub.org/realms/in2-issuer"
-      backendUrl: "https://issuer-dev.in2.ssihub.org/api"
+      backendUrl: "https://issuer-dev.in2.ssihub.org/issuer-api"
       walletUrl: "https://wallet.dome-marketplace.eu"
       knowledgeBaseUrl: "https://knowledgebase.dome-marketplace-dev2.org"
 
