@@ -92,7 +92,7 @@ keycloak:
     token:
       expiration: "2592000"
     credentialIssuer:
-      url: http://dome-issuer-api.tenant-in2.svc.cluster.local:8080/api
+      url: http://dome-issuer-api.tenant-in2.svc.cluster.local:8080/issuer-api
       externalUrl:
         # if deployed locally set to false
         externalService: true
@@ -101,7 +101,7 @@ keycloak:
         host: issuer-dev.in2.ssihub.org
         # internalPort is only used if externalService is false
         internalPort: 30001
-        path: /api
+        path: /issuer-api
 
   postgresKeycloak:
     # -- should the postgresql deployment be enabled
