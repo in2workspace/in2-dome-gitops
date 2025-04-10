@@ -14,6 +14,7 @@ dome-wallet:
   dome-wallet-backend:
     # -- should be enabled?
     enabled: true # -- overrides the generated name, provides stable service names - this should be avoided if multiple instances are available in the same namespace
+    fullNameOverride: "dome-wallet-backend"
     image:
       # Overrides the image tag whose default is the chart appVersion.
       tag: v1.4.3
@@ -71,12 +72,13 @@ dome-wallet:
 
   ## configuration for the dome-wallet-ui
   dome-wallet-frontend:
+    # -- should be enabled?
+    enabled: true
+    fullNameOverride: "dome-wallet-frontend"
     image:
       pullPolicy: Always
       # Overrides the image tag whose default is the chart appVersion.
       tag: v1.9.0
-    # -- should be enabled?
-    enabled: true
     ## deployment specific configuration
     app:
       logsEnabled: true
