@@ -116,7 +116,7 @@ dome-issuer:
           host:  keycloak-dev.ssihub.org
           # internalPort is only used if externalService is false
           internalPort: 30002
-          path: /issuer-keycloak
+          path: ""
         internalDomain: http://keycloak.identity-security.svc.cluster.local:80
         realm: dome-issuer
         client:
