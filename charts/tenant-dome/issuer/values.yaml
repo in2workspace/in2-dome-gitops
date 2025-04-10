@@ -1,11 +1,11 @@
-issuer:
-  issuer-api:
+dome-issuer:
+  dome-issuer-api:
     fullnameOverride: issuer-api
     nameOverride: issuer-api
     image:
       repository: in2workspace/in2-issuer-api
       # Overrides the image tag whose default is the chart appVersion.
-      tag: v1.5.0-snapshot
+      tag: v1.6.3-snapshot
       pullPolicy: Always
     ingress:
       enabled: true
@@ -85,10 +85,13 @@ issuer:
           clientSecret: client-secret
           credentialId: credential-id
           credentialPassword: credential-password
+        #types allowed: server, cloud
+        type: cloud
         domain:
-          scheme: http
+          scheme: https
           # change by the external url or set to localhost if deployed locally
-          host: dss:8080
+          # server type host is dome-dss:8080
+          host: dts-component-rdss-csc.pre-api.digitelts.com
       api:
         externalDomain:
           # if deployed locally set to false
@@ -109,7 +112,11 @@ issuer:
           # if deployed locally set to false
           externalService: true
           scheme: https
+          # change by the external url or set to localhost if deployed locally
           host:  keycloak-dev.ssihub.org
+          # internalPort is only used if externalService is false
+          internalPort: 30002
+          path: /issuer-keycloak
         internalDomain: http://keycloak.identity-security.svc.cluster.local:80
         realm: dome-issuer
         client:
@@ -138,7 +145,7 @@ issuer:
       wallet:
         url: https://wallet.dome-marketplace.org/
       knowledgebase:
-        url: "https://knowledgebase.dome-marketplace-dev2.org"
+        walletUrl: "https://knowledgebase.dome-marketplace-dev2.org/books/dome-digital-wallet-user-guide"
       defaultSigner:
         existingSecret:
           enabled: true
@@ -161,6 +168,8 @@ issuer:
           allowedOrigins: "https://issuer-dev.dome.ssihub.org"
         external:
           allowedOrigins: "https://issuer-dev.dome.ssihub.org"
+      verifier:
+        url: "https://verifier.dome-marketplace-lcl.org"
     db:
       externalService: false
       host: issuer-postgres
@@ -174,13 +183,13 @@ issuer:
         name: db-secret
         key: db-password
 
-  issuer-ui:
+  dome-issuer-ui:
     fullnameOverride: issuer-ui
     nameOverride: issuer-ui
     image:
       repository: in2workspace/in2-issuer-ui
       # Overrides the image tag whose default is the chart appVersion.
-      tag: v1.9.1-snapshot
+      tag: v1.10.1-snapshot
       pullPolicy: Always
     ingress:
       enabled: true
@@ -251,6 +260,7 @@ issuer:
         # change by the external url or set to localhost if deployed locally
         host: knowledgebase.dome-marketplace-sbx.org
         path: /
+        walletPath: "books/dome-digital-wallet-user-guide"
       profile: lcl
       procedures: /api/v1/procedures
       saveCredential: /api/v1/credentials?type=LEARCredentialEmployee
@@ -260,11 +270,11 @@ issuer:
   dome-issuer-keycloak:
     enabled: false
 
-  issuer-postgres:
+  dome-issuer-postgres:
     # -- should the postgresql deployment be enabled
     enabled: true
 
-  issuer-keycloak-postgres:
+  dome-issuer-keycloak-postgres:
     # -- should the postgresql deployment be enabled
     enabled: false
 
