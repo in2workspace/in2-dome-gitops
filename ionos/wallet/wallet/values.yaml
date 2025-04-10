@@ -1,33 +1,25 @@
 dome-wallet:
-  ## configuration for the wallet-api
-  dome-wallet-api:
-    # -- should be enabled?
+  enabled: true
+  # Ingress configuration
+  ingress:
     enabled: true
-    # -- overrides the generated name, provides stable service names - this should be avoided if multiple instances are available in the same namespace
-    fullnameOverride: dome-wallet-api
+    labels:
+    className: "nginx"
+    sslRedirect: false
+    backendProtocol: "HTTP"
+    enableTLS: true
+    clusterIssuer: "letsencrypt-in2-test-issuer"
+    host: "wallet.dome-marketplace-lcl.org"
+  ## configuration for the wallet-backend
+  dome-wallet-backend:
+    # -- should be enabled?
+    enabled: true # -- overrides the generated name, provides stable service names - this should be avoided if multiple instances are available in the same namespace
     image:
-      repository: in2workspace/in2-wallet-api
       # Overrides the image tag whose default is the chart appVersion.
-      tag: v1.4.3-snapshot
+      tag: v1.4.3
       pullPolicy: Always
-    ingress:
-      enabled: true
-      className: nginx
-      annotations:
-        cert-manager.io/cluster-issuer: letsencrypt-in2-test-issuer
-      hosts:
-        - host: wallet.dome-marketplace-lcl.org
-          paths:
-            - path: /wallet-api
-              pathType: Prefix
-      tls:
-        - hosts:
-            - wallet.dome-marketplace-lcl.org
-          secretName: wallet-tls-secret
     ## deployment specific configuration
     app:
-      internalServerPort: 8080
-      basePath: /wallet-api
       logLevel: DEBUG
       authServer:
         externalUrl: https://wallet.dome-marketplace-lcl.org/keycloak/realms/wallet
@@ -66,9 +58,8 @@ dome-wallet:
             #            # -- key to retrieve the password from
             key: user-password
     db:
-      externalService: false
-      schema: wallet
-      host: wallet-postgres
+      schema: wallet # public? remove?
+      host: wallet-postgres #dome-wallet-postgres?
       port: 5432
       name: wallet
       username: postgres
@@ -79,36 +70,15 @@ dome-wallet:
         key: db-password
 
   ## configuration for the dome-wallet-ui
-  dome-wallet-ui:
+  dome-wallet-frontend:
     image:
-      repository: in2workspace/in2-wallet-ui
       pullPolicy: Always
       # Overrides the image tag whose default is the chart appVersion.
-      tag: v1.9.0-snapshot
+      tag: v1.9.0
     # -- should be enabled?
     enabled: true
-    # -- overrides the generated name, provides stable service names - this should be avoided if multiple instances are available in the same namespace
-    fullnameOverride: dome-wallet-ui
-    ## ingress specific configuration
-    ingress:
-      enabled: true
-      className: nginx
-      annotations:
-        cert-manager.io/cluster-issuer: letsencrypt-in2-test-issuer
-      #        nginx.ingress.kubernetes.io/proxy-read-timeout: "3600s"
-      #        nginx.ingress.kubernetes.io/proxy-send-timeout: "3600s"
-      hosts:
-        - host: wallet.dome-marketplace-lcl.org
-          paths:
-            - path: /
-              pathType: Prefix
-      tls:
-        - hosts:
-            - wallet.dome-marketplace-lcl.org
-          secretName: wallet-tls-secret
     ## deployment specific configuration
     app:
-      internalServerPort: 8080
       logsEnabled: true
       colors:
         primary: "#00ADD3"
@@ -119,16 +89,15 @@ dome-wallet:
       faviconSrc: "assets/icons/dome-favicon.png"
       walletApi:
         # Este internalDomain es en realidad el external
-        internalDomain: https://wallet.dome-marketplace-lcl.org/wallet-api
+        internalDomain: https://wallet.dome-marketplace-lcl.org/api
         # ws = sin certificado, wss = con certificado
-        websocketExternalDomain: wss://wallet.dome-marketplace-lcl.org/wallet-api
+        websocketExternalDomain: wss://wallet.dome-marketplace-lcl.org/api
       iam:
         externalUrl: https://wallet.dome-marketplace-lcl.org/keycloak/realms/wallet
 
   ## configuration for the dome-wallet-keycloak
   dome-wallet-keycloak:
     image:
-      repository: in2workspace/dome-wallet-keycloak
       pullPolicy: Always
       # Overrides the image tag whose default is the chart appVersion.
       tag: v1.0.2
@@ -138,10 +107,12 @@ dome-wallet:
     fullnameOverride: dome-wallet-keycloak
     # -- Added because the rollout is not working
     readinessProbe:
-      path: /keycloak/health
+      httpGet:
+        path: /keycloak/health
     # -- Added because the rollout is not working
     livenessProbe:
-      path: /keycloak/health
+      httpGet:
+        path: /keycloak/health
     ## ingress specific configuration
     ingress:
       enabled: true
