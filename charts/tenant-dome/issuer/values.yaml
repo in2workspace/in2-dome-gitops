@@ -59,7 +59,7 @@ dome-issuer:
       profile: lcl
       logLevel:
         app: DEBUG
-        security: INFO
+        security: DEBUG
       internalServerPort: 8080
       mail:
         host: smtp.ionos.de
