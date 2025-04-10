@@ -58,7 +58,7 @@ dome-issuer:
     app:
       profile: lcl
       logLevel:
-        app: INFO
+        app: DEBUG
         security: INFO
       internalServerPort: 8080
       mail:
@@ -173,7 +173,7 @@ dome-issuer:
     db:
       externalService: false
       host: issuer-postgres
-      schema: public
+      schema: issuer
       port: 5432
       name: issuer
       username: postgres
