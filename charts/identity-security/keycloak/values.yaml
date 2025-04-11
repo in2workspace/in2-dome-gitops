@@ -92,7 +92,7 @@ keycloak:
     token:
       expiration: "2592000"
     credentialIssuer:
-      url: http://dome-issuer-api.tenant-dome.svc.cluster.local:8080/issuer-api
+      url: http://issuer-api.tenant-dome.svc.cluster.local:8080/issuer-api
       externalUrl:
         # if deployed locally set to false
         externalService: true
