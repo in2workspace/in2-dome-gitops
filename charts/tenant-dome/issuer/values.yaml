@@ -21,40 +21,6 @@ dome-issuer:
         - hosts:
             - issuer-dev.dome.ssihub.org
           secretName: issuer-secret-tls
-    ingressWellKnown:
-      enabled: true
-      className: nginx
-      annotations:
-        cert-manager.io/cluster-issuer: letsencrypt-in2-test-issuer
-        nginx.ingress.kubernetes.io/rewrite-target: /realms/dome-issuer/verifiable-credential/did:key:z6MkqmaCT2JqdUtLeKah7tEVfNXtDXtQyj4yxEgV11Y5CqUa/.well-known/openid-configuration
-      hosts:
-        - host: issuer-dev.dome.ssihub.org
-          paths:
-            - path: /issuer-api/.well-known/openid-configuration
-              pathType: Prefix
-              serviceName: keycloak-proxy
-              servicePort: 80
-      tls:
-        - hosts:
-            - issuer-dev.dome.ssihub.org
-          secretName: issuer-secret-tls
-    ingressToken:
-      enabled: true
-      className: nginx
-      annotations:
-        cert-manager.io/cluster-issuer: letsencrypt-in2-test-issuer
-        nginx.ingress.kubernetes.io/rewrite-target: /realms/dome-issuer/verifiable-credential/did:key:z6MkqmaCT2JqdUtLeKah7tEVfNXtDXtQyj4yxEgV11Y5CqUa/token
-      hosts:
-        - host: issuer-dev.dome.ssihub.org
-          paths:
-            - path: /issuer-api/token
-              pathType: Prefix
-              serviceName: keycloak-proxy
-              servicePort: 80
-      tls:
-        - hosts:
-            - issuer-dev.dome.ssihub.org
-          secretName: issuer-secret-tls
     app:
       profile: lcl
       logLevel:
