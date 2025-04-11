@@ -229,8 +229,8 @@ dome-issuer:
         walletPath: "books/dome-digital-wallet-user-guide"
       profile: lcl
       procedures: /api/v1/procedures
-      saveCredential: /api/v1/credentials?type=LEARCredentialEmployee
-      credentialOfferUrl: /api/v1/credential-offer
+      saveCredential: /oidc4vci/api/v1/credentials?type=LEARCredentialEmployee
+      credentialOfferUrl: /oidc4vci/api/v1/credential-offer
       notification: /api/v1/notifications
 
   dome-issuer-keycloak:
