@@ -26,7 +26,7 @@ dome-wallet:
       logLevel: DEBUG
       authServer:
         externalUrl: https://wallet.dome-marketplace-lcl.org/keycloak/realms/wallet
-        internalUrl: http://dome-wallet-keycloak:8080/keycloak/realms/wallet
+        internalUrl: http://dome-wallet-keycloak/keycloak/realms/wallet
       cors:
         allowedOrigins: "https://wallet.dome-marketplace-lcl.org"
       vault:
@@ -41,7 +41,7 @@ dome-wallet:
           #          # -- key to retrieve the token from
           key: root
       ebsiTest:
-        url: http://dome-wallet-keycloak:8080/keycloak/realms/wallet/protocol/openid-connect/token
+        url: http://dome-wallet-keycloak/keycloak/realms/wallet/protocol/openid-connect/token
         client:
           id: user-registry-client
           existingSecret:
