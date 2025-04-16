@@ -62,7 +62,7 @@ dome-wallet:
             key: user-password
       db:
         schema: wallet # public? remove?
-        host: wallet-postgres #dome-wallet-postgres?
+        host: dome-wallet-postgres #dome-wallet-postgres?
         port: 5432
         name: wallet
         username: postgres
@@ -107,6 +107,7 @@ dome-wallet:
     enabled: true
     # -- overrides the generated name, provides stable service names - this should be avoided if multiple instances are available in the same namespace
     fullnameOverride: dome-wallet-keycloak
+    nameOverride: dome-wallet-keycloak
     # -- Added because the rollout is not working
     readinessProbe:
       httpGet:
