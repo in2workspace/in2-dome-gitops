@@ -61,8 +61,8 @@ dome-wallet:
             #            # -- key to retrieve the password from
             key: user-password
       db:
-        schema: wallet # public? remove?
-        host: dome-wallet-postgres #dome-wallet-postgres?
+        schema: wallet
+        host: dome-test-wallet-postgres
         port: 5432
         name: wallet
         username: postgres
@@ -78,7 +78,7 @@ dome-wallet:
     image:
       pullPolicy: Always
       # Overrides the image tag whose default is the chart appVersion.
-      tag: v1.9.1-snapshot
+      tag: v1.9.1
     ## deployment specific configuration
     app:
       logsEnabled: true
@@ -150,7 +150,6 @@ dome-wallet:
         type: postgres
         host: dome-wallet-keycloak-postgres
         port: 5432
-        externalService: false
         name: keycloak
         username: postgres
         existingSecret:
@@ -193,6 +192,10 @@ dome-wallet:
   dome-wallet-postgresql:
     # -- should the postgresql deployment be enabled
     enabled: true
+    # -- overrides the generated name, provides stable service names - this should be avoided if multiple instances are available in the same namespace
+    fullnameOverride: dome-test-wallet-postgres
+    # -- overrides the generated name, provides stable service names - this should be avoided if multiple instances are available in the same namespace
+    nameOverride: dome-test-wallet-postgres
     auth:
       # -- username to be used
       username: postgres
