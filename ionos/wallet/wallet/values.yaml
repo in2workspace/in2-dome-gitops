@@ -62,7 +62,7 @@ dome-wallet:
             key: user-password
       db:
         schema: wallet
-        host: dome-test-wallet-postgres
+        host: wallet-postgres
         port: 5432
         name: wallet
         username: postgres
