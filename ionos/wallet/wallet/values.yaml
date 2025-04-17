@@ -19,14 +19,14 @@ dome-wallet:
     fullNameOverride: "dome-wallet-backend"
     image:
       # Overrides the image tag whose default is the chart appVersion.
-      tag: v1.4.5-snapshot
+      tag: v1.4.4
       pullPolicy: Always
     ## deployment specific configuration
     app:
       logLevel: DEBUG
       authServer:
         externalUrl: https://wallet.dome-marketplace-lcl.org/keycloak/realms/wallet
-        internalUrl: http://dome-wallet-keycloak/realms/wallet
+        internalUrl: http://dome-wallet-keycloak:80/realms/wallet
       cors:
         allowedOrigins: "https://wallet.dome-marketplace-lcl.org"
       vault:
@@ -41,7 +41,7 @@ dome-wallet:
           #          # -- key to retrieve the token from
           key: root
       ebsiTest:
-        url: http://dome-wallet-keycloak/realms/wallet/protocol/openid-connect/token
+        url: http://dome-wallet-keycloak:80/realms/wallet/protocol/openid-connect/token
         client:
           id: user-registry-client
           existingSecret:
