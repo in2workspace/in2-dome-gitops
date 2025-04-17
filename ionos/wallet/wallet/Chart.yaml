@@ -2,10 +2,10 @@ apiVersion: v2
 name: dome-wallet
 description: Chart holder for ArgoCD
 type: application
-version: 0.4.45
+version: 0.4.46
 appVersion: "v0.0.5"
 dependencies:
   - name: dome-wallet
     condition: dome-wallet.enabled
     repository: https://in2workspace.github.io/helm-charts
-    version: 1.4.4
+    version: 1.4.5
