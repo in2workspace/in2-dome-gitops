@@ -26,7 +26,7 @@ dome-wallet:
       logLevel: DEBUG
       authServer:
         externalUrl: https://wallet-dev.in2.ssihub.org/keycloak/realms/wallet
-        internalUrl: http://wdome-wallet-keycloak:80/realms/wallet
+        internalUrl: http://dome-wallet-keycloak:80/realms/wallet
       cors:
         allowedOrigins: "https://wallet-dev.in2.ssihub.org"
       vault:
