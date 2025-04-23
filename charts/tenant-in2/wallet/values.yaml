@@ -26,7 +26,7 @@ dome-wallet:
       logLevel: DEBUG
       authServer:
         externalUrl: https://wallet-dev.in2.ssihub.org/keycloak/realms/wallet
-        internalUrl: http://wallet-dev.in2.ssihub.org/realms/wallet
+        internalUrl: http://wdome-wallet-keycloak:80/realms/wallet
       cors:
         allowedOrigins: "https://wallet-dev.in2.ssihub.org"
       vault:
@@ -178,8 +178,8 @@ dome-wallet:
       password: postgres
       # -- should the default postgres user be enabled
       enablePostgresUser: true
-    #      # -- existing secret
-    #      existingSecret: wallet-postgres-secret
+      # -- existing secret
+      #  existingSecret: wallet-postgres-secret
     ## configuration of the postgres primary replica
     primary:
       ## provide db initialization
