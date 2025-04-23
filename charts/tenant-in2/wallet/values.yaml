@@ -32,7 +32,7 @@ dome-wallet:
       vault:
         provider: hashicorp
         # host needs to match with the service name of the vault server
-        url: http://wallet-vault-server:8200
+        url: http://vault-server:8200
         existingSecret:
           # -- should an existing secret be used
           enabled: true
