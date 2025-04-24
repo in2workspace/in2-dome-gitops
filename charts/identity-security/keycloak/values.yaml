@@ -1,9 +1,9 @@
 keycloak:
   image:
-    repository: in2workspace/in2-keycloak-extension
+    repository: in2workspace/in2-dome-keycloak
     pullPolicy: Always
     # Overrides the image tag whose default is the chart appVersion.
-    tag: v1.2.0-snapshot
+    tag: v1.1.0
 
   fullnameOverride: keycloak
   nameOverride: keycloak
