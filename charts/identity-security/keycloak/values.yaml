@@ -8,20 +8,6 @@ keycloak:
   fullnameOverride: keycloak
   nameOverride: keycloak
 
-  readinessProbe:
-    path: /health
-    port: 80
-    initialDelaySeconds: 30
-    failureThreshold: 6
-    periodSeconds: 10
-
-  livenessProbe:
-    path: /health
-    port: 80
-    initialDelaySeconds: 30
-    failureThreshold: 6
-    periodSeconds: 10
-
   ingress:
     enabled: true
     className: nginx
@@ -38,18 +24,11 @@ keycloak:
         secretName: keycloak-tls-sec
 
   keycloak:
-    internalServerPort: 8080
-    proxyHeaders: edge
-    logsCertsLevel: TRACE
-    logLevel: ALL
     admin:
-      username: admin
-      password: admin
       existingSecret:
         enabled: false
         name: keycloak-secrets
         passwordKey: keycloakAdminPassword
-    relativePath: "/"
     hostname:
       url:
         # if deployed locally set to false
@@ -69,42 +48,9 @@ keycloak:
         # internalPort is only used if externalService is false
         internalPort: 30002
         path: /
-    https:
-      clientAuth: request
 
   db:
-    host: postgres-keycloak
-    port: 5432
-    externalService: true
-    name: postgres_keycloak
-    username: postgres
-    password: postgres
     existingSecret:
       enabled: false
       name: keycloak-secrets
       passwordKey: keycloakDbPassword
-    type: postgres
-
-  postgresKeycloak:
-    # -- should the postgresql deployment be enabled
-    enabled: true
-    # -- overrides the generated name, provides stable service names - this should be avoided if multiple instances are available in the same namespace
-    fullnameOverride: postgres-keycloak
-    # -- overrides the generated name, provides stable service names - this should be avoided if multiple instances are available in the same namespace
-    nameOverride: postgres-keycloak
-    ## auth configuration for the database
-    auth:
-      # -- username to be used
-      username: postgres
-      # -- password to be used
-      password: postgres
-      # -- should the default postgres user be enabled
-      enablePostgresUser: true
-      # -- should the default postgres user be enabled
-      database: postgres_keycloak
-
-
-
-
-
-
