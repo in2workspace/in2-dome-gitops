@@ -57,6 +57,7 @@ keycloak:
 
   postgresKeycloak:
     auth:
+      existingSecret: keycloak-secret
       secretKeys:
         adminPasswordKey: db-password
         userPasswordKey: db-password
