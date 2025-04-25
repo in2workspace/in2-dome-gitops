@@ -6,17 +6,19 @@ dome-issuer:
     ingress:
       enabled: true
       className: "nginx"
+      labels: {}
       annotations:
-        sslRedirect: "true"
-        backendProtocol: "HTTP"
-        clusterIssuer: "letsencrypt-in2-test-issuer"
+        nginx.ingress.kubernetes.io/ssl-redirect: "false"
+        nginx.ingress.kubernetes.io/backend-protocol: "HTTP"
+        nginx.ingress.kubernetes.io/use-regex: "true"
+        nginx.ingress.kubernetes.io/rewrite-target: /$2
       enableTLS: true
+      clusterIssuer: "letsencrypt-in2-test-issuer"
 
-  dome-issuer-api:
-    fullnameOverride: "dome-issuer-api"
+  dome-issuer-backend:
     image:
       # Overrides the image tag whose default is the chart appVersion.
-      tag: v1.6.1-snapshot
+      tag: v1.6.5-snapshot
       pullPolicy: Always
     ingressWellKnown:
       enabled: true
@@ -27,7 +29,7 @@ dome-issuer:
       hosts:
         - host: issuer-dev.in2.ssihub.org
           paths:
-            - path: /issuer-api/.well-known/openid-configuration
+            - path: /.well-known/openid-configuration
               pathType: Prefix
               serviceName: keycloak-proxy
               servicePort: 80
@@ -44,7 +46,7 @@ dome-issuer:
       hosts:
         - host: issuer-dev.in2.ssihub.org
           paths:
-            - path: /issuer-api/token
+            - path: /token
               pathType: Prefix
               serviceName: keycloak-proxy
               servicePort: 80
@@ -53,11 +55,16 @@ dome-issuer:
             - issuer-dev.in2.ssihub.org
           secretName: issuer-tls-secret
     app:
-      profile: lcl
       logLevel:
         app: DEBUG
         security: INFO
-      internalServerPort: 8080
+      url: "https://issuer-dev.in2.ssihub.org"
+      issuerFrontendUrl: "https://issuer-dev.in2.ssihub.org"
+      knowledgeBase:
+        walletGuideUrl: "https://knowledgebase.dome-marketplace-dev2.org/shelves/company-onboarding-process"
+        uploadCertificationGuideUrl: "https://knowledgebase.dome-marketplace-dev2.org"
+      trustFrameworkUrl: "http://trusted-issuers-list:8080"
+      verifierUrl: "https://verifier-dev.in2.ssihub.org"
       mail:
         host: smtp.ionos.de
         port: 587
@@ -83,32 +90,11 @@ dome-issuer:
           credentialId: credential-id
           credentialPassword: credential-password
         type: server
-        domain:
-          scheme: http
-          # change by the external url or set to localhost if deployed locally
-          host: dss:8080
-      api:
-        externalDomain:
-          # if deployed locally set to false
-          externalService: true
-          scheme: https
-          # change by the external url or set to localhost if deployed locally
-          host: issuer-dev.in2.ssihub.org
-          # internalPort is only used if externalService is false
-          internalPort: 30001
-          path: /issuer-api
-        internalDomain: http://issuer-api:8080
-        configSource: yaml
-        cacheLifetimeCredentialOffer: 10
-        cacheLifetimeVerifiableCredential: 10
+        url: http://dss:8080
       authServer:
         provider: keycloak
-        externalDomain:
-          # if deployed locally set to false
-          externalService: true
-          scheme: https
-          host:  keycloak-dev.ssihub.org
-        internalDomain: http://keycloak.identity-security.svc.cluster.local:80
+        externalUrl: https://keycloak-dev.ssihub.org
+        internalUrl: http://keycloak.identity-security.svc.cluster.local:80
         realm: in2-issuer
         client:
           clientId: issuer-api-client
@@ -118,25 +104,6 @@ dome-issuer:
             name: issuer-secret
             clientSecretKey: authServerClientSecret
             clientPasswordKey: issuer-api-user-password
-        paths:
-          tokenPath: /realms/in2-issuer/protocol/openid-connect/token
-      ui:
-        externalDomain:
-          # if deployed locally set to false
-          externalService: true
-          scheme: https
-          # change by the external url or set to localhost if deployed locally
-          host: issuer-dev.in2.ssihub.org
-          # internalPort is only used if externalService is false
-          internalPort: 30000
-          path: /
-        internalDomain: http://dome-wallet-ui:8080
-      trustFramework:
-        url: "http://trusted-issuers-list:8080"
-      wallet:
-        url: https://wallet.dome-marketplace.org/
-      knowledgebase:
-        url: "https://knowledgebase.dome-marketplace-dev2.org"
       defaultSigner:
         existingSecret:
           enabled: true
@@ -161,21 +128,20 @@ dome-issuer:
           allowedOrigins: "http://localhost:4200, https://issuer-dev.in2.ssihub.org, http://localhost:63342"
       verifier:
         url: "https://verifier-dev.in2.ssihub.org"
-    db:
-      externalService: false
-      host: issuer-postgres
-      schema: issuer
-      port: 5432
-      name: issuer
-      username: postgres
-      password: postgres
-      existingSecret:
-        enabled: false
-        name: db-secret
-        key: db-password
+      db:
+        externalService: false
+        host: issuer-postgres
+        schema: issuer
+        port: 5432
+        name: issuer
+        username: postgres
+        password: postgres
+        existingSecret:
+          enabled: false
+          name: db-secret
+          key: db-password
 
   dome-issuer-frontend:
-    fullnameOverride: "dome-issuer-frontend"
     image:
       # Overrides the image tag whose default is the chart appVersion.
       tag: v1.11.0-snapshot
@@ -189,7 +155,7 @@ dome-issuer:
       logoSrc: "assets/logos/logo-dome-issuer-reduced.png"
       faviconSrc: "assets/icon/favicon.png"
       keycloakUrl: "https://keycloak-dev.ssihub.org/realms/in2-issuer"
-      backendUrl: "https://issuer-dev.in2.ssihub.org/issuer-api"
+      backendUrl: "https://issuer-dev.in2.ssihub.org"
       walletUrl: "https://wallet.dome-marketplace.eu"
       knowledgeBaseUrl: "https://knowledgebase.dome-marketplace-dev2.org"
 
