@@ -26,9 +26,9 @@ keycloak:
   keycloak:
     admin:
       existingSecret:
-        enabled: false
-        name: keycloak-secrets
-        passwordKey: keycloakAdminPassword
+        enabled: true
+        name: keycloak-secret
+        passwordKey: admin-password
     hostname:
       url:
         # if deployed locally set to false
@@ -51,6 +51,13 @@ keycloak:
 
   db:
     existingSecret:
-      enabled: false
-      name: keycloak-secrets
-      passwordKey: keycloakDbPassword
+      enabled: true
+      name: keycloak-secret
+      passwordKey: db-password
+
+  postgresKeycloak:
+    auth:
+      existingSecret: keycloak-secret
+      secretKeys:
+        adminPasswordKey: db-password
+        userPasswordKey: db-password
