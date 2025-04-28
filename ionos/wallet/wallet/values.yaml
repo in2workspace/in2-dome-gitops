@@ -25,8 +25,8 @@ dome-wallet:
     app:
       logLevel: DEBUG
       authServer:
-        externalUrl: https://wallet.dome-marketplace-lcl.org/keycloak/realms/wallet
-        internalUrl: http://dome-wallet-keycloak:80/realms/wallet
+        externalUrl: https://keycloak-dev.ssihub.org/realms/test-wallet
+        internalUrl: http://keycloak.identity-security.svc.cluster.local:80/realms/test-wallet
       cors:
         allowedOrigins: "https://wallet.dome-marketplace-lcl.org"
       vault:
@@ -41,7 +41,7 @@ dome-wallet:
           # -- key to retrieve the token from
           key: root
       ebsiTest:
-        url: http://dome-wallet-keycloak:80/realms/wallet/protocol/openid-connect/token
+        url: http://keycloak.identity-security.svc.cluster.local:80/realms/test-wallet/protocol/openid-connect/token
         client:
           id: user-registry-client
           existingSecret:
@@ -95,7 +95,7 @@ dome-wallet:
         # ws = sin certificado, wss = con certificado
         websocketExternalUrl: wss://wallet.dome-marketplace-lcl.org/api
       iam:
-        externalUrl: https://wallet.dome-marketplace-lcl.org/keycloak/realms/wallet
+        externalUrl: https://keycloak-dev.ssihub.org/realms/test-wallet
 
   ## configuration for the dome-wallet-keycloak
   dome-wallet-keycloak:
@@ -136,8 +136,8 @@ dome-wallet:
     ## deployment specific configuration
     app:
       keycloak:
-        hostnameUrl: "https://wallet.dome-marketplace-lcl.org/keycloak"
-        adminUrl: "https://wallet.dome-marketplace-lcl.org/keycloak"
+        hostnameUrl: "https://keycloak-dev.ssihub.org"
+        adminUrl: "https://keycloak-dev.ssihub.org"
         admin: admin
         existingSecret:
           # -- should an existing secret be used
