@@ -5,3 +5,14 @@ vault:
   fullnameOverride: wallet-vault
   injector:
     enabled: false
+  server:
+    podAnnotations:
+      backup.velero.io/backup-volumes: data
+    persistence:
+      enabled: true
+      annotations:
+        backup.velero.io/backup-volumes: data
+      persistentVolumeClaimRetentionPolicy:
+        enabled: true
+        whenDeleted: Retain
+        whenScaled: Retain
