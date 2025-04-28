@@ -120,7 +120,7 @@ dome-issuer:
           enabled: true
           name: issuer-secret
           vc: vc
-          cryptoPrivateKey: private-key
+          privateKey: private-key
           credentialDidKey: did-key
       cors:
         default:
