@@ -139,7 +139,7 @@ dome-issuer:
         password: postgres
         existingSecret:
           enabled: false
-          name: db-secret
+          name: issuer-secret
           key: db-password
 
   dome-issuer-frontend:
