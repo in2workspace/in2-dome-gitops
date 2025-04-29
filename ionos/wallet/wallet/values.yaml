@@ -1,5 +1,6 @@
+# disable Ingress to allow
 global:
-  domain: "wallet.dome-marketplace-lcl.org"
+  domain: ""
   ingress:
     enabled: true
     className: "nginx"
@@ -11,6 +12,9 @@ global:
       nginx.ingress.kubernetes.io/rewrite-target: /$2
     enableTLS: true
     clusterIssuer: "letsencrypt-in2-test-issuer"
+    secondary:
+      enabled: false
+      domain: ""
 
 dome-wallet:
 

@@ -11,6 +11,9 @@ global:
       nginx.ingress.kubernetes.io/rewrite-target: /$2
     enableTLS: true
     clusterIssuer: "letsencrypt-in2-test-issuer"
+    secondary:
+      enabled: true
+      domain: "https://wallet.dome-marketplace-lcl.org/"
 
 dome-wallet:
 
@@ -78,7 +81,7 @@ dome-wallet:
     image:
       pullPolicy: Always
       # Overrides the image tag whose default is the chart appVersion.
-      tag: v1.9.1
+      tag: v1.9.2
     ## deployment specific configuration
     app:
       logsEnabled: true
