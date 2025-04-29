@@ -5,14 +5,9 @@ vault:
   fullnameOverride: wallet-vault
   injector:
     enabled: false
+  commonAnnotations:
+    backup.velero.io/backup-volumes: data,config,home
   server:
-    service:
-      general:
-        annotations:
-          backup.velero.io/backup-volumes: data,config,home
-      active:
-        annotations:
-          backup.velero.io/backup-volumes: data,config,home
     podAnnotations:
       backup.velero.io/backup-volumes: data,config,home
     persistence:
