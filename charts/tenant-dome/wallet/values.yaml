@@ -7,8 +7,6 @@ global:
     annotations:
       nginx.ingress.kubernetes.io/ssl-redirect: "false"
       nginx.ingress.kubernetes.io/backend-protocol: "HTTP"
-      nginx.ingress.kubernetes.io/use-regex: "true"
-      nginx.ingress.kubernetes.io/rewrite-target: /$2
     enableTLS: true
     clusterIssuer: "letsencrypt-in2-test-issuer"
     secondary:
@@ -94,9 +92,9 @@ dome-wallet:
       faviconSrc: "assets/icons/dome-favicon.png"
       walletApi:
         # Este internalDomain es en realidad el external
-        internalUrl: https://wallet-dev.dome.ssihub.org/api
+        internalUrl: https://wallet-dev.dome.ssihub.org
         # ws = sin certificado, wss = con certificado
-        websocketExternalUrl: wss://wallet-dev.dome.ssihub.org/api
+        websocketExternalUrl: wss://wallet-dev.dome.ssihub.org
       iam:
         externalUrl: https://wallet-dev.dome.ssihub.org/keycloak/realms/wallet
 
