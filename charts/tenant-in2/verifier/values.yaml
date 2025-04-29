@@ -73,7 +73,7 @@ verifier-api:
               existingSecret:
                 enabled: true
                 name: verifier-secret
-                key: verifiable-credential# Placeholder for private key used in identity verification (REQUIRED)
+                key: verifiable-credential
         trustFrameworks:
           # Placeholder for the name of a trust framework (REQUIRED)
           - name: DOME
