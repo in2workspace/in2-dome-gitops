@@ -58,7 +58,7 @@ dome-issuer:
     app:
       logLevel:
         app: DEBUG
-        security: INFO
+        security: DEBUG
       url: "https://issuer-dev.in2.ssihub.org"
       issuerFrontendUrl: "https://issuer-dev.in2.ssihub.org"
       knowledgeBase:
