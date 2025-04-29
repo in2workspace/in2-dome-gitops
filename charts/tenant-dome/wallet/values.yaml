@@ -22,16 +22,16 @@ dome-wallet:
     fullNameOverride: "dome-wallet-backend"
     image:
       # Overrides the image tag whose default is the chart appVersion.
-      tag: v1.4.4
+      tag: v1.4.5
       pullPolicy: Always
     ## deployment specific configuration
     app:
       logLevel: DEBUG
       authServer:
-        externalUrl: https://wallet-dev.dome.ssihub.org/keycloak/realms/wallet
-        internalUrl: http://dome-wallet-keycloak:80/realms/wallet
+        externalUrl: https://keycloak-dev.ssihub.org/realms/test-wallet
+        internalUrl: http://keycloak.identity-security.svc.cluster.local:80/realms/test-wallet
       cors:
-        allowedOrigins: "https://wallet-dev.dome.ssihub.org"
+        allowedOrigins: "https://wallet-dev.dome.ssihub.org, https://wallet.dome-marketplace-lcl.org"
       vault:
         provider: hashicorp
         # host needs to match with the service name of the vault server
@@ -44,7 +44,7 @@ dome-wallet:
           #          # -- key to retrieve the token from
           key: root
       ebsiTest:
-        url: http://dome-wallet-keycloak:80/realms/wallet/protocol/openid-connect/token
+        url: http://keycloak.identity-security.svc.cluster.local:80/realms/test-wallet/protocol/openid-connect/token
         client:
           id: user-registry-client
           existingSecret:
@@ -98,7 +98,7 @@ dome-wallet:
         # ws = sin certificado, wss = con certificado
         websocketExternalUrl: wss://wallet-dev.dome.ssihub.org/api
       iam:
-        externalUrl: https://wallet-dev.dome.ssihub.org/keycloak/realms/wallet
+        externalUrl: https://keycloak-dev.ssihub.org/realms/test-wallet
 
   ## configuration for the dome-wallet-keycloak
   dome-wallet-keycloak:
