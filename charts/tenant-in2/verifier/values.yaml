@@ -58,13 +58,22 @@ verifier-api:
       backend:
         # Placeholder for backend URL (REQUIRED)
         url: "https://verifier-dev.in2.ssihub.org"
-        identity:
-          # Placeholder for private key used in identity verification (REQUIRED)
-          privateKey:
-            existingSecret:
-              enabled: true
-              name: private-key-secret
-              key: private-key
+        security:
+          serviceIdentity:
+            # Placeholder for private key used in identity verification (REQUIRED)
+            privateKey:
+              existingSecret:
+                enabled: true
+                name: verifier-secret
+                key: private-key
+            # Placeholder for DID Key (REQUIRED)
+            didKey: "did:key:zDnaekiwkWcXnHaW6au3BpmfWfrtVTJZrA3EHgLvcbm6EZnup"
+            # Placeholder for LEARCredentialMachine in Base64 format (REQUIRED)
+            verifiableCredential:
+              existingSecret:
+                enabled: true
+                name: verifier-secret
+                key: verifiable-credential# Placeholder for private key used in identity verification (REQUIRED)
         trustFrameworks:
           # Placeholder for the name of a trust framework (REQUIRED)
           - name: DOME
