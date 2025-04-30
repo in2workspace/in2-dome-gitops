@@ -54,8 +54,8 @@ dome-issuer:
           clientSecret: client-secret
           credentialId: credential-id
           credentialPassword: credential-password
-        type: server
-        url: http://dss:8080
+        type: cloud
+        url: https://dts-component-rdss-csc.pre-api.digitelts.com
       authServer:
         provider: keycloak
         externalUrl: https://keycloak-dev.ssihub.org
