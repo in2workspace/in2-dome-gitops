@@ -10,8 +10,6 @@ dome-issuer:
       annotations:
         nginx.ingress.kubernetes.io/ssl-redirect: "false"
         nginx.ingress.kubernetes.io/backend-protocol: "HTTP"
-#        nginx.ingress.kubernetes.io/use-regex: "true"
-#        nginx.ingress.kubernetes.io/rewrite-target: /$2
       enableTLS: true
       clusterIssuer: "letsencrypt-in2-test-issuer"
 
@@ -26,13 +24,12 @@ dome-issuer:
       className: nginx
       annotations:
         cert-manager.io/cluster-issuer: letsencrypt-in2-test-issuer
-        nginx.ingress.kubernetes.io/rewrite-target: /realms/in2-issuer/verifiable-credential/did:key:z6MkqmaCT2JqdUtLeKah7tEVfNXtDXtQyj4yxEgV11Y5CqUa/.well-known/openid-configuration
       hosts:
         - host: issuer-dev.in2.ssihub.org
           paths:
             - path: /.well-known/openid-configuration
               pathType: Prefix
-              serviceName: keycloak-proxy
+              serviceName: dome-issuer-backend
               servicePort: 80
       tls:
         - hosts:
@@ -43,13 +40,12 @@ dome-issuer:
       className: nginx
       annotations:
         cert-manager.io/cluster-issuer: letsencrypt-in2-test-issuer
-        nginx.ingress.kubernetes.io/rewrite-target: /realms/in2-issuer/verifiable-credential/did:key:z6MkqmaCT2JqdUtLeKah7tEVfNXtDXtQyj4yxEgV11Y5CqUa/token
       hosts:
         - host: issuer-dev.in2.ssihub.org
           paths:
             - path: /token
               pathType: Prefix
-              serviceName: keycloak-proxy
+              serviceName: dome-issuer-backend
               servicePort: 80
       tls:
         - hosts:
