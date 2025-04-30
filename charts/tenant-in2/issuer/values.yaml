@@ -19,38 +19,6 @@ dome-issuer:
       # Overrides the image tag whose default is the chart appVersion.
       tag: v1.6.5-snapshot
       pullPolicy: Always
-    ingressWellKnown:
-      enabled: true
-      className: nginx
-      annotations:
-        cert-manager.io/cluster-issuer: letsencrypt-in2-test-issuer
-      hosts:
-        - host: issuer-dev.in2.ssihub.org
-          paths:
-            - path: /.well-known/openid-configuration
-              pathType: Prefix
-              serviceName: dome-issuer-backend
-              servicePort: 80
-      tls:
-        - hosts:
-            - issuer-dev.in2.ssihub.org
-          secretName: issuer-tls-secret
-    ingressToken:
-      enabled: true
-      className: nginx
-      annotations:
-        cert-manager.io/cluster-issuer: letsencrypt-in2-test-issuer
-      hosts:
-        - host: issuer-dev.in2.ssihub.org
-          paths:
-            - path: /token
-              pathType: Prefix
-              serviceName: dome-issuer-backend
-              servicePort: 80
-      tls:
-        - hosts:
-            - issuer-dev.in2.ssihub.org
-          secretName: issuer-tls-secret
     app:
       logLevel:
         app: DEBUG
