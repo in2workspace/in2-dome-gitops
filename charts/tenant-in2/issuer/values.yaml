@@ -118,7 +118,7 @@ dome-issuer:
         secondary: "#2cb6b2"
         secondaryContrast: "#dde6f6"
       logoSrc: "dome-issuer.png"
-      faviconSrc: "favicon.png"
+      faviconSrc: "DOME_Icon.png"
       keycloakUrl: "https://keycloak-dev.ssihub.org/realms/in2-issuer"
       backendUrl: "https://issuer-dev.in2.ssihub.org"
       walletUrl: "https://wallet.dome-marketplace.eu"
