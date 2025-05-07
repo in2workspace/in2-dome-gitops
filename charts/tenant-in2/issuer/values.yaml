@@ -17,7 +17,7 @@ dome-issuer:
     image:
       repository: in2workspace/in2-issuer-backend
       # Overrides the image tag whose default is the chart appVersion.
-      tag: v1.6.5-snapshot
+      tag: v1.6.5
       pullPolicy: Always
     app:
       logLevel:
@@ -109,7 +109,7 @@ dome-issuer:
   dome-issuer-frontend:
     image:
       # Overrides the image tag whose default is the chart appVersion.
-      tag: v1.12.0-snapshot
+      tag: v1.11.0
       pullPolicy: Always
     app:
       colors:
