@@ -24,12 +24,11 @@ dome-issuer:
       className: nginx
       annotations:
         cert-manager.io/cluster-issuer: letsencrypt-in2-test-issuer
-        nginx.ingress.kubernetes.io/rewrite-target: /$2
-        nginx.ingress.kubernetes.io/use-regex: "true"
+        nginx.ingress.kubernetes.io/rewrite-target: /vci/v1/issuances
       hosts:
         - host: issuer-dev.in2.ssihub.org
           paths:
-            - path: /issuer-api(/|$)(.*)
+            - path: /issuer-api/vci/v1/issuances
               pathType: ImplementationSpecific
       tls:
         - hosts:
