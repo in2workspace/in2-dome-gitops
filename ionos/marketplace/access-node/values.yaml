@@ -8,7 +8,7 @@ access-node:
     image:
       repository: in2workspace/in2-desmos-api
       # Overrides the image tag whose default is the chart appVersion.
-      tag: v1.2.0-snapshot
+      tag: v1.1.4-snapshot
       pullPolicy: Always
     readinessProbe:
       failureThreshold: 10
@@ -19,11 +19,6 @@ access-node:
       className: nginx
       annotations:
         cert-manager.io/cluster-issuer: letsencrypt-in2-test-issuer
-      hosts:
-        - host: desmos.dome-marketplace-lcl.org
-          paths:
-            - path: /
-              pathType: Prefix
       tls:
         - hosts:
             - desmos.dome-marketplace-lcl.org
@@ -56,7 +51,9 @@ access-node:
         # -- (external) address of the dlt-adapter
         externalDomain: http://dlt-adapter:8080
       # -- operator external domain
-      externalDomain: "https://desmos.dome-marketplace-lcl.org"
+      externalDomain:
+        protocol: "https"
+        domain: "desmos.dome-marketplace-lcl.org"
       # -- configuration to set your private key
       privateKey:
         existingSecret:
