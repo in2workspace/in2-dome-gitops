@@ -68,6 +68,9 @@ access-node:
           enabled: true
           name: access-node-secret
           key: lear-credential-machine
+      trustedAccessNodesList:
+        enableCustomTrustedList: true
+        customTrustedList: "https://raw.githubusercontent.com/in2workspace/in2-dome-gitops/refs/heads/main/trust-framework/trusted_access_nodes_list.yaml"
     ## configuration of the database to be used by the blockchain-connector
     db:
       # -- host of the db
