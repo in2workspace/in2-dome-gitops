@@ -70,8 +70,7 @@ dome-issuer:
           credentialId: credential-id
           credentialPassword: credential-password
         type: cloud
-        #  break for testing purposes
-        url: https://BROKEN-dts-component-rdss-csc.pre-api.digitelts.com
+        url: https://dts-component-rdss-csc.pre-api.digitelts.com
       authServer:
         provider: keycloak
         externalUrl: https://keycloak-dev.ssihub.org
