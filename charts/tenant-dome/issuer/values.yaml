@@ -131,14 +131,10 @@ dome-issuer:
   dome-issuer-keycloak:
     enabled: false
 
-  dome-issuer-postgres:
+  dome-issuer-postgresql:
     # -- should the postgresql deployment be enabled
     enabled: true
 
-  issuer-keycloak-postgres:
-    # -- should the postgresql deployment be enabled
-    enabled: false
-
-  external-database:
+  dome-issuer-keycloak-postgresql:
     # -- should the postgresql deployment be enabled
     enabled: false
