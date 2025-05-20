@@ -27,7 +27,7 @@ dome-issuer:
       knowledgeBase:
         walletGuideUrl: "https://knowledgebase.dome-marketplace-dev2.org/shelves/company-onboarding-process"
         uploadCertificationGuideUrl: "https://knowledgebase.dome-marketplace-dev2.org"
-      trustFrameworkUrl: "http://trusted-issuers-list:8080"
+      trustFrameworkUrl: "http://trusted-issuers-list.marketplace.svc.cluster.local:8080"
       verifierUrl: "https://verifier.dome-marketplace-lcl.org"
       mail:
         host: smtp.ionos.de
