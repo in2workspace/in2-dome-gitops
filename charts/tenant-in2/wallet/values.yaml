@@ -7,8 +7,6 @@ global:
     annotations:
       nginx.ingress.kubernetes.io/ssl-redirect: "false"
       nginx.ingress.kubernetes.io/backend-protocol: "HTTP"
-      nginx.ingress.kubernetes.io/use-regex: "true"
-      nginx.ingress.kubernetes.io/rewrite-target: /$2
     enableTLS: true
     clusterIssuer: "letsencrypt-in2-test-issuer"
 
@@ -78,7 +76,7 @@ dome-wallet:
     image:
       pullPolicy: Always
       # Overrides the image tag whose default is the chart appVersion.
-      tag: v1.9.1
+      tag: v1.9.5-snapshot
     ## deployment specific configuration
     app:
       logsEnabled: true
@@ -90,8 +88,7 @@ dome-wallet:
       logoSrc: "assets/logos/dome-logo.png"
       faviconSrc: "assets/icons/dome-favicon.png"
       walletApi:
-        # Este internalDomain es en realidad el external
-        internalUrl: https://wallet-dev.in2.ssihub.org/api
+        externalUrl: https://wallet-dev.in2.ssihub.org/api
         # ws = sin certificado, wss = con certificado
         websocketExternalUrl: wss://wallet-dev.in2.ssihub.org/api
       iam:
@@ -179,7 +176,10 @@ dome-wallet:
       # -- should the default postgres user be enabled
       enablePostgresUser: true
       # -- existing secret
-      #  existingSecret: wallet-postgres-secret
+      existingSecret: wallet-secret
+      secretKeys:
+        adminPasswordKey: keycloak-db-password
+        userPasswordKey: keycloak-db-password
     ## configuration of the postgres primary replica
     primary:
       ## provide db initialization
