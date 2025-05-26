@@ -88,9 +88,9 @@ dome-wallet:
       logoSrc: "assets/logos/dome-logo.png"
       faviconSrc: "assets/icons/dome-favicon.png"
       walletApi:
-        externalUrl: https://wallet-dev.in2.ssihub.org/api
+        externalUrl: https://wallet-dev.in2.ssihub.org
         # ws = sin certificado, wss = con certificado
-        websocketExternalUrl: wss://wallet-dev.in2.ssihub.org/api
+        websocketExternalUrl: wss://wallet-dev.in2.ssihub.org
       iam:
         externalUrl: https://wallet-dev.in2.ssihub.org/keycloak/realms/wallet
 
