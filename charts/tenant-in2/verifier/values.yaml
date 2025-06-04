@@ -4,7 +4,7 @@ dome-verifier:
     tag: v1.3.9
     pullPolicy: Always
 
-  fullnameOverride: verifier-api
+  fullnameOverride: dome-verifier
 
   ingress:
     enabled: true
