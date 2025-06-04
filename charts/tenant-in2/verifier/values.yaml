@@ -57,20 +57,12 @@ dome-verifier:
       url: "https://verifier-dev.in2.ssihub.org"
       security:
         serviceIdentity:
-          # Placeholder for private key used in identity verification (REQUIRED)
-          privateKey:
-            existingSecret:
-              enabled: true
-              name: verifier-secret
-              key: private-key
-          # Placeholder for DID Key (REQUIRED)
+          existingSecret:
+            enabled: true
+            name: verifier-secret
+            privateKey: private-key
+            verifiableCredential: verifiable-credential
           didKey: "did:key:zDnaegjBQpHyFKHToNzap68Ei6ZZRisTRKnRgajNF8QofTT2x"
-          # Placeholder for LEARCredentialMachine in Base64 format (REQUIRED)
-          verifiableCredential:
-            existingSecret:
-              enabled: true
-              name: verifier-secret
-              key: verifiable-credential
       trustFrameworks:
         # Placeholder for the name of a trust framework (REQUIRED)
         - name: DOME
