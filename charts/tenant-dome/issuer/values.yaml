@@ -16,7 +16,7 @@ dome-issuer:
   dome-issuer-backend:
     image:
       # Overrides the image tag whose default is the chart appVersion.
-      tag: v1.7.0-snapshot
+      tag: v1.7.1-snapshot
       pullPolicy: Always
     app:
       logLevel:
