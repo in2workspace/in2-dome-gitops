@@ -1,7 +1,7 @@
 dome-verifier:
   image:
     repository: in2workspace/in2-verifier-api
-    tag: v1.3.9
+    tag: v1.3.10-snapshot
     pullPolicy: Always
 
   fullnameOverride: dome-verifier
