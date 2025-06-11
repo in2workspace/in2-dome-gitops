@@ -1,7 +1,6 @@
 dome-issuer:
 
   global:
-    tenantName: "tenant-in2"
     domain: "issuer-dev.in2.ssihub.org"
     ingress:
       enabled: true
@@ -17,7 +16,7 @@ dome-issuer:
     image:
       repository: in2workspace/in2-issuer-backend
       # Overrides the image tag whose default is the chart appVersion.
-      tag: v1.6.9-snapshot
+      tag: v1.7.2-snapshot
       pullPolicy: Always
     ingressIssuerApi:
       enabled: true
@@ -125,7 +124,7 @@ dome-issuer:
   dome-issuer-frontend:
     image:
       # Overrides the image tag whose default is the chart appVersion.
-      tag: v1.13.1-snapshot
+      tag: v1.13.1
       pullPolicy: Always
     app:
       colors:
