@@ -15,9 +15,25 @@ dome-issuer:
 
   dome-issuer-backend:
     image:
+      repository: in2workspace/in2-issuer-backend
       # Overrides the image tag whose default is the chart appVersion.
-      tag: v1.7.1-snapshot
+      tag: v2.1.0-snapshot
       pullPolicy: Always
+    ingressIssuerApi:
+      enabled: true
+      className: nginx
+      annotations:
+        cert-manager.io/cluster-issuer: letsencrypt-in2-test-issuer
+        nginx.ingress.kubernetes.io/rewrite-target: /vci/v1/issuances
+      hosts:
+        - host: issuer-dev.dome.ssihub.org
+          paths:
+            - path: /issuer-api/vci/v1/issuances
+              pathType: ImplementationSpecific
+      tls:
+        - hosts:
+            - issuer-dev.dome.ssihub.org
+          secretName: issuer-tls-secret
     app:
       logLevel:
         app: DEBUG
@@ -27,8 +43,8 @@ dome-issuer:
       knowledgeBase:
         walletGuideUrl: "https://knowledgebase.dome-marketplace-dev2.org/shelves/company-onboarding-process"
         uploadCertificationGuideUrl: "https://knowledgebase.dome-marketplace-dev2.org"
-      trustFrameworkUrl: "http://trusted-issuers-list.marketplace.svc.cluster.local:8080"
-      verifierUrl: "https://verifier.dome-marketplace-lcl.org"
+      trustFrameworkUrl: "http://trusted-issuers-list:8080"
+      verifierUrl: "https://verifier-dev.in2.ssihub.org"
       mail:
         host: smtp.ionos.de
         port: 587
@@ -55,7 +71,7 @@ dome-issuer:
           credentialPassword: credential-password
         #types allowed: server, cloud
         type: cloud
-        url: https://dts-component-rdss-csc.pre-api.digitelts.com
+        url: https://dts-component-rdss-csc.ace-api.digitelts.com
       authServer:
         provider: keycloak
         externalUrl: https://keycloak-dev.ssihub.org
@@ -91,12 +107,8 @@ dome-issuer:
           allowedOrigins: "https://issuer-dev.dome.ssihub.org"
         external:
           allowedOrigins: "https://issuer-dev.dome.ssihub.org"
-      vault:
-        url: http://vault-server:8200
-        existingSecret:
-          enabled: true
-          name: vault-unseal-secret
-          key: root
+      verifier:
+        url: "https://verifier-dev.in2.ssihub.org"
       db:
         externalService: false
         host: issuer-postgres
@@ -113,7 +125,7 @@ dome-issuer:
   dome-issuer-frontend:
     image:
       # Overrides the image tag whose default is the chart appVersion.
-      tag: v1.13.0-snapshot
+      tag: v1.13.1-snapshot
       pullPolicy: Always
     app:
       colors:
@@ -125,8 +137,8 @@ dome-issuer:
       faviconSrc: "DOME_Icon.png"
       keycloakUrl: "https://keycloak-dev.ssihub.org/realms/dome-issuer"
       backendUrl: "https://issuer-dev.dome.ssihub.org"
-      walletUrl: "https://wallet-dev.dome.ssihub.org"
-      knowledgeBase: "https://knowledgebase.dome-marketplace-dev2.org"
+      walletUrl: "https://wallet.dome-marketplace.eu"
+      knowledgeBaseUrl: "https://knowledgebase.dome-marketplace-dev2.org"
 
   dome-issuer-keycloak:
     enabled: false
