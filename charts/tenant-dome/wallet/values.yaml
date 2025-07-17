@@ -17,7 +17,7 @@ dome-wallet:
     fullNameOverride: "dome-wallet-backend"
     image:
       # Overrides the image tag whose default is the chart appVersion.
-      tag: v2.0.3-snapshot
+      tag: v1.9.8-snapshot
       pullPolicy: Always
     ## deployment specific configuration
     app:
