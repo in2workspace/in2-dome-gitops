@@ -138,6 +138,8 @@ dome-issuer:
       keycloakUrl: "https://keycloak-dev.ssihub.org/realms/dome-issuer"
       backendUrl: "https://issuer-dev.dome.ssihub.org"
       walletUrl: "https://wallet.dome-marketplace.eu"
+      walletUrlTest: "https://wallet-dev.dome.ssihub.org"
+      showWalletUrlTest: "true"
       knowledgeBaseUrl: "https://knowledgebase.dome-marketplace-dev2.org"
 
   dome-issuer-keycloak:
