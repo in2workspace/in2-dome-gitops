@@ -45,6 +45,7 @@ dome-issuer:
         uploadCertificationGuideUrl: "https://knowledgebase.dome-marketplace-dev2.org"
       trustFrameworkUrl: "http://trusted-issuers-list.tenant-in2.svc.cluster.local:8080"
       verifierUrl: "https://verifier-dev.in2.ssihub.org"
+      walletUrl: "https://wallet-dev.dome.ssihub.org"
       mail:
         host: smtp.ionos.de
         port: 587
