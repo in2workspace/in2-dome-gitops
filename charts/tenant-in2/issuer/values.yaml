@@ -125,7 +125,7 @@ dome-issuer:
   dome-issuer-frontend:
     image:
       # Overrides the image tag whose default is the chart appVersion.
-      tag: v2.2.0-snapshot
+      tag: v2.2.1-snapshot
       pullPolicy: Always
     app:
       colors:
@@ -138,6 +138,8 @@ dome-issuer:
       keycloakUrl: "https://keycloak-dev.ssihub.org/realms/in2-issuer"
       backendUrl: "https://issuer-dev.in2.ssihub.org"
       walletUrl: "https://wallet.dome-marketplace.eu"
+      walletUrlTest: "https://wallet-dev.in2.ssihub.org"
+      showWalletUrlTest: "true"
       knowledgeBaseUrl: "https://knowledgebase.dome-marketplace-dev2.org"
 
   dome-issuer-keycloak:
