@@ -46,8 +46,9 @@ dome-issuer:
       trustFrameworkUrl: "http://trusted-issuers-list.tenant-in2.svc.cluster.local:8080"
       verifierUrl: "https://verifier-dev.in2.ssihub.org"
       walletUrl: "https://wallet-dev.dome.ssihub.org"
+      # temporary corrupted for a test
       mail:
-        host: smtp.ionos.de
+        host: smtp.is.de
         port: 587
         existingSecret:
           enabled: true
