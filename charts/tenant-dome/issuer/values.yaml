@@ -48,7 +48,7 @@ dome-issuer:
       walletUrl: "https://wallet-dev.dome.ssihub.org"
       # temporary corrupted for a test
       mail:
-        host: smtp.is.de
+        host: smtp.ionos.de
         port: 587
         existingSecret:
           enabled: true
