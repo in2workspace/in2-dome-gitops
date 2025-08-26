@@ -15,9 +15,9 @@ dome-issuer:
 
   dome-issuer-backend:
     image:
-      repository: in2workspace/in2-issuer-backend
+      repository: in2workspace/eudistack-issuer-api
       # Overrides the image tag whose default is the chart appVersion.
-      tag: v2.4.5-snapshot
+      tag: v2.0.0-pr-155
       pullPolicy: Always
     ingressIssuerApi:
       enabled: true
