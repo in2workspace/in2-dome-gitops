@@ -128,7 +128,7 @@ dome-issuer:
   dome-issuer-frontend:
     image:
       # Overrides the image tag whose default is the chart appVersion.
-      tag: v2.2.1-snapshot
+      tag: v2.0.0-pr-106
       pullPolicy: Always
     app:
       colors:
