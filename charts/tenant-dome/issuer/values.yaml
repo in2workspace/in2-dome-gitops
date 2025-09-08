@@ -43,8 +43,8 @@ dome-issuer:
       knowledgeBase:
         walletGuideUrl: "https://knowledgebase.dome-marketplace-dev2.org/shelves/company-onboarding-process"
         uploadCertificationGuideUrl: "https://knowledgebase.dome-marketplace-dev2.org"
-      trustFrameworkUrl: "http://trusted-issuers-list.tenant-in2.svc.cluster.local:8080"
-      verifierUrl: "https://verifier-dev.in2.ssihub.org"
+      trustFrameworkUrl: "http://trusted-issuers-list.marketplace.svc.cluster.local:8080"
+      verifierUrl: "https://verifier.dome-marketplace-lcl.org"
       walletUrl: "https://wallet-dev.dome.ssihub.org"
       # temporary corrupted for a test
       mail:
@@ -111,7 +111,7 @@ dome-issuer:
         external:
           allowedOrigins: "https://issuer-dev.dome.ssihub.org"
       verifier:
-        url: "https://verifier-dev.in2.ssihub.org"
+        url: "https://verifier.dome-marketplace-lcl.org"
       db:
         externalService: false
         host: issuer-postgres
