@@ -56,14 +56,13 @@ dome-verifier:
       security:
         serviceIdentity:
           # Placeholder for private key used in identity verification (REQUIRED)
-          privateKey:
-            existingSecret:
-              enabled: true
-              name: verifier-secret
-              privateKey: private-key
-              verifiableCredential: verifiable-credential
-            # Placeholder for DID Key (REQUIRED)
-            didKey: "did:key:zDnaekiwkWcXnHaW6au3BpmfWfrtVTJZrA3EHgLvcbm6EZnup"
+          existingSecret:
+            enabled: true
+            name: verifier-secret
+            privateKey: private-key
+            verifiableCredential: verifiable-credential
+          # Placeholder for DID Key (REQUIRED)
+          didKey: "did:key:zDnaekiwkWcXnHaW6au3BpmfWfrtVTJZrA3EHgLvcbm6EZnup"
       trustFrameworks:
         # Placeholder for the name of a trust framework (REQUIRED)
         - name: DOME
