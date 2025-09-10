@@ -27,9 +27,9 @@ dome-verifier:
         # Placeholder for onboarding URL (REQUIRED)
         onboarding: "https://knowledgebase.dome-marketplace.org/shelves/company-onboarding-process"
         # Placeholder for support URL (REQUIRED)
-        support: "https://ticketing.dome-marketplace.org"
+        support: "https://ticketing-int.dome-marketplace.eu"
         # Placeholder for wallet URL (REQUIRED)
-        wallet: "https://wallet.dome-marketplace-lcl.org"
+        wallet: "https://wallet-dev.in2.ssihub.org"
       colors:
         primary: "#2D58A7"
         # Defines contrasting text color for primary color (OPTIONAL with default value)
@@ -40,7 +40,7 @@ dome-verifier:
         secondaryContrast: "#00ADD3"
       # Placeholder for logo source path (REQUIRED)
       # This routes must point to internal folder: src/main/resources/static/img/<file_name.png>
-      logoSrc: "dome_logo_white.png"
+      logoSrc: "dome_logo_white.svg"
       # Placeholder for favicon source path (OPTIONAL)
       # This routes must point to internal folder: src/main/resources/static/img/<file_name.png>
       faviconSrc: "dome_logo_favicon.png"

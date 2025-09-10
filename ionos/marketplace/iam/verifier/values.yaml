@@ -25,9 +25,9 @@ dome-verifier:
         # Placeholder for onboarding URL (REQUIRED)
         onboarding: "https://knowledgebase.dome-marketplace.org/shelves/company-onboarding-process"
         # Placeholder for support URL (REQUIRED)
-        support: "https://ticketing.dome-marketplace.org"
+        support: "https://ticketing-int.dome-marketplace.eu"
         # Placeholder for wallet URL (REQUIRED)
-        wallet: "https://wallet.dome-marketplace-lcl.org"
+        wallet: "https://wallet-dev.dome.ssihub.org"
       colors:
         primary: "#2D58A7"
         # Defines contrasting text color for primary color (OPTIONAL with default value)
