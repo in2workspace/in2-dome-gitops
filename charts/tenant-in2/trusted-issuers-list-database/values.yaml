@@ -8,7 +8,7 @@ mysql:
       CREATE DATABASE ccs;
   image:
     registry: docker.io
-    repository: bitnami/mysql
+    repository: bitnamilegacy/mysql
     tag: 8.0.31-debian-11-r10
     pullPolicy: IfNotPresent
 
