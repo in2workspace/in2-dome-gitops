@@ -1,6 +1,8 @@
 postgresql:
   global:
     storageClass: ""
+    security:
+      allowInsecureImages: true
 
   ## network policy configuration
   networkPolicy:
@@ -19,3 +21,9 @@ postgresql:
     ports:
       postgresql: 5432
 #    port: 5432
+
+  image:
+    registry: docker.io
+    repository: bitnamilegacy/postgresql
+    tag: 16.0.0-debian-11-r13
+    pullPolicy: IfNotPresent
