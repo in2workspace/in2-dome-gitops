@@ -23,6 +23,14 @@ dome-dss:
         name: dome-dss-vault-unseal-secret
         # -- key to retrieve the token from
         key: root
+      global:
+        security:
+          allowInsecureImages: true
+      image:
+        registry: docker.io
+        repository: bitnamilegacy/vault
+        tag: 1.16.3-debian-12-r1
+        pullPolicy: IfNotPresent
 
   authServer:
     internalDomain: "http://dome-issuer-keycloak:8080/issuer-keycloak"
