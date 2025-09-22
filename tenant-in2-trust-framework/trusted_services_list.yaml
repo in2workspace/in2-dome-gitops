@@ -10,7 +10,7 @@ clients:
     requireProofKey: false
     jwkSetUrl: "https://keycloak-dev.ssihub.org/realms/in2-issuer/protocol/openid-connect/certs"
     tokenEndpointAuthenticationSigningAlgorithm: "ES256"
-  - clientId: "did:key:zDnaeVJEMuv7pc4Y2FtVmUHvsPaF7uiJ8PotagaCURduxAdXj"
+  - clientId: "did:key:zDnaeovoz1VGLjjb5nLcg4bZch4KS4GizJWnjxrtto8vhftTT"
     redirectUris: [ ]
     scopes: [ ]
     clientAuthenticationMethods: [ "client_secret_jwt" ]
@@ -18,5 +18,5 @@ clients:
     postLogoutRedirectUris: [ ]
     requireAuthorizationConsent: false
     requireProofKey: false
-    jwkSetUrl: "https://verifier-dev.in2.ssihub.org/oidc/did/did:key:zDnaeVJEMuv7pc4Y2FtVmUHvsPaF7uiJ8PotagaCURduxAdXj"
+    jwkSetUrl: "https://verifier-dev.in2.ssihub.org/oidc/did/did:key:zDnaeovoz1VGLjjb5nLcg4bZch4KS4GizJWnjxrtto8vhftTT"
     tokenEndpointAuthenticationSigningAlgorithm: "ES256"
