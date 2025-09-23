@@ -6,3 +6,9 @@ mysql:
     create.sql: |
       CREATE DATABASE til;
       CREATE DATABASE ccs;
+  image:
+    registry: docker.io
+    repository: bitnamilegacy/mysql
+    tag: 8.0.31-debian-11-r10
+    pullPolicy: IfNotPresent
+
