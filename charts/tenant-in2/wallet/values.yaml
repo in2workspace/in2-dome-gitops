@@ -88,7 +88,7 @@ dome-wallet:
         secondary: "#40a2d0"
         secondaryContrast: "#444444"
       logoSrc: "assets/logos/altia-logo.png"
-      faviconSrc: "assets/icons/altia-favicon.png"
+      faviconSrc: "assets/icons/altia-favicon.ico"
       walletApi:
         externalUrl: https://wallet-dev.in2.ssihub.org
         # ws = sin certificado, wss = con certificado
