@@ -31,7 +31,7 @@ dome-verifier:
         # Placeholder for wallet URL (REQUIRED)
         wallet: "https://wallet-dev.in2.ssihub.org"
       colors:
-        primary: "#1b3891 "
+        primary: "#1b3891"
         # Defines contrasting text color for primary color (OPTIONAL with default value)
         primaryContrast: "#f2f2f2f2"
         # Defines secondary color for the frontend (OPTIONAL with default value)
@@ -40,10 +40,10 @@ dome-verifier:
         secondaryContrast: "#444444"
       # Placeholder for logo source path (REQUIRED)
       # This routes must point to internal folder: src/main/resources/static/img/<file_name.png>
-      logoSrc: "altia_logo_white.svg"
+      logoSrc: "altia_logo_white.png"
       # Placeholder for favicon source path (OPTIONAL)
       # This routes must point to internal folder: src/main/resources/static/img/<file_name.png>
-      faviconSrc: "altia_logo_favicon.png"
+      faviconSrc: "altia_logo_favicon.ico"
     backend:
       logging:
         level:
