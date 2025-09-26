@@ -151,3 +151,15 @@ clients:
     requireProofKey: false
     jwkSetUrl: "https://verifier.dome-marketplace-lcl.org/oidc/did/did:key:zDnaeb3th2TDPrQTnM19Mdy543xFetwCpqjmcGBFgisqYKuL4"
     tokenEndpointAuthenticationSigningAlgorithm: "ES256"
+
+  - clientId: "did:key:zDnaecMc5YES917FMe7zJGgmpa4ttGYVcjBcVEc6o8FgfcKD7"
+    url: "https://dome.tddev.it"
+    redirectUris: [ "https://dome.tddev.it/auth/vc/callback" ]
+    scopes: [ "openid_learcredential" ]
+    clientAuthenticationMethods: [ "client_secret_jwt" ]
+    authorizationGrantTypes: [ "authorization_code", "refresh_token" ]
+    postLogoutRedirectUris: [ ]
+    requireAuthorizationConsent: false
+    requireProofKey: false
+    jwkSetUrl: "https://verifier.dome-marketplace-sbx.org/oidc/did/did:key:zDnaecMc5YES917FMe7zJGgmpa4ttGYVcjBcVEc6o8FgfcKD7"
+    tokenEndpointAuthenticationSigningAlgorithm: "ES256"
