@@ -35,7 +35,7 @@ dome-verifier:
         # Defines contrasting text color for primary color (OPTIONAL with default value)
         primaryContrast: "#000000"
         # Defines secondary color for the frontend (OPTIONAL with default value)
-        secondary: "#76F276"
+        secondary: "#F9F3E7"
         # Defines contrasting text color for secondary color (OPTIONAL with default value)
         secondaryContrast: "#F9F3E7"
       # Placeholder for logo source path (REQUIRED)
