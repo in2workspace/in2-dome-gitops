@@ -78,17 +78,17 @@ dome-wallet:
       pullPolicy: Always
       repository: in2workspace/eudistack-wallet-ui
       # Overrides the image tag whose default is the chart appVersion.
-      tag: v2.0.1-pr-125
+      tag: v2.0.1-pr-127
     ## deployment specific configuration
     app:
       logsEnabled: true
       colors:
-        primary: "#1b3891 "
-        primaryContrast: "#f2f2f2f2"
-        secondary: "#40a2d0"
-        secondaryContrast: "#444444"
-      logoSrc: "assets/logos/altia-logo.png"
-      faviconSrc: "assets/icons/altia-favicon.ico"
+        primary: "#B88EFF"
+        primaryContrast: "#000000"
+        secondary: "#76F276"
+        secondaryContrast: "#F9F3E7"
+      logoSrc: "assets/logos/isbe-logo.svg"
+      faviconSrc: "assets/icons/isbe-favicon.svg"
       walletApi:
         externalUrl: https://wallet-dev.in2.ssihub.org
         # ws = sin certificado, wss = con certificado

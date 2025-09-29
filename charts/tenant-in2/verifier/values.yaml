@@ -1,7 +1,7 @@
 dome-verifier:
   image:
     repository: in2workspace/eudistack-verifier-api
-    tag: v2.0.1-pr-53
+    tag: v2.0.1-pr-55
     pullPolicy: Always
 
   fullnameOverride: dome-verifier
@@ -31,19 +31,19 @@ dome-verifier:
         # Placeholder for wallet URL (REQUIRED)
         wallet: "https://wallet-dev.in2.ssihub.org"
       colors:
-        primary: "#1b3891"
+        primary: "#B88EFF"
         # Defines contrasting text color for primary color (OPTIONAL with default value)
-        primaryContrast: "#f2f2f2f2"
+        primaryContrast: "#000000"
         # Defines secondary color for the frontend (OPTIONAL with default value)
-        secondary: "#40a2d0"
+        secondary: "#76F276"
         # Defines contrasting text color for secondary color (OPTIONAL with default value)
-        secondaryContrast: "#444444"
+        secondaryContrast: "#F9F3E7"
       # Placeholder for logo source path (REQUIRED)
       # This routes must point to internal folder: src/main/resources/static/img/<file_name.png>
-      logoSrc: "altia_logo_white.png"
+      logoSrc: "isbe-logo.svg"
       # Placeholder for favicon source path (OPTIONAL)
       # This routes must point to internal folder: src/main/resources/static/img/<file_name.png>
-      faviconSrc: "altia_logo_favicon.ico"
+      faviconSrc: "isbe-favicon.svg"
     backend:
       logging:
         level:
