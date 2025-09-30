@@ -3,7 +3,7 @@ name: mongo-db-one
 description: Chart holder for argo-cd
 
 type: application
-version: 0.0.5
+version: 0.0.6
 appVersion: "4.4.12"
 
 dependencies:

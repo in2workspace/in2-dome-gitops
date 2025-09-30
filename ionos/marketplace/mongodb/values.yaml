@@ -2,7 +2,7 @@ mongodb:
   image:
     registry: docker.io
     repository: bitnamilegacy/mongodb
-    tag: 4.4.12-debian-10-r12
+    tag: 4.4.12
 
   commonAnnotations:
     wistefan/rollout-injecting-webhook: ignore
