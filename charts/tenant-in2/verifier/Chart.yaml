@@ -3,7 +3,7 @@ name: dome-verifier
 description: Chart holder for argo-cd
 
 type: application
-version: 1.0.34
+version: 1.0.35
 appVersion: 1.1.2
 
 dependencies:
