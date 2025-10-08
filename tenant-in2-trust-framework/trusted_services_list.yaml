@@ -20,3 +20,13 @@ clients:
     requireProofKey: false
     jwkSetUrl: "https://verifier-dev.in2.ssihub.org/oidc/did/did:key:zDnaeovoz1VGLjjb5nLcg4bZch4KS4GizJWnjxrtto8vhftTT"
     tokenEndpointAuthenticationSigningAlgorithm: "ES256"
+  - clientId: "catalog-mkpl"
+    url: "https://deploy-preview-2--isbecatalog.netlify.app/"
+    redirectUris: [ "https://deploy-preview-2--isbecatalog.netlify.app/" ]
+    scopes: [ "openid_learcredential" ]
+    clientAuthenticationMethods: [ "none" ]
+    authorizationGrantTypes: [ "authorization_code" ]
+    postLogoutRedirectUris: [ "https://deploy-preview-2--isbecatalog.netlify.app/" ]
+    requireAuthorizationConsent: false
+    requireProofKey: false
+    tokenEndpointAuthenticationSigningAlgorithm: "ES256"
