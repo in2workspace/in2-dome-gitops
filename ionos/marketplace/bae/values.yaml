@@ -126,7 +126,7 @@ business-api-ecosystem:
     deployment:
       image:
         repository: fiware/biz-ecosystem-charging-backend
-        tag: "10.5.0-PRE-1"
+        tag: "10.4.0"
         pullPolicy: Always
 
     plugins:
@@ -192,7 +192,7 @@ business-api-ecosystem:
     statefulset:
       image:
         repository: fiware/biz-ecosystem-logic-proxy
-        tag: "10.4.0-PRE-1"
+        tag: "10.3.3"
         pullPolicy: Always
 
     ingress:
@@ -234,11 +234,11 @@ business-api-ecosystem:
       - name: BAE_LP_TICKETING_URL
         value: https://ticketing.dome-marketplace-sbx.org/
       - name: BAE_LP_SIOP_OPERATORS
-        value: VATES-B87798617,VATIT-05724831002
+        value: did:elsi:VATES-B60645900
       - name: BAE_LP_SEARCH_URL
         value: http://dome-search-svc.search-engine.svc.cluster.local:8080
       - name: BAE_LP_MATOMO_ID
-        value: "3"
+        value: "2"
       - name: BAE_LP_MATOMO_URL
         value: https://dome-webstats.eurodyn.com/
       - name: BAE_LP_DOME_TRUST
