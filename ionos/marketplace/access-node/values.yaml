@@ -69,7 +69,7 @@ access-node:
           name: access-node-secret
           key: lear-credential-machine
       # -- configuration for the api path version
-      desmosPathVersion: v2
+      desmosPathVersion: v1
     ## configuration of the database to be used by the blockchain-connector
     db:
       # -- host of the db
