@@ -163,3 +163,14 @@ clients:
     requireProofKey: false
     jwkSetUrl: "https://verifier.dome-marketplace-sbx.org/oidc/did/did:key:zDnaecMc5YES917FMe7zJGgmpa4ttGYVcjBcVEc6o8FgfcKD7"
     tokenEndpointAuthenticationSigningAlgorithm: "ES256"
+
+  - clientId: "catalog-mkpl"
+    url: "https://deploy-preview-2--isbecatalog.netlify.app/"
+    redirectUris: [ "https://deploy-preview-2--isbecatalog.netlify.app/" ]
+    scopes: [ "openid_learcredential" ]
+    clientAuthenticationMethods: [ "none" ]
+    authorizationGrantTypes: [ "authorization_code" ]
+    postLogoutRedirectUris: [ "https://deploy-preview-2--isbecatalog.netlify.app/" ]
+    requireAuthorizationConsent: false
+    requireProofKey: false
+    tokenEndpointAuthenticationSigningAlgorithm: "ES256"
