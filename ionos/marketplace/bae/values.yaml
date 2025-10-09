@@ -142,7 +142,7 @@ business-api-ecosystem:
     loglevel: debug
 
     payment:
-      method: dpas
+      method: None
 
     existingSecret: bae-secret
     secretName: bae-secret
