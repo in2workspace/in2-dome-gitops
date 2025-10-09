@@ -1,5 +1,5 @@
 clients:
-  - clientId: "did:key:zDnaezLhSFWRZ1zrYQRwLxV8nDWmb2REHoUf7N3qvna1TFina"
+  - clientId: "did:key:zDnaeT3N7TQicj797XxvZtyb8aKrWfArrTjjLnRng6mR1gguX"
     redirectUris: []
     scopes: []
     clientAuthenticationMethods: ["client_secret_jwt"]
@@ -7,7 +7,7 @@ clients:
     postLogoutRedirectUris: []
     requireAuthorizationConsent: false
     requireProofKey: false
-    jwkSetUrl: "https://verifier.dome-marketplace-lcl.org/oidc/did/did:key:zDnaezLhSFWRZ1zrYQRwLxV8nDWmb2REHoUf7N3qvna1TFina"
+    jwkSetUrl: "https://verifier.dome-marketplace-lcl.org/oidc/did/did:key:zDnaeT3N7TQicj797XxvZtyb8aKrWfArrTjjLnRng6mR1gguX"
     tokenEndpointAuthenticationSigningAlgorithm: "ES256"
 
   - clientId: "did:key:zDnaeUcW7pAV2xfcEMRsi3tsgYSYkLEf8mbSCZ7YFhKDu6XcR"
