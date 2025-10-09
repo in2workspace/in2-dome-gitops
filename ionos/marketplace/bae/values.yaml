@@ -65,6 +65,7 @@ business-api-ecosystem:
       - admin
     # Configuration for the Credential Config Service initiation
     ccs:
+      enabled: false
       endpoint: "http://credentials-config-service:8080"
       defaultOidcScope: "defaultScope"
       # -- Credential configurations for particular scopes
@@ -141,13 +142,26 @@ business-api-ecosystem:
     loglevel: debug
 
     payment:
-      method: None
+      method: dpas
 
     existingSecret: bae-secret
+    secretName: bae-secret
+
     db:
       host: mongodb
       database: charging_db
       user: charging
+
+    email:
+      ## -- Mail address
+      mail: noreply-customer-service@dome-marketplace.eu
+      ## -- SMTP configuration
+      smtp:
+        ## -- User name
+        user: customer-service@dome-marketplace.eu
+        ## -- SMTP server hostname
+        server: smtp.ionos.de
+        password: true
 
     backup:
       enabled: false
@@ -157,6 +171,14 @@ business-api-ecosystem:
     basePath: /opt/business-ecosystem-charging-backend
     token:
       enabled: false
+
+    extraEnvVars:
+      - name: BAE_CB_CUSTOMER_BILL
+        value: "http://tm-forum-api-customer-bill-management:8080/tmf-api/customerBill/v4"
+      - name: BAE_CB_DPAS_CLIENT_API_URL
+        value: "https://dpas-sbx.egroup.hu/api/payment-start"
+      - name: BAE_CB_PARTY
+        value: "http://tm-forum-api-party-catalog:8080/tmf-api/party/v4"
 
   oauth:
     provider: "vc"
@@ -201,6 +223,8 @@ business-api-ecosystem:
     initContainers: false
     propagateToken: true
     additionalEnvVars:
+      - name: MIGRATE_DATA
+        value: "False"
       - name: BAE_LP_SIOP_IS_REDIRECTION
         value: "true"
       - name: BAE_LP_CHAT_URL
@@ -223,6 +247,20 @@ business-api-ecosystem:
         value: "true"
       - name: BAE_LP_DOME_ABOUT
         value: https://dome-project.eu/about/
+      - name: BAE_LP_DOME_REGISTRATION_FORM
+        value: https://onboarding.dome-marketplace.eu/
+      - name: BAE_LP_DOME_ONBOARDING_GUIDELINES
+        value: https://knowledgebase.dome-marketplace-prd.org/books/company-onboarding-process-guide-for-cloud-service-providers-csp
+      - name: BAE_LP_DOME_GUIDELINES
+        value: https://knowledgebase.dome-marketplace-prd.org/books/managing-orders-products-and-subscriptions
+      - name: BAE_LP_BILLING_ENGINE_URL
+        value: http://billing-proxy-svc.billing.svc.cluster.local:8080
+      - name: BAE_LP_ENDPOINT_CUSTOMER_BILL_HOST
+        value: tm-forum-api-customer-bill-management
+      - name: BAE_LP_ENDPOINT_CUSTOMER_BILL_PORT
+        value: "8080"
+      - name: BAE_LP_PAYMENT_GATEWAY
+        value: https://dpas-sbx.egroup.hu
       - name: BAE_LP_SIOP_PRIVATE_KEY
         valueFrom:
           secretKeyRef:
