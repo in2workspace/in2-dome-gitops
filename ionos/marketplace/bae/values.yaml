@@ -1,5 +1,6 @@
 business-api-ecosystem:
   bizEcosystemApis:
+    # should set the path to the new apis.
     fullnameOverride: tmforum-api-proxy
     enabled: false
     tmForum:
@@ -43,10 +44,6 @@ business-api-ecosystem:
         host: tm-forum-api-resource-inventory
         port: 8080
         path:
-      serviceInventory:
-        host: tm-forum-api-service-inventory
-        port: 8080
-        path:
 
   bizEcosystemRss:
     enabled: false
@@ -65,7 +62,6 @@ business-api-ecosystem:
       - admin
     # Configuration for the Credential Config Service initiation
     ccs:
-      enabled: false
       endpoint: "http://credentials-config-service:8080"
       defaultOidcScope: "defaultScope"
       # -- Credential configurations for particular scopes
@@ -126,7 +122,7 @@ business-api-ecosystem:
     deployment:
       image:
         repository: fiware/biz-ecosystem-charging-backend
-        tag: "10.4.0"
+        tag: 9.1.2
         pullPolicy: Always
 
     plugins:
@@ -145,23 +141,10 @@ business-api-ecosystem:
       method: None
 
     existingSecret: bae-secret
-    secretName: bae-secret
-
     db:
       host: mongodb
       database: charging_db
       user: charging
-
-    email:
-      ## -- Mail address
-      mail: noreply-customer-service@dome-marketplace.eu
-      ## -- SMTP configuration
-      smtp:
-        ## -- User name
-        user: customer-service@dome-marketplace.eu
-        ## -- SMTP server hostname
-        server: smtp.ionos.de
-        password: true
 
     backup:
       enabled: false
@@ -171,14 +154,6 @@ business-api-ecosystem:
     basePath: /opt/business-ecosystem-charging-backend
     token:
       enabled: false
-
-    extraEnvVars:
-      - name: BAE_CB_CUSTOMER_BILL
-        value: "http://tm-forum-api-customer-bill-management:8080/tmf-api/customerBill/v4"
-      - name: BAE_CB_DPAS_CLIENT_API_URL
-        value: "https://dpas-sbx.egroup.hu/api/payment-start"
-      - name: BAE_CB_PARTY
-        value: "http://tm-forum-api-party-catalog:8080/tmf-api/party/v4"
 
   oauth:
     provider: "vc"
@@ -192,7 +167,7 @@ business-api-ecosystem:
     statefulset:
       image:
         repository: fiware/biz-ecosystem-logic-proxy
-        tag: "10.3.3"
+        tag: "9.11.4"
         pullPolicy: Always
 
     ingress:
@@ -223,8 +198,6 @@ business-api-ecosystem:
     initContainers: false
     propagateToken: true
     additionalEnvVars:
-      - name: MIGRATE_DATA
-        value: "False"
       - name: BAE_LP_SIOP_IS_REDIRECTION
         value: "true"
       - name: BAE_LP_CHAT_URL
@@ -238,7 +211,7 @@ business-api-ecosystem:
       - name: BAE_LP_SEARCH_URL
         value: http://dome-search-svc.search-engine.svc.cluster.local:8080
       - name: BAE_LP_MATOMO_ID
-        value: "3"
+        value: "2"
       - name: BAE_LP_MATOMO_URL
         value: https://dome-webstats.eurodyn.com/
       - name: BAE_LP_DOME_TRUST
@@ -247,20 +220,6 @@ business-api-ecosystem:
         value: "true"
       - name: BAE_LP_DOME_ABOUT
         value: https://dome-project.eu/about/
-      - name: BAE_LP_DOME_REGISTRATION_FORM
-        value: https://onboarding.dome-marketplace.eu/
-      - name: BAE_LP_DOME_ONBOARDING_GUIDELINES
-        value: https://knowledgebase.dome-marketplace-prd.org/books/company-onboarding-process-guide-for-cloud-service-providers-csp
-      - name: BAE_LP_DOME_GUIDELINES
-        value: https://knowledgebase.dome-marketplace-prd.org/books/managing-orders-products-and-subscriptions
-      - name: BAE_LP_BILLING_ENGINE_URL
-        value: http://billing-proxy-svc.billing.svc.cluster.local:8080
-      - name: BAE_LP_ENDPOINT_CUSTOMER_BILL_HOST
-        value: tm-forum-api-customer-bill-management
-      - name: BAE_LP_ENDPOINT_CUSTOMER_BILL_PORT
-        value: "8080"
-      - name: BAE_LP_PAYMENT_GATEWAY
-        value: https://dpas-sbx.egroup.hu
       - name: BAE_LP_SIOP_PRIVATE_KEY
         valueFrom:
           secretKeyRef:
