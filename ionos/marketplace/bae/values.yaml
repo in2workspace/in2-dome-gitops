@@ -6,47 +6,47 @@ business-api-ecosystem:
       catalog:
         host: tm-forum-api-product-catalog
         port: 8080
-        path: /tmf-api/productCatalogManagement/v4
+        path:
       inventory:
         host: tm-forum-api-product-inventory
         port: 8080
-        path: /tmf-api/productInventory/v4
+        path:
       ordering:
         host: tm-forum-api-product-ordering-management
         port: 8080
-        path: /tmf-api/productOrderingManagement/v4
+        path:
       billing:
         host: tm-forum-api-account
         port: 8080
-        path: /tmf-api/accountManagement/v4
+        path:
       usage:
         host: tm-forum-api-usage-management
         port: 8080
-        path: /tmf-api/usageManagement/v4
+        path:
       party:
         host: tm-forum-api-party-catalog
         port: 8080
-        path: /tmf-api/party/v4
+        path:
       customer:
         host: tm-forum-api-customer-management
         port: 8080
-        path: /tmf-api/customerManagement/v4
+        path:
       resources:
         host: tm-forum-api-resource-catalog
         port: 8080
-        path: /tmf-api/resourceCatalog/v4
+        path:
       services:
         host: tm-forum-api-service-catalog
         port: 8080
-        path: /tmf-api/serviceCatalogManagement/v4
+        path:
       resourceInventory:
         host: tm-forum-api-resource-inventory
         port: 8080
-        path: /tmf-api/resourceInventoryManagement/v4
+        path:
       serviceInventory:
         host: tm-forum-api-service-inventory
         port: 8080
-        path: /tmf-api/serviceInventory/v4
+        path:
 
   bizEcosystemRss:
     enabled: false
@@ -238,7 +238,7 @@ business-api-ecosystem:
       - name: BAE_LP_SEARCH_URL
         value: http://dome-search-svc.search-engine.svc.cluster.local:8080
       - name: BAE_LP_MATOMO_ID
-        value: "2"
+        value: "3"
       - name: BAE_LP_MATOMO_URL
         value: https://dome-webstats.eurodyn.com/
       - name: BAE_LP_DOME_TRUST
