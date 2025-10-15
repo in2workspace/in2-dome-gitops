@@ -17,7 +17,7 @@ dome-issuer:
     image:
       repository: in2workspace/eudistack-issuer-api
       # Overrides the image tag whose default is the chart appVersion.
-      tag: v2.1.0
+      tag: v2.1.1-pr-182
       pullPolicy: Always
     ingressIssuerApi:
       enabled: true
@@ -46,6 +46,7 @@ dome-issuer:
       trustFrameworkUrl: "http://trusted-issuers-list.marketplace.svc.cluster.local:8080"
       verifierUrl: "https://verifier.dome-marketplace-lcl.org"
       walletUrl: "https://wallet-dev.dome.ssihub.org"
+      defaultLang: "es"
       # temporary corrupted for a test
       mail:
         host: smtp.ionos.de
@@ -129,7 +130,7 @@ dome-issuer:
     image:
       repository: in2workspace/eudistack-issuer-ui
       # Overrides the image tag whose default is the chart appVersion.
-      tag: v2.1.0
+      tag: v2.1.1-pr-122
       pullPolicy: Always
     app:
       colors:
@@ -145,6 +146,7 @@ dome-issuer:
       walletUrlTest: "https://wallet-dev.dome.ssihub.org"
       showWalletUrlTest: "true"
       knowledgeBaseUrl: "https://knowledgebase.dome-marketplace-dev2.org"
+      defaultLang: "es"
 
   dome-issuer-keycloak:
     enabled: false
