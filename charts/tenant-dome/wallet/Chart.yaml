@@ -2,7 +2,7 @@ apiVersion: v2
 name: wallet
 description: Chart holder for ArgoCD
 type: application
-version: 1.0.53
+version: 1.0.54
 dependencies:
   - name: dome-wallet
     condition: dome-wallet.enabled
