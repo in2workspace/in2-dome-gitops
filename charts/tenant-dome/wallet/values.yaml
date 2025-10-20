@@ -89,7 +89,7 @@ dome-wallet:
         secondaryContrast: "#000000"
       logoSrc: "assets/logos/dome-logo.png"
       faviconSrc: "assets/icons/dome-favicon.png"
-      defaultLang: "es"
+      defaultLang: "en"
       walletApi:
         externalUrl: https://wallet-dev.dome.ssihub.org
         # ws = sin certificado, wss = con certificado
