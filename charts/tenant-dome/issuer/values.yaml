@@ -47,7 +47,6 @@ dome-issuer:
       verifierUrl: "https://verifier.dome-marketplace-lcl.org"
       walletUrl: "https://wallet-dev.dome.ssihub.org"
       defaultLang: "en"
-      # temporary corrupted for a test
       mail:
         host: smtp.ionos.de
         port: 587
