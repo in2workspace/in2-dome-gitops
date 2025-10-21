@@ -1,0 +1,13 @@
+mysql:
+  fullnameOverride: mysql-til
+  image:
+    registry: docker.io
+    repository: bitnamilegacy/mysql
+    tag: 8.0.31-debian-11-r10   # mateix tag que abans
+    pullPolicy: IfNotPresent
+  auth:
+    existingSecret: mysql-secret
+  initdbScripts:
+    create.sql: |
+      CREATE DATABASE til;
+      CREATE DATABASE ccs;
