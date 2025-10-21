@@ -1,268 +1,243 @@
 ## configuration for the desmos - see https://DOME-Marketplace.github.io/access-node for configuration documentation
-access-node:
-  desmos:
-    # -- should the desmos-blockchain-connector be enabled
-    enabled: true
-    # -- overrides the generated name, provides stable service names - this should be avoided if multiple instances are available in the same namespace
-    fullnameOverride: desmos
-    image:
-      repository: in2workspace/in2-desmos-api
-      # Overrides the image tag whose default is the chart appVersion.
-      tag: v2.0.1
-      pullPolicy: Always
-    readinessProbe:
-      failureThreshold: 10
-    livenessProbe:
-      failureThreshold: 10
-    ingress:
-      enabled: true
-      className: nginx
-      annotations:
-        cert-manager.io/cluster-issuer: letsencrypt-in2-test-issuer
-      tls:
-        - hosts:
-            - desmos.dome-marketplace-lcl.org
-          secretName: desmos-tls-secret
-    ## deployment specific configuration
-    app:
-      ## profile (test == dev)
-      profile: dev
-      ## debug level
-      logLevel:
-        app: DEBUG
-      ## information about the access-node operator
-      operator:
-        # -- did of the organization running the node
-        organizationIdentifier: did:key:zDnaerQi587EqQLqEaj7qbxc46hzdjX2goNsmLTq1X6HqzzjP
-      ## connection information for the context broker
-      broker:
-        # -- provider of the broker
-        provider: scorpio
-        # -- internal address of the context broker to be used by the connector
-        internalDomain: http://scorpio:9090
-        # -- external address of the broker. Will be included in the hashlink and used by other access-nodes to retrieve the actual entities
-        externalDomain: http://scorpio:9090
-      ## configuration to connect to the dlt-adapter
-      dltAdapter:
-        # -- provider of the dlt-adapter component
-        provider: digitelts
-        # -- (local) address of the dlt-adapter
-        internalDomain: http://dlt-adapter:8080
-        # -- (external) address of the dlt-adapter
-        externalDomain: http://dlt-adapter:8080
-      # -- operator external domain
-      externalDomain:
-        protocol: "https"
-        domain: "desmos.dome-marketplace-lcl.org"
-      externalAccessNodesUrls:
-        enableCustomUrls: true
-        customUrls: ""
-      # -- configuration to set your private key
-      privateKey:
-        existingSecret:
-          # -- should an existing secret be used
-          enabled: true
-          # -- name of the secret
-          name: access-node-secret
-          # -- key to retrieve the password from
-          key: desmos-private-key
-      learCredentialMachineInBase64:
-        existingSecret:
-          enabled: true
-          name: access-node-secret
-          key: lear-credential-machine
-      # -- configuration for the api path version
-      desmosPathVersion: v2
+desmos:
+  # -- should the desmos-blockchain-connector be enabled
+  enabled: true
+  # -- overrides the generated name, provides stable service names - this should be avoided if multiple instances are available in the same namespace
+  fullnameOverride: desmos
+  # -- also update the version on contextUrl of tmf
+  desmosPathVersion: v2
+  image:
+    ## image repository
+    repository: in2workspace/in2-desmos-api
+    # Overrides the image tag whose default is the chart appVersion.
+    tag: v2.0.1
+    ## image pull policy
+    pullPolicy: IfNotPresent
+  ## deployment specific configuration
+  app:
+    ## profile (test == dev)
+    profile: dev
+    logLevel:
+      root: INFO
+      app: INFO
+    # internal server port
+    internalServerPort: 8080
+    ## information about the access-node operator
+    operator:
+      # -- did of the organization running the node
+      organizationIdentifier: did:key:zDnaeiyBeX6q6YQTKQt6N9G1itNpF3Cy9hKw4Xup7A5u9R1Dp
+      # -- provider of the broker
+      provider: scorpio
+      # -- internal address of the context broker to be used by the connector
+      internalDomain: http://scorpio:9090
+      # -- external address of the broker. Will be included in the hashlink and used by other access-nodes to retrieve the actual entities
+      externalDomain: http://scorpio:9090
+    ## configuration of ngsi-ld entities to listen for
+    ## configuration to connect to the dlt-adapter
+    dltAdapter:
+      # -- provider of the dlt-adapter component
+      provider: digitelts
+      # -- (local) address of the dlt-adapter
+      internalDomain: http://dlt-adapter:8080
+      # -- (external) address of the dlt-adapter
+      externalDomain: http://dlt-adapter:8080
+      ## configuration of subscriptions at the blockchain
+      # -- a list of external access node with which to synchronize
+    externalDomain:
+      protocol: "http"
+      domain: "desmos.marketplace-test.svc.cluster.local"
+      #domain: "an-dome-dev.theplatforms.it"
+    externalAccessNodesUrls:
+      enableCustomUrls: true
+      customUrls: "https://desmos.dome-marketplace-lcl.org"
+    # -- configuration to set your private key
+    privateKey:
+      # -- your Ethereum private key
+      value: 0xe7f0c8c81976f21a63854091c755d38e6221e8f670c3d129f057b7a2578b74d1
+      existingSecret:
+        # -- should an existing secret be used
+        enabled: false
+        # -- name of the secret
+        #name: desmos-private-key
+        # -- key to retrieve the password from
+        #key: value
+    learCredentialMachineInBase64:
+      #existingSecret:
+      #enabled: false
+      #  name: desmos-lear-credential-machine-secret
+      #  key: lear-credential-machine
+      value: "ZXlKaGJHY2lPaUpTVXpJMU5pSXNJbXRwWkNJNklrMUpTRkZOU1VjemNFbEhNRTFKUjNoTlUwbDNTVUZaUkZaUlVVUkVRbXhGVTFWa1NsWkZWazFKUmxKVVNVVkdSVlpyUms5Uk1GWkZTVVZPUWtsRlkzbE5Va2wzUlVGWlJGWlJVVVpGZDJ4RFRrUmpNRTVFWXpGT2FrRjRTM3BCY0VKblRsWkNRWE5OU1d0U1NsSXdiRlZTVlhkblZrWk5aMUV3VmxOV1JXeEhVMVZPUWxaRmJGQlVhVUpDVmxaU1NWUXhTa3BXUm10NFMwUkJiVUpuVGxaQ1FXOU5TREJTU2xJd2JGVlNWWGRuVkRBMFoxWkdTbFpWTVZKR1VrTkNWRkpXU2xkVFZVNUdWWGxDVkZSR1ZYaEZla0ZTUW1kT1ZrSkJZMDFEYkZwb1lrZDRhRnBIT1hOaFYxRjRRM3BCU2tKblRsWkNRVmxVUVd0V1ZFRm9VV2RoUVV0Rkwzb3dkM3BhVXpNNVkySjVTV1oxVEdkcmRIRkhkejA5SWl3aWVEVjBJMU15TlRZaU9pSkliMHBFV0dKemIyeGFPVEl3U1daSFpXeHFhRVZGZWt4eE9IWkJUVkJIVFVaNFQyVlJXVWxJVkVabklpd2llRFZqSWpwYklrMUpTVWN5VkVORFFrMUhaMEYzU1VKQlowbFZTVWRuUTJoUU9EbE5UVEpWZEM5WVJ6aHBTRGRwTkVwTVlXaHpkMFJSV1VwTGIxcEphSFpqVGtGUlJVNUNVVUYzWjJKRmVFbHFRV2RDWjA1V1FrRk5UVWRWVWtwU01HeFZVbFYzWjFaR1RXZFJWVkpYVVZVMVJGSlZVV2RSTUVWblVucEplRVZxUVZGQ1owNVdRa0ZWVkVOVlNUQk9lbEV3VG5wVk1rMUVSWEpOUTJ0SFFURlZSVU4zZDJsU1JXeElVMVpTUmxSRFFsVlZlVUpFVWxaS1ZWTlZXa3BSTUVaVlUxVTVUMGxGUmxaV1JXaFFWV3RzVlZkVVJXOU5RMWxIUVRGVlJVTm5kMlpTUld4SVUxWlNSbFJEUWxCVWFVSlZWV3hXVkZaRlZrVkpSazVHVld4YVNsRXdWbFJKUms1TlZsUkZWRTFDUlVkQk1WVkZRbmQzUzFadFJuTmlSMFpyWWpKNGNGcEVSVXhOUVd0SFFURlZSVUpvVFVOU1ZrMTNTR2hqVGsxcVZYZE5la2t6VFVSbmVrNVVUVEpYYUdOT1RXcG5kMDE2U1RKTlJHZDZUbFJOTVZkcVEwSnRla1V5VFVSUlIwRXhWVVZCZDNkMFZUSldhR0pEUWxSaFYyUjFXVmhTTVdOdFZXZFJNMHBzV2tkV2RXUkhiR2hpU0UxbllWYzBaMVV3U2xsSlIxcDJZMmxDTUZwWVRqQmhWelZ1VFZKbmQwWm5XVVJXVVZGR1JYYzVWMUZXVWtaVmVURkRUbXBCTWs1RVZUVk5SRUY0UjBSQlYwSm5UbFpDUjBWTlJERmFRbFpGVmxSTVZVa3lUVVJaTUU1VWEzZE5SRVZOVFVGdlIwRXhWVVZEWjNkRVUxVTBlVTFTU1hkRlFWbEVWbEZSU0VSQmJFTlpXRXBxV2xkNGRtSnRSWGhEZWtGS1FtZE9Wa0pCV1ZSQmExWlVUVWxKUWtscVFVNUNaMnR4YUd0cFJ6bDNNRUpCVVVWR1FVRlBRMEZST0VGTlNVbENRMmRMUTBGUlJVRndTaXQ2Y0VwUFFuQkNVelJ0TVVjd1JrZDZZbXg1V0RSeVFrcDNiRU0wV1V4RVIyVktiSE40ZGtacFVYRnpORFYyWkhOUVlVZGhNbU5qYUVsMGFUTmxUbmxOV1hJNFNrVTFhRTlFVUVSbmVFWTRiVFZpU0d4eFNUQjFZVnBDVG5KYU5YQXhNM04ySzBSd1JqZDFlVmxOVlhvclFrbDRkWFE0Tmk5WGRVWXdkamxJTTBwSmJrMVBUVk4xU1RsSWFXWjBhRTExUzI1YWVFYzROVUV3VTBaaFpsbHZMMnhMVFdSM2FrcEtSMmhKTmtwWVppdDNZbVZuZW1WSVFWVkhSRFptYjJaNVptMUlha3hsWm1jdlZUTlBZU3RuT1ZGTmF6TkpUMnN5TnpGSVNXbG9Ua0pYY0hOalN6aG5kMVJQWlRBeU9GbG9RVzEyYVRkRWJFTldOa2xWV25wRGJqTlNWVGt4WkhCdFlqVk9aa3d3TVVWek5HOXVkMmRYUWpaNVlUSm9SMkoyYWs0cmQzbHRTVUZ3ZUc5Sk9WY3JSRTF3ZWtKVmF6VnRLMWREYVVzNFduUk5iRTVLWlhsbk1ubERaMjE2VFZsTE9YZEpSRUZSUVVKdk5FbENLM3BEUTBGbVkzZEVRVmxFVmxJd1ZFRlJTQzlDUVVsM1FVUkJaa0puVGxaSVUwMUZSMFJCVjJkQ1UwTkZOa2RxUVhCVVQxbG5NMmRDY2xrelZtdEdkMWhGVjNWTGVrSXdRbWRuY2tKblJVWkNVV05DUVZGU2IwMUhXWGRRWjFsSlMzZFpRa0pSVlVoTlFVdEhUVzFvTUdSSVFUWk1lVGwzWVRKcmRWcEhiRzVoV0ZKc1lraFNla3h0Vm5wTU1GSktVakJzVlZKVmVGVlZNVVpXVVZWNFNsSnJiRVpTUlU1Q1VucEZkVmt6U2pCTlExRkhRME56UjBGUlZVWkNla0ZDYUdob2IyUklVbmRQYVRoMllqSk9lbU5ETld0aFYyUndaRWRXYzJSSVRYVmFXRTEzWjJGM1IwRXhWV1JKUVZOQ2NFUkRRbTlVUTBKdVoxbE1TM2RaUWtKQlIwUndNVVZMUVdkRmQyZFpOSGRRZDFsSlMzZFpRa0pSVlVoQlowVlhUVEpvTUdSSVFucFBhVGgyWTBkMGNFeHRVbkJhTW13d1dsZDRNR041Tld4amVUbHJZMGROZGxKRmJFaFRWbEpHVkVaU1ZGZ3dVbEZSZVRVeVRXazBlRXh1UW10YWFrSk1RbWRuY2tKblJVWkNVV05EUVdwQkwwUkVNVVJhV0Vvd1lWZGFjRmt5Um10aWVVSnFaRmRHYzJGWFduQlpNa1pyWW5sQ2ExcFRRbnBhVjNoellubENhR1J0Um5WbGJVWnJZbmxDYTFwVFFuZGFXRXA2WWpJMWFFbEhjREZqYld4cllWZE9hRTFCT0VkRFUzTkhRVkZWUmtKNlFVSkNVVkZEUWxGQmQwaFJXVVJXVWpCc1FrSlpkMFpCV1VsTGQxbENRbEZWU0VGM1NVZERRM05IUVZGVlJrSjNUVVZOUlVsSFFURlZaRWgzVVRkTlJHdDNUalpCTVc5RVQwZE5WMmd3WkVoQk5reDVPV3BqYlhkNFRHNUNjbUZUTld0aFYyUndaRWRXYzJSSVRYVmFXRTEyVWtaU1ZGVllWbWhpUjJ4dFlWZFdhMUV3UmtoTlV6VnFZMjEzZDBoUldVUldVakJQUWtKWlJVWklPVlY2UVZsVloxVnpTSGgxUms1cVkyMHZTelJMUzFoU2VuSk5RVFJIUVRGVlpFUjNSVUl2ZDFGRlFYZEpSM2RFUVU1Q1oydHhhR3RwUnpsM01FSkJVVEJHUVVGUFEwRm5SVUZ6ZFU4eE1HOVFkSEpPTUVGa2MwNTZNWEVyWjJsek1sWm9WRVl2TTBFNFR6a3hMMG8wUjJkcU5raFFNMVZHYTBwUFFtUm9SR3N2V1VSbEt5dFpTRW8wTTAxNGQya3paREpDZUM5MlNISm5XREYzYzI1Q1ZHd3lkVWhtUTI1eE1ERlpiV0psYTBzM1RtWnpiWGxHYzNSNWJsQXhNM2RzV201U01HdHZiMFJVYzNaMmFYRnFSemxpVmxGV1IwSm9hREpxZW1Gdk1ITXJSVEp3TTFneFVHaHJOa1JrWmxOVVRuQkVTa2xTTDFaM2VUVkJhMEowTVdSb01qUnZaamhLTWpGVk0zRlZhV2hEYm13MGNWbDZaRWt2Y21WMVFpOWxSMjVwTWtjMlowdGxTMmh6U1Vzd2VqZHpaa2w2YkdZcmJXMXdSMGwyUkZrNFZFeFBWMWR0V1V0dE1IRkVRVEZEVlU1dFowdERkV1pRYTFWNGRXOTJTM0Z4YlhWS2FqaHVabkpSTDBoWlNGaDJVbEppYmt0Q1ZrMHhaMnBtYm5ObVdVUnVhVlJuZVVKeGFrOHZLMVU0VUhaYU9WWm5WRzA0VjJSNVZqQkZRM2g1WXpWSk1VVjZaRFp0UkhkUk9FUmFTR2hqTVdaNFEydG5UR2s0TUd4UFEyOXpWMU5zZUVsT1JtRXhOV0pJUWpWSU9HaHRRVE0zZG1oeFN6TjZMM0V3TVc5VlVUSmlZblZxUzNkcGJGUlhkWEZoVVVNMGNHZ3JPRGtyUlZZNFVYTmlNMDluWldkdFpFbG1aSEJVV1U1dlMwTTVZV05GWlRKamJYaDNNRWhhSzFSUGFtZHFTSGQwZFdWWVVUVXlWVWhJYlRsbmNHcEVUbGxzTlRGUFNtVTFObnBQWkZRemEyVkphbXRJY0V4S1NHVllaSEE1Vm5wYVduSkdSVkJ5U0UxNFZ6aGFSa0ZqV0Rnd2VFa3JNMUV2ZVhScVZuQlpabFpVZGtrd1QyczVlWGh1YXpoMFIwNHhkRmRpVFZoT2VUUkVORmh0VVdsS01GaHhSMjVEUVdKTlQyVkdORGx6VmxkNlJqUktOVlkyU2twc2EwVTVlRlpoVTJzNWVIUldPV3hqY2psU2VuVlRUMU5ZVTBKNFlsUXdSSGxuYWpKdE1GRkZUMHRhU3pGWVEwWm1ObGxtUld4QmQzbzFkRmx0ZFUwck0yZFpZejBpTENKTlNVbEhWbFJEUTBKRU1tZEJkMGxDUVdkSlZVVTJjRE5ZVjJGeFZqaDNhV1JVTUVkblJtVmpjVGxOWWtoc05IZEVVVmxLUzI5YVNXaDJZMDVCVVVWT1FsRkJkMmRpUlhoSmFrRm5RbWRPVmtKQlRVMUhWVkpLVWpCc1ZWSlZkMmRXUmsxblVWVlNWMUZWTlVSU1ZWRm5VVEJGWjFKNlNYaEZha0ZSUW1kT1ZrSkJWVlJEVlVrd1RucFJNRTU2VlRKTlJFVnlUVU5yUjBFeFZVVkRkM2RwVWtWc1NGTldVa1pVUTBKVlZYbENSRkpXU2xWVFZWcEtVVEJHVlZOVk9VOUpSVVpXVmtWb1VGVnJiRlZYVkVWdlRVTlpSMEV4VlVWRFozZG1Va1ZzU0ZOV1VrWlVRMEpRVkdsQ1ZWVnNWbFJXUlZaRlNVWk9SbFZzV2twUk1GWlVTVVpPVFZaVVJWUk5Ra1ZIUVRGVlJVSjNkMHRXYlVaellrZEdhMkl5ZUhCYVJFVk1UVUZyUjBFeFZVVkNhRTFEVWxaTmQwaG9ZMDVOYWxGM1RsUkpOVTFVU1hkTlJGRjNWMmhqVGsxNlkzZE9WRWt5VFZSSmQwMUVUVFZYYWtOQ2MxUkZhVTFEUVVkQk1WVkZRWGQzV2xKRmJFaFRWbEpHVkVOQ1ZWVjVRa0pTUmxwQ1ZHdE9SbEpEUWtSUlUwSklUV3BGVTAxQ1FVZEJNVlZGUWxKTlNsRnFVVE5PUkZFelRsUlpkMDFUYzNkTFVWbEVWbEZSVEVSRFNrVlRWV1JLVmtWV1RVbEdVbFJKUlU1R1ZXeFNTbEpyYkVSUlZsSktWREEwWjFGV1ZsVlRSVGxUVTFaU1drMVRaM2RLWjFsRVZsRlJTMFJDT1VWVFZXUktWa1ZXVFVsRk9VOUpSbEpUVmxaT1ZWSlZVV2RWTUZaVFZtdHNSRkpXVFdkVk1IaFdUVkpOZDBWUldVUldVVkZJUkVGd1YxbFhlSE5aVjFKMllrZHNhMDFSYzNkRFVWbEVWbEZSUjBWM1NrWlZla05EUVdsSmQwUlJXVXBMYjFwSmFIWmpUa0ZSUlVKQ1VVRkVaMmRKVUVGRVEwTkJaMjlEWjJkSlFrRk5UMUZoUWtwSFZXNUxkbmcwTUV0YVJEWkZaWFZaVFZONFFVRmpZM05JZVU1S1Z6WnhUVzVyTmpkdVQxQklRamszWjJwU1oyNXpTbmhsYUZVNFVWQm5lR2hQWW1oeE4ydFhZekF5ZGxjNGJsRkpVekp4ZVRjd1NHcFhLM2syU1UxaFQzUnNlV3R6YjA1WVQyTjZVVzlhUTI1V2NVSkphUzlyUkhOUGFFWldNWEpqUlZoaGFVSkZWQzlPZFVseVUwdDJSMWxGU1dSNlFUbEtZWEZaWkdacEwwcFJMMnh5V1dGNVJHWlFNMlEzTTJoemRYRXJiRWxxVGpCa09XZ3JjRXRqV1hkTUwyMUpTV0pMTDJOUmQyeHNRVlZ0WkdSeVFYYzVWMFZ0Y1d0c0t6VlNkVVJYY1hCc1JGZG9hSFp3UjBwR1VGaDBORkp4UzJkaFlWWk9OVlJWZDFNeVQwZEtVMDV4UTNNMldra3JZVk5rYm1WVVowTnhjVkV2THpnemFFNDVVWE50TUcxQ01FNDRUazg1YkhGVGNFTnRVRTlxV1VkUFZIQTNTV3M0YVVJM2RHVjRNVTlPZVdWWVRVaHNPWHBMUkdOcGNWWXhOakphVW5CSGRFcHRNbkoxT0RaSlZVTlRhbEJzYzNGVVdFMXVWekUwTWsxTGRXZHpWek5ZTnpGWk1IRjRNMFJTVlNzelRIZG5ZMHB4WVU4eFdTODVSREpyVVVWUlNqTjJOVnBsYVVkUllYVlNWM0ZtYW1wQmEwVlNaMmdyT0cwelYxaFlUSEp1ZWtGdlJtaHlVV1JzUW1FeFVUWXhTVEpWY1dKeGVHSkJNR1JUT1V4a1QzUTFLMjVHUmxaYWJTdEZOMEZCWlZaNWNqaFZhbFpYVkdSS1VYWlVUak4xY1RCV2Ewd3diakp3Y1RBekswaGlOR2RRVWpoMmNuQkVOemxLZVd4NVZXTkpVakJSVGtsblRYUkZSbVUwWlVaS0sybERPU3R0WW1WUGFucElVV3RzT0ZwSE5UVXhXREpMZVRaemJETlBUMjVtT1ROWVpXUlJSREIyUnpCeVExbHdVa2RhS3pVd2F6QTFhbXgxUzNwU2FtTnBjVUZEWjB4SVEwWlRjR05NZVVKVFMyZHlXR05CTUhGc2NGbEVWRWxpWlhnNE9WUjJVa2RaTVc1dmQzSkROV3h0UjA1VU9HcEtjbmhEV1U5WlJFRm5UVUpCUVVkcVdYcENhRTFCT0VkQk1WVmtSWGRGUWk5M1VVWk5RVTFDUVdZNGQwaDNXVVJXVWpCcVFrSm5kMFp2UVZWbmFFOW9iM2RMVlhwdFNVNDBRV0V5VGpGYVFtTkdlRVp5YVhOM1NGRlpSRlpTTUU5Q1FsbEZSa2xKVkc5aFRVTnNUVFZwUkdWQlIzUnFaRmRSV0VKalVtRTBjazFCTkVkQk1WVmtSSGRGUWk5M1VVVkJkMGxDYUdwQlRrSm5hM0ZvYTJsSE9YY3dRa0ZSTUVaQlFVOURRV2RGUVVwSFVVdHlXakpWTTBvdlUzQkhhRkEzZWxkcWRuZGxRbGg0YWxjMWRWTmtlREJXTjIxM2RqUnRka015Vm14RE1WUjJlRVZ1TlhsV2JtUkZWVU53YkVkd0wyMHdVek5CTURkQ2RGQmFNalJhVTNWU2R5dHRTWEIwUW0xRGFHSnVWVEYyYWpKQ1JuQkdSbFJvY0hOUlNrY3dhMFJxUkRJelNHODJjRE5TZEUxeWFXSTRTV2t3VW01dlZXSjNjRkExVGpKTWFXVlBZblZ2WkRsUFV6bHhNMDFuUTJ4b2VUbEdPVGx0VDFkMlJDOXhOWFpEVm04cmRVeFhXblZSTkdGamRWUlVUbmhoTlVSSWVXbHFaMElyUjBkdk1rOW9TR3hrY2xOd2NDdE1VbWRWTldaclRrdEhNRXg2YUd4SlJVZGtSVUpoYkRCd2RWb3ZLMUZ4ZEZOeWNreEVUVlEwV0ZCTFYwMUtObWR3YzNJemJGaG1ZbUV3Uld3M1ltSXZOelUyZEUxWlFXSlllbTF1YTJ0VmNXUnBUMGsxTjNKV1JFWlVPVVpLZUdwV1oyODFiMWM0V0U5TFIxTk1jVTFJTXpGWWFVcERUbTlJTlhKS1dUaFdVVE5hYlUxVGRXZzVOMnRCUVdoWWRVWkpZbEZhTjBaeWEwWXllU3RIYzB0d1lqQmhPVnBWY1VaQ2NrcHNla2g0UTB0c09GTlRWSGRtUjBSblkzQmxVRnA0VlVsSloxQlFZMGswYjFoM1VtOUNNRWhpZERVMFNYSlNiMGMzYTFkck5qaG5XREpqYWt0V01GbDBTRzFXYUVWRlJuSXpaR2xhWms4M2JVRlVRVFUwYzB4YVdEbHVNV3h2YzI1bU9YaHlaVVY2WkVWWlYySjVSMVJvVlhkc016Tk5VRFpZVEdGR1VsQmtZbTVSYzJoaWNtOWxjSHBuSzI1cmMxVTFWbFpMTWxwYVJrbFhWbGsyWnl0U2FFbERXRlprYUhGclFuQk9iU3RsU3pBcmQxVkRRVEYwV0ZsNVVrdHZVMVZXY0UxR1UwRmFhRzV6ZVZWbFducGhiVkJJUkdVMFIydFVZVzFOU3pSeFpsaExVVTlpTjBWMFYxVlhhRFZtYjFaVGVtRnhlWFpHY0hCVk5GWk5jQzluUzNKUVdVaEVObUpYY2toS05YWkRMMEkzVjNJdllWQjBhRTVyWjFoR1RVZE5jbEl3UFNKZExDSjBlWEFpT2lKcWIzTmxJaXdpYzJsblZDSTZJakl3TWpVdE1EVXRNVE5VTVRRNk5UYzZORE5hSWl3aVkzSnBkQ0k2V3lKemFXZFVJbDE5LmV5SnpkV0lpT2lKa2FXUTZhMlY1T25wRWJtRmxhWGxDWlZnMmNUWlpVVlJMVVhRMlRqbEhNV2wwVG5CR00wTjVPV2hMZHpSWWRYQTNRVFYxT1ZJeFJIQWlMQ0p1WW1ZaU9qRTNORGN4TkRRNE1EQXNJbWx6Y3lJNkltUnBaRHBsYkhOcE9sWkJWRVZWTFVJNU9UazVPVGs1T1NJc0ltVjRjQ0k2TVRjME56RTBORGd3TUN3aWFXRjBJam94TnpRM01UUTBPREF3TENKMll5STZleUpBWTI5dWRHVjRkQ0k2V3lKb2RIUndjem92TDNkM2R5NTNNeTV2Y21jdmJuTXZZM0psWkdWdWRHbGhiSE12ZGpJaUxDSm9kSFJ3Y3pvdkwzZDNkeTVsZG1sa1pXNWpaV3hsWkdkbGNpNWxkUzh5TURJeUwyTnlaV1JsYm5ScFlXeHpMMjFoWTJocGJtVXZkakVpWFN3aWFXUWlPaUppT0RrMFptUXpNaTB5WkdZekxUUTRZVFl0WVdObE1pMWxZVFV3TnpsaE1UZG1OemtpTENKMGVYQmxJanBiSWxabGNtbG1hV0ZpYkdWRGNtVmtaVzUwYVdGc0lpd2lURVZCVWtOeVpXUmxiblJwWVd4TllXTm9hVzVsSWwwc0ltbHpjM1ZsY2lJNmV5SnBaQ0k2SW1ScFpEcGxiSE5wT2xaQlZFVlRMVUkyTURZME5Ua3dNQ0o5TENKcGMzTjFZVzVqWlVSaGRHVWlPaUl5TURJMUxUQTFMVEV6VkRFME9qQXdPakF3TGpBd01EQXdNREF3TUZvaUxDSjJZV3hwWkVaeWIyMGlPaUl5TURJMUxUQTFMVEV6VkRFME9qQXdPakF3TGpBd01EQXdNREF3TUZvaUxDSjJZV3hwWkZWdWRHbHNJam9pTWpBeU5pMHdOUzB4TTFReE5Eb3dNRG93TUM0d01EQXdNREF3TURCYUlpd2laWGh3YVhKaGRHbHZia1JoZEdVaU9pSXlNREkyTFRBMUxURXpWREUwT2pBd09qQXdMakF3TURBd01EQXdNRm9pTENKamNtVmtaVzUwYVdGc1UzVmlhbVZqZENJNmV5SnRZVzVrWVhSbElqcDdJbWxrSWpvaU4ySm1OVFZrTW1VdE5USTBOeTAwTnpFMExUa3haREV0T0dVeVpqaGpZamN6TUdReElpd2liR2xtWlY5emNHRnVJanA3SW5OMFlYSjBSR0YwWlZScGJXVWlPaUl5TURJMUxUQTFMVEV6VkRFME9qQXdPakF3TGpBd01EQXdNREF3TUZvaUxDSmxibVJFWVhSbFZHbHRaU0k2SWpJd01qWXRNRFV0TVROVU1UUTZNREE2TURBdU1EQXdNREF3TURBd1dpSjlMQ0p0WVc1a1lYUmxaU0k2ZXlKcFpDSTZJbVJwWkRwclpYazZla1J1WVdWcGVVSmxXRFp4TmxsUlZFdFJkRFpPT1VjeGFYUk9jRVl6UTNrNWFFdDNORmgxY0RkQk5YVTVVakZFY0NJc0luTmxjblpwWTJWT1lXMWxJam9pWVdOalpYTnpMVzV2WkdVaUxDSnpaWEoyYVdObFZIbHdaU0k2SWtGUVNTSXNJblpsY25OcGIyNGlPaUlpTENKa2IyMWhhVzRpT2lKaGJpMWtiMjFsTFdSbGRpNTBhR1Z3YkdGMFptOXliWE11YVhRaUxDSnBjRUZrWkhKbGMzTWlPaUl4T0RVdU56TXVNalE1TGpFMU55SXNJbVJsYzJOeWFYQjBhVzl1SWpvaUlpd2lZMjl1ZEdGamRDSTZleUpsYldGcGJDSTZJbVJoY21sdkxucGhjSEJoYkdGQVpXaDBMbVYxSWl3aWNHaHZibVVpT2lJaWZYMHNJbTFoYm1SaGRHOXlJanA3SW1OdmJXMXZiazVoYldVaU9pSkVZWEpwYnlCYVlYQndZV3hoSWl3aVkyOTFiblJ5ZVNJNklrbFVJaXdpWlcxaGFXeEJaR1J5WlhOeklqb2laR0Z5YVc4dWVtRndjR0ZzWVVCbGFIUXVaWFVpTENKdmNtZGhibWw2WVhScGIyNGlPaUpGVkU1QklFaEpWRVZEU0NCVFQwTkpSVlJCSUVOUFRsTlBVbFJKVEVVZ1VFVlNJRUZhU1U5T1NTSXNJbTl5WjJGdWFYcGhkR2x2Ymtsa1pXNTBhV1pwWlhJaU9pSldRVlJKVkMwd05ETXlNekl4TURnM05DSXNJbk5sY21saGJFNTFiV0psY2lJNklpSjlMQ0p3YjNkbGNpSTZXM3NpYVdRaU9pSXhNVGsxTkdRME5TMWtOREE0TFRSbFltTXRZbUUxTXkwMU9URXlOell5TXpFMU5HRWlMQ0prYjIxaGFXNGlPaUpFVDAxRklpd2lablZ1WTNScGIyNGlPaUpNYjJkcGJpSXNJbUZqZEdsdmJpSTZJbTlwWkdOZmJUSnRJbjFkTENKemFXZHVaWElpT25zaVkyOXRiVzl1VG1GdFpTSTZJbE5sWVd3Z1UybG5ibUYwZFhKbElFTnlaV1JsYm5ScFlXeHpJR2x1SUZOQ1dDQm1iM0lnZEdWemRHbHVaeUlzSW1OdmRXNTBjbmtpT2lKRlV5SXNJbVZ0WVdsc1FXUmtjbVZ6Y3lJNkltcGxjM1Z6TG5KMWFYcEFhVzR5TG1Weklpd2liM0puWVc1cGVtRjBhVzl1SWpvaVNVNHlJaXdpYjNKbllXNXBlbUYwYVc5dVNXUmxiblJwWm1sbGNpSTZJbFpCVkVWVExVSTJNRFkwTlRrd01DSXNJbk5sY21saGJFNTFiV0psY2lJNklrSTBOelEwTnpVMk1DSjlmWDE5TENKcWRHa2lPaUk1WmpVek1UZGxOQzFtWmpJekxUUTJObVF0T1RRMU5TMHhOVEpqTkRNMU9XRTFOR0lpZlEubk1zXzNLRElCUlp2SjBfSG1yeW9IbkVtOExncy03VWI4ZExaZDFsSWlHaExMRTI0cjdJSUFMRld5SzBBZGk0bF9CN0xwbWdQWUlBVU9HR3BwcmpjX244UnZ3VGJJZ2Y1bldjRnBPY1pDLVpQeHY2eXB6cDQzcFcwZ1J1XzNhX1Aza0Fndy1KUnRqei1PTGZUcm00QkdpTi1Hc3BIUElTbGw2ekZZam9CODhoS3NCdTNybFVzdW1RdXlOQi1sMmFjdWY3UFBWQ1JCTWRCeE81WkJGeFVNblRuWmJKY1YwZ2JEMjFBNUFhaDRsZklyUk9CbWkwVXN4S1VPXzc3SldhZHdGN0QyaS1pNnMwaUlkcGpRcGVfMTN6amp2V1AzTzRHdktxLXJYeVdyYldSVHlmTWpyX0N4MmpmbG9VYTRNbHI4QjdXSV9aZjRURXVGYjNES09VVDhn"
+    trustedAccessNodesList:
+      enableCustomTrustedList: false
+      customTrustedList: "https://raw.githubusercontent.com/DOME-Marketplace/dome-access-node-directory/main/access-node-directory-"
+    verifier:
+      enableCustomVerifier: false
+      customVerifier: "https://verifier.dome-marketplace-<env>.org"
+
     ## configuration of the database to be used by the blockchain-connector
-    db:
-      # -- host of the db
-      host: desmos-postgres
-      # -- port of the host of the db
-      port: 5432
-      # -- should be true if is an external service
-      externalService: false
-      # -- name of the db
-      name: desmos
-      # -- username to be used
-      username: postgres
-      # -- existing secret to retrieve the db password
-      existingSecret:
-        # -- should an existing secret be used
-        enabled: true
-        # -- name of the secret
-        name: access-node-secret
-        # -- key to retrieve the password from
-        key: desmos-db-password
-
-  ## configuration for the dlt-adapter - see https://DOME-Marketplace.github.io/access-node/dlt-adapter for configuration documentation
-  dlt-adapter:
-    # -- should the dlt-adapter be enabled
-    enabled: true
-    # -- overrides the generated name, provides stable service names - this should be avoided if multiple instances are available in the same namespace
-    fullnameOverride: dlt-adapter
-
+  db:
+    # -- host of the db
+    host: postgresql-connector
+    # -- port of the host of the db
+    port: 5432
+    # -- should be true if is an external service
+    externalService: false
+    # -- name of the db
+    name: mktdb
+    # -- username to be used
+    username: postgres
+    # -- default password to be used
+    password: postgres
     existingSecret:
-      enabled: true
-      name: access-node-secret
-      key: dlt-private-key
-    env:
-      DEBUG: "*"
-      RPC_ADDRESS: "https://red-t.alastria.io/v0/9461d9f4292b41230527d57ee90652a6"
-      ISS: "0xa559c43a8127569c71c42a04a41e82bcfcf86a82b61284b2c906afbe67d4b839"
+      # -- should an existing secret be used
+      enabled: false
+      # -- name of the secret
+      name: desmos-secret
+      # -- key to retrieve the password from
+      key: desmos-db-password
 
-  ## configuration of postgres to be used for the blockchain-connector - see https://github.com/bitnami/charts/tree/main/bitnami/postgresql for details
-  postgresql:
-    # -- should the postgresql deployment be enabled
-    enabled: true
-    # -- overrides the generated name, provides stable service names - this should be avoided if multiple instances are available in the same namespace
-    fullnameOverride: desmos-postgres
-    # -- overrides the generated name, provides stable service names - this should be avoided if multiple instances are available in the same namespace
-    nameOverride: desmos-postgres
-    ## auth configuration for the database
-    auth:
-      # -- username to be used
-      username: postgres
-      # -- should the default postgres user be enabled
-      enablePostgresUser: true
-      # -- existing secret
-      existingSecret: access-node-secret
-      secretKeys:
-        adminPasswordKey: desmos-db-password
-        userPasswordKey: desmos-db-password
-    ## configuration of the postgres primary replica
-    primary:
-      ## provide db initialization
-      initdb:
-        ## provide scripts for initialization
-        scripts:
-          # -- create the database as expected by the blockchain-connector
-          create.sh: |
-            psql postgresql://postgres:${POSTGRES_PASSWORD}@localhost:5432 -c "CREATE DATABASE desmos;"  
+## configuration for the dlt-adapter - see https://DOME-Marketplace.github.io/access-node/dlt-adapter for configuration documentation
+dlt-adapter:
+  # -- should the dlt-adapter be enabled
+  enabled: true
+  # -- overrides the generated name, provides stable service names - this should be avoided if multiple instances are available in the same namespace
+  fullnameOverride: dlt-adapter
+  service:
+    port: 8080
 
-  ## configuration of the context-broker - see https://github.com/FIWARE/helm-charts/tree/main/charts/scorpio-broker-aaio for details
-  scorpio:
-    # -- should scorpio be enabled
-    enabled: true
-    ## configuration of the database to be used by broker
-    db:
-      # -- host of the db
-      dbhost: scorpio-postgis
-      # -- username to be used
-      user: postgres
-      # -- existing secret to retrieve the db password
-      existingSecret:
-        # -- should an existing secret be used
-        enabled: true
-        # -- name of the secret
-        name: access-node-secret
-        # -- key to retrieve the password from
-        key: scorpio-db-password
-    ## configuration of the readiness probe
-    readinessProbe:
-      # -- path to be used for the readiness probe, older versions used /actuator/health
-      path: /q/health
-    ## configuration of the liveness probe
-    livenessProbe:
-      # -- path to be used for the readiness probe, older versions used /actuator/health
-      path: /q/health
-    # -- overrides the generated name, provides stable service names - this should be avoided if multiple instances are available in the same namespace
-    fullnameOverride: scorpio
-    ## configuration to be used for the service offered by scorpio
-    service:
-      # -- ClusterIP is the recommended type for most clusters
-      type: ClusterIP
-
-  ## configuration for kafka in case its used by scorpio - see https://github.com/bitnami/charts/tree/main/bitnami/kafka
-  kafka:
-    # -- should kafka be enabled?
+  existingSecret:
     enabled: false
+    name: private-key-secret
+    key: private-key
 
-  ## configuration of postgis to be used for scorpio - see https://github.com/bitnami/charts/tree/main/bitnami/postgresql for details
-  postgis:
-    # -- should postgis be enabled
+  env:
+    DEBUG: "*"
+    PRIVATE_KEY: "0xe2afef2c880b138d741995ba56936e389b0b5dd2943e21e4363cc70d81c89346"
+    RPC_ADDRESS: "https://red-t.alastria.io/v0/9461d9f4292b41230527d57ee90652a6"
+    ISS: "0x5d7b27f85f4b5764f381f534dbcfbee3f3c2e966dee8e48433d9d49411b7ef16"
+
+## configuration of postgres to be used for the blockchain-connector - see https://github.com/bitnami/charts/tree/main/bitnami/postgresql for details
+postgresql:
+  # -- should the postgresql deployment be enabled
+  enabled: true
+  # -- overrides the generated name, provides stable service names - this should be avoided if multiple instances are available in the same namespace
+  fullnameOverride: postgresql-connector
+  # -- overrides the generated name, provides stable service names - this should be avoided if multiple instances are available in the same namespace
+  nameOverride: postgresql-connector
+  ## auth configuration for the database
+  auth:
+    # -- username to be used
+    username: postgres
+    # -- should the default postgres user be enabled
+    enablePostgresUser: true
+    # -- password to be used
+    password: postgres
+  ## configuration of the postgres primary replica
+  primary:
+    ## provide db initialization
+    initdb:
+      ## provide scripts for initialization
+      scripts:
+        # -- create the database as expected by the blockchain-connector
+        create.sh: |
+          psql postgresql://postgres:${POSTGRES_PASSWORD}@localhost:5432 -c "CREATE DATABASE mktdb;"
+  image:
+    registry: docker.io
+    repository: bitnamilegacy/postgresql
+    tag: 16.0.0-debian-11-r13
+    pullPolicy: IfNotPresent
+
+## configuration of the context-broker - see https://github.com/FIWARE/helm-charts/tree/main/charts/scorpio-broker-aaio for details
+scorpio:
+  # -- should scorpio be enabled
+  enabled: true
+  ## configuration of the image to be used
+  image:
+    # -- repository to be used - resource friendly all-in-one-runner without kafka
+    repository: scorpiobroker/all-in-one-runner
+    # -- tag of the image to be used - latest java image without kafka
+    tag: java-4.1.10
+  ## configuration of the database to be used by broker
+  db:
+    # -- host of the db
+    dbhost: postgis
+    # -- username to be used
+    user: postgres
+    # -- password to be used
+    password: postgres
+  ## configuration of the readiness probe
+  readinessProbe:
+    # -- path to be used for the readiness probe, older versions used /actuator/health
+    path: /q/health
+  ## configuration of the liveness probe
+  livenessProbe:
+    # -- path to be used for the readiness probe, older versions used /actuator/health
+    path: /q/health
+  # -- overrides the generated name, provides stable service names - this should be avoided if multiple instances are available in the same namespace
+  fullnameOverride: scorpio
+  ## configuration to be used for the service offered by scorpio
+  service:
+    # -- ClusterIP is the recommended type for most clusters
+    type: ClusterIP
+
+## configuration for kafka in case its used by scorpio - see https://github.com/bitnami/charts/tree/main/bitnami/kafka
+kafka:
+  # -- should kafka be enabled?
+  enabled: false
+
+## configuration of postgis to be used for scorpio - see https://github.com/bitnami/charts/tree/main/bitnami/postgresql for details
+postgis:
+  # -- should postgis be enabled
+  enabled: true
+  # -- overrides the generated name, provides stable service names - this should be avoided if multiple instances are available in the same namespace
+  fullnameOverride: postgis
+  # -- overrides the generated name, provides stable service names - this should be avoided if multiple instances are available in the same namespace
+  nameOverride: postgis
+  ## auth configuration for the database
+  auth:
+    # -- username to be used
+    username: postgres
+    # -- should the default postgres user be enabled
+    enablePostgresUser: true
+    # -- username to be used
+    password: postgres
+  ## configuration of the postgres primary replicas
+  primary:
+    ## provide db initialization
+    initdb:
+      ## provide scripts for initialization
+      scripts:
+        # -- enable the postgis extension and create the database as expected by scorpio
+        enable.sh: |
+          psql postgresql://postgres:${POSTGRES_PASSWORD}@localhost:5432 -c "CREATE EXTENSION postgis;"
+          psql postgresql://postgres:${POSTGRES_PASSWORD}@localhost:5432 -c "CREATE DATABASE ngb;"
+  image:
+    registry: docker.io
+    repository: bitnamilegacy/postgresql
+    tag: 16.0.0-debian-11-r13
+    pullPolicy: IfNotPresent
+
+## configuration of the tm-forum-api - see https://github.com/FIWARE/helm-charts/tree/main/charts/tm-forum-api for details
+tm-forum-api:
+  # -- should tm-forum-api be enabled
+  enabled: true
+  ## configuration to be used by every api-deployment if nothing specific is provided.
+  defaultConfig:
+    # --  ngsi-ld broker connection information
+    ngsiLd:
+      # -- address of the broker
+      url: http://scorpio:9090
+    # -- default context to be used when contacting the context broker
+    contextUrl: https://uri.etsi.org/ngsi-ld/v1/ngsi-ld-core-context.jsonld
+    # -- host that the tm-forum api can be reached at, when the proxy is enabled it should be set to that address. If not, set the host for each api individually
+    serverHost: http://localhost:8080
+    # additional env vars (If you want the requests to fail in case of unresolvable relationships, you can use the defaults)
+    additionalEnvVars:
+      - name: MAPPING_STRICT_RELATIONSHIPS
+        value: "false"
+      - name: API_EXTENSION_ENABLED
+        value: "true"
+  ## configuration for the api proxy, to serve all apis through one kubernetes service
+  apiProxy:
+    # -- should the proxy be enabled
     enabled: true
-    # -- overrides the generated name, provides stable service names - this should be avoided if multiple instances are available in the same namespace
-    fullnameOverride: scorpio-postgis
-    # -- overrides the generated name, provides stable service names - this should be avoided if multiple instances are available in the same namespace
-    nameOverride: scorpio-postgis
-    ## auth configuration for the database
-    auth:
-      # -- username to be used
-      username: postgres
-      # -- should the default postgres user be enabled
-      enablePostgresUser: true
-      # -- existing secret
-      existingSecret: access-node-secret
-      secretKeys:
-        adminPasswordKey: scorpio-db-password
-        userPasswordKey: scorpio-db-password
-    ## configuration of the postgres primary replicas
-    primary:
-      ## provide db initialization
-      initdb:
-        ## provide scripts for initialization
-        scripts:
-          # -- enable the postgis extension and create the database as expected by scorpio
-          enable.sh: |
-            psql postgresql://postgres:${POSTGRES_PASSWORD}@localhost:5432 -c "CREATE EXTENSION postgis;"
-            psql postgresql://postgres:${POSTGRES_PASSWORD}@localhost:5432 -c "CREATE DATABASE ngb;"
-
-  ## configuration of the tm-forum-api - see https://github.com/FIWARE/helm-charts/tree/main/charts/tm-forum-api for details
-  tm-forum-api:
-    fullnameOverride: tm-forum-api
-    nameOverride: tm-forum-api
-    # -- should tm-forum-api be enabled
-    enabled: true
-
-    apis:
-      - name: party-catalog
-        image: tmforum-party-catalog
-        basePath: /
-
-      - name: customer-bill-management
-        image: tmforum-customer-bill-management
-        basePath: /
-
-      - name: customer-management
-        image: tmforum-customer-management
-        basePath: /
-
-      - name: product-catalog
-        image: tmforum-product-catalog
-        basePath: /
-
-      - name: product-inventory
-        image: tmforum-product-inventory
-        basePath: /
-
-      - name: product-ordering-management
-        image: tmforum-product-ordering-management
-        basePath: /
-
-      - name: resource-catalog
-        image: tmforum-resource-catalog
-        basePath: /
-
-      - name: resource-function-activation
-        image: tmforum-resource-function-activation
-        basePath: /
-
-      - name: resource-inventory
-        image: tmforum-resource-inventory
-        basePath: /
-
-      - name: service-catalog
-        image: tmforum-service-catalog
-        basePath: /
-
-      - name: account
-        image: tmforum-account
-        basePath: /
-
-      - name: agreement
-        image: tmforum-agreement
-        basePath: /
-
-      - name: usage-management
-        image: tmforum-usage-management
-        basePath: /
