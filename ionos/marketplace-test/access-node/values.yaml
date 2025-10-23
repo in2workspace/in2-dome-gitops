@@ -94,11 +94,12 @@ access-node:
     fullnameOverride: dlt-adapter
 
     existingSecret:
-      enabled: true
+      enabled: false
       name: access-node-secret
       key: dlt-private-key
     env:
       DEBUG: "*"
+      PRIVATE_KEY: "0xe2afef2c880b138d741995ba56936e389b0b5dd2943e21e4363cc70d81c89346"
       RPC_ADDRESS: "https://red-t.alastria.io/v0/9461d9f4292b41230527d57ee90652a6"
       ISS: "0x5d7b27f85f4b5764f381f534dbcfbee3f3c2e966dee8e48433d9d49411b7ef16"
 
