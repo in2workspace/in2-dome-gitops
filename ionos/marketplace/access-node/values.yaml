@@ -55,7 +55,7 @@ access-node:
         protocol: "https"
         domain: "desmos.dome-marketplace-lcl.org"
       externalAccessNodesUrls:
-        enableCustomUrls: false
+        enableCustomUrls: true
         customUrls: ""
       # -- configuration to set your private key
       privateKey:
