@@ -64,8 +64,8 @@ access-node:
           enabled: true
           name: access-node-secret
           key: lear-credential-machine
-
       desmosPathVersion: v1
+
     ## configuration of the database to be used by the blockchain-connector
     db:
       # -- host of the db
