@@ -46,6 +46,7 @@ dome-issuer:
       verifierUrl: "https://verifier-dev.in2.ssihub.org"
       walletUrl: "https://wallet-dev.in2.ssihub.org"
       defaultLang: "es"
+      adminOrganizationId: "VATES-B60645900"
       mail:
         host: smtp.ionos.de
         port: 587
@@ -144,6 +145,7 @@ dome-issuer:
       showWalletUrlTest: "true"
       knowledgeBaseUrl: "https://knowledgebase.dome-marketplace-dev2.org"
       defaultLang: "es"
+      adminOrganizationId: "VATES-B60645900"
 
   dome-issuer-keycloak:
     enabled: false
