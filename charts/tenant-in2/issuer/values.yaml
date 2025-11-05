@@ -47,6 +47,7 @@ dome-issuer:
       walletUrl: "https://wallet-dev.in2.ssihub.org"
       defaultLang: "es"
       adminOrganizationId: "VATES-B60645900"
+      sysTenant: "DOME"
       mail:
         host: smtp.ionos.de
         port: 587
@@ -145,6 +146,7 @@ dome-issuer:
       knowledgeBaseUrl: "https://knowledgebase.dome-marketplace-dev2.org"
       defaultLang: "es"
       adminOrganizationId: "VATES-B60645900"
+      sysTenant: "DOME"
 
   dome-issuer-keycloak:
     enabled: false
