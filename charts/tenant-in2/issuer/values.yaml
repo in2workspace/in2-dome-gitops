@@ -73,7 +73,7 @@ dome-issuer:
           credentialId: credential-id
           credentialPassword: credential-password
         type: cloud
-        url: https://dts-component-rdss.ace-api.digitelts.com
+        url: https://dts-component-rdss-csc.ace-api.digitelts.com
       authServer:
         provider: keycloak
         externalUrl: https://keycloak-dev.ssihub.org
@@ -128,7 +128,7 @@ dome-issuer:
     image:
       repository: in2workspace/eudistack-issuer-ui
       # Overrides the image tag whose default is the chart appVersion.
-      tag: v2.1.3-pr-125
+      tag: v2.1.4-pr-126
       pullPolicy: Always
     app:
       colors:
