@@ -132,12 +132,12 @@ dome-issuer:
       pullPolicy: Always
     app:
       colors:
-        primary: "#2d58a7"
-        primaryContrast: "#ffffff"
-        secondary: "#2cb6b2"
-        secondaryContrast: "#dde6f6"
-      logoSrc: "dome-issuer.png"
-      faviconSrc: "DOME_Icon.png"
+        primary: "#1b3891"
+        primaryContrast: "#f2f2f2f2"
+        secondary: "#40a2d0"
+        secondaryContrast: "#444444"
+      logoSrc: "altia-logo.png"
+      faviconSrc: "altia-favicon.ico"
       keycloakUrl: "https://keycloak-dev.ssihub.org/realms/in2-issuer"
       backendUrl: "https://issuer-dev.in2.ssihub.org"
       walletUrl: "https://wallet.dome-marketplace.eu"
