@@ -2,7 +2,7 @@ apiVersion: v2
 name: wallet
 description: Parent chart managing all the components of the Wallet application
 type: application
-version: 2.1.55
+version: 2.1.56
 appVersion: "1.0.0"
 
 dependencies:
