@@ -16,7 +16,6 @@ access-node:
             - desmos.dome-marketplace-lcl.org
           secretName: desmos-tls-secret
     app:
-      profile: dev
       logLevel:
         app: DEBUG
       ## information about the access-node operator
