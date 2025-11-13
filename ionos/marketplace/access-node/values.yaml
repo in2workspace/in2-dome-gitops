@@ -2,6 +2,8 @@ access-node:
   ## configuration for the desmos - see https://DOME-Marketplace.github.io/access-node for configuration documentation
   desmos:
     app:
+      logLevel:
+        app: DEBUG
       ## information about the access-node operator
       operator:
         # -- did of the organization running the node
