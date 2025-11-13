@@ -10,7 +10,7 @@ access-node:
         organizationIdentifier: did:key:zDnaerQi587EqQLqEaj7qbxc46hzdjX2goNsmLTq1X6HqzzjP
       # -- operator external domain
       externalDomain:
-        protocol: "http"
+        protocol: "https"
         domain: "desmos.dome-marketplace-lcl.org"
       externalAccessNodesUrls:
         enableCustomUrls: true
