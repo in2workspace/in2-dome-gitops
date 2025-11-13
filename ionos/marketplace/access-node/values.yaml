@@ -1,62 +1,18 @@
-## configuration for the desmos - see https://DOME-Marketplace.github.io/access-node for configuration documentation
 access-node:
+  ## configuration for the desmos - see https://DOME-Marketplace.github.io/access-node for configuration documentation
   desmos:
-    # -- should the desmos-blockchain-connector be enabled
-    enabled: true
-    # -- overrides the generated name, provides stable service names - this should be avoided if multiple instances are available in the same namespace
-    fullnameOverride: desmos
-    image:
-      repository: in2workspace/in2-desmos-api
-      # Overrides the image tag whose default is the chart appVersion.
-      tag: v2.0.2
-      pullPolicy: Always
-    readinessProbe:
-      failureThreshold: 10
-    livenessProbe:
-      failureThreshold: 10
-    ingress:
-      enabled: true
-      className: nginx
-      annotations:
-        cert-manager.io/cluster-issuer: letsencrypt-in2-test-issuer
-      tls:
-        - hosts:
-            - desmos.dome-marketplace-lcl.org
-          secretName: desmos-tls-secret
-    ## deployment specific configuration
     app:
-      ## profile (test == dev)
-      profile: dev
-      ## debug level
-      logLevel:
-        app: DEBUG
       ## information about the access-node operator
       operator:
         # -- did of the organization running the node
-        organizationIdentifier: did:key:zDnaerQi587EqQLqEaj7qbxc46hzdjX2goNsmLTq1X6HqzzjP
-      ## connection information for the context broker
-      broker:
-        # -- provider of the broker
-        provider: scorpio
-        # -- internal address of the context broker to be used by the connector
-        internalDomain: http://scorpio:9090
-        # -- external address of the broker. Will be included in the hashlink and used by other access-nodes to retrieve the actual entities
-        externalDomain: http://scorpio:9090
-      ## configuration to connect to the dlt-adapter
-      dltAdapter:
-        # -- provider of the dlt-adapter component
-        provider: digitelts
-        # -- (local) address of the dlt-adapter
-        internalDomain: http://dlt-adapter:8080
-        # -- (external) address of the dlt-adapter
-        externalDomain: http://dlt-adapter:8080
+        organizationIdentifier: did:key:zDnaeVXPuangcFS5danmBy2t1nebjoiVembkkVzHxKENu1SQc
       # -- operator external domain
       externalDomain:
-        protocol: "https"
-        domain: "desmos.dome-marketplace-lcl.org"
+        protocol: "http"
+        domain: "desmos.marketplace-test.svc.cluster.local:8080"
       externalAccessNodesUrls:
         enableCustomUrls: true
-        customUrls: ""
+        customUrls: "https://desmos.dome-marketplace-lcl.org"
       # -- configuration to set your private key
       privateKey:
         existingSecret:
@@ -71,20 +27,9 @@ access-node:
           enabled: true
           name: access-node-secret
           key: lear-credential-machine
-      # -- configuration for the api path version
-      desmosPathVersion: v2
+
     ## configuration of the database to be used by the blockchain-connector
     db:
-      # -- host of the db
-      host: desmos-postgres
-      # -- port of the host of the db
-      port: 5432
-      # -- should be true if is an external service
-      externalService: false
-      # -- name of the db
-      name: desmos
-      # -- username to be used
-      username: postgres
       # -- existing secret to retrieve the db password
       existingSecret:
         # -- should an existing secret be used
@@ -96,59 +41,29 @@ access-node:
 
   ## configuration for the dlt-adapter - see https://DOME-Marketplace.github.io/access-node/dlt-adapter for configuration documentation
   dlt-adapter:
-    # -- should the dlt-adapter be enabled
-    enabled: true
-    # -- overrides the generated name, provides stable service names - this should be avoided if multiple instances are available in the same namespace
-    fullnameOverride: dlt-adapter
-
     existingSecret:
       enabled: true
       name: access-node-secret
       key: dlt-private-key
     env:
-      DEBUG: "*"
-      RPC_ADDRESS: "https://red-t.alastria.io/v0/9461d9f4292b41230527d57ee90652a6"
-      ISS: "0xa559c43a8127569c71c42a04a41e82bcfcf86a82b61284b2c906afbe67d4b839"
+      ISS: "0x2ccafddafb09ee283a7113e9a292882d1a7a55622918de373cf6f426985b8673"
 
   ## configuration of postgres to be used for the blockchain-connector - see https://github.com/bitnami/charts/tree/main/bitnami/postgresql for details
   postgresql:
-    # -- should the postgresql deployment be enabled
-    enabled: true
-    # -- overrides the generated name, provides stable service names - this should be avoided if multiple instances are available in the same namespace
-    fullnameOverride: desmos-postgres
-    # -- overrides the generated name, provides stable service names - this should be avoided if multiple instances are available in the same namespace
-    nameOverride: desmos-postgres
     ## auth configuration for the database
     auth:
-      # -- username to be used
-      username: postgres
-      # -- should the default postgres user be enabled
-      enablePostgresUser: true
       # -- existing secret
       existingSecret: access-node-secret
       secretKeys:
         adminPasswordKey: desmos-db-password
         userPasswordKey: desmos-db-password
-    ## configuration of the postgres primary replica
-    primary:
-      ## provide db initialization
-      initdb:
-        ## provide scripts for initialization
-        scripts:
-          # -- create the database as expected by the blockchain-connector
-          create.sh: |
-            psql postgresql://postgres:${POSTGRES_PASSWORD}@localhost:5432 -c "CREATE DATABASE desmos;"  
 
   ## configuration of the context-broker - see https://github.com/FIWARE/helm-charts/tree/main/charts/scorpio-broker-aaio for details
   scorpio:
-    # -- should scorpio be enabled
-    enabled: true
     ## configuration of the database to be used by broker
     db:
       # -- host of the db
       dbhost: scorpio-postgis
-      # -- username to be used
-      user: postgres
       # -- existing secret to retrieve the db password
       existingSecret:
         # -- should an existing secret be used
@@ -157,63 +72,19 @@ access-node:
         name: access-node-secret
         # -- key to retrieve the password from
         key: scorpio-db-password
-    ## configuration of the readiness probe
-    readinessProbe:
-      # -- path to be used for the readiness probe, older versions used /actuator/health
-      path: /q/health
-    ## configuration of the liveness probe
-    livenessProbe:
-      # -- path to be used for the readiness probe, older versions used /actuator/health
-      path: /q/health
-    # -- overrides the generated name, provides stable service names - this should be avoided if multiple instances are available in the same namespace
-    fullnameOverride: scorpio
-    ## configuration to be used for the service offered by scorpio
-    service:
-      # -- ClusterIP is the recommended type for most clusters
-      type: ClusterIP
-
-  ## configuration for kafka in case its used by scorpio - see https://github.com/bitnami/charts/tree/main/bitnami/kafka
-  kafka:
-    # -- should kafka be enabled?
-    enabled: false
 
   ## configuration of postgis to be used for scorpio - see https://github.com/bitnami/charts/tree/main/bitnami/postgresql for details
   postgis:
-    # -- should postgis be enabled
-    enabled: true
-    # -- overrides the generated name, provides stable service names - this should be avoided if multiple instances are available in the same namespace
-    fullnameOverride: scorpio-postgis
-    # -- overrides the generated name, provides stable service names - this should be avoided if multiple instances are available in the same namespace
-    nameOverride: scorpio-postgis
     ## auth configuration for the database
     auth:
-      # -- username to be used
-      username: postgres
-      # -- should the default postgres user be enabled
-      enablePostgresUser: true
       # -- existing secret
       existingSecret: access-node-secret
       secretKeys:
         adminPasswordKey: scorpio-db-password
         userPasswordKey: scorpio-db-password
-    ## configuration of the postgres primary replicas
-    primary:
-      ## provide db initialization
-      initdb:
-        ## provide scripts for initialization
-        scripts:
-          # -- enable the postgis extension and create the database as expected by scorpio
-          enable.sh: |
-            psql postgresql://postgres:${POSTGRES_PASSWORD}@localhost:5432 -c "CREATE EXTENSION postgis;"
-            psql postgresql://postgres:${POSTGRES_PASSWORD}@localhost:5432 -c "CREATE DATABASE ngb;"
 
   ## configuration of the tm-forum-api - see https://github.com/FIWARE/helm-charts/tree/main/charts/tm-forum-api for details
   tm-forum-api:
-    fullnameOverride: tm-forum-api
-    nameOverride: tm-forum-api
-    # -- should tm-forum-api be enabled
-    enabled: true
-
     apis:
       - name: party-catalog
         image: tmforum-party-catalog
