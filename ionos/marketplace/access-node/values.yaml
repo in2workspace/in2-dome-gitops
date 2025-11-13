@@ -62,8 +62,6 @@ access-node:
   scorpio:
     ## configuration of the database to be used by broker
     db:
-      # -- host of the db
-      dbhost: scorpio-postgis
       # -- existing secret to retrieve the db password
       existingSecret:
         # -- should an existing secret be used
