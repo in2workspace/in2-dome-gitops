@@ -1,7 +1,22 @@
 access-node:
   ## configuration for the desmos - see https://DOME-Marketplace.github.io/access-node for configuration documentation
   desmos:
+    image:
+      # Overrides the image tag whose default is the chart appVersion.
+      tag: v2.0.2
+      ## image pull policy
+      pullPolicy: Always
+    ingress:
+      enabled: true
+      className: nginx
+      annotations:
+        cert-manager.io/cluster-issuer: letsencrypt-in2-test-issuer
+      tls:
+        - hosts:
+            - desmos.dome-marketplace-lcl.org
+          secretName: desmos-tls-secret
     app:
+      profile: dev
       logLevel:
         app: DEBUG
       ## information about the access-node operator
