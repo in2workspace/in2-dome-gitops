@@ -9,10 +9,10 @@ access-node:
       # -- operator external domain
       externalDomain:
         protocol: "http"
-        domain: "desmos.marketplace-test.svc.cluster.local:8080"
+        domain: "desmos.dome-marketplace-lcl.org"
       externalAccessNodesUrls:
         enableCustomUrls: true
-        customUrls: "https://desmos.dome-marketplace-lcl.org"
+        customUrls: ""
       # -- configuration to set your private key
       privateKey:
         existingSecret:
