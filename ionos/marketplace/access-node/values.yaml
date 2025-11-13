@@ -46,6 +46,16 @@ access-node:
 
     ## configuration of the database to be used by the blockchain-connector
     db:
+      # -- host of the db
+      host: desmos-postgres
+      # -- port of the host of the db
+      port: 5432
+      # -- should be true if is an external service
+      externalService: false
+      # -- name of the db
+      name: desmos
+      # -- username to be used
+      username: postgres
       # -- existing secret to retrieve the db password
       existingSecret:
         # -- should an existing secret be used
@@ -66,6 +76,10 @@ access-node:
 
   ## configuration of postgres to be used for the blockchain-connector - see https://github.com/bitnami/charts/tree/main/bitnami/postgresql for details
   postgresql:
+    # -- overrides the generated name, provides stable service names - this should be avoided if multiple instances are available in the same namespace
+    fullnameOverride: desmos-postgres
+    # -- overrides the generated name, provides stable service names - this should be avoided if multiple instances are available in the same namespace
+    nameOverride: desmos-postgres
     ## auth configuration for the database
     auth:
       # -- existing secret
@@ -73,11 +87,22 @@ access-node:
       secretKeys:
         adminPasswordKey: desmos-db-password
         userPasswordKey: desmos-db-password
+    ## configuration of the postgres primary replica
+    primary:
+      ## provide db initialization
+      initdb:
+        ## provide scripts for initialization
+        scripts:
+          # -- create the database as expected by the blockchain-connector
+          create.sh: |
+            psql postgresql://postgres:${POSTGRES_PASSWORD}@localhost:5432 -c "CREATE DATABASE desmos;"
 
   ## configuration of the context-broker - see https://github.com/FIWARE/helm-charts/tree/main/charts/scorpio-broker-aaio for details
   scorpio:
     ## configuration of the database to be used by broker
     db:
+      # -- host of the db
+      dbhost: scorpio-postgis
       # -- existing secret to retrieve the db password
       existingSecret:
         # -- should an existing secret be used
@@ -89,6 +114,10 @@ access-node:
 
   ## configuration of postgis to be used for scorpio - see https://github.com/bitnami/charts/tree/main/bitnami/postgresql for details
   postgis:
+    # -- overrides the generated name, provides stable service names - this should be avoided if multiple instances are available in the same namespace
+    fullnameOverride: scorpio-postgis
+    # -- overrides the generated name, provides stable service names - this should be avoided if multiple instances are available in the same namespace
+    nameOverride: scorpio-postgis
     ## auth configuration for the database
     auth:
       # -- existing secret
