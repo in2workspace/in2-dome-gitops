@@ -83,6 +83,8 @@ access-node:
 
   ## configuration of the tm-forum-api - see https://github.com/FIWARE/helm-charts/tree/main/charts/tm-forum-api for details
   tm-forum-api:
+    fullnameOverride: tm-forum-api
+    nameOverride: tm-forum-api
     apis:
       - name: party-catalog
         image: tmforum-party-catalog
