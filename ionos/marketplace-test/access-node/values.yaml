@@ -14,7 +14,7 @@ access-node:
       ## information about the access-node operator
       operator:
         # -- did of the organization running the node
-        organizationIdentifier: did:key:zDnaerQi587EqQLqEaj7qbxc46hzdjX2goNsmLTq1X6HqzzjP
+        organizationIdentifier: did:key:zDnaeVXPuangcFS5danmBy2t1nebjoiVembkkVzHxKENu1SQc
       # -- operator external domain
       externalDomain:
         protocol: "http"
@@ -55,7 +55,7 @@ access-node:
       name: access-node-secret
       key: dlt-private-key
     env:
-      ISS: "0xa559c43a8127569c71c42a04a41e82bcfcf86a82b61284b2c906afbe67d4b839"
+      ISS: "0x2ccafddafb09ee283a7113e9a292882d1a7a55622918de373cf6f426985b8673"
 
   ## configuration of postgres to be used for the blockchain-connector - see https://github.com/bitnami/charts/tree/main/bitnami/postgresql for details
   postgresql:
