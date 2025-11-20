@@ -136,7 +136,7 @@ dome-issuer:
         primaryContrast: "#000000"
         secondary: "#76F276"
         secondaryContrast: "#444444"
-      logoSrc: "isbe-logo.svg"
+      logoSrc: "dome-issuer.png"
       faviconSrc: "isbe-favicon.svg"
       keycloakUrl: "https://keycloak-dev.ssihub.org/realms/in2-issuer"
       backendUrl: "https://issuer-dev.in2.ssihub.org"
