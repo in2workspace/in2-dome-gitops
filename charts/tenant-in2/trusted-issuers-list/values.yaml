@@ -9,7 +9,7 @@ trusted-issuers-list:
   prometheus:
     enabled: true
     path: /prometheus
-    port: "9090"
+    port: '"9090"'
 
   # Configure an Ingress or OpenShift Route
   ingress:
