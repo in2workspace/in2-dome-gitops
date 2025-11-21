@@ -2,7 +2,7 @@ trusted-issuers-list:
   # Image
   deployment:
     image:  
-      tag: 0.2.0
+      tag: 0.4.0
 
   fullnameOverride: trusted-issuers-list
 
