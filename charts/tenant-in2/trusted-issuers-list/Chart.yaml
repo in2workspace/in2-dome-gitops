@@ -3,7 +3,7 @@ name: trusted-issuers-list
 description: Chart holder for til
 
 type: application
-version: 0.3.9
+version: 0.3.10
 appVersion: "0.2.0"
 
 dependencies:
