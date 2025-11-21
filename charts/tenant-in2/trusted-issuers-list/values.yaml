@@ -21,12 +21,14 @@ trusted-issuers-list:
   # Database config
   database:
     persistence: true
-    host: trusted-issuers-list-database
+    host: tir-postgres-postgresql
+    port: 5432
     name: til
 
-    existingSecret:
-      enabled: true
-      name:  til-database-secret
-      key: mysql-root-password
+    username: tiruser
+    password: tirpassword
 
-    username: root
+    dialect: postgres
+
+    existingSecret:
+      enabled: false
