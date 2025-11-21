@@ -10,7 +10,7 @@ clients:
     requireProofKey: false
     jwkSetUrl: "https://keycloak-dev.ssihub.org/realms/in2-issuer/protocol/openid-connect/certs"
     tokenEndpointAuthenticationSigningAlgorithm: "ES256"
-  - clientId: "did:key:zDnaeovoz1VGLjjb5nLcg4bZch4KS4GizJWnjxrtto8vhftTT"
+  - clientId: "did:key:zDnaeRgeCDmJdgeYYzgSmWug5oAbNbNWiyVe5VnuB1n1AFyjZ"
     redirectUris: [ ]
     scopes: [ ]
     clientAuthenticationMethods: [ "client_secret_jwt" ]
@@ -18,7 +18,7 @@ clients:
     postLogoutRedirectUris: [ ]
     requireAuthorizationConsent: false
     requireProofKey: false
-    jwkSetUrl: "https://verifier-dev.in2.ssihub.org/oidc/did/did:key:zDnaeovoz1VGLjjb5nLcg4bZch4KS4GizJWnjxrtto8vhftTT"
+    jwkSetUrl: "https://verifier-dev.in2.ssihub.org/oidc/did/did:key:zDnaeRgeCDmJdgeYYzgSmWug5oAbNbNWiyVe5VnuB1n1AFyjZ"
     tokenEndpointAuthenticationSigningAlgorithm: "ES256"
   - clientId: "catalog-mkpl"
     url: "https://deploy-preview-2--isbecatalog.netlify.app/"
