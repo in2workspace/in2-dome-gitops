@@ -1,15 +1,9 @@
 trusted-issuers-list:
+
   # Image
   deployment:
-    image:  
-      tag: 0.4.0
-
-  fullnameOverride: trusted-issuers-list
-
-  prometheus:
-    enabled: true
-    path: /prometheus
-    port: '"9090"'
+    image:
+      tag: 0.2.0
 
   # Configure an Ingress or OpenShift Route
   ingress:
@@ -22,18 +16,16 @@ trusted-issuers-list:
       enabled: false
     tir:
       enabled: false
-      
+
   # Database config
   database:
     persistence: true
-    host: tir-postgres-postgresql
-    port: 5432
+    host: mysql-til
     name: til
 
-    username: tiruser
-    password: tirpassword
-
-    dialect: postgres
-
     existingSecret:
-      enabled: false
+      enabled: true
+      name:  mysql-secret
+      key: mysql-root-password
+
+    username: root
