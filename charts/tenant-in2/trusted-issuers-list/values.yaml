@@ -1,9 +1,10 @@
 trusted-issuers-list:
-
   # Image
   deployment:
     image:
       tag: 0.2.0
+
+  fullnameOverride: trusted-issuers-list
 
   # Configure an Ingress or OpenShift Route
   ingress:
@@ -20,12 +21,12 @@ trusted-issuers-list:
   # Database config
   database:
     persistence: true
-    host: mysql-til
+    host: trusted-issuers-list-database
     name: til
 
     existingSecret:
       enabled: true
-      name:  mysql-secret
+      name:  til-database-secret
       key: mysql-root-password
 
     username: root
