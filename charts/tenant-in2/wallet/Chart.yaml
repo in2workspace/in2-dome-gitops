@@ -2,11 +2,11 @@ apiVersion: v2
 name: wallet
 description: Parent chart managing all the components of the Wallet application
 type: application
-version: 2.1.59
+version: 2.1.60
 appVersion: "1.0.0"
 
 dependencies:
   - name: dome-wallet
     condition: wallet.enabled
     repository: https://in2workspace.github.io/helm-charts
-    version: 1.4.18
+    version: 1.4.20
