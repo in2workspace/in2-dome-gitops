@@ -109,6 +109,8 @@ dome-issuer:
           allowedOrigins: "http://localhost:4200, https://issuer-dev.in2.ssihub.org, http://localhost:63342"
         external:
           allowedOrigins: "http://localhost:4200, https://issuer-dev.in2.ssihub.org, http://localhost:63342"
+      vault:
+        secretsMount: kv
       verifier:
         url: "https://verifier-dev.in2.ssihub.org"
       db:
