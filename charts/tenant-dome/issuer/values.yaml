@@ -17,7 +17,7 @@ dome-issuer:
     image:
       repository: in2workspace/eudistack-issuer-api
       # Overrides the image tag whose default is the chart appVersion.
-      tag: v2.2.5
+      tag: v2.2.6
       pullPolicy: Always
     ingressIssuerApi:
       enabled: true
@@ -112,6 +112,8 @@ dome-issuer:
           allowedOrigins: "https://issuer-dev.dome.ssihub.org"
         external:
           allowedOrigins: "https://issuer-dev.dome.ssihub.org"
+      vault:
+        secretsMount: kv
       verifier:
         url: "https://verifier.dome-marketplace-lcl.org"
       db:
@@ -131,16 +133,16 @@ dome-issuer:
     image:
       repository: in2workspace/eudistack-issuer-ui
       # Overrides the image tag whose default is the chart appVersion.
-      tag: v2.1.7
+      tag: v2.1.8-pr-132
       pullPolicy: Always
     app:
       colors:
-        primary: "#2d58a7"
-        primaryContrast: "#ffffff"
-        secondary: "#2cb6b2"
+        primary: "#1b3891"
+        primaryContrast: "#f2f2f2f2"
+        secondary: "#40a2d0"
         secondaryContrast: "#dde6f6"
-      logoSrc: "dome-issuer.png"
-      faviconSrc: "DOME_Icon.png"
+      logoSrc: "altia-logo.svg"
+      faviconSrc: "altia-favicon.ico"
       keycloakUrl: "https://keycloak-dev.ssihub.org/realms/dome-issuer"
       backendUrl: "https://issuer-dev.dome.ssihub.org"
       walletUrl: "https://wallet.dome-marketplace.eu"
