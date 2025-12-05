@@ -1,7 +1,7 @@
 dome-verifier:
   image:
     repository: in2workspace/eudistack-verifier-api
-    tag: v2.0.5
+    tag: v2.0.6
     pullPolicy: Always
 
   fullnameOverride: dome-verifier
@@ -40,10 +40,10 @@ dome-verifier:
         secondaryContrast: "#F9F3E7"
       # Placeholder for logo source path (REQUIRED)
       # This routes must point to internal folder: src/main/resources/static/img/<file_name.png>
-      logoSrc: "isbe-logo.svg"
+      logoSrc: "dome_logo_white.svg"
       # Placeholder for favicon source path (OPTIONAL)
       # This routes must point to internal folder: src/main/resources/static/img/<file_name.png>
-      faviconSrc: "isbe-favicon.svg"
+      faviconSrc: "dome_favicon.png"
       defaultLang: "es"
     backend:
       logging:
