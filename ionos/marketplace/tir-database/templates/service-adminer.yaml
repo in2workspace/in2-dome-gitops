@@ -1,0 +1,15 @@
+{{- if .Values.adminer.enabled }}
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "database.fullname" . }}-adminer
+  labels:
+    app: {{ include "database.name" . }}-adminer
+spec:
+  type: ClusterIP
+  ports:
+    - port: {{ .Values.adminer.service.port }}
+      targetPort: {{ .Values.adminer.service.port }}
+  selector:
+    app: {{ include "database.name" . }}-adminer
+{{- end }}

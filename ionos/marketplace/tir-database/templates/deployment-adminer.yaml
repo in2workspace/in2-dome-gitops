@@ -1,0 +1,24 @@
+{{- if .Values.adminer.enabled }}
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "database.fullname" . }}-adminer
+  labels:
+    app: {{ include "database.name" . }}-adminer
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: {{ include "database.name" . }}-adminer
+  template:
+    metadata:
+      labels:
+        app: {{ include "database.name" . }}-adminer
+    spec:
+      containers:
+        - name: adminer
+          image: "{{ .Values.adminer.image.repository }}:{{ .Values.adminer.image.tag }}"
+          imagePullPolicy: {{ .Values.adminer.image.pullPolicy }}
+          ports:
+            - containerPort: {{ .Values.adminer.service.port }}
+{{- end }}

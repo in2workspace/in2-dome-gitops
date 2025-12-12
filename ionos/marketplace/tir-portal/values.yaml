@@ -1,0 +1,25 @@
+replicaCount: 1
+image:
+  repository: tir-portal
+  tag: latest
+  pullPolicy: IfNotPresent
+service:
+  type: ClusterIP
+  port: 3000
+ingress:
+  enabled: true
+  host: portal.tir.infra.dome.dts.com
+  path: /
+env:
+  NUXT_PUBLIC_API_MAIN_URI: /v4
+  NUXT_PUBLIC_API_HEALTH: /health
+  NUXT_PUBLIC_CLIENT_ID: tir_portal_client_id
+  NUXT_PUBLIC_API_HOST: http://api.infra.dome.dts.com
+  NUXT_PUBLIC_AUTH_SERVER: http://some.verifier.dome.com
+  NUXT_PUBLIC_TOKEN_SERVER: http://some.verifier.dome.com
+  NUXT_PUBLIC_CODE_LENGTH: 64
+  NUXT_PUBLIC_CODE_ALGO: SHA-256
+  NUXT_PUBLIC_STATE_LENGTH: 16
+  NUXT_PUBLIC_CHALLENGE_METHOD: S256
+  NODE_ENV: development
+  

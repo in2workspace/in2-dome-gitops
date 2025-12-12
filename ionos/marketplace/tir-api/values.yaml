@@ -1,0 +1,42 @@
+replicaCount: 1
+image:
+  repository: tir-api
+  tag: latest
+  pullPolicy: IfNotPresent
+service:
+  type: ClusterIP
+  port: 8080
+ingress:
+  enabled: true
+  host: api.tir.infra.dome.dts.com
+  paths: 
+    - /v4
+    - /
+env:
+  PORT: 8080
+  DB_PORT: 5432
+  DB_DRIVER: org.postgresql.Driver
+  ETH_PROVIDER: http://some.blockchain.rpc.dome.com
+  AUTH_ISSUER: http://some.idp.endpoint.rpc.dome.com
+  HOST_URL: http://api.infra.dome.dts.com
+  API_URL: http://api.infra.dome.dts.com/v4
+  DB_URL: jbdc:postgresql://tir-database
+envSecrets:
+  DB_NAME:
+    secretName: database-secret
+    secretKey: POSTGRES_DB
+  DB_USER:
+    secretName: database-secret
+    secretKey: POSTGRES_USER
+  DB_PASS:
+    secretName: database-secret
+    secretKey: POSTGRES_PASSWORD
+  ETH_ADDRESS:
+    secretName: blockchain-secret
+    secretKey: ADDRESS
+  ETH_KEY:
+    secretName: blockchain-secret
+    secretKey: KEY
+  ETH_CONTRACT:
+    secretName: blockchain-secret
+    secretKey: CONTRACT
