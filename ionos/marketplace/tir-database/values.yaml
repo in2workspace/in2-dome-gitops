@@ -1,0 +1,27 @@
+replicaCount: 1
+database:
+  image:
+    repository: postgres
+    tag: 15
+    pullPolicy: IfNotPresent
+  service:
+    port: 5432
+  storage:
+    size: 5Gi
+adminer:
+  enabled: true
+  image:
+    repository: adminer
+    tag: latest
+    pullPolicy: IfNotPresent
+  service:
+    port: 8080
+  ingress:
+    enabled: true
+    host: adminer.tir.infra.dome.dts.com
+    path: /
+credentialsSecret:
+  name: database-secret
+sql:
+  enabled: false
+  configMapName: ""
