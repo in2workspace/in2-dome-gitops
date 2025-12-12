@@ -21,6 +21,7 @@ env:
   HOST_URL: http://api.infra.dome.dts.com
   API_URL: http://api.infra.dome.dts.com/v4
   DB_URL: jbdc:postgresql://tir-database
+  AUTH_MANDATORS: Altia;Digitel
 envSecrets:
   DB_NAME:
     secretName: database-secret
