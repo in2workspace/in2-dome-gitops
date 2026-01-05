@@ -16,7 +16,7 @@ dome-issuer:
     image:
       repository: in2workspace/eudistack-issuer-api
       # Overrides the image tag whose default is the chart appVersion.
-      tag: v2.2.6
+      tag: v2.2.7-pr-194
       pullPolicy: Always
     ingressIssuerApi:
       enabled: true
@@ -73,7 +73,7 @@ dome-issuer:
           credentialId: credential-id
           credentialPassword: credential-password
         type: cloud
-        url: https://dts-component-rdss-csc.ace-api.digitelts.com
+        url: https://dts-component-rdss-csc.api.digitelts.com
       authServer:
         provider: keycloak
         externalUrl: https://keycloak-dev.ssihub.org
