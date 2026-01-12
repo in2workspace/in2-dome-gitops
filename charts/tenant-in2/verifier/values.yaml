@@ -39,7 +39,7 @@ dome-verifier:
         # Defines contrasting text color for secondary color (OPTIONAL with default value)
         secondaryContrast: "#F9F3E7"
       assets:
-        baseUrl: "https://cdn.jsdelivr.net/gh/in2workspace/eudistack-images@main/Altia"
+        baseUrl: "https://cdn.jsdelivr.net/gh/in2workspace/eudistack-assets@main/Altia"
         # Placeholder for logo source path (REQUIRED)
         logoPath: "altia-logo.svg"
         # Placeholder for favicon source path (OPTIONAL)

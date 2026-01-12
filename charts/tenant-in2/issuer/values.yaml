@@ -141,7 +141,7 @@ dome-issuer:
         secondary: "#76F276"
         secondaryContrast: "#444444"
       assets:
-        baseUrl: "https://cdn.jsdelivr.net/gh/in2workspace/eudistack-images@main/Altia"
+        baseUrl: "https://cdn.jsdelivr.net/gh/in2workspace/eudistack-assets@main/Altia"
         logoPath: "altia-logo.svg"
         faviconPath: "altia-favicon.ico"
       keycloakUrl: "https://keycloak-dev.ssihub.org/realms/in2-issuer"
