@@ -138,8 +138,10 @@ dome-issuer:
         primaryContrast: "#000000"
         secondary: "#76F276"
         secondaryContrast: "#444444"
-      logoSrc: "dome-issuer-logo.png"
-      faviconSrc: "dome-favicon.png"
+      assets:
+        baseUrl: "https://cdn.jsdelivr.net/gh/in2workspace/eudistack-images@main/Altia"
+        logoPath: "altia-logo.svg"
+        faviconPath: "altia-favicon.ico"
       keycloakUrl: "https://keycloak-dev.ssihub.org/realms/in2-issuer"
       backendUrl: "https://issuer-dev.in2.ssihub.org"
       walletUrl: "https://wallet.dome-marketplace.eu"

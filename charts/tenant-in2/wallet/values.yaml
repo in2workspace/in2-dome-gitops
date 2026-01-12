@@ -88,8 +88,10 @@ dome-wallet:
         primaryContrast: "#000000"
         secondary: "#76F276"
         secondaryContrast: "#F9F3E7"
-      logoSrc: "assets/logos/dome-logo.png"
-      faviconSrc: "assets/icons/dome-favicon.png"
+      assets:
+        baseUrl: "https://cdn.jsdelivr.net/gh/in2workspace/eudistack-images@main/Altia"
+        logoPath: "altia-logo.svg"
+        faviconPath: "altia-favicon.ico"
       defaultLang: "es"
       walletApi:
         externalUrl: https://wallet-dev.in2.ssihub.org
