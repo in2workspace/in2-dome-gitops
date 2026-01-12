@@ -132,7 +132,7 @@ dome-issuer:
     image:
       repository: in2workspace/eudistack-issuer-ui
       # Overrides the image tag whose default is the chart appVersion.
-      tag: v2.1.9-pr-133
+      tag: v2.1.9
       pullPolicy: Always
     app:
       colors:
