@@ -124,6 +124,8 @@ dome-issuer:
         name: issuer
         username: postgres
         password: postgres
+        ssl:
+          mode: prefer
         existingSecret:
           enabled: false
           name: db-secret
