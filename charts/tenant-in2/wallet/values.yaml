@@ -67,6 +67,8 @@ dome-wallet:
         name: wallet
         username: postgres
         password: postgres
+        ssl:
+          mode: prefer
         existingSecret:
           enabled: true
           name: wallet-secret
