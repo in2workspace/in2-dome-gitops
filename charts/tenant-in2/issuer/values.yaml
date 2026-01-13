@@ -135,7 +135,7 @@ dome-issuer:
       tag: v2.1.10-pr-134
       pullPolicy: Always
     app:
-      theme-name: "altia-theme"
+      themeName: "altia-theme"
       assets:
         baseUrl: "https://cdn.jsdelivr.net/gh/in2workspace/eudistack-assets@main/Altia"
         logoPath: "altia-logo.svg"
