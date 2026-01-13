@@ -135,7 +135,7 @@ dome-issuer:
     image:
       repository: in2workspace/eudistack-issuer-ui
       # Overrides the image tag whose default is the chart appVersion.
-      tag: v2.1.8
+      tag: v2.1.9
       pullPolicy: Always
     app:
       colors:
@@ -143,8 +143,10 @@ dome-issuer:
         primaryContrast: "#f2f2f2f2"
         secondary: "#40a2d0"
         secondaryContrast: "#dde6f6"
-      logoSrc: "altia-logo.svg"
-      faviconSrc: "altia-favicon.ico"
+      assets:
+        baseUrl: "https://cdn.jsdelivr.net/gh/in2workspace/eudistack-assets@main/Altia"
+        logoPath: "altia-logo.svg"
+        faviconPath: "altia-favicon.ico"
       keycloakUrl: "https://keycloak-dev.ssihub.org/realms/dome-issuer"
       backendUrl: "https://issuer-dev.dome.ssihub.org"
       walletUrl: "https://wallet.dome-marketplace.eu"
