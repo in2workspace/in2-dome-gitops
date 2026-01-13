@@ -31,11 +31,11 @@ dome-verifier:
         # Placeholder for wallet URL (REQUIRED)
         wallet: "https://wallet-dev.in2.ssihub.org"
       colors:
-        primary: "#B88EFF"
+        primary: "#184bff"
         # Defines contrasting text color for primary color (OPTIONAL with default value)
-        primaryContrast: "#000000"
+        primaryContrast: "#ffffff"
         # Defines secondary color for the frontend (OPTIONAL with default value)
-        secondary: "#F9F3E7"
+        secondary: "#11387f"
         # Defines contrasting text color for secondary color (OPTIONAL with default value)
         secondaryContrast: "#F9F3E7"
       assets:
