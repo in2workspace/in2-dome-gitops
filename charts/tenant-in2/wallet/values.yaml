@@ -86,10 +86,10 @@ dome-wallet:
     app:
       logsEnabled: true
       colors:
-        primary: "#B88EFF"
-        primaryContrast: "#000000"
-        secondary: "#76F276"
-        secondaryContrast: "#F9F3E7"
+        primary: "#1b3891"
+        primaryContrast: "#f2f2f2f2"
+        secondary: "#40a2d0"
+        secondaryContrast: "#444444"
       assets:
         baseUrl: "https://cdn.jsdelivr.net/gh/in2workspace/eudistack-assets@main/Altia"
         logoPath: "altia-logo.svg"
