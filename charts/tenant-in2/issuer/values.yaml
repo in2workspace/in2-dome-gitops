@@ -132,14 +132,10 @@ dome-issuer:
     image:
       repository: in2workspace/eudistack-issuer-ui
       # Overrides the image tag whose default is the chart appVersion.
-      tag: v2.1.9
+      tag: v2.1.10-pr-134
       pullPolicy: Always
     app:
-      colors:
-        primary: "#B88EFF"
-        primaryContrast: "#000000"
-        secondary: "#76F276"
-        secondaryContrast: "#444444"
+      theme-name: "altia-theme"
       assets:
         baseUrl: "https://cdn.jsdelivr.net/gh/in2workspace/eudistack-assets@main/Altia"
         logoPath: "altia-logo.svg"
