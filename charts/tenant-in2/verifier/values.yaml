@@ -31,13 +31,13 @@ dome-verifier:
         # Placeholder for wallet URL (REQUIRED)
         wallet: "https://wallet-dev.in2.ssihub.org"
       colors:
-        primary: "#184bff"
+        primary: "#2D58A7"
         # Defines contrasting text color for primary color (OPTIONAL with default value)
         primaryContrast: "#ffffff"
         # Defines secondary color for the frontend (OPTIONAL with default value)
-        secondary: "#11387f"
+        secondary: "#14274A"
         # Defines contrasting text color for secondary color (OPTIONAL with default value)
-        secondaryContrast: "#F9F3E7"
+        secondaryContrast: "#00ADD3"
       assets:
         baseUrl: "https://cdn.jsdelivr.net/gh/in2workspace/eudistack-assets@main/Altia"
         # Placeholder for logo source path (REQUIRED)
