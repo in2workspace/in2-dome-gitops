@@ -17,7 +17,7 @@ dome-issuer:
     image:
       repository: in2workspace/eudistack-issuer-api
       # Overrides the image tag whose default is the chart appVersion.
-      tag: v2.2.7-pr-194
+      tag: v2.2.7-pr-195
       pullPolicy: Always
     ingressIssuerApi:
       enabled: true
@@ -75,7 +75,6 @@ dome-issuer:
           credentialPassword: credential-password
         #types allowed: server, cloud
         type: cloud
-        # broken url for test; correct version: https://dts-component-rdss-csc.ace-api.digitelts.com
         url: https://dts-component-rdss-csc.ace-api.digitelts.com
       authServer:
         provider: keycloak
@@ -135,14 +134,10 @@ dome-issuer:
     image:
       repository: in2workspace/eudistack-issuer-ui
       # Overrides the image tag whose default is the chart appVersion.
-      tag: v2.1.10-pr-134
+      tag: v2.1.12-pr-138
       pullPolicy: Always
     app:
-      colors:
-        primary: "#1b3891"
-        primaryContrast: "#f2f2f2f2"
-        secondary: "#40a2d0"
-        secondaryContrast: "#dde6f6"
+      themeName: "dome-theme"
       assets:
         baseUrl: "https://cdn.jsdelivr.net/gh/in2workspace/eudistack-assets@main/Altia"
         logoPath: "altia-logo.svg"
