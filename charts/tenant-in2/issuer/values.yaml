@@ -74,7 +74,7 @@ dome-issuer:
           credentialPassword: credential-password
         type: cloud
 #        url: https://dts-component-rdss-csc.api.digitelts.com
-        url: https://dts-component-rdss-csc.api.digitelts.com
+        url: https://dts-component-rdss.api.digitelts.com
       authServer:
         provider: keycloak
         externalUrl: https://keycloak-dev.ssihub.org
