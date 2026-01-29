@@ -1,7 +1,7 @@
 dome-verifier:
   image:
     repository: in2workspace/eudistack-verifier-api
-    tag: v2.0.10
+    tag: v2.0.11
     pullPolicy: Always
 
   fullnameOverride: dome-verifier
