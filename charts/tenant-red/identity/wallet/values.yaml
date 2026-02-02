@@ -24,7 +24,7 @@ dome-wallet:
     app:
       logLevel: DEBUG
       authServer:
-        externalUrl: https://keycloak-dev.ssihub.org/realms/tenant-red-wallet
+        externalUrl: https://keycloak.red.eudistack.net/realms/tenant-red-wallet
         internalUrl: http://keycloak.identity-security.svc.cluster.local:80/realms/tenant-red-wallet
       cors:
         allowedOrigins: "https://wallet.red.eudistack.net"
@@ -100,7 +100,7 @@ dome-wallet:
         # ws = sin certificado, wss = con certificado
         websocketExternalUrl: wss://wallet.red.eudistack.net
       iam:
-        externalUrl: https://keycloak-dev.ssihub.org/realms/tenant-red-wallet
+        externalUrl: https://keycloak.red.eudistack.net/realms/tenant-red-wallet
 
   ## configuration for the dome-wallet-keycloak
   dome-wallet-keycloak:

@@ -1,0 +1,12 @@
+clients:
+  - clientId: "in2-issuer"
+    url: "https://issuer.red.eudistack.net"
+    redirectUris: [ "https://keycloak-dev.ssihub.org/realms/in2-issuer/broker/vc/endpoint" ]
+    scopes: [ "openid_learcredential" ]
+    clientAuthenticationMethods: [ "client_secret_jwt" ]
+    authorizationGrantTypes: [ "authorization_code","refresh_token" ]
+    postLogoutRedirectUris: [ "https://issuer.red.eudistack.net/" ]
+    requireAuthorizationConsent: false
+    requireProofKey: false
+    jwkSetUrl: "https://keycloak-dev.ssihub.org/realms/in2-issuer/protocol/openid-connect/certs"
+    tokenEndpointAuthenticationSigningAlgorithm: "ES256"
