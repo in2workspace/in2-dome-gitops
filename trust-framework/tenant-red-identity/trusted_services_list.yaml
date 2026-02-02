@@ -1,12 +1,12 @@
 clients:
   - clientId: "red-issuer"
     url: "https://issuer.red.eudistack.net"
-    redirectUris: [ "https://keycloak.red.eudistack.net/realms/in2-issuer/broker/vc/endpoint" ]
+    redirectUris: [ "https://keycloak.red.eudistack.net/realms/red-issuer/broker/vc/endpoint" ]
     scopes: [ "openid_learcredential" ]
     clientAuthenticationMethods: [ "client_secret_jwt" ]
     authorizationGrantTypes: [ "authorization_code","refresh_token" ]
     postLogoutRedirectUris: [ "https://issuer.red.eudistack.net/" ]
     requireAuthorizationConsent: false
     requireProofKey: false
-    jwkSetUrl: "https://keycloak.red.eudistack.net/realms/in2-issuer/protocol/openid-connect/certs"
+    jwkSetUrl: "https://keycloak.red.eudistack.net/realms/red-issuer/protocol/openid-connect/certs"
     tokenEndpointAuthenticationSigningAlgorithm: "ES256"
