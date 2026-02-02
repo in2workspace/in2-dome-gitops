@@ -14,6 +14,7 @@ spec:
         dnsZones:
           - "{{ .Values.dome.dnsName }}"
           - "ssihub.org"
+          - "eudistack.net"
       http01:
         ingress:
           ingressClassName: nginx

@@ -3,7 +3,7 @@ name: ingress-nginx
 description: Chart holder for argo-cd
 
 type: application
-version: 0.1.1
+version: 0.1.2
 appVersion: "1.8.2"
 
 dependencies:
