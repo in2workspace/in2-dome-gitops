@@ -46,7 +46,7 @@ dome-issuer:
       verifierUrl: "https://verifier.blue.eudistack.net"
       walletUrl: "https://wallet.blue.eudistack.net"
       defaultLang: "es"
-      adminOrganizationId: "VATES-B60645900"
+      adminOrganizationId: "VATES-A15456585"
       sysTenant: "DOME"
       mail:
         host: smtp.ionos.de
@@ -147,7 +147,7 @@ dome-issuer:
       showWalletUrlTest: "true"
       knowledgeBaseUrl: "https://knowledgebase.dome-marketplace-dev2.org"
       defaultLang: "es"
-      adminOrganizationId: "VATES-B60645900"
+      adminOrganizationId: "VATES-A15456585"
       sysTenant: "DOME"
 
   dome-issuer-keycloak:
