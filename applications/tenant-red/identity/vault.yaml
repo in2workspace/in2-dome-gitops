@@ -4,10 +4,10 @@ metadata:
   name: tenant-red-vault
   namespace: argocd
   labels:
-    purpose: tenant-red
+    purpose: tenant-red-identity
 spec:
   destination:
-    namespace: tenant-red
+    namespace: tenant-red-identity
     server: https://kubernetes.default.svc
   project: default
   source:

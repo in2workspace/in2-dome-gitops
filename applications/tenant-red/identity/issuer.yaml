@@ -4,7 +4,7 @@ metadata:
   name: tenant-red-issuer
   namespace: argocd
   labels:
-    purpose: tenant-red
+    purpose: tenant-red-identity
 spec:
   project: default
   source:
@@ -13,7 +13,7 @@ spec:
     path: charts/tenant-red/identity/issuer
   destination:
     server: https://kubernetes.default.svc
-    namespace: tenant-red
+    namespace: tenant-red-identity
   syncPolicy:
     automated:
       prune: true
