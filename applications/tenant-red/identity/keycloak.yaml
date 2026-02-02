@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: keycloak
+  name: tenant-red-keycloak
   namespace: argocd
   labels:
     purpose: tenant-red-identity
