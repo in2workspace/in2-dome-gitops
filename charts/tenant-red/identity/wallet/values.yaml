@@ -24,8 +24,8 @@ dome-wallet:
     app:
       logLevel: DEBUG
       authServer:
-        externalUrl: https://keycloak.red.eudistack.net/realms/tenant-red-wallet
-        internalUrl: http://keycloak:80/realms/tenant-red-wallet
+        externalUrl: https://keycloak.red.eudistack.net/realms/red-wallet
+        internalUrl: http://keycloak:80/realms/red-wallet
       cors:
         allowedOrigins: "https://wallet.red.eudistack.net"
       vault:
@@ -41,7 +41,7 @@ dome-wallet:
           #          # -- key to retrieve the token from
           key: root
       ebsiTest:
-        url: http://keycloak:80/realms/tenant-red-wallet/protocol/openid-connect/token
+        url: http://keycloak:80/realms/red-wallet/protocol/openid-connect/token
         client:
           id: user-registry-client
           existingSecret:
@@ -100,7 +100,7 @@ dome-wallet:
         # ws = sin certificado, wss = con certificado
         websocketExternalUrl: wss://wallet.red.eudistack.net
       iam:
-        externalUrl: https://keycloak.red.eudistack.net/realms/tenant-red-wallet
+        externalUrl: https://keycloak.red.eudistack.net/realms/red-wallet
 
   ## configuration for the dome-wallet-keycloak
   dome-wallet-keycloak:
