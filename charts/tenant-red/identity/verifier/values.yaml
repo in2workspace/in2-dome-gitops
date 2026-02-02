@@ -70,6 +70,6 @@ dome-verifier:
           # Placeholder for trusted issuers list URL
           trustedIssuersListUrl: "http://trusted-issuers-list:8080/v4/issuers/"
           # Placeholder for trusted services list URL
-          trustedServicesListUrl: "https://raw.githubusercontent.com/in2workspace/in2-dome-gitops/refs/heads/main/tenant-red-identity-trust-framework/trusted_services_list.yaml"
+          trustedServicesListUrl: "https://raw.githubusercontent.com/in2workspace/in2-dome-gitops/refs/heads/main/trust-framework/tenant-red-identity/trusted_services_list.yaml"
           # Placeholder for revoked credentials list URL
-          revokedCredentialListUrl: "https://raw.githubusercontent.com/in2workspace/in2-dome-gitops/refs/heads/main/tenant-red-identity-trust-framework/revoked_credential_list.yaml"
+          revokedCredentialListUrl: "https://raw.githubusercontent.com/in2workspace/in2-dome-gitops/refs/heads/main/trust-framework/tenant-red-identity/revoked_credential_list.yaml"
