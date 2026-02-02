@@ -1,0 +1,12 @@
+clients:
+  - clientId: "green-issuer"
+    url: "https://issuer.green.eudistack.net"
+    redirectUris: [ "https://keycloak.green.eudistack.net/realms/green-issuer/broker/vc/endpoint" ]
+    scopes: [ "openid_learcredential" ]
+    clientAuthenticationMethods: [ "client_secret_jwt" ]
+    authorizationGrantTypes: [ "authorization_code","refresh_token" ]
+    postLogoutRedirectUris: [ "https://issuer.green.eudistack.net/" ]
+    requireAuthorizationConsent: false
+    requireProofKey: false
+    jwkSetUrl: "https://keycloak.green.eudistack.net/realms/green-issuer/protocol/openid-connect/certs"
+    tokenEndpointAuthenticationSigningAlgorithm: "ES256"
