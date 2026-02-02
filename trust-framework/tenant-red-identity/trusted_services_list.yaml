@@ -10,13 +10,3 @@ clients:
     requireProofKey: false
     jwkSetUrl: "https://keycloak-dev.ssihub.org/realms/in2-issuer/protocol/openid-connect/certs"
     tokenEndpointAuthenticationSigningAlgorithm: "ES256"
-#  - clientId: "did:key:zDnaeRgeCDmJdgeYYzgSmWug5oAbNbNWiyVe5VnuB1n1AFyjZ"
-#    redirectUris: [ ]
-#    scopes: [ ]
-#    clientAuthenticationMethods: [ "client_secret_jwt" ]
-#    authorizationGrantTypes: [ "client_credentials" ]
-#    postLogoutRedirectUris: [ ]
-#    requireAuthorizationConsent: false
-#    requireProofKey: false
-#    jwkSetUrl: "https://verifier.red.eudistack.net/oidc/did/did:key:zDnaeRgeCDmJdgeYYzgSmWug5oAbNbNWiyVe5VnuB1n1AFyjZ"
-#    tokenEndpointAuthenticationSigningAlgorithm: "ES256"
