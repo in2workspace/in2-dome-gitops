@@ -1,0 +1,20 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: tenant-red-vault
+  namespace: argocd
+  labels:
+    purpose: tenant-red
+spec:
+  destination:
+    namespace: tenant-red
+    server: https://kubernetes.default.svc
+  project: default
+  source:
+    path: charts/tenant-red/identity/vault
+    repoURL: https://github.com/in2workspace/in2-dome-gitops
+    targetRevision: HEAD
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
