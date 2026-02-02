@@ -76,7 +76,7 @@ dome-issuer:
         url: https://dts-component-rdss-csc.ace-api.digitelts.com
       authServer:
         provider: keycloak
-        externalUrl: https://keycloak-dev.ssihub.org
+        externalUrl: https://keycloak.red.eudistack.net
         internalUrl: http://keycloak.identity-security.svc.cluster.local:80
         realm: red-issuer
         client:
@@ -140,7 +140,7 @@ dome-issuer:
         baseUrl: "https://cdn.jsdelivr.net/gh/in2workspace/eudistack-assets@main/Altia"
         logoPath: "altia-logo.svg"
         faviconPath: "altia-favicon.ico"
-      keycloakUrl: "https://keycloak-dev.ssihub.org/realms/tenant-red-issuer"
+      keycloakUrl: "https://keycloak.red.eudistack.net/realms/tenant-red-issuer"
       backendUrl: "https://issuer.red.eudistack.net"
       walletUrl: "https://wallet.dome-marketplace.eu"
       walletUrlTest: "https://wallet.red.eudistack.net"
