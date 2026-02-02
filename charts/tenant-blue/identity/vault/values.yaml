@@ -1,0 +1,17 @@
+vaultPodName: vault-server-0
+namespace: tenant-blue-identity
+unsealSecretName: vault-unseal-secret
+vault:
+  fullnameOverride: vault
+  nameOverride: vault
+  injector:
+    enabled: false
+  server:
+    image:
+      registry: docker.io
+      repository: bitnamilegacy/vault
+      tag: 1.18.1-debian-12-r1
+      pullPolicy: IfNotPresent
+  global:
+    security:
+      allowInsecureImages: true

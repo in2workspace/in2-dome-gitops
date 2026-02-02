@@ -1,0 +1,75 @@
+dome-verifier:
+  image:
+    repository: in2workspace/eudistack-verifier-api
+    tag: v2.0.11
+    pullPolicy: Always
+
+  fullnameOverride: dome-verifier
+
+  ingress:
+    enabled: true
+    className: nginx
+    annotations:
+      cert-manager.io/cluster-issuer: letsencrypt-in2-test-issuer
+    hosts:
+      - host: verifier.blue.eudistack.net
+        paths:
+          - path: /
+            pathType: Prefix
+    tls:
+      - hosts:
+          - verifier.blue.eudistack.net
+        secretName: verifier-tls-sec
+
+  app:
+    frontend:
+      urls:
+        # Placeholder for onboarding URL (REQUIRED)
+        onboarding: "https://knowledgebase.dome-marketplace.org/shelves/company-onboarding-process"
+        # Placeholder for support URL (REQUIRED)
+        support: "https://ticketing.dome-marketplace.eu"
+        # Placeholder for wallet URL (REQUIRED)
+        wallet: "https://wallet.blue.eudistack.net"
+      colors:
+        primary: "#2D58A7"
+        # Defines contrasting text color for primary color (OPTIONAL with default value)
+        primaryContrast: "#ffffff"
+        # Defines secondary color for the frontend (OPTIONAL with default value)
+        secondary: "#14274A"
+        # Defines contrasting text color for secondary color (OPTIONAL with default value)
+        secondaryContrast: "#00ADD3"
+      assets:
+        baseUrl: "https://cdn.jsdelivr.net/gh/in2workspace/eudistack-assets@main/Altia"
+        # Placeholder for logo source path (REQUIRED)
+        logoPath: "altia-logo.svg"
+        # Placeholder for favicon source path (OPTIONAL)
+        faviconPath: "altia-favicon.ico"
+      defaultLang: "es"
+    backend:
+      logging:
+        level:
+          # Sets logging level for Spring Security
+          org.springframework.security: DEBUG
+          # Sets logging level for web filters
+          org.springframework.web.filter: DEBUG
+          # Sets logging level for the custom package "es.in2.vcverifier"
+          es.in2.vcverifier: TRACE
+      # Placeholder for backend URL (REQUIRED)
+      url: "https://verifier.blue.eudistack.net"
+      security:
+        serviceIdentity:
+          existingSecret:
+            enabled: true
+            name: verifier-secret
+            privateKey: private-key
+            verifiableCredential: verifiable-credential
+          didKey: "did:key:zDnaegjBQpHyFKHToNzap68Ei6ZZRisTRKnRgajNF8QofTT2x"
+      trustFrameworks:
+        # Placeholder for the name of a trust framework (REQUIRED)
+        - name: DOME
+          # Placeholder for trusted issuers list URL
+          trustedIssuersListUrl: "http://trusted-issuers-list:8080/v4/issuers/"
+          # Placeholder for trusted services list URL
+          trustedServicesListUrl: "https://raw.githubusercontent.com/in2workspace/in2-dome-gitops/refs/heads/main/trust-framework/tenant-blue-identity/trusted_services_list.yaml"
+          # Placeholder for revoked credentials list URL
+          revokedCredentialListUrl: "https://raw.githubusercontent.com/in2workspace/in2-dome-gitops/refs/heads/main/trust-framework/tenant-blue-identity/revoked_credential_list.yaml"

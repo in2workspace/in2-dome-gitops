@@ -1,0 +1,12 @@
+clients:
+  - clientId: "blue-issuer"
+    url: "https://issuer.blue.eudistack.net"
+    redirectUris: [ "https://keycloak.blue.eudistack.net/realms/blue-issuer/broker/vc/endpoint" ]
+    scopes: [ "openid_learcredential" ]
+    clientAuthenticationMethods: [ "client_secret_jwt" ]
+    authorizationGrantTypes: [ "authorization_code","refresh_token" ]
+    postLogoutRedirectUris: [ "https://issuer.blue.eudistack.net/" ]
+    requireAuthorizationConsent: false
+    requireProofKey: false
+    jwkSetUrl: "https://keycloak.blue.eudistack.net/realms/blue-issuer/protocol/openid-connect/certs"
+    tokenEndpointAuthenticationSigningAlgorithm: "ES256"
