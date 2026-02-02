@@ -78,7 +78,7 @@ dome-issuer:
         provider: keycloak
         externalUrl: https://keycloak.blue.eudistack.net
         internalUrl: http://keycloak:80
-        realm: red-issuer
+        realm: blue-issuer
         client:
           clientId: issuer-api-client
           username: issuer-api-user
