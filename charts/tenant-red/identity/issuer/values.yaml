@@ -140,7 +140,7 @@ dome-issuer:
         baseUrl: "https://cdn.jsdelivr.net/gh/in2workspace/eudistack-assets@main/Altia"
         logoPath: "altia-logo.svg"
         faviconPath: "altia-favicon.ico"
-      keycloakUrl: "https://keycloak.red.eudistack.net/realms/tenant-red-issuer"
+      keycloakUrl: "https://keycloak.red.eudistack.net/realms/red-issuer"
       backendUrl: "https://issuer.red.eudistack.net"
       walletUrl: "https://wallet.dome-marketplace.eu"
       walletUrlTest: "https://wallet.red.eudistack.net"
