@@ -77,7 +77,7 @@ dome-issuer:
       authServer:
         provider: keycloak
         externalUrl: https://keycloak.red.eudistack.net
-        internalUrl: http://keycloak.identity-security.svc.cluster.local:80
+        internalUrl: http://keycloak:80
         realm: red-issuer
         client:
           clientId: issuer-api-client
