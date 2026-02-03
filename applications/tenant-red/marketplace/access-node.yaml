@@ -1,19 +1,19 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: access-node
+  name: tenant-red-access-node
   namespace: argocd
   labels:
-    purpose: marketplace
+    purpose: tenant-red-marketplace
 spec:
   project: default
   source:
     repoURL: https://github.com/in2workspace/in2-dome-gitops
     targetRevision: HEAD
-    path: ionos/marketplace/access-node
+    path: charts/tenant-red/marketplace/access-node
   destination:
     server: https://kubernetes.default.svc
-    namespace: marketplace
+    namespace: tenant-red-marketplace
   syncPolicy:
     automated:
       prune: true
