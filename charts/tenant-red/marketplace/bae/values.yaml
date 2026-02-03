@@ -150,7 +150,7 @@ business-api-ecosystem:
     secretName: bae-secret
 
     db:
-      host: mongodb
+      host: tenant-red-mongodb
       database: charging_db
       user: charging
 
@@ -215,7 +215,7 @@ business-api-ecosystem:
     nodeEnvironment: production
 
     db:
-      host: mongodb
+      host: tenant-red-mongodb
       database: belp_db
       user: belp
     basePath: /opt/business-ecosystem-logic-proxy
