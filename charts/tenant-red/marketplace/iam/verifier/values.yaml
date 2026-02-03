@@ -64,7 +64,7 @@ dome-verifier:
         # Placeholder for the name of a trust framework (REQUIRED)
         - name: DOME
           # Placeholder for trusted issuers list URL
-          trustedIssuersListUrl: "http://trusted-issuers-list.marketplace.svc.cluster.local:8080/v4/issuers/"
+          trustedIssuersListUrl: "http://tenant-red-trusted-issuers-list.marketplace.svc.cluster.local:8080/v4/issuers/"
           # Placeholder for trusted services list URL
           trustedServicesListUrl: "https://raw.githubusercontent.com/in2workspace/in2-dome-gitops/refs/heads/main/trust-framework/trusted_services_list.yaml"
           # Placeholder for revoked credentials list URL
