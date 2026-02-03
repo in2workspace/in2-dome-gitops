@@ -20,8 +20,8 @@ access-node:
         protocol: "https"
         domain: "desmos-test.red.eudistack.net"
       externalAccessNodesUrls:
-        enableCustomUrls: false
-        customUrls: "https://desmos.dome-marketplace-lcl.org"
+        enableCustomUrls: true
+        customUrls: ""
       # -- configuration to set your private key
       privateKey:
         existingSecret:
