@@ -1,15 +1,15 @@
 access-node:
   ## configuration for the desmos - see https://DOME-Marketplace.github.io/access-node for configuration documentation
   desmos:
-#    ingress:
-#      enabled: true
-#      className: nginx
-#      annotations:
-#        cert-manager.io/cluster-issuer: letsencrypt-in2-test-issuer
-#      tls:
-#        - hosts:
-#            - desmos.dome-marketplace-lcl.org
-#          secretName: desmos-tls-secret
+    ingress:
+      enabled: true
+      className: nginx
+      annotations:
+        cert-manager.io/cluster-issuer: letsencrypt-in2-test-issuer
+      tls:
+        - hosts:
+            - desmos-test.red.eudistack.net
+          secretName: desmos-tls-secret
     app:
       ## information about the access-node operator
       operator:
@@ -17,10 +17,10 @@ access-node:
         organizationIdentifier: did:key:zDnaeVXPuangcFS5danmBy2t1nebjoiVembkkVzHxKENu1SQc
       # -- operator external domain
       externalDomain:
-        protocol: "http"
-        domain: "desmos.marketplace-test.svc.cluster.local:8080"
+        protocol: "https"
+        domain: "desmos-test.red.eudistack.net"
       externalAccessNodesUrls:
-        enableCustomUrls: true
+        enableCustomUrls: false
         customUrls: "https://desmos.dome-marketplace-lcl.org"
       # -- configuration to set your private key
       privateKey:
