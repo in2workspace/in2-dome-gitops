@@ -1,22 +1,22 @@
-dome-issuer:
+eudistack-issuer:
 
   global:
     domain: "issuer.red.eudistack.net"
     ingress:
       enabled: true
       className: "nginx"
-      labels: {}
+      labels: { }
       annotations:
         nginx.ingress.kubernetes.io/ssl-redirect: "false"
         nginx.ingress.kubernetes.io/backend-protocol: "HTTP"
       enableTLS: true
       clusterIssuer: "letsencrypt-in2-test-issuer"
 
-  dome-issuer-backend:
+  eudistack-issuer-core-backend:
     image:
       repository: in2workspace/eudistack-issuer-api
       # Overrides the image tag whose default is the chart appVersion.
-      tag: v2.2.11
+      tag: v2.2.13-core
       pullPolicy: Always
     ingressIssuerApi:
       enabled: true
@@ -128,7 +128,16 @@ dome-issuer:
           name: issuer-secret
           key: db-password
 
-  dome-issuer-frontend:
+  eudistack-issuer-enterprise-backend:
+    image:
+      repository: 147108726325.dkr.ecr.eu-west-1.amazonaws.com/eudistack-stg-ecr-ew1-issuer
+      # Overrides the image tag whose default is the chart appVersion.
+      tag: v0.0.1-pr-2-enterprise
+      pullPolicy: Always
+      imagePullSecrets:
+        - name: eudistack-stg-ecr-secret
+
+  eudistack-issuer-frontend:
     image:
       repository: in2workspace/eudistack-issuer-ui
       # Overrides the image tag whose default is the chart appVersion.
@@ -150,13 +159,6 @@ dome-issuer:
       adminOrganizationId: "VATES-A15456585"
       sysTenant: "DOME"
 
-  dome-issuer-keycloak:
-    enabled: false
-
-  dome-issuer-postgresql:
+  eudistack-issuer-postgresql:
     # -- should the postgresql deployment be enabled
     enabled: true
-
-  dome-issuer-keycloak-postgresql:
-    # -- should the postgresql deployment be enabled
-    enabled: false
