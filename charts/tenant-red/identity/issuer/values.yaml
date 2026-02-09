@@ -134,8 +134,8 @@ eudistack-issuer:
       # Overrides the image tag whose default is the chart appVersion.
       tag: v0.0.1-pr-2-enterprise
       pullPolicy: Always
-      imagePullSecrets:
-        - name: eudistack-stg-ecr-secret
+    imagePullSecrets:
+      - name: eudistack-stg-ecr-secret
 
   eudistack-issuer-frontend:
     image:
