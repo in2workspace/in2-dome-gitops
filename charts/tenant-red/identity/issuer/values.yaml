@@ -14,7 +14,7 @@ eudistack-issuer:
 
   eudistack-issuer-core-backend:
     image:
-      repository: in2workspace/eudistack-core-issuer-backend
+      repository: in2workspace/eudistack-issuer-core-backend
       # Overrides the image tag whose default is the chart appVersion.
       tag: v2.2.14-pr-2-core
       pullPolicy: Always
