@@ -79,7 +79,7 @@ dome-wallet:
     fullNameOverride: "dome-wallet-frontend"
     image:
       pullPolicy: Always
-      repository: in2workspace/altia-eudistack-wallet-enterprise-backend
+      repository: in2workspace/altia-eudistack-wallet-core-ui
       # Overrides the image tag whose default is the chart appVersion.
       tag: v2.0.15-pr-1
     ## deployment specific configuration
