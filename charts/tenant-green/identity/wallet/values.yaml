@@ -74,7 +74,7 @@ eudistack-wallet:
           name: wallet-secret
           key: db-password
 
-  ## configuration for the dome-wallet-ui
+  ## configuration for the eudistack-wallet-ui
   eudistack-wallet-core-frontend:
     fullNameOverride: "eudistack-wallet-core-frontend"
     image:
@@ -102,17 +102,17 @@ eudistack-wallet:
       iam:
         externalUrl: https://keycloak.green.eudistack.net/realms/green-wallet
 
-  ## configuration for the dome-wallet-keycloak
-  dome-wallet-keycloak:
+  ## configuration for the eudistack-wallet-keycloak
+  eudistack-wallet-keycloak:
     enabled: false
 
   ## configuration of postgres to be used for the blockchain-connector - see https://github.com/bitnami/charts/tree/main/bitnami/postgresql for details
-  dome-wallet-keycloak-postgresql:
+  eudistack-wallet-keycloak-postgresql:
     # -- should the postgresql deployment be enabled
     enabled: false
 
   ## configuration of postgres
-  dome-wallet-postgresql:
+  eudistack-wallet-postgresql:
     # -- should the postgresql deployment be enabled
     enabled: true
     # -- overrides the generated name, provides stable service names - this should be avoided if multiple instances are available in the same namespace
