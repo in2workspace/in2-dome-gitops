@@ -14,7 +14,7 @@ dome-issuer:
 
   dome-issuer-backend:
     image:
-      repository: in2workspace/altia-eudistack-issuer-core-backend
+      repository: in2workspace/eudistack-issuer-core-backend
       # Overrides the image tag whose default is the chart appVersion.
       tag: v2.2.15-pr-3
       pullPolicy: Always
