@@ -10,11 +10,11 @@ global:
     enableTLS: true
     clusterIssuer: "letsencrypt-in2-test-issuer"
 
-dome-wallet:
+eudistack-wallet:
 
   ## configuration for the wallet-backend
-  dome-wallet-backend:
-    fullNameOverride: "dome-wallet-backend"
+  eudistack-wallet-enterprise-backend:
+    fullNameOverride: "eudistack-wallet-enterprise-backend"
     image:
       repository: in2workspace/altia-eudistack-wallet-enterprise-backend
       # Overrides the image tag whose default is the chart appVersion.
@@ -75,13 +75,13 @@ dome-wallet:
           key: db-password
 
   ## configuration for the dome-wallet-ui
-  dome-wallet-frontend:
-    fullNameOverride: "dome-wallet-frontend"
+  eudistack-wallet-core-frontend:
+    fullNameOverride: "eudistack-wallet-core-frontend"
     image:
       pullPolicy: Always
       repository: in2workspace/altia-eudistack-wallet-core-ui
       # Overrides the image tag whose default is the chart appVersion.
-      tag: v2.0.15-pr-1
+      tag: v2.0.14
     ## deployment specific configuration
     app:
       logsEnabled: true
