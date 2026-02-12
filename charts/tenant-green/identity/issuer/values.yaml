@@ -106,9 +106,9 @@ dome-issuer:
           credentialDidKey: did-key
       cors:
         default:
-          allowedOrigins: "http://localhost:4200, https://issuer.green.eudistack.net, http://localhost:63342"
+          allowedOrigins: "http://localhost:4200, https://issuer.green.eudistack.net, http://localhost:63342, https://wallet.green.eudistack.net"
         external:
-          allowedOrigins: "http://localhost:4200, https://issuer.green.eudistack.net, http://localhost:63342"
+          allowedOrigins: "http://localhost:4200, https://issuer.green.eudistack.net, http://localhost:63342, https://wallet.green.eudistack.net"
       vault:
         secretsMount: kv
       verifier:
