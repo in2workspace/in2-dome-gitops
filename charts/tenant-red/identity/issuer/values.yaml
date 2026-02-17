@@ -136,6 +136,8 @@ eudistack-issuer:
       pullPolicy: Always
     imagePullSecrets:
       - name: eudistack-stg-ecr-secret
+    app:
+      profile: dev
 
   eudistack-issuer-frontend:
     image:
