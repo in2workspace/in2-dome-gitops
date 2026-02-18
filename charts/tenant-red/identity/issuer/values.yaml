@@ -132,10 +132,12 @@ eudistack-issuer:
     image:
       repository: 147108726325.dkr.ecr.eu-west-1.amazonaws.com/eudistack-stg-ecr-ew1-issuer
       # Overrides the image tag whose default is the chart appVersion.
-      tag: v0.0.1-pr-2-enterprise
+      tag: v0.1.0-pr-7-enterprise
       pullPolicy: Always
     imagePullSecrets:
       - name: eudistack-stg-ecr-secret
+    app:
+      profile: dev
 
   eudistack-issuer-frontend:
     image:
