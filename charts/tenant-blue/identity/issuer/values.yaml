@@ -64,8 +64,6 @@ dome-issuer:
                 enable: true
               ssl:
                 trust: smtp.ionos.de
-      signing:
-        provider: csc-sign-doc
       remoteSignature:
         existingSecret:
           enabled: true
