@@ -16,7 +16,7 @@ eudistack-wallet:
   eudistack-wallet-enterprise-backend:
     fullNameOverride: "eudistack-wallet-enterprise-backend"
     image:
-      repository: in2workspace/altia-eudistack-wallet-enterprise-backend
+      repository: in2workspace/eudistack-wallet-api
       # Overrides the image tag whose default is the chart appVersion.
       tag: v2.0.7
       pullPolicy: Always
@@ -79,7 +79,7 @@ eudistack-wallet:
     fullNameOverride: "eudistack-wallet-core-frontend"
     image:
       pullPolicy: Always
-      repository: in2workspace/altia-eudistack-wallet-core-ui
+      repository: in2workspace/eudistack-wallet-ui
       # Overrides the image tag whose default is the chart appVersion.
       tag: v2.0.14
     ## deployment specific configuration
