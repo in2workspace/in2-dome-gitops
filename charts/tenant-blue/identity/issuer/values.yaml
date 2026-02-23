@@ -1,4 +1,4 @@
-dome-issuer:
+eudistack-issuer:
 
   global:
     domain: "issuer.blue.eudistack.net"
@@ -12,7 +12,7 @@ dome-issuer:
       enableTLS: true
       clusterIssuer: "letsencrypt-in2-test-issuer"
 
-  dome-issuer-backend:
+  eudistack-issuer-backend:
     image:
       repository: in2workspace/eudistack-issuer-core-backend
       # Overrides the image tag whose default is the chart appVersion.
@@ -141,7 +141,7 @@ dome-issuer:
     app:
       profile: dev
 
-  dome-issuer-frontend:
+  eudistack-issuer-frontend:
     image:
       repository: in2workspace/eudistack-issuer-ui
       # Overrides the image tag whose default is the chart appVersion.
@@ -163,13 +163,13 @@ dome-issuer:
       adminOrganizationId: "VATES-A15456585"
       sysTenant: "DOME"
 
-  dome-issuer-keycloak:
+  eudistack-issuer-keycloak:
     enabled: false
 
-  dome-issuer-postgresql:
+  eudistack-issuer-postgresql:
     # -- should the postgresql deployment be enabled
     enabled: true
 
-  dome-issuer-keycloak-postgresql:
+  eudistack-issuer-keycloak-postgresql:
     # -- should the postgresql deployment be enabled
     enabled: false
