@@ -1,0 +1,38 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+# ===================================================
+# CONFIGURATION - Edit these values for your environment
+# ===================================================
+
+# Target namespace for all resources
+namespace: tenant-blue-identity
+
+# ECR Registry and Secret Configuration
+# Uncomment and modify the patches below to change ECR registry or secret name
+
+resources:
+  - aws-credentials-secret.yaml
+  - rbac.yaml
+  - cronjob.yaml
+
+# ===================================================
+# Optional: Override ECR registry or secret name
+# ===================================================
+# Uncomment the patches section below to customize:
+#
+# patches:
+#   - patch: |-
+#       - op: replace
+#         path: /spec/jobTemplate/spec/template/spec/containers/0/env/0/value
+#         value: "YOUR_ACCOUNT_ID.dkr.ecr.YOUR_REGION.amazonaws.com"
+#     target:
+#       kind: CronJob
+#       name: ecr-secret-refresh
+#   - patch: |-
+#       - op: replace
+#         path: /spec/jobTemplate/spec/template/spec/containers/0/env/1/value
+#         value: "your-custom-secret-name"
+#     target:
+#       kind: CronJob
+#       name: ecr-secret-refresh
