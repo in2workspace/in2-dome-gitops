@@ -1,0 +1,2 @@
+# Ignore secrets with real credentials
+aws-credentials-secret.yaml

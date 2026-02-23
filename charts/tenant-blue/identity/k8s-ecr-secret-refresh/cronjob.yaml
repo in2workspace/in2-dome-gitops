@@ -1,0 +1,99 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: ecr-secret-refresh
+spec:
+  # Run every 10 hours
+  schedule: "0 */10 * * *"
+  successfulJobsHistoryLimit: 3
+  failedJobsHistoryLimit: 3
+  jobTemplate:
+    spec:
+      backoffLimit: 2
+      template:
+        spec:
+          serviceAccountName: ecr-secret-refresh-sa
+          restartPolicy: OnFailure
+          containers:
+          - name: ecr-secret-refresh
+            image: amazon/aws-cli:latest
+            envFrom:
+            - secretRef:
+                name: aws-ecr-credentials
+            env:
+            - name: ECR_REGISTRY
+              value: "147108726325.dkr.ecr.eu-west-1.amazonaws.com"
+            - name: SECRET_NAME
+              value: "eudistack-stg-ecr-secret"
+            - name: NAMESPACE
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.namespace
+            command:
+            - /bin/sh
+            - -c
+            - |
+              set -e
+              
+              echo "================================================"
+              echo "ECR Secret Refresh Job"
+              echo "Time: $(date)"
+              echo "================================================"
+              
+              echo "Getting ECR login password..."
+              ECR_PASSWORD=$(aws ecr get-login-password --region ${AWS_DEFAULT_REGION})
+              
+              if [ -z "$ECR_PASSWORD" ]; then
+                echo "✗ Failed to get ECR password"
+                exit 1
+              fi
+              
+              echo "✓ ECR password retrieved"
+              echo ""
+              
+              # Install kubectl
+              echo "Installing kubectl..."
+              curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
+              chmod +x kubectl
+              mv kubectl /usr/local/bin/
+              echo "✓ kubectl installed"
+              echo ""
+              
+              # Delete existing secret if it exists
+              echo "Checking for existing secret..."
+              if kubectl get secret ${SECRET_NAME} -n ${NAMESPACE} 2>/dev/null; then
+                echo "Deleting existing secret..."
+                kubectl delete secret ${SECRET_NAME} -n ${NAMESPACE}
+                echo "✓ Existing secret deleted"
+              else
+                echo "No existing secret found"
+              fi
+              echo ""
+              
+              # Create new secret
+              echo "Creating new docker-registry secret..."
+              kubectl create secret docker-registry ${SECRET_NAME} \
+                --docker-server=${ECR_REGISTRY} \
+                --docker-username=AWS \
+                --docker-password=${ECR_PASSWORD} \
+                -n ${NAMESPACE}
+              
+              if [ $? -eq 0 ]; then
+                echo "✓ Secret ${SECRET_NAME} created successfully"
+              else
+                echo "✗ Failed to create secret"
+                exit 1
+              fi
+              
+              echo ""
+              echo "================================================"
+              echo "ECR Secret refresh completed successfully"
+              echo "Next refresh in 10 hours"
+              echo "================================================"
+            resources:
+              requests:
+                memory: "64Mi"
+                cpu: "100m"
+              limits:
+                memory: "128Mi"
+                cpu: "200m"

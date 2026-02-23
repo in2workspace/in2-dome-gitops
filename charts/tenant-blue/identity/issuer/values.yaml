@@ -12,7 +12,7 @@ eudistack-issuer:
       enableTLS: true
       clusterIssuer: "letsencrypt-in2-test-issuer"
 
-  eudistack-issuer-backend:
+  eudistack-issuer-core-backend:
     image:
       repository: in2workspace/eudistack-issuer-core-backend
       # Overrides the image tag whose default is the chart appVersion.
