@@ -29,6 +29,10 @@ eudistack-issuer:
           paths:
             - path: /issuer-api/vci/v1/issuances
               pathType: ImplementationSpecific
+        - host: issuer.blue.eudistack.net
+          paths:
+            - path: /internal/signing
+              pathType: Prefix
       tls:
         - hosts:
             - issuer.blue.eudistack.net
@@ -131,7 +135,7 @@ eudistack-issuer:
   eudistack-issuer-enterprise-backend:
     signing:
       provider: csc-sign-doc   # csc-sign-hash / csc-sign-doc / in-memory
-      coreUrl: "http://eudistack-issuer-core-backend:8080"
+      coreUrl: "https://issuer.blue.eudistack.net"
     image:
       repository: 147108726325.dkr.ecr.eu-west-1.amazonaws.com/eudistack-stg-ecr-ew1-issuer
       # Overrides the image tag whose default is the chart appVersion.
