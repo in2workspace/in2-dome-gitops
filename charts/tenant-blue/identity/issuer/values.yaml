@@ -131,7 +131,7 @@ eudistack-issuer:
   eudistack-issuer-enterprise-backend:
     signing:
       provider: csc-sign-doc   # csc-sign-hash / csc-sign-doc / in-memory
-      coreUrl: "https://issuer.blue.eudistack.net"
+      coreUrl: https://issuer.blue.eudistack.net
     image:
       repository: 147108726325.dkr.ecr.eu-west-1.amazonaws.com/eudistack-stg-ecr-ew1-issuer
       # Overrides the image tag whose default is the chart appVersion.
