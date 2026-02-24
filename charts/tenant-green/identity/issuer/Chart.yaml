@@ -2,7 +2,7 @@ apiVersion: v2
 name: tenant-green-identity-issuer
 description: Chart holder for ArgoCD
 type: application
-version: 1.10.207
+version: 1.10.208
 appVersion: "v1.0.11"
 dependencies:
   - name: dome-issuer
