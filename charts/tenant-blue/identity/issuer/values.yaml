@@ -29,6 +29,10 @@ eudistack-issuer:
           paths:
             - path: /issuer-api/vci/v1/issuances
               pathType: ImplementationSpecific
+        - host: issuer.blue.eudistack.net
+          paths:
+            - path: /internal/signing
+              pathType: Prefix
       tls:
         - hosts:
             - issuer.blue.eudistack.net
