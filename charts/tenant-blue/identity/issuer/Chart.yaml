@@ -8,4 +8,4 @@ dependencies:
   - name: eudistack-issuer
     condition: eudistack-issuer.enabled
     repository: https://in2workspace.github.io/helm-charts
-    version: 1.0.15
+    version: 1.0.16
