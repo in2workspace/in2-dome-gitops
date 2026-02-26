@@ -2,10 +2,10 @@ apiVersion: v2
 name: tenant-green-identity-issuer
 description: Chart holder for ArgoCD
 type: application
-version: 1.10.211
+version: 1.10.212
 appVersion: "v1.0.11"
 dependencies:
-  - name: eudistack-issuer
-    condition: eudistack-issuer.enabled
+  - name: dome-issuer
+    condition: dome-issuer.enabled
     repository: https://in2workspace.github.io/helm-charts
-    version: 1.0.12
+    version: 1.5.22
