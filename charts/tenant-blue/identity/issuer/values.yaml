@@ -120,7 +120,7 @@ eudistack-issuer:
 
   eudistack-issuer-enterprise-backend:
     image:
-      repository: 147108726325.dkr.ecr.eu-west-1.amazonaws.com/eudistack-stg-ecr-ew1-issuer
+      repository: 147108726325.dkr.ecr.eu-west-1.amazonaws.com/eudistack-stg-ecr-ew1-issuer-enterprise
       # Overrides the image tag whose default is the chart appVersion.
       tag: v0.2.1-pr-9-enterprise
       pullPolicy: Always
