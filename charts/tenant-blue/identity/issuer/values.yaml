@@ -129,7 +129,7 @@ eudistack-issuer:
     app:
       profile: dev
       signing:
-        provider: in-memory   # csc-sign-hash / csc-sign-doc / in-memory
+        provider: csc-sign-doc  # csc-sign-hash / csc-sign-doc / in-memory
         coreUrl: https://issuer.blue.eudistack.net
       remoteSignature:
         existingSecret:
