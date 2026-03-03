@@ -1,0 +1,38 @@
+# Example: kustomization.yaml for a different namespace
+
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+# Change namespace to your target namespace
+namespace: production-namespace
+
+resources:
+  - aws-credentials-secret.yaml
+  - rbac.yaml
+  - cronjob.yaml
+
+# Example: Customize ECR registry and secret name using patches
+patches:
+  - patch: |-
+      - op: replace
+        path: /spec/jobTemplate/spec/template/spec/containers/0/env/0/value
+        value: "999999999999.dkr.ecr.us-east-1.amazonaws.com"
+    target:
+      kind: CronJob
+      name: ecr-secret-refresh
+  - patch: |-
+      - op: replace
+        path: /spec/jobTemplate/spec/template/spec/containers/0/env/1/value
+        value: "my-ecr-pull-secret"
+    target:
+      kind: CronJob
+      name: ecr-secret-refresh
+
+# Example: Change the schedule to run every 8 hours instead of 10
+  - patch: |-
+      - op: replace
+        path: /spec/schedule
+        value: "0 */8 * * *"
+    target:
+      kind: CronJob
+      name: ecr-secret-refresh
