@@ -139,6 +139,19 @@ eudistack-issuer:
       - name: eudistack-stg-ecr-secret
     app:
       profile: dev
+      signing:
+        provider: csc-sign-doc  # csc-sign-hash / csc-sign-doc / in-memory
+        coreUrl: https://issuer.blue.eudistack.net
+      remoteSignature:
+        existingSecret:
+          enabled: true
+          name: issuer-secret
+          clientId: client-id
+          clientSecret: client-secret
+          credentialId: credential-id
+          credentialPassword: credential-password
+        type: cloud
+        url: https://dts-component-rdss-csc.ace-api.digitelts.com
 
   eudistack-issuer-frontend:
     image:
