@@ -16,8 +16,8 @@ eudistack-issuer:
     image:
 #      repository: in2workspace/eudistack-issuer-core-backend
 #      tag: v2.2.18-core
-      repository: in2workspace/eudistack-issuer-api
-      tag: v2.2.15-pr-207
+      repository: in2workspace/eudistack-issuer-core-backend
+      tag: v2.2.20-pr-12-core
       pullPolicy: Always
     ingressIssuerApi:
       enabled: true
