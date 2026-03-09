@@ -81,7 +81,7 @@ eudistack-wallet:
       pullPolicy: Always
       repository: in2workspace/altia-eudistack-wallet-core-ui
       # Overrides the image tag whose default is the chart appVersion.
-      tag: v2.1.3-pr-9
+      tag: v2.1.4-pr-10
     ## deployment specific configuration
     app:
       logsEnabled: true
