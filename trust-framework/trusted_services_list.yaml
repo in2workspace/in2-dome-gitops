@@ -174,3 +174,29 @@ clients:
     requireAuthorizationConsent: false
     requireProofKey: true
     tokenEndpointAuthenticationSigningAlgorithm: "ES256"
+
+  # Desmos A
+  - clientId: "did:key:zDnaeutxDzPAh9UB3h6GYzKaWyUKUEMyR5iGVrtAGNNA5Dzou"
+    url: "http://desmos-node-a:8080"
+    redirectUris: [ ]
+    scopes: [ ]
+    clientAuthenticationMethods: [ "client_secret_jwt" ]
+    authorizationGrantTypes: [ "client_credentials" ]
+    postLogoutRedirectUris: [ ]
+    requireAuthorizationConsent: false
+    requireProofKey: false
+    jwkSetUrl: "https://verifier.dome-marketplace-lcl.org/oidc/did/did:key:zDnaeutxDzPAh9UB3h6GYzKaWyUKUEMyR5iGVrtAGNNA5Dzou"
+    tokenEndpointAuthenticationSigningAlgorithm: "ES256"
+
+  # Desmos B
+  - clientId: "did:key:zDnaekNHaKXkDGfFARbWDKkaBroRtGmSH3m8y77e5dcwBkQuE"
+    url: "http://desmos-node-b:8080"
+    redirectUris: [ ]
+    scopes: [ ]
+    clientAuthenticationMethods: [ "client_secret_jwt" ]
+    authorizationGrantTypes: [ "client_credentials" ]
+    postLogoutRedirectUris: [ ]
+    requireAuthorizationConsent: false
+    requireProofKey: false
+    jwkSetUrl: "https://verifier.dome-marketplace-lcl.org/oidc/did/did:key:zDnaekNHaKXkDGfFARbWDKkaBroRtGmSH3m8y77e5dcwBkQuE"
+    tokenEndpointAuthenticationSigningAlgorithm: "ES256"
