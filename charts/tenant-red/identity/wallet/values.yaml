@@ -16,9 +16,10 @@ eudistack-wallet:
   eudistack-wallet-enterprise-backend:
     fullNameOverride: "eudistack-wallet-enterprise-backend"
     image:
-      repository: in2workspace/altia-eudistack-wallet-enterprise-backend
+      #this is a temporary image, it is usually "in2workspace/eudistack-wallet-enterprise-backend"
+      repository: in2workspace/eudistack-wallet-api
       # Overrides the image tag whose default is the chart appVersion.
-      tag: v2.0.12
+      tag: v2.0.8-pr-114
       pullPolicy: Always
     ## deployment specific configuration
     app:
