@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: tenant-red-trusted-issuers-list
+  name: tenant-red-marketplace-trusted-issuers-list
   namespace: argocd
   labels:
     purpose: tenant-red-marketplace

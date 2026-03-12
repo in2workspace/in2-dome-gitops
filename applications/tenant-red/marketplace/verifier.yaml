@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: tenant-red-verifier-api
+  name: tenant-red-marketplace-verifier
   namespace: argocd
   labels:
     purpose: tenant-red-marketplace
