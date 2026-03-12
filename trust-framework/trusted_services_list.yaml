@@ -178,7 +178,7 @@ clients:
     tokenEndpointAuthenticationSigningAlgorithm: "ES256"
 
   # Desmos B
-  - clientId: "did:key:zDnaekNHaKXkDGfFARbWDKkaBroRtGmSH3m8y77e5dcwBkQuE"
+  - clientId: "did:key:zDnaeoeeviWVAcSZFHXz9f5Ym6UUKXn9sXxq2FtDEbXJV9eYx"
     url: "http://desmos-node-b:8080"
     redirectUris: [ ]
     scopes: [ ]
@@ -187,5 +187,5 @@ clients:
     postLogoutRedirectUris: [ ]
     requireAuthorizationConsent: false
     requireProofKey: false
-    jwkSetUrl: "https://verifier.dome-marketplace-lcl.org/oidc/did/did:key:zDnaekNHaKXkDGfFARbWDKkaBroRtGmSH3m8y77e5dcwBkQuE"
+    jwkSetUrl: "https://verifier.dome-marketplace-lcl.org/oidc/did/did:key:zDnaeoeeviWVAcSZFHXz9f5Ym6UUKXn9sXxq2FtDEbXJV9eYx"
     tokenEndpointAuthenticationSigningAlgorithm: "ES256"
