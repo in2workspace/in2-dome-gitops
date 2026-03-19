@@ -1,15 +1,16 @@
 clients:
   - clientId: "green-issuer"
     url: "https://issuer.green.eudistack.net"
-    redirectUris: [ "https://keycloak.green.eudistack.net/realms/green-issuer/broker/vc/endpoint" ]
-    scopes: [ "openid_learcredential" ]
-    clientAuthenticationMethods: [ "client_secret_jwt" ]
-    authorizationGrantTypes: [ "authorization_code","refresh_token" ]
-    postLogoutRedirectUris: [ "https://issuer.green.eudistack.net/" ]
+    redirectUris: ["https://keycloak.green.eudistack.net/realms/green-issuer/broker/vc/endpoint"]
+    scopes: ["openid_learcredential"]
+    clientAuthenticationMethods: ["client_secret_jwt"]
+    authorizationGrantTypes: ["authorization_code", "refresh_token"]
+    postLogoutRedirectUris: ["https://issuer.green.eudistack.net/"]
     requireAuthorizationConsent: false
     requireProofKey: false
     jwkSetUrl: "https://keycloak.green.eudistack.net/realms/green-issuer/protocol/openid-connect/certs"
     tokenEndpointAuthenticationSigningAlgorithm: "ES256"
+
   - clientId: "did:key:zDnaeb3th2TDPrQTnM19Mdy543xFetwCpqjmcGBFgisqYKuL4"
     url: "https://onboarding.dome-marketplace-sbx.org"
     redirectUris: []
@@ -21,6 +22,7 @@ clients:
     requireProofKey: false
     jwkSetUrl: "https://verifier.dome-marketplace-sbx.org/oidc/did/did:key:zDnaeb3th2TDPrQTnM19Mdy543xFetwCpqjmcGBFgisqYKuL4"
     tokenEndpointAuthenticationSigningAlgorithm: "ES256"
+
   - clientId: "did:key:zDnaeRgeCDmJdgeYYzgSmWug5oAbNbNWiyVe5VnuB1n1AFyjZ"
     url: "https://issuer.dome-marketplace-sbx.org"
     redirectUris: []
