@@ -1,4 +1,4 @@
-eudistack-issuer:
+dome-issuer:
 
   global:
     domain: "issuer.green.eudistack.net"
@@ -12,11 +12,11 @@ eudistack-issuer:
       enableTLS: true
       clusterIssuer: "letsencrypt-in2-test-issuer"
 
-  eudistack-issuer-core-backend:
+  dome-issuer-backend:
     image:
-      repository: in2workspace/eudistack-issuer-core-backend
+      repository: in2workspace/eudistack-issuer-api
       # Overrides the image tag whose default is the chart appVersion.
-      tag: v2.2.20-core
+      tag: v2.2.16
       pullPolicy: Always
     ingressIssuerApi:
       enabled: true
@@ -64,6 +64,16 @@ eudistack-issuer:
                 enable: true
               ssl:
                 trust: smtp.ionos.de
+      remoteSignature:
+        existingSecret:
+          enabled: true
+          name: issuer-secret
+          clientId: client-id
+          clientSecret: client-secret
+          credentialId: credential-id
+          credentialPassword: credential-password
+        type: cloud
+        url: https://dts-component-rdss-csc.ace-api.digitelts.com
       authServer:
         provider: keycloak
         externalUrl: https://keycloak.green.eudistack.net
@@ -96,9 +106,9 @@ eudistack-issuer:
           credentialDidKey: did-key
       cors:
         default:
-          allowedOrigins: "http://localhost:4200, https://issuer.green.eudistack.net, http://localhost:63342, https://wallet.green.eudistack.net, https://wallet-stg.altia.eudistack.net"
+          allowedOrigins: "http://localhost:4200, https://issuer.green.eudistack.net, http://localhost:63342"
         external:
-          allowedOrigins: "http://localhost:4200, https://issuer.green.eudistack.net, http://localhost:63342, https://wallet.green.eudistack.net, https://wallet-stg.altia.eudistack.net"
+          allowedOrigins: "http://localhost:4200, https://issuer.green.eudistack.net, http://localhost:63342"
       vault:
         secretsMount: kv
       verifier:
@@ -118,35 +128,11 @@ eudistack-issuer:
           name: issuer-secret
           key: db-password
 
-  eudistack-issuer-enterprise-backend:
-    image:
-      repository: 147108726325.dkr.ecr.eu-west-1.amazonaws.com/eudistack-stg-ecr-ew1-issuer-enterprise
-      # Overrides the image tag whose default is the chart appVersion.
-      tag: v0.2.4-pr-17-enterprise
-      pullPolicy: Always
-    imagePullSecrets:
-      - name: eudistack-stg-ecr-secret
-    app:
-      profile: dev
-      signing:
-        provider: csc-sign-doc  # csc-sign-hash / csc-sign-doc / in-memory
-        coreUrl: https://issuer.green.eudistack.net
-      remoteSignature:
-        existingSecret:
-          enabled: true
-          name: issuer-secret
-          clientId: client-id
-          clientSecret: client-secret
-          credentialId: credential-id
-          credentialPassword: credential-password
-        type: cloud
-        url: https://dts-component-rdss-csc.ace-api.digitelts.com
-
-  eudistack-issuer-frontend:
+  dome-issuer-frontend:
     image:
       repository: in2workspace/eudistack-issuer-ui
       # Overrides the image tag whose default is the chart appVersion.
-      tag: v2.1.15-pr-143
+      tag: v2.1.14
       pullPolicy: Always
     app:
       themeName: "dome-theme"
@@ -164,13 +150,13 @@ eudistack-issuer:
       adminOrganizationId: "VATES-A15456585"
       sysTenant: "DOME"
 
-  eudistack-issuer-keycloak:
+  dome-issuer-keycloak:
     enabled: false
 
-  eudistack-issuer-postgresql:
+  dome-issuer-postgresql:
     # -- should the postgresql deployment be enabled
     enabled: true
 
-  eudistack-issuer-keycloak-postgresql:
+  dome-issuer-keycloak-postgresql:
     # -- should the postgresql deployment be enabled
     enabled: false
