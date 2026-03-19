@@ -10,15 +10,15 @@ global:
     enableTLS: true
     clusterIssuer: "letsencrypt-in2-test-issuer"
 
-eudistack-wallet:
+dome-wallet:
 
   ## configuration for the wallet-backend
-  eudistack-wallet-enterprise-backend:
-    fullNameOverride: "eudistack-wallet-enterprise-backend"
+  dome-wallet-backend:
+    fullNameOverride: "dome-wallet-backend"
     image:
-      repository: in2workspace/altia-eudistack-wallet-enterprise-backend
+      repository: in2workspace/eudistack-wallet-api
       # Overrides the image tag whose default is the chart appVersion.
-      tag: v2.0.12
+      tag: v2.0.7
       pullPolicy: Always
     ## deployment specific configuration
     app:
@@ -74,14 +74,14 @@ eudistack-wallet:
           name: wallet-secret
           key: db-password
 
-  ## configuration for the eudistack-wallet-ui
-  eudistack-wallet-core-frontend:
-    fullNameOverride: "eudistack-wallet-core-frontend"
+  ## configuration for the dome-wallet-ui
+  dome-wallet-frontend:
+    fullNameOverride: "dome-wallet-frontend"
     image:
       pullPolicy: Always
-      repository: in2workspace/altia-eudistack-wallet-core-ui
+      repository: in2workspace/eudistack-wallet-ui
       # Overrides the image tag whose default is the chart appVersion.
-      tag: v2.1.4-pr-10
+      tag: v2.0.14
     ## deployment specific configuration
     app:
       logsEnabled: true
@@ -102,17 +102,17 @@ eudistack-wallet:
       iam:
         externalUrl: https://keycloak.green.eudistack.net/realms/green-wallet
 
-  ## configuration for the eudistack-wallet-keycloak
-  eudistack-wallet-keycloak:
+  ## configuration for the dome-wallet-keycloak
+  dome-wallet-keycloak:
     enabled: false
 
   ## configuration of postgres to be used for the blockchain-connector - see https://github.com/bitnami/charts/tree/main/bitnami/postgresql for details
-  eudistack-wallet-keycloak-postgresql:
+  dome-wallet-keycloak-postgresql:
     # -- should the postgresql deployment be enabled
     enabled: false
 
   ## configuration of postgres
-  eudistack-wallet-postgresql:
+  dome-wallet-postgresql:
     # -- should the postgresql deployment be enabled
     enabled: true
     # -- overrides the generated name, provides stable service names - this should be avoided if multiple instances are available in the same namespace
