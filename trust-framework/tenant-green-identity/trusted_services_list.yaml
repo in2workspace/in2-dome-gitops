@@ -11,6 +11,18 @@ clients:
     jwkSetUrl: "https://keycloak.green.eudistack.net/realms/green-issuer/protocol/openid-connect/certs"
     tokenEndpointAuthenticationSigningAlgorithm: "ES256"
 
+  - clientId: "green-issuer-logout-test"
+    url: "https://issuer.green.eudistack.net"
+    redirectUris: [ "https://issuer.green.eudistack.net" ]
+    scopes: [ "openid_learcredential" ]
+    clientAuthenticationMethods: [ "none" ]
+    authorizationGrantTypes: [ "authorization_code" ]
+    postLogoutRedirectUris: [ "https://issuer.green.eudistack.net" ]
+    requireAuthorizationConsent: false
+    requireProofKey: true
+    jwkSetUrl:
+    tokenEndpointAuthenticationSigningAlgorithm: "ES256"
+
   - clientId: "did:key:zDnaeb3th2TDPrQTnM19Mdy543xFetwCpqjmcGBFgisqYKuL4"
     url: "https://onboarding.dome-marketplace-sbx.org"
     redirectUris: []
