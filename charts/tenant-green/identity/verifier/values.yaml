@@ -49,7 +49,7 @@ dome-verifier:
       logging:
         level:
           # Sets logging level for Spring Security
-          org.springframework.security: DEBUG
+          org.springframework.security: TRACE
           # Sets logging level for web filters
           org.springframework.web.filter: DEBUG
           # Sets logging level for the custom package "es.in2.vcverifier"
