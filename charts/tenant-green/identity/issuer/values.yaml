@@ -18,6 +18,13 @@ dome-issuer:
       # Overrides the image tag whose default is the chart appVersion.
       tag: v2.2.20-pr-213
       pullPolicy: Always
+    resources:
+      requests:
+        cpu: 150m
+        memory: 512Mi
+      limits:
+        cpu: 500m
+        memory: 640Mi
     ingressIssuerApi:
       enabled: true
       className: nginx
@@ -134,6 +141,13 @@ dome-issuer:
       # Overrides the image tag whose default is the chart appVersion.
       tag: v2.1.15-pr-145
       pullPolicy: Always
+    resources:
+      requests:
+        cpu: 150m
+        memory: 512Mi
+      limits:
+        cpu: 500m
+        memory: 640Mi
     app:
       themeName: "dome-theme"
       assets:
