@@ -71,7 +71,10 @@ access-node:
 
   ## configuration for the dlt-adapter - see https://DOME-Marketplace.github.io/access-node/dlt-adapter for configuration documentation
   dlt-adapter-alastria:
+    enabled: true
     fullnameOverride: dlt-adapter
+    service:
+      port: 8080
     existingSecret:
       enabled: true
       name: access-node-secret
