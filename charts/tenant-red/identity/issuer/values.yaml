@@ -137,11 +137,11 @@ dome-issuer:
           name: issuer-secret
           key: db-password
 
-  eudistack-issuer-enterprise-backend:
+  dome-issuer-frontend:
     image:
-      repository: 147108726325.dkr.ecr.eu-west-1.amazonaws.com/eudistack-stg-ecr-ew1-issuer-enterprise
+      repository: in2workspace/eudistack-issuer-ui
       # Overrides the image tag whose default is the chart appVersion.
-      tag: v0.2.2-pr-12-enterprise
+      tag: v2.1.16
       pullPolicy: Always
     resources:
       requests:
@@ -150,30 +150,6 @@ dome-issuer:
       limits:
         cpu: 500m
         memory: 640Mi
-    imagePullSecrets:
-      - name: eudistack-stg-ecr-secret
-    app:
-      profile: dev
-      signing:
-        provider: csc-sign-doc  # csc-sign-hash / csc-sign-doc / in-memory
-        coreUrl: https://issuer.red.eudistack.net
-      remoteSignature:
-        existingSecret:
-          enabled: true
-          name: issuer-secret
-          clientId: client-id
-          clientSecret: client-secret
-          credentialId: credential-id
-          credentialPassword: credential-password
-        type: cloud
-        url: https://dts-component-rdss-csc.ace-api.digitelts.com
-
-  dome-issuer-frontend:
-    image:
-      repository: in2workspace/eudistack-issuer-ui
-      # Overrides the image tag whose default is the chart appVersion.
-      tag: v2.1.16
-      pullPolicy: Always
     app:
       themeName: "dome-theme"
       assets:
@@ -190,6 +166,13 @@ dome-issuer:
       adminOrganizationId: "VATES-A15456585"
       sysTenant: "DOME"
 
+  dome-issuer-keycloak:
+    enabled: false
+
   dome-issuer-postgresql:
     # -- should the postgresql deployment be enabled
     enabled: true
+
+  dome-issuer-keycloak-postgresql:
+    # -- should the postgresql deployment be enabled
+    enabled: false
