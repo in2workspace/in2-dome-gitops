@@ -1,6 +1,8 @@
 access-node:
   dome-ied:
     enabled: false
+  dlt-adapter-hashnet:
+    enabled: false
   ## configuration for the desmos - see https://DOME-Marketplace.github.io/access-node for configuration documentation
   desmos:
     image:
