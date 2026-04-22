@@ -1,4 +1,4 @@
-eudistack-issuer:
+dome-issuer:
 
   global:
     domain: "issuer.red.eudistack.net"
@@ -12,13 +12,18 @@ eudistack-issuer:
       enableTLS: true
       clusterIssuer: "letsencrypt-in2-test-issuer"
 
-  eudistack-issuer-core-backend:
+  dome-issuer-backend:
     image:
-#      repository: in2workspace/eudistack-issuer-core-backend
-#      tag: v2.2.18-core
-      repository: in2workspace/eudistack-issuer-core-backend
-      tag: v2.2.21-pr-15-core
+      repository: in2workspace/eudistack-issuer-api
+      tag: v2.2.22-pr-218
       pullPolicy: Always
+    resources:
+      requests:
+        cpu: 150m
+        memory: 512Mi
+      limits:
+        cpu: 500m
+        memory: 640Mi
     ingressIssuerApi:
       enabled: true
       className: nginx
@@ -110,6 +115,9 @@ eudistack-issuer:
           allowedOrigins: "http://localhost:4200, https://issuer.red.eudistack.net, http://localhost:63342"
         external:
           allowedOrigins: "http://localhost:4200, https://issuer.red.eudistack.net, http://localhost:63342"
+      labelUpload:
+        certifierEmail: roger.miret@altia.es
+        marketplaceEmail: r.mir.min@gmail.com
       vault:
         secretsMount: kv
       verifier:
@@ -135,6 +143,13 @@ eudistack-issuer:
       # Overrides the image tag whose default is the chart appVersion.
       tag: v0.2.2-pr-12-enterprise
       pullPolicy: Always
+    resources:
+      requests:
+        cpu: 150m
+        memory: 512Mi
+      limits:
+        cpu: 500m
+        memory: 640Mi
     imagePullSecrets:
       - name: eudistack-stg-ecr-secret
     app:
@@ -153,11 +168,11 @@ eudistack-issuer:
         type: cloud
         url: https://dts-component-rdss-csc.ace-api.digitelts.com
 
-  eudistack-issuer-frontend:
+  dome-issuer-frontend:
     image:
       repository: in2workspace/eudistack-issuer-ui
       # Overrides the image tag whose default is the chart appVersion.
-      tag: v2.1.13
+      tag: v2.1.16
       pullPolicy: Always
     app:
       themeName: "dome-theme"
@@ -175,6 +190,6 @@ eudistack-issuer:
       adminOrganizationId: "VATES-A15456585"
       sysTenant: "DOME"
 
-  eudistack-issuer-postgresql:
+  dome-issuer-postgresql:
     # -- should the postgresql deployment be enabled
     enabled: true
