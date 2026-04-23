@@ -61,9 +61,9 @@ keycloak:
       enabled: true
       name: keycloak-secret
       passwordKey: db-password
-    ssl:
-      enabled: true
-      mode: require
+#    ssl:
+#      enabled: true
+#      mode: require
 
   postgresKeycloak:
     auth:
