@@ -23,11 +23,11 @@ dome-wallet:
       pullPolicy: Always
     resources:
       requests:
-        cpu: 150m
-        memory: 512Mi
+        cpu: 50m
+        memory: 600Mi
       limits:
         cpu: 500m
-        memory: 640Mi
+        memory: 768Mi
     ## deployment specific configuration
     app:
       logLevel: DEBUG
@@ -92,11 +92,11 @@ dome-wallet:
       tag: v2.0.14
     resources:
       requests:
-        cpu: 150m
-        memory: 512Mi
+        cpu: 10m
+        memory: 32Mi
       limits:
-        cpu: 500m
-        memory: 640Mi
+        cpu: 100m
+        memory: 64Mi
     ## deployment specific configuration
     app:
       logsEnabled: true
