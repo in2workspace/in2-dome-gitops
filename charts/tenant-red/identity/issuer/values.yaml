@@ -19,11 +19,11 @@ dome-issuer:
       pullPolicy: Always
     resources:
       requests:
-        cpu: 150m
-        memory: 512Mi
+        cpu: 50m
+        memory: 640Mi
       limits:
         cpu: 500m
-        memory: 640Mi
+        memory: 896Mi
     ingressIssuerApi:
       enabled: true
       className: nginx
@@ -145,11 +145,11 @@ dome-issuer:
       pullPolicy: Always
     resources:
       requests:
-        cpu: 150m
-        memory: 512Mi
+        cpu: 10m
+        memory: 32Mi
       limits:
-        cpu: 500m
-        memory: 640Mi
+        cpu: 100m
+        memory: 64Mi
     app:
       themeName: "dome-theme"
       assets:
