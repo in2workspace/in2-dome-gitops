@@ -1,0 +1,82 @@
+dome-adapter:
+
+  image:
+    repository: in2workspace/eudistack-dome-adapter
+    pullPolicy: v0.0.1
+    tag: Always
+
+  ingress:
+    enabled: true
+    className: "nginx"
+    labels: { }
+    annotations:
+      nginx.ingress.kubernetes.io/ssl-redirect: "false"
+      nginx.ingress.kubernetes.io/backend-protocol: "HTTP"
+    enableTLS: true
+    clusterIssuer: "letsencrypt-in2-test-issuer"
+
+  secret:
+    name: dome-adapter-secret
+
+  spring:
+    r2dbc:
+      url:
+      username:
+      password:
+      secretKeys:
+        username:
+        password:
+      existingSecret:
+        enabled:
+        name:
+    flyway:
+      url:
+    mail:
+      host: email-smtp.eu-west-1.amazonaws.com
+      port: 465
+      username:
+      password:
+      existingSecret:
+        enabled:
+        name:
+        username:
+        password:
+      properties:
+        mail:
+          smtp:
+            auth: true
+            starttls:
+              enable: true
+            ssl:
+              enable: true
+              trust: email-smtp.eu-west-1.amazonaws.com
+
+  logging:
+    level:
+      es.altia.domeadapter: DEBUG
+
+  app:
+    verifier-url: https://verifier.red.eudistack.net/
+    issuer-url: https://issuer.red.eudistack.net
+    default-lang: en
+    mail:
+      from: noreply@mail-stg.eudistack.net
+
+  adapter-identity:
+    credential-subject-did-key:
+    jwt-credential:
+    existingSecret:
+      enabled:
+      name:
+      jwtCredential:
+      privateKey:
+    crypto:
+      private-key:
+
+  cors:
+    external-allowed-origins: "https://dome-certification.dome-marketplace-sbx.org/"
+
+  retry:
+    label-upload:
+      certifier-email: roger.miret@altia.es
+      marketplace-email: roger.miret@altia.es

@@ -1,0 +1,11 @@
+apiVersion: v2
+name: tenant-red-identity-adapter
+description: Chart holder for ArgoCD
+type: application
+version: 0.0.1
+appVersion: "v0.0.1"
+dependencies:
+  - name: dome-adapter
+    condition: dome-adapter.enabled
+    repository: https://in2workspace.github.io/helm-charts
+    version: 0.0.1
