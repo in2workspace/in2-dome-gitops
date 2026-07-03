@@ -7,7 +7,7 @@ clients:
     postLogoutRedirectUris: []
     requireAuthorizationConsent: false
     requireProofKey: false
-    jwkSetUrl: "https://verifier-test.dome-marketplace-lcl.org/oidc/did/did:key:zDnaeT3N7TQicj797XxvZtyb8aKrWfArrTjjLnRng6mR1gguX"
+    jwkSetUrl: "https://verifier.dome-marketplace-lcl.org/oidc/did/did:key:zDnaeT3N7TQicj797XxvZtyb8aKrWfArrTjjLnRng6mR1gguX"
     tokenEndpointAuthenticationSigningAlgorithm: "ES256"
 
   - clientId: "did:key:zDnaeUcW7pAV2xfcEMRsi3tsgYSYkLEf8mbSCZ7YFhKDu6XcR"
@@ -20,7 +20,7 @@ clients:
     postLogoutRedirectUris: ["http://localhost:8081/cb"]
     requireAuthorizationConsent: false
     requireProofKey: false
-    jwkSetUrl: "https://verifier-test.dome-marketplace-lcl.org/oidc/did/did:key:zDnaeUcW7pAV2xfcEMRsi3tsgYSYkLEf8mbSCZ7YFhKDu6XcR"
+    jwkSetUrl: "https://verifier.dome-marketplace-lcl.org/oidc/did/did:key:zDnaeUcW7pAV2xfcEMRsi3tsgYSYkLEf8mbSCZ7YFhKDu6XcR"
     tokenEndpointAuthenticationSigningAlgorithm: "ES256"
 
   - clientId: "did:key:zDnaefwMbENtpCoCCdYgFLKJCuVtkGZ8PhEg7gWAYBeeKAyuy"
@@ -33,7 +33,7 @@ clients:
     postLogoutRedirectUris: [ "https://dome-marketplace-lcl.org/" ]
     requireAuthorizationConsent: false
     requireProofKey: false
-    jwkSetUrl: "https://verifier-test.dome-marketplace-lcl.org/oidc/did/did:key:zDnaefwMbENtpCoCCdYgFLKJCuVtkGZ8PhEg7gWAYBeeKAyuy"
+    jwkSetUrl: "https://verifier.dome-marketplace-lcl.org/oidc/did/did:key:zDnaefwMbENtpCoCCdYgFLKJCuVtkGZ8PhEg7gWAYBeeKAyuy"
     tokenEndpointAuthenticationSigningAlgorithm: "ES256"
 
   - clientId: "did:key:zDnaeq2B2WVEPFtgfFHF9JSWxtnU7zba7m12e1oV3sN41BJaR"
@@ -44,7 +44,7 @@ clients:
     postLogoutRedirectUris: []
     requireAuthorizationConsent: false
     requireProofKey: false
-    jwkSetUrl: "https://verifier-test.dome-marketplace-lcl.org/oidc/did/did:key:zDnaeq2B2WVEPFtgfFHF9JSWxtnU7zba7m12e1oV3sN41BJaR"
+    jwkSetUrl: "https://verifier.dome-marketplace-lcl.org/oidc/did/did:key:zDnaeq2B2WVEPFtgfFHF9JSWxtnU7zba7m12e1oV3sN41BJaR"
     tokenEndpointAuthenticationSigningAlgorithm: "ES256"
 
   - clientId: "did:key:zDna...."
@@ -56,7 +56,7 @@ clients:
     postLogoutRedirectUris: [ "http://localhost:63342" ]
     requireAuthorizationConsent: false
     requireProofKey: false
-    jwkSetUrl: "https://verifier-test.dome-marketplace-lcl.org/oidc/did/did:key:zDna...."
+    jwkSetUrl: "https://verifier.dome-marketplace-lcl.org/oidc/did/did:key:zDna...."
     tokenEndpointAuthenticationSigningAlgorithm: "ES256"
 
   - clientId: "issuer-dome"
@@ -79,7 +79,7 @@ clients:
     postLogoutRedirectUris: [ ]
     requireAuthorizationConsent: false
     requireProofKey: false
-    jwkSetUrl: "https://verifier-test.dome-marketplace-lcl.org/oidc/did/did:key:zDnaeU19NRqJ71hcwmbPZGuAWuEW1xzqCtE2jxH8qHR1tgm1N"
+    jwkSetUrl: "https://verifier.dome-marketplace-lcl.org/oidc/did/did:key:zDnaeU19NRqJ71hcwmbPZGuAWuEW1xzqCtE2jxH8qHR1tgm1N"
     tokenEndpointAuthenticationSigningAlgorithm: "ES256"
 
   - clientId: "did:key:zDnaeku5xFEv8prMRsLY3nh4RVjw9quXzQUKzJ65NTof8oH58"
@@ -90,7 +90,7 @@ clients:
     postLogoutRedirectUris: [ ]
     requireAuthorizationConsent: false
     requireProofKey: false
-    jwkSetUrl: "https://verifier-test.dome-marketplace-lcl.org/oidc/did/did:key:zDnaeku5xFEv8prMRsLY3nh4RVjw9quXzQUKzJ65NTof8oH58"
+    jwkSetUrl: "https://verifier.dome-marketplace-lcl.org/oidc/did/did:key:zDnaeku5xFEv8prMRsLY3nh4RVjw9quXzQUKzJ65NTof8oH58"
     tokenEndpointAuthenticationSigningAlgorithm: "ES256"
 
   - clientId: "did:key:zDnaerQi587EqQLqEaj7qbxc46hzdjX2goNsmLTq1X6HqzzjP"
@@ -101,7 +101,7 @@ clients:
     postLogoutRedirectUris: [ ]
     requireAuthorizationConsent: false
     requireProofKey: false
-    jwkSetUrl: "https://verifier-test.dome-marketplace-lcl.org/oidc/did/did:key:zDnaerQi587EqQLqEaj7qbxc46hzdjX2goNsmLTq1X6HqzzjP"
+    jwkSetUrl: "https://verifier.dome-marketplace-lcl.org/oidc/did/did:key:zDnaerQi587EqQLqEaj7qbxc46hzdjX2goNsmLTq1X6HqzzjP"
     tokenEndpointAuthenticationSigningAlgorithm: "ES256"
 
   - clientId: "did:key:zDnaepbqHQzLvDFUMFZ4u3aENpuGU77y43DqtncHfH4Yh1xyY"
@@ -114,7 +114,7 @@ clients:
     postLogoutRedirectUris: [ "https://marketplace-dev.dome-2.ssihub.org/" ]
     requireAuthorizationConsent: false
     requireProofKey: false
-    jwkSetUrl: "https://verifier-test.dome-marketplace-lcl.org/oidc/did/did:key:zDnaepbqHQzLvDFUMFZ4u3aENpuGU77y43DqtncHfH4Yh1xyY"
+    jwkSetUrl: "https://verifier.dome-marketplace-lcl.org/oidc/did/did:key:zDnaepbqHQzLvDFUMFZ4u3aENpuGU77y43DqtncHfH4Yh1xyY"
     tokenEndpointAuthenticationSigningAlgorithm: "ES256"
 
   - clientId: "dome-issuer"
@@ -138,7 +138,7 @@ clients:
     postLogoutRedirectUris: [ ]
     requireAuthorizationConsent: false
     requireProofKey: false
-    jwkSetUrl: "https://verifier-test.dome-marketplace-lcl.org/oidc/did/did:key:zDnaeb3th2TDPrQTnM19Mdy543xFetwCpqjmcGBFgisqYKuL4"
+    jwkSetUrl: "https://verifier.dome-marketplace-lcl.org/oidc/did/did:key:zDnaeb3th2TDPrQTnM19Mdy543xFetwCpqjmcGBFgisqYKuL4"
     tokenEndpointAuthenticationSigningAlgorithm: "ES256"
 
   - clientId: "did:key:zDnaecMc5YES917FMe7zJGgmpa4ttGYVcjBcVEc6o8FgfcKD7"
@@ -174,7 +174,7 @@ clients:
     postLogoutRedirectUris: [ ]
     requireAuthorizationConsent: false
     requireProofKey: false
-    jwkSetUrl: "https://verifier-test.dome-marketplace-lcl.org/oidc/did/did:key:zDnaeutxDzPAh9UB3h6GYzKaWyUKUEMyR5iGVrtAGNNA5Dzou"
+    jwkSetUrl: "https://verifier.dome-marketplace-lcl.org/oidc/did/did:key:zDnaeutxDzPAh9UB3h6GYzKaWyUKUEMyR5iGVrtAGNNA5Dzou"
     tokenEndpointAuthenticationSigningAlgorithm: "ES256"
 
   # Desmos B
@@ -187,5 +187,5 @@ clients:
     postLogoutRedirectUris: [ ]
     requireAuthorizationConsent: false
     requireProofKey: false
-    jwkSetUrl: "https://verifier-test.dome-marketplace-lcl.org/oidc/did/did:key:zDnaeoeeviWVAcSZFHXz9f5Ym6UUKXn9sXxq2FtDEbXJV9eYx"
+    jwkSetUrl: "https://verifier.dome-marketplace-lcl.org/oidc/did/did:key:zDnaeoeeviWVAcSZFHXz9f5Ym6UUKXn9sXxq2FtDEbXJV9eYx"
     tokenEndpointAuthenticationSigningAlgorithm: "ES256"
