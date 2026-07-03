@@ -20,13 +20,13 @@ dome-verifier:
     annotations:
       cert-manager.io/cluster-issuer: letsencrypt-in2-test-issuer
     hosts:
-      - host: verifier.dome-marketplace-lcl.org
+      - host: verifier.red.eudistack.net
         paths:
           - path: /
             pathType: Prefix
     tls:
       - hosts:
-          - verifier.dome-marketplace-lcl.org
+          - verifier.red.eudistack.net
         secretName: verifier-tls-sec
 
   app:
@@ -63,7 +63,7 @@ dome-verifier:
           # Sets logging level for the custom package "es.in2.vcverifier"
           es.in2.vcverifier: TRACE
       # Placeholder for backend URL (REQUIRED)
-      url: "https://verifier.dome-marketplace-lcl.org"
+      url: "https://verifier.red.eudistack.net"
       security:
         serviceIdentity:
           existingSecret:
