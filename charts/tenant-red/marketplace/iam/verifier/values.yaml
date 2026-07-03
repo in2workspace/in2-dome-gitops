@@ -10,13 +10,13 @@ dome-verifier:
     annotations:
       cert-manager.io/cluster-issuer: letsencrypt-in2-test-issuer
     hosts:
-      - host: verifier-test.dome-marketplace-lcl.org
+      - host: verifier.dome-marketplace-lcl.org
         paths:
           - path: /
             pathType: Prefix
     tls:
       - hosts:
-          - verifier-test.dome-marketplace-lcl.org
+          - verifier.dome-marketplace-lcl.org
         secretName: verifier-tls-sec
 
   app:
@@ -49,7 +49,7 @@ dome-verifier:
           # Sets logging level for the custom package "es.in2.vcverifier"
           es.in2.vcverifier: TRACE
       # Placeholder for backend URL (REQUIRED)
-      url: "https://verifier-test.dome-marketplace-lcl.org"
+      url: "https://verifier.dome-marketplace-lcl.org"
       security:
         serviceIdentity:
           # Placeholder for private key used in identity verification (REQUIRED)
