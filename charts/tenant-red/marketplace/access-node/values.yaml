@@ -80,7 +80,7 @@ access-node:
       name: access-node-secret
       key: dlt-private-key
     env:
-      ISS: "0xa559c43a8127569c71c42a04a41e82bcfcf86a82b61284b2c906afbe67d4b839"
+      ISS: "0xc23e2a4bbc11c826c53fc84c6616101a14077813c29d7c131dea77d90518d009"
 
   ## configuration of postgres to be used for the blockchain-connector - see https://github.com/bitnami/charts/tree/main/bitnami/postgresql for details
   postgresql:
