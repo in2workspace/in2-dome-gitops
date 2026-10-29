@@ -21,7 +21,7 @@ access-node:
           secretName: desmos-tls-secret
     app:
       logLevel:
-        app: DEBUG
+        app: INFO
       ## information about the access-node operator
       operator:
         # -- did of the organization running the node
