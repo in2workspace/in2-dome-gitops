@@ -7,7 +7,7 @@ access-node:
   desmos:
     image:
       # Overrides the image tag whose default is the chart appVersion.
-      tag: v2.0.26
+      tag: v2.0.27-snapshot
       ## image pull policy
       pullPolicy: Always
     ingress:
